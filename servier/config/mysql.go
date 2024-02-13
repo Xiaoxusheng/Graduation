@@ -42,7 +42,7 @@ func InitMysql() {
 				panic(err)
 			}
 			db.Debug()
-			//global.Global.Log.Info("mysql连接成功！")
+			log.Println("mysql连接成功！")
 			mysqlDB, _ := db.DB()
 
 			// SetMaxIdleConns 用于设置连接池中空闲连接的最大数量。

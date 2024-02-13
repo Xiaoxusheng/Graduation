@@ -12,7 +12,7 @@ mysql:
 
 #redis数据库
 redis:
-  addr: "47.113.189.23:6379"
+  addr: "xlei.love:6379"
   db: 0
   password: "admin123"
   poolsize: 1000

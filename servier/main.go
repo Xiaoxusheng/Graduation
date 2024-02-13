@@ -9,6 +9,8 @@ import (
 func main() {
 	//初始化配置
 	config.InitService()
+	//初始化mysql
+	config.InitMysql()
 
 	e := gin.Default()
 
