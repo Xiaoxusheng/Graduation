@@ -1,6 +1,13 @@
 package config
 
-import "time"
+import (
+	"fmt"
+	"log"
+	"time"
+
+	"github.com/fsnotify/fsnotify"
+	"github.com/spf13/viper"
+)
 
 /*服务器相关配置*/
 
@@ -69,4 +76,31 @@ type Configs struct {
 	SparkDesk SparkDesk
 	Pool      Pool
 	Kafka     Kafka
+}
+
+var Config Configs
+
+func InitService() {
+	viper.SetConfigFile("config.yaml")
+	err := viper.ReadInConfig()
+	if err != nil {
+		log.Println("1", err)
+	}
+	err = viper.Unmarshal(&Config)
+	if err != nil {
+		log.Println("初始化失败")
+		return
+	}
+
+	viper.OnConfigChange(func(e fsnotify.Event) {
+		fmt.Println("Config file changed:", e.Name)
+		err := viper.Unmarshal(&Config)
+		if err != nil {
+			log.Println(err)
+			return
+		}
+		fmt.Println(Config)
+	})
+	fmt.Println(Config)
+	viper.WatchConfig()
 }

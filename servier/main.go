@@ -3,10 +3,12 @@ package main
 import (
 	"github.com/gin-gonic/gin"
 	"log"
+	"server/config"
 )
 
 func main() {
 	//初始化配置
+	config.InitService()
 
 	e := gin.Default()
 
