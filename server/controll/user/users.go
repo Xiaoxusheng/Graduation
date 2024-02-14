@@ -1,10 +1,12 @@
 package user
 
 import (
+	"encoding/json"
 	"github.com/gin-gonic/gin"
 	"server/config"
 	"server/dao"
 	"server/global"
+	"server/models"
 	"server/result"
 	"server/utils"
 )
@@ -71,7 +73,32 @@ func Register(c *gin.Context) {
 
 // Info 用户信息
 func Info(c *gin.Context) {
-
+	//	获取identity
+	id := c.GetString("identity")
+	if id == "" {
+		result.Fail(c, global.UserCode, global.QueryNotFound)
+		return
+	}
+	//
+	val := global.Global.Redis.Get(global.Global.Ctx, global.Info+id).Val()
+	if val != "" {
+		user := new(models.User)
+		err := json.Unmarshal([]byte(val), user)
+		if err != nil {
+			result.Fail(c, global.UserCode, global.ParseErr)
+			return
+		}
+		result.Ok(c, user)
+		return
+	}
+	userInfo, err := dao.GetInfoByIdentity(id)
+	if err != nil || userInfo == nil {
+		result.Fail(c, global.UserCode, global.UserNotExist)
+		return
+	}
+	//同步至redis
+	go func() { global.Global.Redis.Set(global.Global.Ctx, global.Info+id, userInfo, global.InfoTime) }()
+	result.Ok(c, userInfo)
 }
 
 //注销

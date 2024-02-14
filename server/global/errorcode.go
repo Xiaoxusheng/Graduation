@@ -7,6 +7,8 @@ const (
 
 // *错误信息*/
 var (
-	QueryError   = "参数失败！"
-	UserNotExist = "用户不存在！"
+	QueryError    = "参数错误！"
+	UserNotExist  = "用户不存在！"
+	QueryNotFound = "获取必要参数失败！"
+	ParseErr      = "解析错误！"
 )
