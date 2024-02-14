@@ -28,7 +28,7 @@ jwt:
 #日志相关配置
 Logs:
   leave: "info"
-  prefix: "Tally"
-  path: "./logs"
+  prefix: ""
+  path: "./log/"
   maxsize: 100
 
