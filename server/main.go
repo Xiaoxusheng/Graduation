@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"log"
 	"server/config"
+	"server/middleware"
 	"server/router"
 )
 
@@ -22,8 +23,9 @@ func main() {
 	e := gin.Default()
 
 	//中间件
+	e.Use(middleware.Cors())
 
-	e = router.Router(e)
+	e = router.Routers(e)
 
 	err := e.Run(":80")
 	if err != nil {

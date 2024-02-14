@@ -5,7 +5,7 @@ import (
 	"server/controll/user"
 )
 
-func Router(e *gin.Engine) *gin.Engine {
+func Routers(e *gin.Engine) *gin.Engine {
 	//
 	api := e.Group("/user")
 	api.POST("/login", user.Login)

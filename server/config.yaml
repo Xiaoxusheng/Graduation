@@ -1,7 +1,7 @@
 #服务器相关配置
 service:
   port: 80
-  name: "OA"
+  name: "server"
 
 #mysql数据库
 mysql:
@@ -28,7 +28,7 @@ jwt:
 #日志相关配置
 Logs:
   leave: "info"
-  prefix: ""
+  prefix: "server"
   path: "./log/"
   maxsize: 100
 
