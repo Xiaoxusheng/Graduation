@@ -7,7 +7,7 @@ service:
 mysql:
   username: "root"
   password: "admin123"
-  database: "talk"
+  database: "server"
   url: "127.0.0.1"
 
 #redis数据库

@@ -16,3 +16,19 @@ func GetInfoByIdentity(id string) (*models.User, error) {
 	err := global.Global.Mysql.Where("identity=?", id).Take(user).Error
 	return user, err
 }
+
+func GetUsername(username string) (*models.User, error) {
+	user := new(models.User)
+	err := global.Global.Mysql.Where("username=?", username).Take(user).Error
+	return user, err
+}
+
+func GetPhone(phone string) (*models.User, error) {
+	user := new(models.User)
+	err := global.Global.Mysql.Where("phone=?", phone).Take(user).Error
+	return user, err
+}
+
+func InsertUser(user *models.User) error {
+	return global.Global.Mysql.Create(user).Error
+}

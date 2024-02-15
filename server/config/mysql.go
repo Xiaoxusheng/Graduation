@@ -4,6 +4,7 @@ import (
 	"log"
 	"os"
 	"server/global"
+	"server/models"
 	"sync"
 	"time"
 
@@ -56,9 +57,7 @@ func InitMysql() {
 			global.Global.Mysql = db
 		})
 	//建表
-	//err := global.Global.Mysql.AutoMigrate(&models.Follow{})
-	//err = global.Global.Mysql.AutoMigrate(&models.Blog{})
-	//err = global.Global.Mysql.AutoMigrate(&models.User{})
+	err = global.Global.Mysql.AutoMigrate(&models.User{})
 	//err = global.Global.Mysql.AutoMigrate(&models.Kind{})
 	//err = global.Global.Mysql.AutoMigrate(&models.Tally{})
 	//err = global.Global.Mysql.AutoMigrate(&models.Comment{})
