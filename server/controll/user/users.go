@@ -3,6 +3,7 @@ package user
 import (
 	"encoding/base64"
 	"encoding/json"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"server/config"
 	"server/dao"
@@ -40,7 +41,8 @@ func Login(c *gin.Context) {
 		result.Fail(c, global.BadRequest, global.UserNotExist)
 		return
 	}
-	val := global.Global.Redis.HGet(global.Global.Ctx, user.Username, utils.HashPassword(user.Password, []byte(salt))).Val()
+	salts, _ := base64.URLEncoding.DecodeString(salt)
+	val := global.Global.Redis.HGet(global.Global.Ctx, user.Username, utils.HashPassword(user.Password, salts)).Val()
 	//identity 存在
 	if val != "" {
 		//获取token
@@ -88,6 +90,7 @@ func Register(c *gin.Context) {
 	}
 	//检查用户名是否存在
 	username, err := dao.GetUsername(r.Username)
+	fmt.Println(username)
 	if username != nil {
 		result.Fail(c, global.DataConflict, global.QueryError)
 		return
@@ -115,7 +118,7 @@ func Register(c *gin.Context) {
 		result.Fail(c, global.DataConflict, global.QueryError)
 		return
 	}
-	//插入数据库
+	//插入identity
 	global.Global.Redis.HSet(global.Global.Ctx, r.Username, utils.HashPassword(r.Password, salt), id)
 	//盐值
 	global.Global.Redis.HSet(global.Global.Ctx, r.Username, "salt", base64.URLEncoding.EncodeToString(salt))
@@ -148,13 +151,19 @@ func Info(c *gin.Context) {
 		return
 	}
 	//同步至redis
-	go func() { global.Global.Redis.Set(global.Global.Ctx, global.Info+id, userInfo, global.InfoTime) }()
+	go func() {
+		marshal, err := json.Marshal(userInfo)
+		if err != nil {
+			global.Global.Log.Error(err)
+		}
+		_, err = global.Global.Redis.Set(global.Global.Ctx, global.Info+id, marshal, global.InfoTime*time.Minute).Result()
+		if err != nil {
+			global.Global.Log.Warn(err)
+			return
+		}
+
+	}()
 	result.Ok(c, userInfo)
-}
-
-// UnResign 注销
-func UnResign(c *gin.Context) {
-
 }
 
 // Logout 退出登录

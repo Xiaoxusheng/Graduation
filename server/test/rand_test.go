@@ -32,5 +32,7 @@ func Test_rand(t *testing.T) {
 		return
 	}
 	d := HashPassword("njdjs", salt)
-	fmt.Println(d)
+	s := base64.URLEncoding.EncodeToString(salt)
+	a, _ := base64.URLEncoding.DecodeString(s)
+	fmt.Println(salt, s, a, d)
 }

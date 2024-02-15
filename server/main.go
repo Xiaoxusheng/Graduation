@@ -23,7 +23,7 @@ func main() {
 	e := gin.Default()
 
 	//中间件
-	e.Use(middleware.Cors())
+	e.Use(middleware.Log(), middleware.Cors())
 
 	e = router.Routers(e)
 
