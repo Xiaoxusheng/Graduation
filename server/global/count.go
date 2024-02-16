@@ -10,7 +10,9 @@ const (
 
 // redis 前缀
 var (
-	Info = "info"
+	Info     = "info"
+	Uid      = "uid"
+	Employer = "employer"
 )
 
 // redis 时间

@@ -20,5 +20,15 @@ func Routers(e *gin.Engine) *gin.Engine {
 	//退出登录
 	api.GET("/Logout", user.Logout)
 
+	//删除员工
+	api.GET("delete_employer", user.DeleteEmployee)
+	//创建员工信息
+	api.POST("/add_employer", user.AddEmployee)
+	//更新员工信息
+
+	//员工信息列表
+
+	//员工个人信息
+	api.GET("info", user.EmployeeInfo)
 	return e
 }

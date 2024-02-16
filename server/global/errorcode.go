@@ -36,9 +36,12 @@ const (
 
 // *错误信息*/
 var (
-	QueryError    = "参数错误！"
-	UserNotExist  = "用户不存在！"
-	QueryNotFound = "获取必要参数失败！"
-	ParseErr      = "解析错误！"
-	RequestToErr  = "请求无法处理！"
+	QueryError            = "参数错误！"
+	UserNotExistError     = "用户不存在！"
+	QueryNotFoundError    = "获取必要参数失败！"
+	ParseError            = "解析错误！"
+	RequestToError        = "请求无法处理！"
+	EmployerNotFoundError = "员工不存在！"
+	DeleteError           = "删除失败！"
+	AddEmployerError      = "新增员工失败！"
 )

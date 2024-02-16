@@ -19,7 +19,7 @@ type users struct {
 	Password string `json:"password" form:"password" binding:"required" `
 }
 
-type Registers struct {
+type registers struct {
 	Username string `json:"username"  form:"username"  validate:"min=5,max=10"`
 	Password string `json:"password"  form:"password" validate:"min=5,max=10"`
 	Phone    string `json:"phone" form:"phone" validate:"required,phone"`
@@ -38,7 +38,7 @@ func Login(c *gin.Context) {
 	//  查询盐值
 	salt := global.Global.Redis.HGet(global.Global.Ctx, user.Username, "salt").Val()
 	if salt == "" {
-		result.Fail(c, global.BadRequest, global.UserNotExist)
+		result.Fail(c, global.BadRequest, global.UserNotExistError)
 		return
 	}
 	salts, _ := base64.URLEncoding.DecodeString(salt)
@@ -64,7 +64,7 @@ func Login(c *gin.Context) {
 	//	identity 不存在
 	use, err := dao.GetUserByUsePwd(user.Username, utils.HashPassword(user.Password, []byte(salt)))
 	if err != nil || use == nil {
-		result.Fail(c, global.BadRequest, global.UserNotExist)
+		result.Fail(c, global.BadRequest, global.UserNotExistError)
 		return
 	}
 	//生成token
@@ -76,7 +76,7 @@ func Login(c *gin.Context) {
 
 // Register 注册
 func Register(c *gin.Context) {
-	r := new(Registers)
+	r := new(registers)
 	err := c.Bind(r)
 	if err != nil {
 		result.Fail(c, global.BadRequest, global.QueryError)
@@ -130,7 +130,7 @@ func Info(c *gin.Context) {
 	//	获取identity
 	id := c.GetString("identity")
 	if id == "" {
-		result.Fail(c, global.BadRequest, global.QueryNotFound)
+		result.Fail(c, global.BadRequest, global.QueryNotFoundError)
 		return
 	}
 	//
@@ -139,7 +139,7 @@ func Info(c *gin.Context) {
 		user := new(models.User)
 		err := json.Unmarshal([]byte(val), user)
 		if err != nil {
-			result.Fail(c, global.ServerError, global.ParseErr)
+			result.Fail(c, global.ServerError, global.ParseError)
 			return
 		}
 		result.Ok(c, user)
@@ -147,7 +147,7 @@ func Info(c *gin.Context) {
 	}
 	userInfo, err := dao.GetInfoByIdentity(id)
 	if err != nil || userInfo == nil {
-		result.Fail(c, global.DataNotFound, global.UserNotExist)
+		result.Fail(c, global.DataNotFound, global.UserNotExistError)
 		return
 	}
 	//同步至redis
@@ -170,7 +170,7 @@ func Info(c *gin.Context) {
 func Logout(c *gin.Context) {
 	id := c.GetString("identity")
 	if id == "" {
-		result.Fail(c, global.BadRequest, global.QueryNotFound)
+		result.Fail(c, global.BadRequest, global.QueryNotFoundError)
 		return
 	}
 	//删除token
