@@ -23,6 +23,7 @@ const (
 	ServiceTimeout         = 30003 // 服务超时
 	DependencyServiceError = 30004 // 依赖服务失败
 	DatabaseError          = 30005 // 数据库错误
+	ExceedLimitError       = 30006 // 服务器请求超过限制
 )
 
 // 数据错误
@@ -39,4 +40,5 @@ var (
 	UserNotExist  = "用户不存在！"
 	QueryNotFound = "获取必要参数失败！"
 	ParseErr      = "解析错误！"
+	RequestToErr  = "请求无法处理！"
 )

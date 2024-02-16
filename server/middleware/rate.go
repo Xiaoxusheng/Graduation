@@ -2,6 +2,8 @@ package middleware
 
 import (
 	"github.com/gin-gonic/gin"
+	"server/global"
+	"server/result"
 	"sync"
 	"sync/atomic"
 	"time"
@@ -32,7 +34,7 @@ func (t *TokenBucket) limit() bool {
 	now := time.Now()
 	t1 := now.UnixMilli() - t.now.UnixMilli()
 
-	num := time.Duration(t1/1000) * t.rate
+	num := time.Duration(t1/200) * t.rate
 	//生成的token大于总容量
 	if t.current+int32(num) > t.capacity {
 		atomic.StoreInt32(&t.current, t.capacity)
@@ -55,9 +57,10 @@ func (t *TokenBucket) limit() bool {
 // RateLimit 限速中间件
 func RateLimit() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		tokenBucket := NewTokenBucket(20, 0.5)
+		tokenBucket := NewTokenBucket(20, 1)
 		ok := tokenBucket.limit()
 		if !ok {
+			result.Fail(c, global.ExceedLimitError, global.RequestToErr)
 			c.Abort()
 			return
 		}

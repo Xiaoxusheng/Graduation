@@ -1,6 +1,10 @@
 package user
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+	"server/global"
+	"server/result"
+)
 
 // AddEmployee 添加员工信息
 func AddEmployee(c *gin.Context) {
@@ -9,6 +13,12 @@ func AddEmployee(c *gin.Context) {
 
 // DeleteEmployee 删除员工
 func DeleteEmployee(c *gin.Context) {
+	id := c.Query("id")
+	if id == "" {
+		result.Fail(c, global.BadRequest, global.QueryNotFound)
+		return
+	}
+	//查询id是否存在
 
 }
 
