@@ -89,7 +89,25 @@ func DeleteEmployee(c *gin.Context) {
 
 // EmployeeList 员工列表
 func EmployeeList(c *gin.Context) {
-
+	//分页查询
+	offset := c.DefaultQuery("offset", "1")
+	limit := c.DefaultQuery("limit", "10")
+	offsets, err := strconv.Atoi(offset)
+	if err != nil {
+		result.Fail(c, global.BadRequest, global.GetEmployerListError)
+		return
+	}
+	limits, err := strconv.Atoi(limit)
+	if err != nil {
+		result.Fail(c, global.BadRequest, global.GetEmployerListError)
+		return
+	}
+	list, err := dao.GetEmployerList(limits, offsets)
+	if err != nil {
+		result.Fail(c, global.BadRequest, global.GetEmployerListError)
+		return
+	}
+	result.Ok(c, list)
 }
 
 // UpdateEmployee 更新员工信息

@@ -27,7 +27,7 @@ func Routers(e *gin.Engine) *gin.Engine {
 	//更新员工信息
 
 	//员工信息列表
-
+	api.GET("/list", user.EmployeeList)
 	//员工个人信息
 	api.GET("info", user.EmployeeInfo)
 	return e

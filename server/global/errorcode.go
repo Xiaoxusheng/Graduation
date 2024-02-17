@@ -44,4 +44,5 @@ var (
 	EmployerNotFoundError = "员工不存在！"
 	DeleteError           = "删除失败！"
 	AddEmployerError      = "新增员工失败！"
+	GetEmployerListError  = "获取员工列表失败！"
 )

@@ -44,3 +44,9 @@ func GetEmployerInfo(uid int64) (*models.Employee, error) {
 	}
 	return e, nil
 }
+
+func GetEmployerList(limit, offset int) ([]*models.Employee, error) {
+	list := make([]*models.Employee, 0)
+	err := global.Global.Mysql.Take("").Limit(limit).Offset(offset - 1).Find(&list).Error
+	return list, err
+}

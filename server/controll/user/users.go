@@ -168,6 +168,7 @@ func Info(c *gin.Context) {
 
 // Logout 退出登录
 func Logout(c *gin.Context) {
+	c.MultipartForm()
 	id := c.GetString("identity")
 	if id == "" {
 		result.Fail(c, global.BadRequest, global.QueryNotFoundError)
