@@ -60,7 +60,7 @@ func RateLimit() gin.HandlerFunc {
 		tokenBucket := NewTokenBucket(20, 1)
 		ok := tokenBucket.limit()
 		if !ok {
-			result.Fail(c, global.ExceedLimitError, global.RequestToErr)
+			result.Fail(c, global.ExceedLimitError, global.RequestToError)
 			c.Abort()
 			return
 		}
