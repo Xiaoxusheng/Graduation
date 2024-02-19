@@ -10,12 +10,14 @@ const (
 
 // redis 前缀
 var (
-	Info     = "info"
-	Uid      = "uid"
-	Employer = "employer"
+	Info           = "info"
+	Uid            = "uid"
+	Employer       = "employer"
+	DepartmentList = "departmentList"
 )
 
 // redis 时间
 const (
-	InfoTime = 60 * 60 * 24 * 7
+	InfoTime       = 60 * 60 * 24 * 7
+	DepartmentTime = 60 * 60 * 24 * 7
 )

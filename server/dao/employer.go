@@ -12,7 +12,7 @@ func InsertEmployer(e *models.Employee) error {
 // GetEmployer 部门
 func GetEmployer(department int32) (*models.Employee, error) {
 	e := new(models.Employee)
-	err := global.Global.Mysql.Where("department=?", department).Order("uid DESC").Take(e).Error
+	err := global.Global.Mysql.Where("department_id=?", department).Order("uid DESC").Take(e).Error
 	if err != nil {
 		return nil, err
 	}

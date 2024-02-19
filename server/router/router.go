@@ -30,5 +30,11 @@ func Routers(e *gin.Engine) *gin.Engine {
 	api.GET("/list", user.EmployeeList)
 	//员工个人信息
 	api.GET("/employer_info", user.EmployeeInfo)
+
+	//部门列表
+	api.GET("/get_department_list", user.GetDepartmentList)
+
+	//删除部门
+	api.GET("/del_department", user.DeleteDepartment)
 	return e
 }

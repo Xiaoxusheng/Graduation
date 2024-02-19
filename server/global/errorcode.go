@@ -32,11 +32,13 @@ const (
 	DataConflict        = 40002 // 数据冲突
 	DataNotFound        = 40003 // 数据不存在
 	DataTooLarge        = 40004 // 数据过大
+	DataUnmarshal       = 40005 // 数据解析失败
 )
 
 // *错误信息*/
 var (
 	QueryError            = "参数错误！"
+	DataUnmarshalError    = "数据解析失败！"
 	UserNotExistError     = "用户不存在！"
 	QueryNotFoundError    = "获取必要参数失败！"
 	ParseError            = "解析错误！"
@@ -45,4 +47,6 @@ var (
 	DeleteError           = "删除失败！"
 	AddEmployerError      = "新增员工失败！"
 	GetEmployerListError  = "获取员工列表失败！"
+	GetDepartmentError    = "获取部门列表失败！"
+	DelDepartmentError    = "删除部门失败！"
 )
