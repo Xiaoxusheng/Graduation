@@ -122,6 +122,14 @@ func EmployeeList(c *gin.Context) {
 
 // UpdateEmployee 更新员工信息
 func UpdateEmployee(c *gin.Context) {
+	e := new(employer)
+	err := c.Bind(e)
+	if err != nil {
+		result.Fail(c, global.BadRequest, global.QueryError)
+		global.Global.Log.Error(err)
+		return
+	}
+	//	更新信息
 
 }
 
@@ -139,14 +147,16 @@ func EmployeeInfo(c *gin.Context) {
 		return
 	}
 	//获取员工信息
-	val := global.Global.Redis.Get(global.Global.Ctx, identity).Val()
+	val := global.Global.Redis.Get(global.Global.Ctx, global.Uid+identity).Val()
 	if val != "" {
-		e := new(employer)
+		e := new(models.Employee)
 		err = json.Unmarshal([]byte(val), e)
 		if err != nil {
+			global.Global.Log.Error(err)
 			return
 		}
 		result.Ok(c, e)
+		return
 	}
 	//不存在，过期
 	info, err := dao.GetEmployerInfo(int64(id))
@@ -156,8 +166,8 @@ func EmployeeInfo(c *gin.Context) {
 	}
 	//插入
 	go func() {
-		if info.Name == "" {
-			_, err = global.Global.Redis.Set(global.Global.Ctx, global.Uid, "null", 0).Result()
+		if info == nil {
+			_, err = global.Global.Redis.Set(global.Global.Ctx, global.Uid+identity, "null", 0).Result()
 			return
 		}
 		marshal, err := json.Marshal(info)
@@ -165,7 +175,7 @@ func EmployeeInfo(c *gin.Context) {
 			global.Global.Log.Error(err)
 			return
 		}
-		_, err = global.Global.Redis.Set(global.Global.Ctx, global.Uid, marshal, 0).Result()
+		_, err = global.Global.Redis.Set(global.Global.Ctx, global.Uid+identity, marshal, 0).Result()
 		if err != nil {
 			global.Global.Log.Error(err)
 		}

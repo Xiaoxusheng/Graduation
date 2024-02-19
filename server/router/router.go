@@ -38,21 +38,20 @@ func Routers(e *gin.Engine) *gin.Engine {
 	api.GET("/list", admin.EmployeeList)
 	//员工个人信息
 	api.GET("/employer_info", admin.EmployeeInfo)
-
 	//分配账号
 	api.GET("/assigned_account", admin.AssignedAccount)
 
 	//部门列表
 	api.GET("/get_department_list", admin.GetDepartmentList)
-
 	//删除部门
 	api.GET("/del_department", admin.DeleteDepartment)
-
 	//更新部门信息
 	api.POST("/update_department", admin.UpdateDepartment)
-
 	//新增部门信息
 	api.POST("/add_department", admin.AddDepartment)
+
+	//获取考勤记录
+	api.GET("/get_clockIn", admin.GetClockIn)
 
 	return e
 }

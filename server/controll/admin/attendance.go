@@ -28,8 +28,9 @@ func GetClockIn(c *gin.Context) {
 	list, err := dao.GetAttendanceList(int32(uids))
 	if err != nil {
 		global.Global.Log.Error(err)
-
 		return
 	}
 	result.Ok(c, list)
 }
+
+//编辑考勤记录

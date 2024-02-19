@@ -3,7 +3,6 @@ package dao
 import (
 	"server/global"
 	"server/models"
-	"server/utils"
 )
 
 func GetUserByUsePwd(username, password string) (*models.User, error) {
@@ -51,9 +50,9 @@ func InsertUser(user *models.User) error {
 }
 
 // UpdatePwd 重置密码
-func UpdatePwd(account string, salt []byte) error {
+func UpdatePwd(account string, pwd string) error {
 	user := new(models.User)
-	return global.Global.Mysql.Model(user).Where("account=?", account).Update("password", utils.HashPassword("123456", salt)).Error
+	return global.Global.Mysql.Model(user).Where("account=?", account).Update("password", pwd).Error
 }
 
 func GetByAccount(account string) (*models.User, error) {

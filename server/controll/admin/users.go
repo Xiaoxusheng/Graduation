@@ -254,7 +254,7 @@ func ResetPassword(c *gin.Context) {
 	val := global.Global.Redis.HGet(global.Global.Ctx, global.Uid, global.Salt).Val()
 	if val != "" {
 		salt, _ := base64.URLEncoding.DecodeString(val)
-		err := dao.UpdatePwd(uid, salt)
+		err := dao.UpdatePwd(uid, utils.HashPassword("123456", salt))
 		if err != nil {
 			global.Global.Log.Warn(err)
 			result.Fail(c, global.BadRequest, global.ResetPwdError)
@@ -270,7 +270,7 @@ func ResetPassword(c *gin.Context) {
 		return
 	}
 	salt, _ := base64.URLEncoding.DecodeString(account.Salt)
-	err = dao.UpdatePwd(uid, salt)
+	err = dao.UpdatePwd(uid, utils.HashPassword("123456", salt))
 	if err != nil {
 		global.Global.Log.Warn(err)
 		result.Fail(c, global.BadRequest, global.ResetPwdError)

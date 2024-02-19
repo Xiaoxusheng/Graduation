@@ -17,6 +17,7 @@ type users struct {
 	Password string `json:"password" form:"password" binding:"required" `
 }
 
+// Login 登录
 func Login(c *gin.Context) {
 	user := new(users)
 	err := c.Bind(user)

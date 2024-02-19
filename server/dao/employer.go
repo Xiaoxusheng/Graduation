@@ -47,7 +47,8 @@ func DeleteEmployer(id string) error {
 // GetEmployerInfo uid查询
 func GetEmployerInfo(uid int64) (*models.Employee, error) {
 	e := new(models.Employee)
-	err := global.Global.Mysql.Where("uid=?", uid).Take(e).Error
+	err := global.Global.Mysql.Select("user_basic.*", "employee_basic.*").Joins("join user_basic on user_basic.identity=employee_basic.identity").Where("employee_basic.uid=?", uid).Take(&e).Error
+	//err := global.Global.Mysql.Where("uid=?", uid).Take(e).Error
 	if err != nil {
 		return nil, err
 	}

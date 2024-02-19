@@ -12,7 +12,7 @@ const (
 var (
 	Sign           = "sign"
 	Salt           = "salt"
-	UidKey         = "uid-key"
+	EmployerInfo   = "employerInfo"
 	Info           = "info"
 	Uid            = "uid"
 	Employer       = "employer"
