@@ -29,6 +29,15 @@ func GetEmployerById(id string) (*models.Employee, error) {
 	return e, nil
 }
 
+func GetEmployerByUid(uid string) (*models.Employee, error) {
+	e := new(models.Employee)
+	err := global.Global.Mysql.Where("uid=?", uid).Take(e).Error
+	if err != nil {
+		return nil, err
+	}
+	return e, nil
+}
+
 // DeleteEmployer 删除
 func DeleteEmployer(id string) error {
 	e := new(models.Employee)
@@ -47,6 +56,6 @@ func GetEmployerInfo(uid int64) (*models.Employee, error) {
 
 func GetEmployerList(limit, offset int) ([]*models.Employee, error) {
 	list := make([]*models.Employee, 0)
-	err := global.Global.Mysql.Take("").Limit(limit).Offset(offset - 1).Find(&list).Error
+	err := global.Global.Mysql.Limit(limit).Offset(offset - 1).Find(&list).Error
 	return list, err
 }

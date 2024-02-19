@@ -42,29 +42,34 @@ func GetUid(types int32) (int64, error) {
 		/*查一下数据库，有可能是redis导致的查不到数据*/
 		employer, err := dao.GetEmployer(types)
 		if err != nil {
-			return 0, err
+			global.Global.Log.Error(err)
 		}
+
 		//Uif不存在
-		if employer.Uid == 0 {
+		if employer == nil {
+
 			rand.NewSource(time.Now().UnixNano())
-			s.WriteString(string(types))
-			for i := 0; i < 7; i++ {
+			s.WriteString(strconv.Itoa(int(types)))
+			fmt.Println(s.String())
+			for i := 0; i < 6; i++ {
 				s.WriteString("0")
 			}
 			s.WriteString("1")
-			_, err = global.Global.Redis.HSet(global.Global.Ctx, global.Uid, string(types), s).Result()
+			_, err = global.Global.Redis.HSet(global.Global.Ctx, global.Uid, string(types), s.String()).Result()
 			if err != nil {
 				global.Global.Log.Error(err)
 				return 0, err
 			}
+			fmt.Println(s.String())
 			i, err := strconv.Atoi(s.String())
 			if err != nil {
+				global.Global.Log.Error(err)
 				return 0, err
 			}
 			return int64(i), nil
 		} else {
 			//redis出错了，数据库中存在
-			val = string(employer.Uid + 1)
+			val = strconv.FormatInt(employer.Uid+1, 10)
 			_, err = global.Global.Redis.HSet(global.Global.Ctx, global.Uid, string(types), employer.Uid+1).Result()
 			if err != nil {
 				global.Global.Log.Error(err)

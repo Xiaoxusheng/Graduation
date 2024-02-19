@@ -24,6 +24,8 @@ func ParseToken() gin.HandlerFunc {
 		tokenString := c.Request.Header.Get("Authorization")
 		if tokenString == "" {
 			result.Fail(c, global.AuthenticationFailed, "token 不能为空")
+			c.Abort()
+			return
 		}
 		t := strings.Split(tokenString, " ")
 
@@ -35,6 +37,8 @@ func ParseToken() gin.HandlerFunc {
 		if errs != nil {
 			fmt.Println(errs)
 			result.Fail(c, global.AuthenticationFailed, "token过期或退出登录")
+			c.Abort()
+			return
 		}
 
 		c.Set("identity", claims.Identity)

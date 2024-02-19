@@ -22,6 +22,8 @@ func main() {
 	config.InitMysql()
 	//初始化redis
 	config.InitRedis()
+	//初始化锁
+	config.InitMutex()
 
 	e := gin.Default()
 

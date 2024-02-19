@@ -1,4 +1,4 @@
-package user
+package admin
 
 import (
 	"encoding/base64"
@@ -11,6 +11,7 @@ import (
 	"server/models"
 	"server/result"
 	"server/utils"
+	"strconv"
 	"time"
 )
 
@@ -22,8 +23,10 @@ type users struct {
 type registers struct {
 	Username string `json:"username"  form:"username"  validate:"min=5,max=10"`
 	Password string `json:"password"  form:"password" validate:"min=5,max=10"`
-	Phone    string `json:"phone" form:"phone" validate:"required,phone"`
+	Phone    string `json:"phone" form:"phone" validate:"required,e164"`
 }
+
+//管理端
 
 // Login 登录
 func Login(c *gin.Context) {
@@ -36,7 +39,7 @@ func Login(c *gin.Context) {
 	global.Global.Log.Info(err)
 	//	判断用户是否存在
 	//  查询盐值
-	salt := global.Global.Redis.HGet(global.Global.Ctx, user.Username, "salt").Val()
+	salt := global.Global.Redis.HGet(global.Global.Ctx, user.Username, global.Salt).Val()
 	if salt == "" {
 		result.Fail(c, global.BadRequest, global.UserNotExistError)
 		return
@@ -62,15 +65,17 @@ func Login(c *gin.Context) {
 		return
 	}
 	//	identity 不存在
-	use, err := dao.GetUserByUsePwd(user.Username, utils.HashPassword(user.Password, []byte(salt)))
+	use, err := dao.GetUserByUsePwd(user.Username, utils.HashPassword(user.Password, salts))
 	if err != nil || use == nil {
 		result.Fail(c, global.BadRequest, global.UserNotExistError)
 		return
 	}
 	//生成token
 	token := utils.GetToken(use.Identity)
-	global.Global.Redis.Set(global.Global.Ctx, use.Identity, token, config.Config.Jwt.Time)
-	global.Global.Redis.HSet(global.Global.Ctx, user.Username, utils.HashPassword(user.Password, []byte(salt)), use.Identity)
+	go func() {
+		global.Global.Redis.Set(global.Global.Ctx, use.Identity, token, config.Config.Jwt.Time)
+		global.Global.Redis.HSet(global.Global.Ctx, user.Username, utils.HashPassword(user.Password, salts), use.Identity)
+	}()
 	result.Ok(c, map[string]any{"token": token})
 }
 
@@ -102,7 +107,6 @@ func Register(c *gin.Context) {
 		return
 	}
 	id := utils.GetUidV5(r.Username)
-	global.Global.Log.Info(string(salt))
 	//插入
 	err = dao.InsertUser(&models.User{
 		Username: r.Username,
@@ -118,10 +122,11 @@ func Register(c *gin.Context) {
 		result.Fail(c, global.DataConflict, global.QueryError)
 		return
 	}
-	//插入identity
-	global.Global.Redis.HSet(global.Global.Ctx, r.Username, utils.HashPassword(r.Password, salt), id)
-	//盐值
-	global.Global.Redis.HSet(global.Global.Ctx, r.Username, "salt", base64.URLEncoding.EncodeToString(salt))
+	go func() { //插入identity
+		global.Global.Redis.HSet(global.Global.Ctx, r.Username, utils.HashPassword(r.Password, salt), id)
+		//盐值
+		global.Global.Redis.HSet(global.Global.Ctx, r.Username, global.Salt, base64.URLEncoding.EncodeToString(salt))
+	}()
 	result.Ok(c, nil)
 }
 
@@ -168,7 +173,6 @@ func Info(c *gin.Context) {
 
 // Logout 退出登录
 func Logout(c *gin.Context) {
-	c.MultipartForm()
 	id := c.GetString("identity")
 	if id == "" {
 		result.Fail(c, global.BadRequest, global.QueryNotFoundError)
@@ -182,3 +186,97 @@ func Logout(c *gin.Context) {
 	}
 	result.Ok(c, nil)
 }
+
+// AssignedAccount 管理员分配账号
+func AssignedAccount(c *gin.Context) {
+	//输入工号
+	uid := c.Query("id")
+	if uid == "" {
+		global.Global.Log.Warn("identity is null")
+		result.Fail(c, global.BadRequest, global.QueryError)
+		return
+	}
+	//查询identity
+	userInfo, err := dao.GetEmployerByUid(uid)
+	if err != nil {
+		global.Global.Log.Error(err)
+		result.Fail(c, global.BadRequest, global.EmployerNotFoundError)
+		return
+	}
+	//生成账号，密码
+	//生成随机盐值
+	salt, err := utils.GenerateSalt(16)
+	if err != nil {
+		global.Global.Log.Error(err)
+		result.Fail(c, global.ServerError, global.QueryError)
+		return
+	}
+	//放入redis
+	_, err = global.Global.Redis.HSet(global.Global.Ctx, strconv.FormatInt(userInfo.Uid, 10), global.Salt, base64.URLEncoding.EncodeToString(salt)).Result()
+	if err != nil {
+		global.Global.Log.Error(err)
+		result.Fail(c, global.ServerError, global.QueryError)
+		return
+	}
+
+	err = dao.InsertUser(&models.User{
+		Username: userInfo.Name,
+		Identity: userInfo.Identity,
+		Account:  userInfo.Uid,
+		Password: utils.HashPassword("123456", salt),
+		Phone:    userInfo.Phone,
+		Status:   0,
+		IP:       c.RemoteIP(),
+		Salt:     base64.URLEncoding.EncodeToString(salt),
+	})
+	if err != nil {
+		global.Global.Log.Error(err)
+		result.Fail(c, global.BadRequest, global.AddEmployerError)
+		return
+	}
+
+	result.Ok(c, map[string]any{
+		"account":  userInfo.Uid,
+		"password": "123456",
+	})
+
+}
+
+// ResetPassword 重置密码
+func ResetPassword(c *gin.Context) {
+	uid := c.Query("id")
+	if uid == "" {
+		global.Global.Log.Warn("identity is null")
+		result.Fail(c, global.BadRequest, global.QueryError)
+		return
+	}
+	//	获取盐值
+	val := global.Global.Redis.HGet(global.Global.Ctx, global.Uid, global.Salt).Val()
+	if val != "" {
+		salt, _ := base64.URLEncoding.DecodeString(val)
+		err := dao.UpdatePwd(uid, salt)
+		if err != nil {
+			global.Global.Log.Warn(err)
+			result.Fail(c, global.BadRequest, global.ResetPwdError)
+			return
+		}
+		result.Ok(c, nil)
+	}
+	//盐值不存在
+	account, err := dao.GetByAccount(uid)
+	if err != nil || account == nil {
+		global.Global.Log.Error(err)
+		result.Fail(c, global.BadRequest, global.UserNotFound)
+		return
+	}
+	salt, _ := base64.URLEncoding.DecodeString(account.Salt)
+	err = dao.UpdatePwd(uid, salt)
+	if err != nil {
+		global.Global.Log.Warn(err)
+		result.Fail(c, global.BadRequest, global.ResetPwdError)
+		return
+	}
+	result.Ok(c, nil)
+}
+
+//修改密码

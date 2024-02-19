@@ -12,8 +12,9 @@ type Attendance struct {
 	Uid      int64         `gorm:"type:varchar(36) not null unique; comment:'工号'" json:"uid,omitempty"`
 	Name     string        `gorm:"type:varchar(10) not null unique; comment:'员工姓名'" json:"name,omitempty"`
 	Duration time.Duration `gorm:"type int not null;comment:'员工上班时长'"  json:"duration"`
-	Status   int32         `gorm:"type int  not null ;comment:'0表示缺勤 1表示打卡 2表示迟到  3表示加班 5表示补卡'"`
-	Url      string        `gorm:"type varchar(16) not null;comment:'补卡照片'"`
+	Status   int32         `gorm:"type int  not null ;comment:'0表示缺勤 1表示打卡 2表示迟到  3表示加班 5表示补卡 6出差'" json:"status"`
+	Reason   string        `gorm:"type:varchar(100) not null unique; comment:'情况说明'" json:"reason,omitempty"`
+	Url      string        `gorm:"type varchar(16) not null;comment:'补卡照片'" json:"url"`
 	gorm.Model
 }
 

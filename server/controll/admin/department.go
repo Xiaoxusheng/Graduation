@@ -1,4 +1,4 @@
-package user
+package admin
 
 import (
 	"encoding/json"
@@ -12,6 +12,11 @@ import (
 
 // AddDepartment 添加部门
 func AddDepartment(c *gin.Context) {
+	id := c.GetString("identity")
+	if id == "" {
+		result.Fail(c, global.BadRequest, global.QueryNotFoundError)
+		return
+	}
 	d := new(global.Department)
 	err := c.Bind(d)
 	if err != nil {
@@ -26,6 +31,7 @@ func AddDepartment(c *gin.Context) {
 		Name:     d.Name,
 		Sort:     d.Sort,
 		Leader:   d.Leader,
+		CreateId: id,
 	})
 	if err != nil {
 		result.Fail(c, global.ServerError, global.AddDepartmentError)

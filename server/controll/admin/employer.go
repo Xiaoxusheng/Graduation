@@ -1,7 +1,8 @@
-package user
+package admin
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"server/dao"
 	"server/global"
@@ -13,14 +14,11 @@ import (
 )
 
 type employer struct {
-	Username   string `json:"username,omitempty"  binding:"required min=2 max=10"`
-	Identity   string `json:"identity,omitempty" `
-	Uid        int32  `json:"uid,omitempty"`
-	Name       string `json:"name,omitempty" binding:"required "`
-	Birthday   int64  `json:"age,omitempty" binding:"required min=157680h " `
-	Phone      string `json:"phone,omitempty" binding:"required phone"`
-	Position   int32  `json:"position,omitempty" binding:"required number"`
-	Department int32  `json:"department,omitempty" binding:"required number"`
+	Name       string `json:"name,omitempty"  binding:"required" form:"name"`
+	Birthday   int64  `json:"birthday,omitempty" binding:"required" form:"birthday"`
+	Phone      string `json:"phone,omitempty" binding:"required" form:"phone"`
+	Position   int32  `json:"position,omitempty" binding:"required,number" form:"position"`
+	Department int32  `json:"department,omitempty" binding:"required,number" form:"department"`
 }
 
 // AddEmployee 添加员工信息
@@ -28,6 +26,7 @@ func AddEmployee(c *gin.Context) {
 	e := new(employer)
 	err := c.Bind(e)
 	if err != nil {
+		global.Global.Log.Error(err)
 		result.Fail(c, global.DataConflict, global.QueryNotFoundError)
 		return
 	}
@@ -35,24 +34,32 @@ func AddEmployee(c *gin.Context) {
 	//生成唯一员工标识
 	uid, err := utils.GetUid(e.Department)
 	if err != nil {
+		global.Global.Log.Error(err)
 		result.Fail(c, global.DataConflict, global.QueryNotFoundError)
 		return
 	}
 
+	if err != nil {
+		global.Global.Log.Error(err)
+		return
+	}
 	//	添加员工信息
 	id := utils.GetUidV4()
+	fmt.Println(time.Unix(e.Birthday, 0))
 	err = dao.InsertEmployer(&models.Employee{
-		Username:     e.Username,
 		Identity:     id,
 		Uid:          uid,
 		Name:         e.Name,
-		Birthday:     time.Unix(e.Birthday, 0).Local(),
+		Birthday:     time.Unix(e.Birthday, 0),
 		Phone:        e.Phone,
 		Status:       0,
 		Position:     e.Position,
 		DepartmentId: e.Department,
 	})
+	//global.Global.Redis.Set(global.Global.Ctx, global.UidKey+use.Identity, use., 0)
+
 	if err != nil {
+		global.Global.Log.Error(err)
 		result.Fail(c, global.DataConflict, global.AddEmployerError)
 		return
 	}
@@ -94,16 +101,19 @@ func EmployeeList(c *gin.Context) {
 	limit := c.DefaultQuery("limit", "10")
 	offsets, err := strconv.Atoi(offset)
 	if err != nil {
+		global.Global.Log.Error(err)
 		result.Fail(c, global.BadRequest, global.GetEmployerListError)
 		return
 	}
 	limits, err := strconv.Atoi(limit)
 	if err != nil {
+		global.Global.Log.Error(err)
 		result.Fail(c, global.BadRequest, global.GetEmployerListError)
 		return
 	}
 	list, err := dao.GetEmployerList(limits, offsets)
 	if err != nil {
+		global.Global.Log.Error(err)
 		result.Fail(c, global.BadRequest, global.GetEmployerListError)
 		return
 	}

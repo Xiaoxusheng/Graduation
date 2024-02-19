@@ -41,7 +41,7 @@ func (l *Log) Format(f *log.Entry) ([]byte, error) {
 		b = &bytes.Buffer{}
 	}
 
-	time1 := f.Time.Format("2006-01-02 15:04:05")
+	time1 := f.Time.Format(time.DateTime)
 	if f.HasCaller() {
 		funcpVal := f.Caller.Function
 		fileval := fmt.Sprintf("%s：%d", path.Base(f.Caller.Function), f.Caller.Line)

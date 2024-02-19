@@ -10,6 +10,9 @@ const (
 
 // redis 前缀
 var (
+	Sign           = "sign"
+	Salt           = "salt"
+	UidKey         = "uid-key"
 	Info           = "info"
 	Uid            = "uid"
 	Employer       = "employer"
