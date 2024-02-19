@@ -49,4 +49,6 @@ var (
 	GetEmployerListError  = "获取员工列表失败！"
 	GetDepartmentError    = "获取部门列表失败！"
 	DelDepartmentError    = "删除部门失败！"
+	UpdateDepartmentError = "更新部门失败！"
+	AddDepartmentError    = "新增部门失败！"
 )

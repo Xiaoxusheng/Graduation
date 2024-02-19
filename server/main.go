@@ -3,9 +3,12 @@ package main
 import (
 	"github.com/gin-gonic/gin"
 	"log"
+	"net/http"
 	"server/config"
 	"server/middleware"
 	"server/router"
+	"strconv"
+	"time"
 )
 
 func main() {
@@ -27,9 +30,21 @@ func main() {
 
 	e = router.Routers(e)
 
-	err := e.Run(":80")
+	s := &http.Server{
+		Addr:           ":" + strconv.Itoa(config.Config.Service.Port),
+		Handler:        e,
+		ReadTimeout:    config.Config.Service.ReadTime * time.Second,
+		WriteTimeout:   config.Config.Service.WriteTime * time.Second,
+		MaxHeaderBytes: int(config.Config.Service.MaxHeaderBytes << 20),
+	}
+	err := s.ListenAndServe()
 	if err != nil {
 		log.Println("server start fail")
-		return
 	}
+
+	//err := e.Run(":80")
+	//if err != nil {
+	//	log.Println("server start fail")
+	//	return
+	//}
 }

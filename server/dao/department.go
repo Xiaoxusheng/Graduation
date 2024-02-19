@@ -18,3 +18,21 @@ func DeleteDepartment(id string) error {
 	d := new(models.Department)
 	return global.Global.Mysql.Where("identity=?", id).Delete(d).Error
 }
+
+func UpdateDepartment(department *global.Department) error {
+	var l, name, sort string
+	if department.Leader != "" {
+		l = "leader"
+	}
+	if department.Name != "" {
+		name = "name"
+	}
+	if department.Sort != 0 {
+		sort = "sort"
+	}
+	return global.Global.Mysql.Model(department).Select(l, name, sort).Updates(department).Error
+}
+
+func InsertDepartment(department *models.Department) error {
+	return global.Global.Mysql.Create(department).Error
+}

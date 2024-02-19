@@ -13,8 +13,11 @@ import (
 
 // Service 服务器
 type Service struct {
-	Port int    `json:"port" yaml:"port"`
-	Name string `json:"name" yaml:"name"`
+	Port           int           `json:"port" yaml:"port"`
+	Name           string        `json:"name" yaml:"name"`
+	ReadTime       time.Duration `json:"readTime" yaml:"readTime"`
+	WriteTime      time.Duration `json:"writeTime" yaml:"writeTime"`
+	MaxHeaderBytes int           `json:"maxHeaderBytes"  yaml:"maxHeaderBytes"`
 }
 
 // Mysql 数据库

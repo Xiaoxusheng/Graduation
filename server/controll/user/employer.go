@@ -13,14 +13,14 @@ import (
 )
 
 type employer struct {
-	Username   string `json:"username,omitempty" `
-	Identity   string `json:"identity,omitempty"`
+	Username   string `json:"username,omitempty"  binding:"required min=2 max=10"`
+	Identity   string `json:"identity,omitempty" `
 	Uid        int32  `json:"uid,omitempty"`
-	Name       string `json:"name,omitempty"`
-	Birthday   int64  `json:"age,omitempty"`
-	Phone      string `json:"phone,omitempty"`
-	Position   string `json:"position,omitempty"`
-	Department int32  `json:"department,omitempty"`
+	Name       string `json:"name,omitempty" binding:"required "`
+	Birthday   int64  `json:"age,omitempty" binding:"required min=157680h " `
+	Phone      string `json:"phone,omitempty" binding:"required phone"`
+	Position   int32  `json:"position,omitempty" binding:"required number"`
+	Department int32  `json:"department,omitempty" binding:"required number"`
 }
 
 // AddEmployee 添加员工信息
@@ -42,15 +42,15 @@ func AddEmployee(c *gin.Context) {
 	//	添加员工信息
 	id := utils.GetUidV4()
 	err = dao.InsertEmployer(&models.Employee{
-		Username:   e.Username,
-		Identity:   id,
-		Uid:        uid,
-		Name:       e.Name,
-		Birthday:   time.Unix(e.Birthday, 0).Local(),
-		Phone:      e.Phone,
-		Status:     0,
-		Position:   e.Position,
-		Department: e.Department,
+		Username:     e.Username,
+		Identity:     id,
+		Uid:          uid,
+		Name:         e.Name,
+		Birthday:     time.Unix(e.Birthday, 0).Local(),
+		Phone:        e.Phone,
+		Status:       0,
+		Position:     e.Position,
+		DepartmentId: e.Department,
 	})
 	if err != nil {
 		result.Fail(c, global.DataConflict, global.AddEmployerError)

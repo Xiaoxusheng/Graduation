@@ -36,5 +36,11 @@ func Routers(e *gin.Engine) *gin.Engine {
 
 	//删除部门
 	api.GET("/del_department", user.DeleteDepartment)
+
+	//更新部门信息
+	api.POST("/update_department", user.UpdateDepartment)
+
+	//新增部门信息
+	api.POST("/add_department", user.AddDepartment)
 	return e
 }

@@ -2,6 +2,9 @@
 service:
   port: 80
   name: "server"
+  readTime: 10
+  writeTime: 10
+  maxHeaderBytes: 1
 
 #mysql数据库
 mysql:
