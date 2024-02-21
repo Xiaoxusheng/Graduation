@@ -63,3 +63,8 @@ func GetByAccount(account string) (*models.User, error) {
 	}
 	return user, nil
 }
+
+func DeleteUser(id string) error {
+	user := new(models.User)
+	return global.Global.Mysql.Where("identity=?", id).Delete(user).Error
+}

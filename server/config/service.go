@@ -61,6 +61,12 @@ type SparkDesk struct {
 	HostUrl   string `json:"hostUrl" yaml:"hostUrl"`
 }
 
+type TencentCos struct {
+	Url       string `json:"url" yaml:"url"`
+	SecretId  string `json:"secretId,omitempty"  yaml:"secretId"`
+	SecretKey string `json:"secretKey,omitempty" yaml:"secretKey"`
+}
+
 type Pool struct {
 	Num int `json:"num" yaml:"num"`
 }
@@ -71,14 +77,15 @@ type Kafka struct {
 }
 
 type Configs struct {
-	Service   Service
-	Mysql     Mysql
-	Redis     Redis
-	Jwt       Jwt
-	Logs      Logs
-	SparkDesk SparkDesk
-	Pool      Pool
-	Kafka     Kafka
+	Service    Service
+	Mysql      Mysql
+	Redis      Redis
+	Jwt        Jwt
+	Logs       Logs
+	SparkDesk  SparkDesk
+	TencentCos TencentCos
+	Pool       Pool
+	Kafka      Kafka
 }
 
 var Config Configs

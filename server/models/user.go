@@ -10,9 +10,9 @@ type User struct {
 	ImageUrl string `gorm:"type:varchar(64); comment:'头像'" json:"image_url,omitempty"`
 	Password string `gorm:"type:varchar(64) not null; comment:'密码'" json:"password,omitempty"`
 	Phone    string `gorm:"type:varchar(11) not null unique; comment:'手机号'" json:"phone,omitempty"`
-	Status   int32  `gorm:"type:int; comment:'0表示正常, 1表示封禁'" json:"status,omitempty"`
-	IP       string `gorm:"type:varchar(64) not null; comment:'IP地址'" json:"IP,omitempty"`
-	Salt     string `gorm:"type:varchar(30) not null; comment:'盐值'" json:"salt,omitempty"`
+	//Status   int32  `gorm:"type:int; comment:'0表示正常, 1表示封禁'" json:"status,omitempty"`
+	IP   string `gorm:"type:varchar(64) not null; comment:'IP地址'" json:"IP,omitempty"`
+	Salt string `gorm:"type:varchar(30) not null; comment:'盐值'" json:"salt,omitempty"`
 	gorm.Model
 }
 

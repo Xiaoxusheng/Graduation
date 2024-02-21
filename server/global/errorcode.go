@@ -37,6 +37,7 @@ const (
 
 // *错误信息*/
 var (
+	FileError             = "文件数量超过限制！"
 	QueryError            = "参数错误！"
 	DataUnmarshalError    = "数据解析失败！"
 	UserNotExistError     = "用户不存在！"
@@ -48,9 +49,13 @@ var (
 	UserNotFound          = "用户不存在！"
 	DeleteError           = "删除失败！"
 	AddEmployerError      = "新增员工失败！"
+	UpdateEmployerError   = "更新员工信息失败！"
+	AssignedAccountError  = "分配账号失败！"
 	GetEmployerListError  = "获取员工列表失败！"
 	GetDepartmentError    = "获取部门列表失败！"
 	DelDepartmentError    = "删除部门失败！"
+	DepartmentNotFound    = "部门不存在！"
 	UpdateDepartmentError = "更新部门失败！"
 	AddDepartmentError    = "新增部门失败！"
+	UpdateClockInLogError = "修改考勤记录失败！"
 )

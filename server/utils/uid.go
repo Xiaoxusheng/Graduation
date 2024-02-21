@@ -47,7 +47,6 @@ func GetUid(types int32) (int64, error) {
 
 		//Uif不存在
 		if employer == nil {
-
 			rand.NewSource(time.Now().UnixNano())
 			s.WriteString(strconv.Itoa(int(types)))
 			fmt.Println(s.String())

@@ -40,21 +40,4 @@ func ClockIn(c *gin.Context) {
 	return
 }
 
-// GetClockIn  获取获取考勤记录
-func GetClockIn(c *gin.Context) {
-	//工号
-	id := c.Query("id")
-	if id == "" {
-		global.Global.Log.Warn("identity is null")
-		result.Fail(c, global.BadRequest, global.QueryError)
-		return
-	}
-	//查询id是否存在 工号
-
-}
-
-//编辑考勤记录
-
-//考勤总结
-
 //补卡

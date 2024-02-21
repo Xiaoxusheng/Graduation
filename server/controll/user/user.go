@@ -2,7 +2,6 @@ package user
 
 import (
 	"encoding/base64"
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"server/config"
 	"server/dao"
@@ -56,14 +55,12 @@ func Login(c *gin.Context) {
 		return
 	}
 	//	identity 不存在
-	fmt.Println(salt)
 	use, err := dao.GetUserAccountPwd(user.Account, utils.HashPassword(user.Password, salts))
 	if err != nil || use == nil {
 		global.Global.Log.Error(err)
 		result.Fail(c, global.BadRequest, global.UserNotExistError)
 		return
 	}
-	fmt.Println(salts, []byte(salt))
 	//生成token
 	token := utils.GetToken(use.Identity)
 	go func() {
@@ -71,4 +68,9 @@ func Login(c *gin.Context) {
 		global.Global.Redis.HSet(global.Global.Ctx, user.Account, utils.HashPassword(user.Password, salts), use.Identity)
 	}()
 	result.Ok(c, map[string]any{"token": token})
+}
+
+// ChangePassword 修改密码
+func ChangePassword(c *gin.Context) {
+
 }

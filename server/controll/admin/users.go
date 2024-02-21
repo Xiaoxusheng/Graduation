@@ -114,7 +114,6 @@ func Register(c *gin.Context) {
 		Account:  0,
 		Password: utils.HashPassword(r.Password, salt),
 		Phone:    r.Phone,
-		Status:   0,
 		IP:       c.RemoteIP(),
 		Salt:     base64.URLEncoding.EncodeToString(salt),
 	})
@@ -190,13 +189,13 @@ func Logout(c *gin.Context) {
 // AssignedAccount 管理员分配账号
 func AssignedAccount(c *gin.Context) {
 	//输入工号
-	uid := c.Query("id")
+	uid := c.Query("uid")
 	if uid == "" {
 		global.Global.Log.Warn("identity is null")
 		result.Fail(c, global.BadRequest, global.QueryError)
 		return
 	}
-	//查询identity
+	//查询uid
 	userInfo, err := dao.GetEmployerByUid(uid)
 	if err != nil {
 		global.Global.Log.Error(err)
@@ -225,13 +224,12 @@ func AssignedAccount(c *gin.Context) {
 		Account:  userInfo.Uid,
 		Password: utils.HashPassword("123456", salt),
 		Phone:    userInfo.Phone,
-		Status:   0,
 		IP:       c.RemoteIP(),
 		Salt:     base64.URLEncoding.EncodeToString(salt),
 	})
 	if err != nil {
 		global.Global.Log.Error(err)
-		result.Fail(c, global.BadRequest, global.AddEmployerError)
+		result.Fail(c, global.BadRequest, global.AssignedAccountError)
 		return
 	}
 
@@ -278,5 +276,3 @@ func ResetPassword(c *gin.Context) {
 	}
 	result.Ok(c, nil)
 }
-
-//修改密码

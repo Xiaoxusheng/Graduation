@@ -3,13 +3,16 @@ package router
 import (
 	"github.com/gin-gonic/gin"
 	"server/controll/admin"
+	"server/controll/menu"
 	"server/controll/user"
 	"server/middleware"
 )
 
 func Routers(e *gin.Engine) *gin.Engine {
 	//
+
 	e.POST("/user/login", user.Login)
+	e.POST("/admin/menu_list", menu.GetMenuList)
 	//
 	//u := e.Group("/user")
 	//e.POST("/login", user.Login)
@@ -33,7 +36,7 @@ func Routers(e *gin.Engine) *gin.Engine {
 	//创建员工信息
 	api.POST("/add_employer", admin.AddEmployee)
 	//更新员工信息
-
+	api.POST("/update_employer", admin.UpdateEmployee)
 	//员工信息列表
 	api.GET("/list", admin.EmployeeList)
 	//员工个人信息
@@ -51,7 +54,14 @@ func Routers(e *gin.Engine) *gin.Engine {
 	api.POST("/add_department", admin.AddDepartment)
 
 	//获取考勤记录
-	api.GET("/get_clockIn", admin.GetClockIn)
+	api.GET("/get_clockIn", admin.GetClockInLog)
+	//编辑考勤记录
+	api.POST("edit_clockIn", admin.EditClockLog)
+
+	//------------------------------------------------------
+	e.Group("/user", middleware.ParseToken())
+	//文件上传
+	e.POST("/upload", user.Upload)
 
 	return e
 }

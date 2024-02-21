@@ -12,9 +12,11 @@ type Employee struct {
 	Name         string    `gorm:"type:varchar(10) not null unique; comment:'员工姓名'" json:"name,omitempty"`
 	Birthday     time.Time `gorm:"type:datetime not null unique; comment:'员工生日'" json:"birthday,omitempty"`
 	Phone        string    `gorm:"type:varchar(11) not null unique; comment:'手机号'" json:"phone,omitempty"`
-	Status       int32     `gorm:"type:int; comment:'0表示正常在岗, 1表示离职 ,表示开除'" json:"status,omitempty"`
+	Status       int32     `gorm:"type:int; comment:'1表示正常在岗, 2表示离职 ,3表示开除'" json:"status,omitempty"`
 	Position     int32     `gorm:"type:int; comment:职位 0 普通员工 1副主管 2主管 3 经理  4 经理 " json:"position,omitempty"`
-	DepartmentId int32     `gorm:"type:int unique; comment:部门id" json:"department_id,omitempty"`
+	DepartmentId int32     `gorm:"type:int; comment:部门id" json:"department_id,omitempty"`
+	IP           string    `gorm:"type:varchar(64) not null; comment:'IP地址'" json:"IP,omitempty"`
+	ImageUrl     string    `gorm:"type:varchar(64); comment:'头像'" json:"image_url,omitempty"`
 	gorm.Model
 }
 

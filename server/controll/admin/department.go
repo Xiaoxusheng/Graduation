@@ -26,19 +26,25 @@ func AddDepartment(c *gin.Context) {
 	//	增加
 	global.Global.Mutex.Lock()
 	defer global.Global.Mutex.Unlock()
+	departmentId := utils.Md5(d.Name)
 	err = dao.InsertDepartment(&models.Department{
-		Identity: utils.Md5(d.Name),
+		Identity: departmentId,
 		Name:     d.Name,
 		Sort:     d.Sort,
 		Leader:   d.Leader,
 		CreateId: id,
 	})
+
 	if err != nil {
+		global.Global.Log.Error(err)
 		result.Fail(c, global.ServerError, global.AddDepartmentError)
 		return
 	}
 	go func() {
+		//删除部门列表
 		global.Global.Redis.Del(global.Global.Ctx, global.DepartmentList)
+		//增加
+		global.Global.Redis.SAdd(global.Global.Ctx, global.DepartmentId, departmentId)
 	}()
 	result.Ok(c, nil)
 
@@ -46,19 +52,26 @@ func AddDepartment(c *gin.Context) {
 
 // DeleteDepartment 删除部门
 func DeleteDepartment(c *gin.Context) {
-	//获取删除的部门id
+	//获取删除的部门identity
 	id := c.Query("id")
 	//删除部门信息,只有一人能操作
+	val := global.Global.Redis.SIsMember(global.Global.Ctx, global.DepartmentId, id).Val()
+	if !val {
+		result.Fail(c, global.ResourceNotFound, global.DepartmentNotFound)
+		return
+	}
 	global.Global.Mutex.Lock()
 	defer global.Global.Mutex.Unlock()
 	err := dao.DeleteDepartment(id)
 	if err != nil {
+		global.Global.Log.Error(err)
 		result.Fail(c, global.ResourceNotFound, global.DelDepartmentError)
 		return
 	}
 	//	删除缓存
 	go func() {
 		global.Global.Redis.Del(global.Global.Ctx, global.DepartmentList)
+		global.Global.Redis.SRem(global.Global.Ctx, global.DepartmentId, id)
 	}()
 	result.Ok(c, nil)
 }
@@ -68,9 +81,17 @@ func UpdateDepartment(c *gin.Context) {
 	d := new(global.Department)
 	err := c.Bind(d)
 	if err != nil {
+		global.Global.Log.Error(err)
 		result.Fail(c, global.BadRequest, global.QueryNotFoundError)
 		return
 	}
+	//判断是否存在
+	val := global.Global.Redis.SIsMember(global.Global.Ctx, global.DepartmentId, d.Identity).Val()
+	if !val {
+		result.Fail(c, global.ResourceNotFound, global.DepartmentNotFound)
+		return
+	}
+
 	//	拿到参数,验证
 	global.Global.Mutex.Lock()
 	err = dao.UpdateDepartment(d)
