@@ -37,6 +37,7 @@ const (
 
 // *错误信息*/
 var (
+	TokenError            = "token格式不对"
 	FileError             = "文件数量超过限制！"
 	QueryError            = "参数错误！"
 	DataUnmarshalError    = "数据解析失败！"

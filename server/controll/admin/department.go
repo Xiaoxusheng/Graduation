@@ -44,7 +44,10 @@ func AddDepartment(c *gin.Context) {
 		//删除部门列表
 		global.Global.Redis.Del(global.Global.Ctx, global.DepartmentList)
 		//增加
-		global.Global.Redis.SAdd(global.Global.Ctx, global.DepartmentId, departmentId)
+		_, err = global.Global.Redis.SAdd(global.Global.Ctx, global.DepartmentId, departmentId).Result()
+		if err != nil {
+			global.Global.Log.Error(err)
+		}
 	}()
 	result.Ok(c, nil)
 

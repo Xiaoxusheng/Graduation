@@ -27,7 +27,14 @@ func ParseToken() gin.HandlerFunc {
 			c.Abort()
 			return
 		}
+		if !strings.Contains(tokenString, "Bearer") {
+			c.Abort()
+			result.Fail(c, global.AuthenticationFailed, global.TokenError)
+			c.Abort()
+			return
+		}
 		t := strings.Split(tokenString, " ")
+		fmt.Println(t)
 
 		claims := new(utils.MyCustomClaims)
 		token, err := jwt.ParseWithClaims(t[len(t)-1], claims, func(token *jwt.Token) (interface{}, error) {

@@ -56,7 +56,7 @@ func InitMysql() {
 			global.Global.Mysql = db
 		})
 	//建表
-	//err = global.Global.Mysql.AutoMigrate(&models.Menu{})
+	//err = global.Global.Mysql.AutoMigrate(&models.Department{})
 	//if err != nil {
 	//	global.Global.Log.Error(err)
 	//}
