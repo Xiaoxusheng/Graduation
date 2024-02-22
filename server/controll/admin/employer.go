@@ -41,6 +41,7 @@ func AddEmployee(c *gin.Context) {
 		Identity:     id,
 		Uid:          uid,
 		Name:         e.Name,
+		Sex:          e.Sex,
 		Birthday:     time.Unix(e.Birthday, 0),
 		Phone:        e.Phone,
 		Status:       1,

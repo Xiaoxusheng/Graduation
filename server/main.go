@@ -7,6 +7,7 @@ import (
 	"server/config"
 	"server/middleware"
 	"server/router"
+	"server/utils"
 	"strconv"
 	"time"
 )
@@ -31,13 +32,14 @@ func main() {
 	e.Use(middleware.Log(), middleware.Cors(), middleware.RateLimit())
 
 	e = router.Routers(e)
+	go utils.Listen()
 
 	s := &http.Server{
 		Addr:           ":" + strconv.Itoa(config.Config.Service.Port),
 		Handler:        e,
 		ReadTimeout:    config.Config.Service.ReadTime * time.Second,
 		WriteTimeout:   config.Config.Service.WriteTime * time.Second,
-		MaxHeaderBytes: int(config.Config.Service.MaxHeaderBytes << 20),
+		MaxHeaderBytes: config.Config.Service.MaxHeaderBytes << 20,
 	}
 	err := s.ListenAndServe()
 	if err != nil {

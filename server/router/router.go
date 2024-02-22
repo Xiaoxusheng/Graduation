@@ -38,7 +38,7 @@ func Routers(e *gin.Engine) *gin.Engine {
 	//更新员工信息
 	api.POST("/update_employer", admin.UpdateEmployee)
 	//员工信息列表
-	api.GET("/list", admin.EmployeeList)
+	api.GET("/employer_list", admin.EmployeeList)
 	//员工个人信息
 	api.GET("/employer_info", admin.EmployeeInfo)
 	//分配账号

@@ -21,20 +21,24 @@ type Department struct {
 // UserInfo 个人信息
 type UserInfo struct {
 	Identity     string    `json:"identity,omitempty"`
+	Id           int32     `json:"id"`
 	Uid          int64     `json:"uid,omitempty"`
 	Name         string    `json:"name,omitempty"`
 	Birthday     time.Time `json:"birthday,omitempty"`
 	Phone        string    `json:"phone,omitempty"`
-	Status       int32     `json:"status"`
-	Position     int32     `json:"position,omitempty"`
+	ImageUrl     string    `json:"image_Url"`
 	IP           string    `json:"IP,omitempty"`
+	Status       int32     `json:"status"`
+	Sex          int32     `json:"sex"`
 	DepartmentId int32     `json:"department_id,omitempty"`
+	Position     int32     `json:"position,omitempty"`
 }
 type Employers struct {
 	Uid        int64  `json:"uid,omitempty" binding:"required" form:"uid"`
 	Name       string `json:"name,omitempty"  binding:"required" form:"name"`
 	Birthday   int64  `json:"birthday,omitempty" binding:"required" form:"birthday"`
-	Status     int32  `json:"status"`
+	Status     int32  `json:"status" form:"status"`
+	Sex        int32  `json:"sex" form:"sex"`
 	Phone      string `json:"phone,omitempty" binding:"required" form:"phone"`
 	Position   int32  `json:"position,omitempty" binding:"required,number" form:"position"`
 	Department int32  `json:"department,omitempty" binding:"required,number" form:"department"`
