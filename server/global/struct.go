@@ -33,12 +33,14 @@ type UserInfo struct {
 	DepartmentId int32     `json:"department_id,omitempty"`
 	Position     int32     `json:"position,omitempty"`
 }
+
+// Employers 增加员工信息
 type Employers struct {
 	Uid        int64  `json:"uid,omitempty" binding:"required" form:"uid"`
 	Name       string `json:"name,omitempty"  binding:"required" form:"name"`
 	Birthday   int64  `json:"birthday,omitempty" binding:"required" form:"birthday"`
-	Status     int32  `json:"status" form:"status"`
-	Sex        int32  `json:"sex" form:"sex"`
+	Status     int32  `json:"status" binding:"required" form:"status"`
+	Sex        int32  `json:"sex" binding:"required" form:"sex"`
 	Phone      string `json:"phone,omitempty" binding:"required" form:"phone"`
 	Position   int32  `json:"position,omitempty" binding:"required,number" form:"position"`
 	Department int32  `json:"department,omitempty" binding:"required,number" form:"department"`
@@ -55,4 +57,15 @@ type Attendance struct {
 	Status    int32  `json:"status"  binding:"required"`
 	Reason    string `json:"reason,omitempty"  binding:"required"`
 	Url       string `json:"url"  binding:"required"`
+}
+
+// Application 申请信息
+type Application struct {
+	Uid       int64  `json:"uid,omitempty"  binding:"required" form:"uid"`
+	StartTime int64  `json:"start_time,omitempty"  binding:"required" form:"startTime"`
+	EndTime   int64  `json:"end_time,omitempty"  binding:"required" form:"endTime"`
+	Pass      int32  `json:"pass"  binding:"required" form:"pass"`
+	Reason    string `json:"reason,omitempty"  binding:"required" form:"reason"`
+	Limit     int32  `json:"limit" binding:"required" form:"limit"`
+	Offset    int32  `json:"offset" binding:"required" form:"offset"`
 }

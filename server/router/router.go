@@ -41,6 +41,7 @@ func Routers(e *gin.Engine) *gin.Engine {
 	api.GET("/employer_list", admin.EmployeeList)
 	//员工个人信息
 	api.GET("/employer_info", admin.EmployeeInfo)
+
 	//分配账号
 	api.GET("/assigned_account", admin.AssignedAccount)
 
@@ -57,6 +58,15 @@ func Routers(e *gin.Engine) *gin.Engine {
 	api.GET("/get_clockIn", admin.GetClockInLog)
 	//编辑考勤记录
 	api.POST("edit_clockIn", admin.EditClockLog)
+
+	//请假申请审核
+	api.POST("/leave_application", admin.LeaveApplication)
+	//获取请假申请列表
+	api.GET("/get_LeaveApplication_list", admin.GetLeaveApplicationList)
+	//加班申请审核
+	api.POST("overtime_application", admin.OvertimeApplication)
+	//获取加班申请表
+	api.GET("/get_overtimeApplication_list", admin.GetOvertimeList)
 
 	//------------------------------------------------------
 	e.Group("/user", middleware.ParseToken())

@@ -8,6 +8,7 @@ import (
 	"server/models"
 	"server/result"
 	"strconv"
+	"time"
 )
 
 /*考勤模块*/
@@ -96,6 +97,30 @@ func EditClockLog(c *gin.Context) {
 		return
 	}
 	result.Ok(c, nil)
+}
+
+// GetClockList 获取某一天员工所有员工的打卡记录
+func GetClockList(c *gin.Context) {
+	//	获取当前时间
+	//
+	t := c.Query("time")
+	t1, err := strconv.Atoi(t)
+	if err != nil {
+		global.Global.Log.Error(err)
+		result.Fail(c, global.ServerError, global.AtoiError)
+		return
+	}
+	date := time.Unix(int64(t1), 0)
+	if t1 < 0 {
+		result.Fail(c, global.DataValidationError, global.QueryError)
+		return
+	}
+	list, err := dao.GetDateList(date)
+	if err != nil {
+		result.Fail(c, global.ServerError, global.GetClockError)
+		return
+	}
+	result.Ok(c, list)
 }
 
 // ClockInSummaryList 考勤总结审核

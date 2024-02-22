@@ -28,3 +28,24 @@ func UpdateAttendance(attendance *global.Attendance) error {
 		Reason:    attendance.Reason,
 	}).Error
 }
+
+// GetDateList 获取某一天所有的打卡记录
+func GetDateList(t time.Time) ([]models.Attendance, error) {
+	list := make([]models.Attendance, 0)
+	t1 := time.Date(t.Year(), t.Month(), t.Day(), 0, 0, 0, 0, time.Local)
+	//第二天0点
+	t2 := t1.Add(time.Hour * 24)
+	err := global.Global.Mysql.Where("start_time>? and end_time<?", t1, t2).Find(&list).Error
+	if err != nil {
+		return nil, err
+	}
+	return list, nil
+}
+
+func UpdateEndTime(time2 time.Time) error {
+	attendances := new(models.Attendance)
+	return global.Global.Mysql.Model(attendances).Updates(&models.Attendance{
+		EndTime: time2,
+		Status:  3,
+	}).Error
+}

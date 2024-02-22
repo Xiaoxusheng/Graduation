@@ -59,4 +59,15 @@ var (
 	UpdateDepartmentError = "更新部门失败！"
 	AddDepartmentError    = "新增部门失败！"
 	UpdateClockInLogError = "修改考勤记录失败！"
+
+	//考勤
+	GetClockError = "获取考勤列表失败！"
+	AtoiError     = "转化失败！"
+
+	//	请假列表
+	GetLeaveListError     = "获取请假列表失败！"
+	LeaveApplicationError = "请假审批失败！"
+
+	//	加班
+	OverTimeApplicationError = "加班申请审批失败！"
 )
