@@ -44,3 +44,9 @@ func GetMenuList(c *gin.Context) {
 	global.Global.Log.Info(menuList)
 	result.Ok(c, menuList)
 }
+
+//修改菜单
+
+//增加菜单
+
+//删除菜单

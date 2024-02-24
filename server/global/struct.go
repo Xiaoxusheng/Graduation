@@ -36,10 +36,10 @@ type UserInfo struct {
 
 // Employers 增加员工信息
 type Employers struct {
-	Uid        int64  `json:"uid,omitempty" binding:"required" form:"uid"`
+	Uid        int64  `json:"uid,omitempty"  form:"uid"`
 	Name       string `json:"name,omitempty"  binding:"required" form:"name"`
 	Birthday   int64  `json:"birthday,omitempty" binding:"required" form:"birthday"`
-	Status     int32  `json:"status" binding:"required" form:"status"`
+	Status     int32  `json:"status" form:"status"`
 	Sex        int32  `json:"sex" binding:"required" form:"sex"`
 	Phone      string `json:"phone,omitempty" binding:"required" form:"phone"`
 	Position   int32  `json:"position,omitempty" binding:"required,number" form:"position"`

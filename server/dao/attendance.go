@@ -42,10 +42,19 @@ func GetDateList(t time.Time) ([]models.Attendance, error) {
 	return list, nil
 }
 
-func UpdateEndTime(time2 time.Time) error {
+// UpdateEndTime 加班
+func UpdateEndTime(uid int32, time2 time.Time) error {
 	attendances := new(models.Attendance)
-	return global.Global.Mysql.Model(attendances).Updates(&models.Attendance{
+	return global.Global.Mysql.Model(attendances).Where("uid=?", uid).Updates(&models.Attendance{
 		EndTime: time2,
-		Status:  3,
+		Status:  4,
+	}).Error
+}
+
+// UpdateMakeCard 修改补卡
+func UpdateMakeCard(uid int32) error {
+	attendances := new(models.Attendance)
+	return global.Global.Mysql.Model(attendances).Where("uid=?", uid).Updates(&models.Attendance{
+		Status: 5,
 	}).Error
 }

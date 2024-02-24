@@ -16,6 +16,10 @@ import (
 func AddEmployee(c *gin.Context) {
 	e := new(global.Employers)
 	e.Uid = 123
+	//data := make([]byte, 1024)
+	//c.Request.Body.Read(data)
+	//fmt.Println(string(data))
+	//fmt.Println(c.Request.Body)
 	err := c.Bind(e)
 	if err != nil {
 		global.Global.Log.Error(err)
@@ -85,8 +89,9 @@ func AddEmployee(c *gin.Context) {
 // DeleteEmployee 删除员工信息
 func DeleteEmployee(c *gin.Context) {
 	uid := c.Query("uid")
+	global.Global.Log.Info("uid", uid)
 	if uid == "" {
-		result.Fail(c, global.BadRequest, global.EmployerNotFoundError)
+		result.Fail(c, global.BadRequest, global.QueryNotFoundError)
 		return
 	}
 	//判断员工是否存在
@@ -153,6 +158,10 @@ func UpdateEmployee(c *gin.Context) {
 	if err != nil {
 		result.Fail(c, global.BadRequest, global.QueryError)
 		global.Global.Log.Error(err)
+		return
+	}
+	if e.Uid == 0 || e.Status == 0 {
+		result.Fail(c, global.BadRequest, global.QueryError)
 		return
 	}
 	//判断员工是否存在

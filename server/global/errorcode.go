@@ -70,4 +70,9 @@ var (
 
 	//	加班
 	OverTimeApplicationError = "加班申请审批失败！"
+	GetOverTimeError         = "获取加班申请列表失败！"
+
+	//	补卡
+	MarkCardApplicationError = "补卡申请审核失败！"
+	GetMarkCardLiatError     = "获取补卡申请列表失败！"
 )

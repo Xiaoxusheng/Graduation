@@ -79,11 +79,47 @@ func GetOvertimeList(c *gin.Context) {
 	list, err := dao.GetOvertimeList()
 	if err != nil {
 		global.Global.Log.Error(err)
-		result.Fail(c, global.ServerError, global.GetLeaveListError)
+		result.Fail(c, global.ServerError, global.GetOverTimeError)
 		return
 	}
 	result.Ok(c, list)
 
 }
 
-//补卡申请审核
+// MakeCardApplication 补卡申请审核
+func MakeCardApplication(c *gin.Context) {
+	application := new(global.Application)
+	err := c.Bind(application)
+	if err != nil {
+		global.Global.Log.Error(err)
+		result.Fail(c, global.DataConflict, global.QueryNotFoundError)
+		return
+	}
+	//判断员工uid是否存在
+	val := global.Global.Redis.SIsMember(global.Global.Ctx, global.Employer, application.Uid).Val()
+	if !val {
+		result.Fail(c, global.BadRequest, global.EmployerNotFoundError)
+		return
+	}
+	//
+	if application.Pass == 0 || application.Pass == 1 {
+		err = dao.MakeCard(int32(application.Uid), application.Pass)
+		if err != nil {
+			global.Global.Log.Error(err)
+			result.Fail(c, global.ServerError, global.MarkCardApplicationError)
+			return
+		}
+		result.Ok(c, nil)
+		return
+	}
+}
+
+func GetMarkCardList(c *gin.Context) {
+	list, err := dao.GetMarkCardList()
+	if err != nil {
+		global.Global.Log.Error(err)
+		result.Fail(c, global.ServerError, global.GetMarkCardLiatError)
+		return
+	}
+	result.Ok(c, list)
+}

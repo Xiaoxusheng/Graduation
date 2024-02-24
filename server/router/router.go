@@ -67,6 +67,10 @@ func Routers(e *gin.Engine) *gin.Engine {
 	api.POST("overtime_application", admin.OvertimeApplication)
 	//获取加班申请表
 	api.GET("/get_overtimeApplication_list", admin.GetOvertimeList)
+	//补卡申请审批
+	api.POST("/make_card_application", admin.MakeCardApplication)
+	//补卡申请列表
+	api.POST("/make_card_application_liat", admin.GetMarkCardList)
 
 	//------------------------------------------------------
 	e.Group("/user", middleware.ParseToken())
