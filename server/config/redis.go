@@ -23,7 +23,8 @@ func InitRedis() {
 				MaxIdleConns:    Config.Redis.MaxIdleConns,
 				ConnMaxIdleTime: Config.Redis.ConnMaxIdleTime * time.Second,
 			})
-			ctx := context.Background()
+			ctx, cancel := context.WithTimeout(context.Background(), time.Second*5)
+			defer cancel()
 			res, err := rdb.Ping(ctx).Result()
 			if err != nil {
 				global.Global.Log.Error(err)
