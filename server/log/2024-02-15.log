@@ -1,0 +1,1159 @@
+[server] [2024-02-15 09:06:21] [0kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 09:06:21] [0kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[server] [2024-02-15 09:37:36] [1kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 09:37:36] [1kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (4 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[server] [2024-02-15 09:58:04] [2kb] [38m[info][0m config.InitMysql.func1：46 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 09:58:05] [2kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (4 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[server] [2024-02-15 10:00:31] [3kb] [38m[info][0m config.InitMysql.func1：46 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 10:00:31] [3kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (4 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[GIN] 2024/02/15 - 10:03:21 |[90;43m 404 [0m|            0s |       127.0.0.1 |[97;44m GET     [0m "/user/register?username=admin&password=admin&phone=123456478"
+[GIN] 2024/02/15 - 10:03:27 |[97;42m 200 [0m|     15.7469ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[GIN] 2024/02/15 - 10:03:29 |[97;42m 200 [0m|      2.8782ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[GIN] 2024/02/15 - 10:03:30 |[97;42m 200 [0m|      4.1592ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[server] [2024-02-15 10:04:33] [5kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 10:04:33] [5kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (4 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[server] [2024-02-15 10:04:33] [6kb] [38m[info][0m user.Register：88 server/controll/user.Register lWTuR_FlluVTMXmSk4fjtsllJyorM7s_L0CtZU7MGAI=
+[GIN] 2024/02/15 - 10:04:33 |[97;42m 200 [0m|      3.8982ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[server] [2024-02-15 10:04:35] [6kb] [38m[info][0m user.Register：88 server/controll/user.Register VVGwagrWD7KbrOxRteCu1ItbuC05qjiKfynU9KvpLEY=
+[GIN] 2024/02/15 - 10:04:35 |[97;42m 200 [0m|       3.204ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[server] [2024-02-15 10:06:21] [6kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 10:06:21] [6kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (4 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[server] [2024-02-15 10:06:42] [7kb] [38m[info][0m config.InitMysql.func1：46 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 10:06:42] [8kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (4 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[server] [2024-02-15 10:06:44] [8kb] [38m[info][0m user.Register：88 server/controll/user.Register gakY7g2ccbiF3n8hbtG1tpZWt79buPkXzRQf_ZyxbRI=
+[GIN] 2024/02/15 - 10:06:44 |[97;42m 200 [0m|       7.081ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[server] [2024-02-15 10:07:29] [9kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 10:07:29] [9kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (4 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[server] [2024-02-15 10:07:33] [10kb] [38m[info][0m user.Register：88 server/controll/user.Register [35 94 160 96 32 168 190 196 19 165 4 221 208 75 19 1]
+[GIN] 2024/02/15 - 10:07:33 |[97;42m 200 [0m|      2.8151ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[server] [2024-02-15 10:07:54] [10kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 10:07:54] [10kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (4 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[server] [2024-02-15 10:07:54] [11kb] [38m[info][0m user.Register：88 server/controll/user.Register 16
+[GIN] 2024/02/15 - 10:07:54 |[97;42m 200 [0m|      3.7076ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[server] [2024-02-15 10:07:56] [12kb] [38m[info][0m user.Register：88 server/controll/user.Register 16
+[GIN] 2024/02/15 - 10:07:56 |[97;42m 200 [0m|      3.8161ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[server] [2024-02-15 10:09:35] [12kb] [38m[info][0m user.Register：88 server/controll/user.Register 16
+[GIN] 2024/02/15 - 10:09:35 |[97;42m 200 [0m|      2.8042ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[server] [2024-02-15 10:09:58] [12kb] [38m[info][0m user.Register：88 server/controll/user.Register 16
+[GIN] 2024/02/15 - 10:09:58 |[97;42m 200 [0m|      2.9957ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[server] [2024-02-15 10:10:18] [12kb] [38m[info][0m config.InitMysql.func1：46 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 10:10:18] [13kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (4 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[server] [2024-02-15 10:10:19] [14kb] [38m[info][0m user.Register：88 server/controll/user.Register d^���x�z�`�"<	
+[GIN] 2024/02/15 - 10:10:19 |[97;42m 200 [0m|      3.3458ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[server] [2024-02-15 10:10:39] [14kb] [38m[info][0m user.Register：88 server/controll/user.Register �O��mX�B�c���
+[GIN] 2024/02/15 - 10:10:39 |[97;42m 200 [0m|      3.8067ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[server] [2024-02-15 10:11:31] [14kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 10:11:31] [14kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (4 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[server] [2024-02-15 10:11:34] [15kb] [38m[info][0m user.Register：88 server/controll/user.Register 
+[GIN] 2024/02/15 - 10:11:34 |[97;42m 200 [0m|      3.5987ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[server] [2024-02-15 10:12:09] [15kb] [38m[info][0m config.InitMysql.func1：46 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 10:12:09] [16kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (4 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[server] [2024-02-15 10:12:16] [17kb] [38m[info][0m user.Register：88 server/controll/user.Register 
+[GIN] 2024/02/15 - 10:12:16 |[97;42m 200 [0m|       4.001ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[server] [2024-02-15 10:15:03] [17kb] [38m[info][0m user.Register：88 server/controll/user.Register 
+[GIN] 2024/02/15 - 10:15:03 |[97;42m 200 [0m|      2.6606ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[server] [2024-02-15 10:15:43] [17kb] [38m[info][0m user.Register：88 server/controll/user.Register 
+[GIN] 2024/02/15 - 10:15:43 |[97;42m 200 [0m|      2.7383ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[server] [2024-02-15 10:16:31] [17kb] [38m[info][0m user.Register：88 server/controll/user.Register 
+[GIN] 2024/02/15 - 10:16:31 |[97;42m 200 [0m|      3.3859ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[server] [2024-02-15 10:16:32] [18kb] [38m[info][0m user.Register：88 server/controll/user.Register 
+[GIN] 2024/02/15 - 10:16:32 |[97;42m 200 [0m|      3.5376ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[server] [2024-02-15 10:18:20] [18kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 10:18:20] [18kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (4 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[server] [2024-02-15 10:18:24] [19kb] [38m[info][0m config.InitMysql.func1：46 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 10:18:24] [19kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (4 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[server] [2024-02-15 10:18:28] [20kb] [38m[info][0m user.Register：88 server/controll/user.Register 
+[GIN] 2024/02/15 - 10:18:28 |[97;42m 200 [0m|      4.5286ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[server] [2024-02-15 10:18:29] [20kb] [38m[info][0m user.Register：88 server/controll/user.Register 
+[GIN] 2024/02/15 - 10:18:29 |[97;42m 200 [0m|      3.0404ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[server] [2024-02-15 10:18:30] [21kb] [38m[info][0m user.Register：88 server/controll/user.Register 
+[GIN] 2024/02/15 - 10:18:30 |[97;42m 200 [0m|      2.7719ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[server] [2024-02-15 10:18:30] [21kb] [38m[info][0m user.Register：88 server/controll/user.Register 
+[GIN] 2024/02/15 - 10:18:30 |[97;42m 200 [0m|      2.8619ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[server] [2024-02-15 10:18:31] [21kb] [38m[info][0m user.Register：88 server/controll/user.Register 
+[GIN] 2024/02/15 - 10:18:31 |[97;42m 200 [0m|      3.1676ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[server] [2024-02-15 10:20:00] [21kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 10:20:00] [22kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (4 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[server] [2024-02-15 10:20:01] [23kb] [38m[info][0m user.Register：88 server/controll/user.Register [106 214 118 57 217 182 107 191 230 138 236 68 0 52 29 137]
+[GIN] 2024/02/15 - 10:20:01 |[97;42m 200 [0m|      3.8403ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[server] [2024-02-15 10:20:26] [23kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 10:20:26] [23kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (4 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[server] [2024-02-15 10:20:26] [24kb] [38m[info][0m user.Register：88 server/controll/user.Register (u�vbAo$vP���
+[GIN] 2024/02/15 - 10:20:26 |[97;42m 200 [0m|      3.4786ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[server] [2024-02-15 10:20:28] [24kb] [38m[info][0m user.Register：88 server/controll/user.Register ZF K�mO�|�[��zJ
+[GIN] 2024/02/15 - 10:20:28 |[97;42m 200 [0m|      2.7502ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[server] [2024-02-15 10:24:22] [25kb] [38m[info][0m config.InitMysql.func1：46 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 10:24:22] [25kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (4 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[server] [2024-02-15 10:24:23] [26kb] [38m[info][0m user.Register：89 server/controll/user.Register Ö�ޫ}�c6���&
+[GIN] 2024/02/15 - 10:24:23 |[97;42m 200 [0m|     15.0574ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[server] [2024-02-15 10:25:05] [26kb] [38m[info][0m user.Register：89 server/controll/user.Register �����,�(��5�Ix�F
+[GIN] 2024/02/15 - 10:25:05 |[97;42m 200 [0m|     78.8372ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[server] [2024-02-15 10:25:06] [26kb] [38m[info][0m user.Register：89 server/controll/user.Register ǈLSW��辏IgZwK
+[GIN] 2024/02/15 - 10:25:06 |[97;42m 200 [0m|      7.5513ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[server] [2024-02-15 10:25:07] [27kb] [38m[info][0m user.Register：89 server/controll/user.Register j[x%����;'��ښ
+[GIN] 2024/02/15 - 10:25:07 |[97;42m 200 [0m|     12.0498ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[server] [2024-02-15 10:25:08] [27kb] [38m[info][0m user.Register：89 server/controll/user.Register %T
+x��1闪lC�m
+[GIN] 2024/02/15 - 10:25:08 |[97;42m 200 [0m|      6.3353ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[server] [2024-02-15 10:28:09] [27kb] [38m[info][0m config.InitMysql.func1：46 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 10:28:09] [27kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (4 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[server] [2024-02-15 10:28:28] [28kb] [38m[info][0m user.Register：89 server/controll/user.Register �OA�̦����*�ܕ
+[GIN] 2024/02/15 - 10:28:28 |[97;42m 200 [0m|     62.2707ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[server] [2024-02-15 10:28:29] [29kb] [38m[info][0m user.Register：89 server/controll/user.Register ���Pƪ}gÔo��n
+[GIN] 2024/02/15 - 10:28:29 |[97;42m 200 [0m|      4.3029ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[server] [2024-02-15 10:33:01] [29kb] [38m[info][0m user.Login：34 server/controll/user.Login <nil>
+[GIN] 2024/02/15 - 10:33:02 |[97;42m 200 [0m|      62.934ms |       127.0.0.1 |[97;46m POST    [0m "/user/login?username=admin&password=admin"
+[server] [2024-02-15 10:33:29] [29kb] [38m[info][0m user.Login：34 server/controll/user.Login <nil>
+[GIN] 2024/02/15 - 10:33:29 |[97;42m 200 [0m|     68.5811ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-15 10:33:30] [29kb] [38m[info][0m user.Login：34 server/controll/user.Login <nil>
+[GIN] 2024/02/15 - 10:33:30 |[97;42m 200 [0m|      8.2975ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-15 10:33:31] [29kb] [38m[info][0m user.Login：34 server/controll/user.Login <nil>
+[GIN] 2024/02/15 - 10:33:31 |[97;42m 200 [0m|      7.6592ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-15 10:33:32] [30kb] [38m[info][0m user.Login：34 server/controll/user.Login <nil>
+[GIN] 2024/02/15 - 10:33:32 |[97;42m 200 [0m|      7.3704ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-15 10:33:33] [30kb] [38m[info][0m user.Login：34 server/controll/user.Login <nil>
+[GIN] 2024/02/15 - 10:33:33 |[97;42m 200 [0m|      8.1347ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-15 10:33:34] [30kb] [38m[info][0m user.Login：34 server/controll/user.Login <nil>
+[GIN] 2024/02/15 - 10:33:34 |[97;42m 200 [0m|      7.3671ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-15 10:33:34] [30kb] [38m[info][0m user.Login：34 server/controll/user.Login <nil>
+[GIN] 2024/02/15 - 10:33:34 |[97;42m 200 [0m|      6.9027ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-15 10:34:13] [31kb] [38m[info][0m config.InitMysql.func1：46 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 10:34:13] [31kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (4 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[server] [2024-02-15 10:34:18] [32kb] [38m[info][0m user.Login：34 server/controll/user.Login <nil>
+[GIN] 2024/02/15 - 10:37:03 |[97;42m 200 [0m|         2m44s |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-15 10:37:03] [32kb] [38m[info][0m user.Login：34 server/controll/user.Login <nil>
+[server] [2024-02-15 10:37:08] [32kb] [38m[info][0m config.InitMysql.func1：46 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 10:37:08] [32kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (4 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[server] [2024-02-15 10:37:09] [33kb] [38m[info][0m user.Login：34 server/controll/user.Login <nil>
+[GIN] 2024/02/15 - 10:38:41 |[97;42m 200 [0m|         1m31s |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-15 10:38:44] [33kb] [38m[info][0m config.InitMysql.func1：46 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 10:38:44] [33kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (4 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[server] [2024-02-15 10:38:45] [34kb] [38m[info][0m user.Login：34 server/controll/user.Login <nil>
+[GIN] 2024/02/15 - 10:39:12 |[97;42m 200 [0m|   26.9140487s |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-15 10:39:15] [35kb] [38m[info][0m config.InitMysql.func1：46 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 10:39:15] [35kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (4 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[server] [2024-02-15 10:39:15] [36kb] [38m[info][0m user.Login：34 server/controll/user.Login <nil>
+[server] [2024-02-15 10:40:17] [36kb] [38m[info][0m config.InitMysql.func1：46 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 10:40:17] [36kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (4 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[server] [2024-02-15 10:40:18] [37kb] [38m[info][0m user.Login：35 server/controll/user.Login <nil>
+[GIN] 2024/02/15 - 10:40:39 |[97;42m 200 [0m|   20.7678712s |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-15 10:40:42] [37kb] [38m[info][0m config.InitMysql.func1：46 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 10:40:42] [37kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (4 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[server] [2024-02-15 10:40:44] [38kb] [38m[info][0m user.Login：35 server/controll/user.Login <nil>
+[GIN] 2024/02/15 - 10:40:55 |[97;42m 200 [0m|   11.3207438s |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-15 10:40:58] [39kb] [38m[info][0m config.InitMysql.func1：46 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 10:40:58] [39kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (4 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[server] [2024-02-15 10:41:07] [40kb] [38m[info][0m config.InitMysql.func1：46 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 10:41:07] [40kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (4 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[server] [2024-02-15 10:41:08] [41kb] [38m[info][0m user.Login：35 server/controll/user.Login <nil>
+[GIN] 2024/02/15 - 10:41:08 |[97;42m 200 [0m|       5.217ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-15 10:41:08] [41kb] [38m[info][0m user.Login：35 server/controll/user.Login <nil>
+[GIN] 2024/02/15 - 10:41:08 |[97;42m 200 [0m|      4.9917ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-15 10:41:09] [41kb] [38m[info][0m user.Login：35 server/controll/user.Login <nil>
+[GIN] 2024/02/15 - 10:41:09 |[97;42m 200 [0m|       5.439ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-15 10:41:10] [41kb] [38m[info][0m user.Login：35 server/controll/user.Login <nil>
+[GIN] 2024/02/15 - 10:41:10 |[97;42m 200 [0m|      3.8291ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-15 10:41:10] [42kb] [38m[info][0m user.Login：35 server/controll/user.Login <nil>
+[GIN] 2024/02/15 - 10:41:10 |[97;42m 200 [0m|      3.8528ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-15 10:41:11] [42kb] [38m[info][0m user.Login：35 server/controll/user.Login <nil>
+[GIN] 2024/02/15 - 10:41:11 |[97;42m 200 [0m|       4.496ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-15 10:41:11] [42kb] [38m[info][0m user.Login：35 server/controll/user.Login <nil>
+[GIN] 2024/02/15 - 10:41:11 |[97;42m 200 [0m|      3.6949ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-15 11:42:16] [42kb] [38m[info][0m config.InitMysql.func1：46 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 11:42:16] [42kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (4 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[server] [2024-02-15 11:42:55] [43kb] [38m[info][0m config.InitMysql.func1：46 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 11:42:55] [44kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (4 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[GIN] 2024/02/15 - 11:43:02 |[97;42m 200 [0m|      5.5044ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[GIN] 2024/02/15 - 11:43:04 |[97;42m 200 [0m|      2.2775ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[GIN] 2024/02/15 - 11:43:05 |[97;42m 200 [0m|      3.0005ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[GIN] 2024/02/15 - 11:43:27 |[97;42m 200 [0m|       3.086ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[GIN] 2024/02/15 - 11:45:08 |[97;42m 200 [0m|      2.4686ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[server] [2024-02-15 11:45:15] [45kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 11:45:15] [45kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (4 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[server] [2024-02-15 11:45:41] [46kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 11:45:41] [47kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (4 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[server] [2024-02-15 11:45:55] [48kb] [38m[info][0m config.InitMysql.func1：46 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 11:45:55] [48kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (4 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[GIN] 2024/02/15 - 11:45:57 |[97;42m 200 [0m|      5.7757ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[GIN] 2024/02/15 - 11:45:58 |[97;42m 200 [0m|        3.44ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[GIN] 2024/02/15 - 11:46:39 |[97;42m 200 [0m|      2.7553ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[server] [2024-02-15 11:47:27] [49kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 11:47:27] [49kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (4 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[GIN] 2024/02/15 - 11:48:02 |[97;42m 200 [0m|   34.7473843s |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[server] [2024-02-15 11:48:05] [50kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 11:48:05] [51kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (4 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[GIN] 2024/02/15 - 11:48:42 |[97;42m 200 [0m|   34.3760666s |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[server] [2024-02-15 11:48:47] [52kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 11:48:47] [52kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (4 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[GIN] 2024/02/15 - 11:48:48 |[97;42m 200 [0m|       3.648ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[server] [2024-02-15 11:49:48] [53kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 11:49:48] [53kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (4 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[GIN] 2024/02/15 - 11:49:50 |[97;42m 200 [0m|      7.8062ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[GIN] 2024/02/15 - 11:49:51 |[97;42m 200 [0m|      4.8622ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[server] [2024-02-15 11:50:06] [54kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 11:50:06] [55kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (4 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[server] [2024-02-15 11:50:07] [56kb] [38m[info][0m user.Register：104 server/controll/user.Register ��ֆ�١����m�
+[GIN] 2024/02/15 - 11:50:07 |[97;42m 200 [0m|     11.2144ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[server] [2024-02-15 11:50:08] [56kb] [38m[info][0m user.Register：104 server/controll/user.Register �T�9��B���~@>�
+[GIN] 2024/02/15 - 11:50:08 |[97;42m 200 [0m|      7.6311ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[server] [2024-02-15 11:50:58] [56kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 11:50:58] [56kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (4 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[server] [2024-02-15 11:51:25] [57kb] [38m[info][0m config.InitMysql.func1：46 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 11:51:25] [57kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (4 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[server] [2024-02-15 11:51:27] [58kb] [38m[info][0m user.Register：104 server/controll/user.Register p�-" �FB-�nѨ�
+[GIN] 2024/02/15 - 11:51:27 |[97;42m 200 [0m|     19.6317ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[GIN] 2024/02/15 - 11:51:30 |[97;42m 200 [0m|      2.9695ms |       127.0.0.1 |[97;46m POST    [0m "/user/register?username=admin&password=admin&phone=123456478"
+[server] [2024-02-15 11:51:38] [59kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 11:51:38] [59kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (4 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[server] [2024-02-15 11:51:42] [60kb] [38m[info][0m user.Login：36 server/controll/user.Login <nil>
+[GIN] 2024/02/15 - 11:51:42 |[97;42m 200 [0m|     10.7693ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-15 11:51:44] [60kb] [38m[info][0m user.Login：36 server/controll/user.Login <nil>
+[GIN] 2024/02/15 - 11:51:44 |[97;42m 200 [0m|      5.1765ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-15 11:52:33] [60kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 11:52:34] [61kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (4 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[server] [2024-02-15 11:52:39] [62kb] [38m[info][0m user.Login：36 server/controll/user.Login <nil>
+[GIN] 2024/02/15 - 12:01:21 |[97;42m 200 [0m|         8m44s |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-15 12:01:26] [62kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 12:01:26] [62kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (4 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[server] [2024-02-15 12:01:29] [63kb] [38m[info][0m user.Login：36 server/controll/user.Login <nil>
+[GIN] 2024/02/15 - 12:01:51 |[97;42m 200 [0m|   23.4438807s |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-15 12:01:55] [63kb] [38m[info][0m user.Login：36 server/controll/user.Login <nil>
+[GIN] 2024/02/15 - 12:01:56 |[97;42m 200 [0m|     1.899622s |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-15 14:07:50] [63kb] [38m[info][0m user.Login：36 server/controll/user.Login <nil>
+[GIN] 2024/02/15 - 14:07:50 |[97;42m 200 [0m|    2.1086902s |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-15 14:08:05] [63kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 14:08:05] [64kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (4 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[server] [2024-02-15 14:13:33] [65kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 14:13:33] [65kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (4 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[server] [2024-02-15 14:14:38] [66kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 14:14:38] [66kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (5 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (5 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[GIN] 2024/02/15 - 14:15:35 |[97;42m 200 [0m|     70.8321ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[GIN] 2024/02/15 - 14:17:21 |[97;42m 200 [0m|     66.0469ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[GIN] 2024/02/15 - 14:17:45 |[97;42m 200 [0m|     54.7788ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[GIN] 2024/02/15 - 14:17:46 |[97;42m 200 [0m|       9.166ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[GIN] 2024/02/15 - 14:17:46 |[97;42m 200 [0m|      8.9161ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[GIN] 2024/02/15 - 14:17:47 |[97;42m 200 [0m|       7.825ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[server] [2024-02-15 14:21:25] [68kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 14:21:25] [68kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (5 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (5 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[GIN] 2024/02/15 - 14:21:26 |[97;42m 200 [0m|     13.5639ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[GIN] 2024/02/15 - 14:22:26 |[97;42m 200 [0m|     63.6451ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[server] [2024-02-15 14:22:57] [69kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 14:22:57] [69kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (5 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (5 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[GIN] 2024/02/15 - 14:22:58 |[97;42m 200 [0m|      9.0509ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[GIN] 2024/02/15 - 14:23:29 |[97;42m 200 [0m|     67.1283ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[GIN] 2024/02/15 - 14:23:30 |[97;42m 200 [0m|      8.5437ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[GIN] 2024/02/15 - 14:33:58 |[97;42m 200 [0m|     63.9493ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[server] [2024-02-15 14:34:25] [70kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 14:34:25] [71kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (5 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (5 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[GIN] 2024/02/15 - 14:34:49 |[97;42m 200 [0m|     22.74975s |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[server] [2024-02-15 14:35:46] [72kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 14:35:46] [72kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (5 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (5 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[GIN] 2024/02/15 - 14:38:16 |[97;42m 200 [0m|         2m28s |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[server] [2024-02-15 14:38:22] [73kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 14:38:22] [73kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (5 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (5 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[GIN] 2024/02/15 - 14:38:32 |[97;42m 200 [0m|    9.3170305s |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[server] [2024-02-15 14:38:35] [74kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 14:38:35] [74kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (5 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (5 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[GIN] 2024/02/15 - 14:39:01 |[97;42m 200 [0m|   21.3109642s |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[GIN] 2024/02/15 - 14:39:32 |[97;42m 200 [0m|   21.0304869s |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[server] [2024-02-15 14:40:39] [75kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 14:40:39] [76kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (5 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (5 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[GIN] 2024/02/15 - 14:41:16 |[97;42m 200 [0m|   35.2579697s |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[server] [2024-02-15 14:41:16] [77kb] [33m[warning][0m user.Info.func1：157 server/controll/user.Info.func1 redis: can't marshal *models.User (implement encoding.BinaryMarshaler)
+[server] [2024-02-15 14:42:04] [77kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 14:42:05] [77kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (5 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (5 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[GIN] 2024/02/15 - 14:42:06 |[97;42m 200 [0m|     11.0723ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[server] [2024-02-15 14:42:06] [78kb] [33m[warning][0m user.Info.func1：157 server/controll/user.Info.func1 redis: can't marshal *models.User (implement encoding.BinaryMarshaler)
+[server] [2024-02-15 14:43:08] [78kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 14:43:08] [78kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (5 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (5 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[server] [2024-02-15 14:43:13] [79kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 14:43:14] [80kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (5 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (5 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[GIN] 2024/02/15 - 14:43:44 |[97;42m 200 [0m|    9.8186973s |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[server] [2024-02-15 14:43:48] [81kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 14:43:48] [81kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (5 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (5 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[GIN] 2024/02/15 - 14:44:01 |[97;42m 200 [0m|   11.0519118s |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[server] [2024-02-15 14:44:18] [82kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 14:44:18] [82kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (5 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (5 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[GIN] 2024/02/15 - 14:44:20 |[97;42m 200 [0m|      6.1557ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[GIN] 2024/02/15 - 14:44:21 |[97;42m 200 [0m|      4.3472ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[GIN] 2024/02/15 - 14:44:22 |[97;42m 200 [0m|      3.2059ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[GIN] 2024/02/15 - 14:44:22 |[97;42m 200 [0m|      4.6521ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[GIN] 2024/02/15 - 14:44:23 |[97;42m 200 [0m|      3.8552ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[GIN] 2024/02/15 - 14:44:24 |[97;42m 200 [0m|      3.8372ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[GIN] 2024/02/15 - 14:45:38 |[97;42m 200 [0m|     69.9362ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[GIN] 2024/02/15 - 14:45:43 |[97;42m 200 [0m|      3.0425ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[GIN] 2024/02/15 - 14:45:44 |[97;42m 200 [0m|      2.7299ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[GIN] 2024/02/15 - 14:45:48 |[97;42m 200 [0m|      2.3154ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[server] [2024-02-15 15:18:00] [84kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 15:18:00] [84kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (4 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (4 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (5 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (5 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[GIN] 2024/02/15 - 15:18:03 |[97;42m 200 [0m|      9.8988ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[server] [2024-02-15 15:18:29] [85kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 15:18:29] [86kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (5 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (5 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (6 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (6 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[server] [2024-02-15 15:18:30] [87kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 7.5521ms
+[GIN] 2024/02/15 - 15:18:30 |[97;42m 200 [0m|      7.7548ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[server] [2024-02-15 15:19:09] [87kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 15:19:09] [87kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (5 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (5 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (6 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (6 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[server] [2024-02-15 15:19:10] [88kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 7.6499ms
+[GIN] 2024/02/15 - 15:19:10 |[97;42m 200 [0m|      8.0067ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[server] [2024-02-15 15:22:24] [88kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 15:22:24] [88kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (5 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (5 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (6 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (6 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[server] [2024-02-15 15:22:25] [89kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 7.3845ms
+[GIN] 2024/02/15 - 15:22:25 |[97;42m 200 [0m|      7.5321ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[server] [2024-02-15 15:22:26] [89kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 2.3166ms
+[GIN] 2024/02/15 - 15:22:26 |[97;42m 200 [0m|      3.3317ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[server] [2024-02-15 15:40:25] [90kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 146.8674ms
+[GIN] 2024/02/15 - 15:40:25 |[97;42m 200 [0m|    147.8708ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[server] [2024-02-15 15:40:26] [90kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 3.7725ms
+[GIN] 2024/02/15 - 15:40:26 |[97;42m 200 [0m|      3.8291ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[server] [2024-02-15 15:40:27] [90kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 4.3769ms
+[GIN] 2024/02/15 - 15:40:27 |[97;42m 200 [0m|      4.4772ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[server] [2024-02-15 15:40:28] [90kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 5.0245ms
+[GIN] 2024/02/15 - 15:40:28 |[97;42m 200 [0m|      5.8248ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[server] [2024-02-15 16:35:41] [91kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 151.9334ms
+[GIN] 2024/02/15 - 16:35:41 |[97;42m 200 [0m|    152.4201ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[server] [2024-02-15 16:35:44] [91kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 6.6999ms
+[GIN] 2024/02/15 - 16:35:44 |[97;42m 200 [0m|      6.9659ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[server] [2024-02-15 16:35:45] [91kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 3.5989ms
+[GIN] 2024/02/15 - 16:35:45 |[97;42m 200 [0m|      3.8027ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[server] [2024-02-15 16:35:46] [91kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 3.3353ms
+[GIN] 2024/02/15 - 16:35:46 |[97;42m 200 [0m|      3.5858ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[server] [2024-02-15 16:35:46] [91kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 3.5366ms
+[GIN] 2024/02/15 - 16:35:46 |[97;42m 200 [0m|      3.5366ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[server] [2024-02-15 16:35:47] [92kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 2.8458ms
+[GIN] 2024/02/15 - 16:35:47 |[97;42m 200 [0m|      3.5518ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[server] [2024-02-15 16:35:48] [92kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 3.9923ms
+[GIN] 2024/02/15 - 16:35:48 |[97;42m 200 [0m|      4.2705ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[server] [2024-02-15 16:35:48] [92kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 3.1727ms
+[GIN] 2024/02/15 - 16:35:48 |[97;42m 200 [0m|      3.7928ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[server] [2024-02-15 16:35:49] [92kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 4.1796ms
+[GIN] 2024/02/15 - 16:35:49 |[97;42m 200 [0m|      4.4783ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[server] [2024-02-15 16:35:49] [92kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 3.5177ms
+[GIN] 2024/02/15 - 16:35:49 |[97;42m 200 [0m|      4.5844ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[server] [2024-02-15 16:35:49] [93kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 3.8837ms
+[GIN] 2024/02/15 - 16:35:49 |[97;42m 200 [0m|       4.479ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[server] [2024-02-15 16:37:38] [93kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 78.3602ms
+[GIN] 2024/02/15 - 16:37:38 |[97;42m 200 [0m|     79.0566ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[server] [2024-02-15 16:37:40] [93kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 3.4406ms
+[GIN] 2024/02/15 - 16:37:40 |[97;42m 200 [0m|       3.735ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[server] [2024-02-15 16:37:41] [93kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 4.5451ms
+[GIN] 2024/02/15 - 16:37:41 |[97;42m 200 [0m|      4.8002ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[server] [2024-02-15 16:37:46] [94kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 2.3418ms
+[GIN] 2024/02/15 - 16:37:46 |[97;42m 200 [0m|      2.9785ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[server] [2024-02-15 16:37:48] [94kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 3.6914ms
+[GIN] 2024/02/15 - 16:37:48 |[97;42m 200 [0m|      3.7815ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[server] [2024-02-15 16:42:11] [94kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 74.1389ms
+[GIN] 2024/02/15 - 16:42:11 |[97;42m 200 [0m|     74.7861ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[server] [2024-02-15 16:42:48] [94kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-15 16:42:48] [94kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (6 handlers)
+[GIN-debug] POST   /user/register            --> server/controll/user.Register (6 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.Info (7 handlers)
+[GIN-debug] GET    /user/Logout              --> server/controll/user.Logout (7 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :80
+[server] [2024-02-15 16:42:53] [95kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 7.6191ms
+[GIN] 2024/02/15 - 16:42:53 |[97;42m 200 [0m|      7.8991ms |       127.0.0.1 |[97;44m GET     [0m "/user/info"
+[server] [2024-02-15 17:15:37] [96kb] [38m[info][0m user.Login：36 server/controll/user.Login <nil>
+[server] [2024-02-15 17:15:37] [96kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 308.8997ms
+[GIN] 2024/02/15 - 17:15:37 |[97;42m 200 [0m|     309.538ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-15 17:15:39] [96kb] [38m[info][0m user.Login：36 server/controll/user.Login <nil>
+[server] [2024-02-15 17:15:39] [96kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 4.693ms
+[GIN] 2024/02/15 - 17:15:39 |[97;42m 200 [0m|      5.3289ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-15 17:15:40] [96kb] [38m[info][0m user.Login：36 server/controll/user.Login <nil>
+[server] [2024-02-15 17:15:40] [96kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 4.2028ms
+[GIN] 2024/02/15 - 17:15:40 |[97;42m 200 [0m|      5.1345ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-15 17:15:41] [97kb] [38m[info][0m user.Login：36 server/controll/user.Login <nil>
+[server] [2024-02-15 17:15:41] [97kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 3.7742ms
+[GIN] 2024/02/15 - 17:15:41 |[97;42m 200 [0m|      4.7078ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-15 19:38:25] [97kb] [38m[info][0m user.Login：36 server/controll/user.Login <nil>
+[server] [2024-02-15 19:38:25] [97kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 221.1328ms
+[GIN] 2024/02/15 - 19:38:25 |[97;42m 200 [0m|    221.6466ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-15 19:38:26] [97kb] [38m[info][0m user.Login：36 server/controll/user.Login <nil>
+[server] [2024-02-15 19:38:26] [97kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 3.8981ms
+[GIN] 2024/02/15 - 19:38:26 |[97;42m 200 [0m|      4.3627ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
