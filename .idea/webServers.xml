@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="cc07a8db-21bf-49ac-99da-b57f5c2b8039" name="web">
+        <fileTransfer rootFolder="/root" accessType="SFTP" host="xlei.love" port="22" sshConfigId="45b9e0ef-d006-43b8-9c31-32494b9a2d6c" sshConfig="root@xlei.love:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
