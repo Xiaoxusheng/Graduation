@@ -12,7 +12,7 @@ func Routers(e *gin.Engine) *gin.Engine {
 	//
 
 	e.POST("/user/login", user.Login)
-	e.POST("/admin/menu_list", menu.GetMenuList)
+	e.GET("/admin/menu_list", menu.GetMenuList)
 	//
 	//u := e.Group("/user")
 	//e.POST("/login", user.Login)
@@ -27,7 +27,7 @@ func Routers(e *gin.Engine) *gin.Engine {
 	//个人信息
 	api.GET("/info", admin.Info)
 	//退出登录
-	api.GET("/Logout", admin.Logout)
+	api.GET("/logout", admin.Logout)
 	//重置密码
 	api.GET("reset_password", admin.ResetPassword)
 
@@ -73,6 +73,9 @@ func Routers(e *gin.Engine) *gin.Engine {
 	api.POST("/make_card_application", admin.MakeCardApplication)
 	//补卡申请列表
 	api.POST("/make_card_application_liat", admin.GetMarkCardList)
+
+	//菜单
+	api.POST("/add_menu", menu.AddMenu)
 
 	//------------------------------------------------------
 	e.Group("/user", middleware.ParseToken())

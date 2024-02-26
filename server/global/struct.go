@@ -70,3 +70,16 @@ type Application struct {
 	Limit     int32  `json:"limit" binding:"required" form:"limit"`
 	Offset    int32  `json:"offset" binding:"required" form:"offset"`
 }
+
+// Menu 菜单
+type Menu struct {
+	MenuUrl       string `json:"menuUrl,omitempty" form:"menuUrl"`
+	MenuName      string `json:"menuName,omitempty" form:"menuName"`
+	Icon          string `json:"icon,omitempty" form:"icon"`
+	ParentPath    string `json:"parentPath,omitempty" form:"parentPath"`
+	RouteName     string `json:"routeName,omitempty" form:"routeName"`
+	Cacheable     bool   `json:"cacheable,omitempty" form:"cacheable"`
+	Badge         string `json:"badge,omitempty" form:"badge"`
+	LocalFilePath string `json:"localFilePath,omitempty" form:"localFilePath"`
+	IsRootPath    bool   `json:"isRootPath,omitempty" form:"isRootPath"`
+}

@@ -100,8 +100,8 @@
           <a-form-item :rules="[
             { required: true, message: '请输入部门编号' },
             { min: 1, max: 2, message: '长度在 1个字符' },
-          ]" :validate-trigger="['change', 'input']" field="depCode" label="部门编号">
-            <a-input v-model="employerInfo.department" placeholder="请输入部门编号">
+          ]" :validate-trigger="['change', 'input']" field="department" label="部门编号">
+            <a-input v-model.number="employerInfo.department" placeholder="请输入部门编号">
               <template #suffix>
                 <icon-info-circle/>
               </template>
@@ -309,9 +309,6 @@ export default defineComponent({
         Message.error('请选择要删除的数据')
         return
       }
-
-
-
       Modal.confirm({
         title: '提示',
         content: '确定要删除此数据吗？',
@@ -380,7 +377,6 @@ export default defineComponent({
               })
             } else {
               employerInfo.birthday = Math.round(new Date(employerInfo.birthday).getTime() / 1000);
-
               post({
                     url: update_employer,
                     headers: {
@@ -389,7 +385,6 @@ export default defineComponent({
                     data: employerInfo
                   },
               ).then(() => {
-
                 Message.success("修改成功")
               }).catch(error => {
                 Message.error(error.message)

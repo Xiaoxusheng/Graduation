@@ -20,6 +20,7 @@ var (
 	DepartmentList = "departmentList" //部门
 	DepartmentId   = "department_id"  //存放部门identity
 	GetClockInLog  = "GetClockInLog"  //考勤记录
+	Menus          = "menu"           //菜单
 )
 
 // redis 时间
@@ -27,4 +28,5 @@ const (
 	InfoTime         = 60 * 60 * 24 * 7
 	DepartmentTime   = 60 * 60 * 24 * 7
 	EmployerInfoTime = 60 * 60 * 24
+	MenuTime         = 60 * 60 * 24
 )

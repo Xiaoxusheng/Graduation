@@ -68,6 +68,7 @@ func UpdateEmployer(employers *global.Employers) error {
 		Uid:          employers.Uid,
 		Name:         employers.Name,
 		Birthday:     time.Unix(employers.Birthday, 0),
+		Sex:          employers.Sex,
 		Phone:        employers.Phone,
 		Status:       employers.Status,
 		Position:     employers.Position,

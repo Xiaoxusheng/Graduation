@@ -22,7 +22,7 @@ export default defineComponent({
           <div class="center">员工管理平台</div>
           <div class="right">
             <div>15020</div>
-            <div style={{fontSize: '12px'}}>当前在线人数</div>
+            <div style={{fontSize: '12px'}}>当前员工总人数</div>
           </div>
         </div>
     )

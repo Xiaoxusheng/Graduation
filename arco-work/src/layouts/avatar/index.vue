@@ -25,21 +25,24 @@
 </template>
 
 <script lang="ts">
-import {Modal} from '@arco-design/web-vue'
+import {Message, Modal} from '@arco-design/web-vue'
 import {defineComponent} from 'vue'
 import {
-  IconUser as UserOutlined,
-  IconPoweroff as LogoutOutlined,
   IconCaretDown as CaretDownOutlined,
+  IconPoweroff as LogoutOutlined,
+  IconUser as UserOutlined,
 } from '@arco-design/web-vue/es/icon'
 import useUserStore from '@/store/modules/user'
 import {useRouter} from 'vue-router'
+import useGet from "@/hooks/useGet";
+import {logouts} from "@/api/url";
 
 export default defineComponent({
   name: 'VAWavatar',
   components: {UserOutlined, LogoutOutlined, CaretDownOutlined},
   setup() {
     const userStore = useUserStore()
+    const get = useGet()
     const options = [
       {
         label: '个人中心',
@@ -65,6 +68,16 @@ export default defineComponent({
         okText: '退出',
         cancelText: '再想想',
         onOk: () => {
+          get({
+            url: logouts,
+            headers: {
+              Authorization: "Bearer " + userStore.token
+            },
+          }).then(() => {
+            Message.success("退出登录成功")
+          }).catch((error) => {
+            Message.error(error.message)
+          })
           userStore.logout().then(() => {
             window.location.reload()
           })

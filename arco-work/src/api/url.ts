@@ -6,6 +6,8 @@ export const test = '/test'
 
 // 登录
 export const login = '/login'
+// 退出登录
+export const logouts = '/logout'
 
 export const updateUserInfo = '/updateUser'
 

@@ -1,77 +1,79 @@
 <template>
-  <div class="main-container">
-    <TableBody>
-      <template #header>
-        <TableHeader :show-filter="false">
-          <template #table-config>
-            <AddButton @add="onAddItem"/>
-          </template>
-        </TableHeader>
-      </template>
-      <template #default>
-        <a-table :bordered="true" :data="dataList" :loading="tableLoading" :pagination="false" :row-key="rowKey"
-                 :show-header=true>
-          <template #columns>
-            <a-table-column v-for="item of tableColumns" :key="item.key" :align="item.align"
-                            :data-index="(item.key as string)" :fixed="item.fixed" :title="(item.title as string)"
-                            :width="item.width">
-              <template v-if="item.key === 'status'" #cell="{ record }">
-                <a-tag :color="record.status === 1 ? 'green' : 'red'">
-                  {{ record.status === 1 ? '启用' : '停用' }}
-                </a-tag>
-              </template>
+  <a-watermark content="员工管理系统">
+    <div style="width: 100%; height:100%;"/>
+    <div class="main-container">
+      <TableBody>
+        <template #header>
+          <TableHeader :show-filter="false">
+            <template #table-config>
+              <AddButton @add="onAddItem"/>
+            </template>
+          </TableHeader>
+        </template>
+        <template #default>
+          <a-table :bordered="true" :data="dataList" :loading="tableLoading" :pagination="false" :row-key="rowKey"
+                   :show-header=true>
+            <template #columns>
+              <a-table-column v-for="item of tableColumns" :key="item.key" :align="item.align"
+                              :data-index="(item.key as string)" :fixed="item.fixed" :title="(item.title as string)"
+                              :width="item.width">
+                <template v-if="item.key === 'status'" #cell="{ record }">
+                  <a-tag :color="record.status === 1 ? 'green' : 'red'">
+                    {{ record.status === 1 ? '启用' : '停用' }}
+                  </a-tag>
+                </template>
 
-              <template v-if="item.key === 'actions'" #cell="{ record }">
-                <a-space>
-                  <a-button status="success" size="mini" @click="onUpdateItem(record)">
-                    编辑
-                  </a-button>
-                  <a-button status="danger" size="mini" @click="onDeleteItem(record)">
-                    删除
-                  </a-button>
-                </a-space>
-              </template>
-            </a-table-column>
-          </template>
-        </a-table>
-      </template>
-    </TableBody>
-    <ModalDialog ref="modalDialog" :title="dialogTitle" @confirm="onDataFormConfirm">
-      <template #content>
-        <a-form ref="formRef" :model="departmentModel" :labelCol="{ span: 4 }">
-          <a-form-item label="部门名称" field="name" :rules="[
+                <template v-if="item.key === 'actions'" #cell="{ record }">
+                  <a-space>
+                    <a-button size="mini" status="success" @click="onUpdateItem(record)">
+                      编辑
+                    </a-button>
+                    <a-button size="mini" status="danger" @click="onDeleteItem(record)">
+                      删除
+                    </a-button>
+                  </a-space>
+                </template>
+              </a-table-column>
+            </template>
+          </a-table>
+        </template>
+      </TableBody>
+      <ModalDialog ref="modalDialog" :title="dialogTitle" @confirm="onDataFormConfirm">
+        <template #content>
+          <a-form ref="formRef" :labelCol="{ span: 4 }" :model="departmentModel">
+            <a-form-item :rules="[
             { required: true, message: '请输入部门名称' },
             { min: 3, max: 10, message: '长度在 3 - 10个字符' },
-          ]" :validate-trigger="['change', 'input']">
-            <a-input v-model="departmentModel.name" placeholder="请输入部门名称"></a-input>
-          </a-form-item>
-          <a-form-item :rules="[
+          ]" field="name" label="部门名称" :validate-trigger="['change', 'input']">
+              <a-input v-model="departmentModel.name" placeholder="请输入部门名称"></a-input>
+            </a-form-item>
+            <a-form-item :rules="[
             { required: true, message: '请输入部门编号' },
             { min: 1, max: 3, message: '长度在 0-3个字符' },
           ]" field="sort" label="部门编号" :validate-trigger="['change', 'input']">
-            <a-input v-model.number="departmentModel.sort" placeholder="请输入部门编号">
-            </a-input>
-          </a-form-item>
-          <a-form-item label="leader" name="leader">
-            <a-input v-model="departmentModel.leader"/>
-          </a-form-item>
-          <a-form-item label="状态" name="status">
-            <a-radio-group v-model="departmentModel.status">
-              <a-radio :value="1">正常</a-radio>
-              <a-radio :value="2">禁用</a-radio>
-            </a-radio-group>
-          </a-form-item>
-        </a-form>
-      </template>
-    </ModalDialog>
-  </div>
+              <a-input v-model.number="departmentModel.sort" placeholder="请输入部门编号">
+              </a-input>
+            </a-form-item>
+            <a-form-item label="leader" name="leader">
+              <a-input v-model="departmentModel.leader"/>
+            </a-form-item>
+            <a-form-item label="状态" name="status">
+              <a-radio-group v-model="departmentModel.status">
+                <a-radio :value="1">正常</a-radio>
+                <a-radio :value="2">禁用</a-radio>
+              </a-radio-group>
+            </a-form-item>
+          </a-form>
+        </template>
+      </ModalDialog>
+    </div>
+  </a-watermark>
 </template>
 
 <script lang="ts">
 import {addDepartment, delDepartment, getDepartmentList, updateDepartment} from '@/api/url'
 import {useRowKey, useTable, useTableColumn} from '@/hooks/table'
 import {defineComponent, onMounted, reactive, ref} from 'vue'
-import _ from 'lodash-es'
 import {Form, Message, Modal} from '@arco-design/web-vue'
 import type {ModalDialogType} from '@/types/components'
 import useUserStore from '@/store/modules/user'
@@ -184,17 +186,9 @@ export default defineComponent({
     function filterItems(srcArray: Array<Department>, filterItem: Department) {
       for (let index = 0; index < srcArray.length; index++) {
         const element = srcArray[index]
-        if (element.id === filterItem.id) {
-          if (!_.isEmpty(element.children)) {
-            Message.error('当前部门下有子部门，不能删除')
-            return
-          }
+        if (element.identity === filterItem.identity) {
           srcArray.splice(index, 1)
           return
-        } else {
-          if (!_.isEmpty(element.children)) {
-            filterItems(element.children as Array<Department>, filterItem)
-          }
         }
       }
     }

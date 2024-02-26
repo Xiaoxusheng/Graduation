@@ -22,6 +22,7 @@ redis:
   maxidleconns: 1000
   minidleconns: 10
   connMaxIdleTime: 10
+  Times: 5
 
 #Jwt
 jwt:
