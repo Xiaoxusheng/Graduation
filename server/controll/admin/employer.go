@@ -230,3 +230,14 @@ func EmployeeInfo(c *gin.Context) {
 	}()
 	result.Ok(c, info)
 }
+
+// DepartmentInfo 获取员工部门人数，占比
+func DepartmentInfo(c *gin.Context) {
+	list, err := dao.GetDepartment()
+	if err != nil {
+		global.Global.Log.Error(err)
+		result.Fail(c, global.DataNotFound, global.GetDepartmentInfoError)
+		return
+	}
+	result.Ok(c, list)
+}

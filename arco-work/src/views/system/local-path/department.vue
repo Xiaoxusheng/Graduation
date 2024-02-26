@@ -39,33 +39,26 @@
     <ModalDialog ref="modalDialog" :title="dialogTitle" @confirm="onDataFormConfirm">
       <template #content>
         <a-form ref="formRef" :model="departmentModel" :labelCol="{ span: 4 }">
-          <a-form-item label="上级部门" name="parentId">
-            <a-select v-model="departmentModel.parentId" placeholder="请选择上级部门">
-              <a-option v-for="item of dataList" :key="item.id" :value="item.id">
-                {{ item.name }}
-              </a-option>
-            </a-select>
-          </a-form-item>
           <a-form-item label="部门名称" field="name" :rules="[
             { required: true, message: '请输入部门名称' },
             { min: 3, max: 10, message: '长度在 3 - 10个字符' },
           ]" :validate-trigger="['change', 'input']">
             <a-input v-model="departmentModel.name" placeholder="请输入部门名称"></a-input>
           </a-form-item>
-          <a-form-item label="部门编号" field="depCode" :rules="[
+          <a-form-item :rules="[
             { required: true, message: '请输入部门编号' },
-            { min: 3, max: 10, message: '长度在 3 - 30个字符' },
-          ]" :validate-trigger="['change', 'input']">
-            <a-input placeholder="请输入部门编号" v-model="departmentModel.depCode">
+            { min: 1, max: 3, message: '长度在 0-3个字符' },
+          ]" field="sort" label="部门编号" :validate-trigger="['change', 'input']">
+            <a-input v-model.number="departmentModel.sort" placeholder="请输入部门编号">
             </a-input>
           </a-form-item>
-          <a-form-item label="排序" name="order">
-            <a-input-number v-model="departmentModel.order"/>
+          <a-form-item label="leader" name="leader">
+            <a-input v-model="departmentModel.leader"/>
           </a-form-item>
           <a-form-item label="状态" name="status">
             <a-radio-group v-model="departmentModel.status">
               <a-radio :value="1">正常</a-radio>
-              <a-radio :value="0">禁用</a-radio>
+              <a-radio :value="2">禁用</a-radio>
             </a-radio-group>
           </a-form-item>
         </a-form>
@@ -75,7 +68,7 @@
 </template>
 
 <script lang="ts">
-import {getDepartmentList} from '@/api/url'
+import {addDepartment, delDepartment, getDepartmentList, updateDepartment} from '@/api/url'
 import {useRowKey, useTable, useTableColumn} from '@/hooks/table'
 import {defineComponent, onMounted, reactive, ref} from 'vue'
 import _ from 'lodash-es'
@@ -83,15 +76,14 @@ import {Form, Message, Modal} from '@arco-design/web-vue'
 import type {ModalDialogType} from '@/types/components'
 import useUserStore from '@/store/modules/user'
 import useGet from "@/hooks/useGet";
+import usePost from "@/hooks/usePost";
 
 interface Department {
-  parentId: number | undefined
-  id: number
+  identity: string
   name: string
-  depCode: string
-  order: number
+  leader: string
+  sort: number
   status: number
-  children?: Array<Department>
 }
 
 const DP_CODE_FLAG = 'dp_code_'
@@ -137,11 +129,10 @@ export default defineComponent({
       },
     ])
     const departmentModel = reactive<Department>({
-      parentId: undefined,
-      id: 0,
+      identity: 0,
       name: '',
-      depCode: '',
-      order: 1,
+      leader: '',
+      sort: 3,
       status: 1,
     })
     const formRef = ref<typeof Form>()
@@ -149,6 +140,9 @@ export default defineComponent({
     const rowKey = useRowKey('id')
     const modalDialog = ref<ModalDialogType | null>(null)
     const get = useGet()
+    const post = usePost()
+    // 开关
+    let add: boolean = false
 
     function doRefresh() {
       // get请求
@@ -158,6 +152,15 @@ export default defineComponent({
           Authorization: "Bearer " + userStore.token
         }
       }).then(({data = []}) => {
+        console.log(localStorage.getItem("departmentMap") == null, data)
+        if (localStorage.getItem("departmentMap") == null || " ") {
+          const map = new Map()
+          data.forEach((i: any) => {
+            map.set(i.sort, i.name)
+            return
+          })
+          localStorage.setItem("departmentMap", JSON.stringify(Array.from(map.entries())))
+        }
         table.tableLoading.value = false
         table.dataList.length = 0
         data.forEach((i: { CreatedAt: string | number | Date }) => {
@@ -201,19 +204,35 @@ export default defineComponent({
         title: '提示',
         content: '确定要删除此信息，删除后不可恢复？',
         onOk() {
+          // 删除
+          get({
+            url: delDepartment,
+            headers: {
+              Authorization: "Bearer " + userStore.token
+            },
+            data: {
+              id: item.identity
+            }
+          }).then((res) => {
+            console.log(res)
+            Message.success("删除成功")
+            doRefresh()
+          }).catch((error) => {
+            Message.error(error.message)
+          })
           filterItems(table.dataList, item)
         },
       })
     }
 
     function onAddItem() {
+      add = true
       dialogTitle.value = '添加部门'
-      departmentModel.parentId = undefined
-      departmentModel.id = 0
+      departmentModel.identity = ''
       departmentModel.status = 1
-      departmentModel.depCode = ''
+      departmentModel.sort = 3
       departmentModel.name = ''
-      departmentModel.order = 1
+      departmentModel.leader = ''
       modalDialog.value?.toggle()
     }
 
@@ -224,8 +243,38 @@ export default defineComponent({
             if (error) {
               return
             }
+            if (add) {
+              // 增加
+              post({
+                url: addDepartment,
+                headers: {
+                  Authorization: "Bearer " + userStore.token
+                },
+                data: departmentModel
+              }).then((res) => {
+                console.log(res)
+                Message.success("添加成功")
+                doRefresh()
+              }).catch((error) => {
+                Message.error(error.message)
+              })
+            } else {
+              // 更新
+              post({
+                url: updateDepartment,
+                headers: {
+                  Authorization: "Bearer " + userStore.token
+                },
+                data: departmentModel
+              }).then((res) => {
+                console.log(res)
+                Message.success("更新部门成功")
+                doRefresh()
+              }).catch((error) => {
+                Message.error(error.message)
+              })
+            }
             modalDialog.value?.close()
-            Message.success('模拟部门添加/编辑成功，数据为：' + JSON.stringify(departmentModel))
           })
           .catch((error: any) => {
             console.log('error', error)
@@ -234,10 +283,12 @@ export default defineComponent({
 
     function onUpdateItem(item: Department) {
       dialogTitle.value = '编辑部门'
-      // Object.keys(item).forEach((it) => {
-      //   ;(departmentModel as any)[it] = (item as any)[it]
-      // })
-      // departmentModel.parentId = item.parentId
+      add = false
+      departmentModel.identity = item.identity
+      departmentModel.status = item.status
+      departmentModel.sort = item.sort
+      departmentModel.name = item.name
+      departmentModel.leader = item.leader
       modalDialog.value?.toggle()
     }
 
@@ -250,6 +301,7 @@ export default defineComponent({
       ...table,
       rowKey,
       tableColumns,
+      add,
       onUpdateItem,
       onDataFormConfirm,
       onDeleteItem,

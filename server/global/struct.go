@@ -12,10 +12,11 @@ type UrlList struct {
 
 // Department 部门
 type Department struct {
-	Identity string `json:"identity,omitempty"`
-	Name     string `json:"name,omitempty"  binding:"required,min=2,max=15" form:"name" form:"name"`
-	Sort     int32  `json:"sort,omitempty" binding:"required,number" form:"sort" form:"sort"`
-	Leader   string `json:"leader,omitempty" binding:"required,min=2,max=15" form:"leader" form:"leader"`
+	Identity string `json:"identity,omitempty" form:"identity"`
+	Name     string `json:"name,omitempty"  binding:"required,min=2,max=15" form:"name" `
+	Sort     int32  `json:"sort,omitempty" binding:"required,number" form:"sort" `
+	Status   int32  `json:"status,omitempty" binding:"required,number" form:"status" `
+	Leader   string `json:"leader,omitempty" binding:"required,min=2,max=15" form:"leader" `
 }
 
 // UserInfo 个人信息

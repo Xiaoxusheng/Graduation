@@ -30,6 +30,8 @@ func Login(c *gin.Context) {
 	salt := global.Global.Redis.HGet(global.Global.Ctx, user.Account, global.Salt).Val()
 	//salt := global.Global.Redis.HGet(global.Global.Ctx, global.UidKey+user.Account, global.Salt).Val()
 	if salt == "" {
+		//数据库获取
+
 		global.Global.Log.Error(err)
 		result.Fail(c, global.BadRequest, global.UserNotExistError)
 		return

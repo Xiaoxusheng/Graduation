@@ -8,18 +8,37 @@
 import useEcharts from '@/hooks/useEcharts'
 import {defineComponent, nextTick, onBeforeUnmount, onMounted, ref} from 'vue'
 import {dispose} from 'echarts/core'
+import {get,} from "@/api/http";
+import {getDepartmentInfoList} from '@/api/url'
+
+import useUserStore from "@/store/modules/user";
+
+const userStore = useUserStore()
 
 export default defineComponent({
   name: 'EnrollmentChannelsChart',
   setup() {
     const loading = ref(true)
     const channelsChart = ref<HTMLDivElement | null>(null)
-    const data = [
-      {value: 1969, name: '线上'},
-      {value: 1594, name: '电话'},
-      {value: 1347, name: '地推'},
-      {value: 635, name: '直播'},
-    ]
+    const data: any = []
+    get({
+      url: getDepartmentInfoList,
+      headers: {
+        Authorization: "Bearer " + userStore.token
+      },
+    },).then((res) => {
+      const storedMapString = localStorage.getItem('departmentMap');
+      const storedMapArray = JSON.parse(storedMapString);
+      const storedMap = new Map(storedMapArray);
+      console.log(storedMap)
+      res.data.forEach((i: any) => {
+        console.log(i)
+        const d = {value: i.count, name: storedMap.get(i.department_id)}
+        data.push(d)
+      })
+    }).catch(error => {
+      console.log(error)
+    })
     const init = () => {
       const option = {
         legend: {

@@ -2,15 +2,15 @@
   <div class="main-container">
     <div class="left">
       <div class="item">
-        <Title title="销售渠道"/>
+        <Title title="部门组成"/>
         <EnrollmentChannelsChart ref="enrollmentChannelsChart"/>
       </div>
       <div class="item">
-        <Title title="周销售额分析图"/>
+        <Title title="考勤人数分析图"/>
         <WeekSalesChart ref="weekSalesChart"/>
       </div>
       <div class="item">
-        <Title title="热卖产品指数"/>
+        <Title title="各部门考勤情况"/>
         <HotProductChart ref="hotProductChart"/>
       </div>
     </div>

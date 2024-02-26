@@ -1,6 +1,6 @@
 import Mock, {Random} from 'mockjs'
 import {baseData} from '../base.ts'
-import {addDepartment, getCardList, getCommentList, getRoleList, getTableList,} from '@/api/url'
+import {getCardList, getCommentList, getRoleList, getTableList,} from '@/api/url'
 
 const totalSize = 30
 
@@ -89,9 +89,9 @@ Mock.mock(RegExp(getRoleList), 'post', function () {
     })
 })
 
-Mock.mock(RegExp(addDepartment), 'post', function () {
-    return Mock.mock({...baseData, data: ''})
-})
+// Mock.mock(RegExp(addDepartment), 'post', function () {
+//     return Mock.mock({...baseData, data: ''})
+// })
 
 Mock.mock(RegExp(getTableList), 'post', function ({body}) {
     const {page, pageSize = 10} = JSON.parse(body)

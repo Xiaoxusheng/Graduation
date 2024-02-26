@@ -99,7 +99,7 @@
           </a-form-item>
           <a-form-item :rules="[
             { required: true, message: '请输入部门编号' },
-            { min: 0, max: 2, message: '长度在 1个字符' },
+            { min: 1, max: 2, message: '长度在 1个字符' },
           ]" :validate-trigger="['change', 'input']" field="depCode" label="部门编号">
             <a-input v-model="employerInfo.department" placeholder="请输入部门编号">
               <template #suffix>
@@ -108,7 +108,10 @@
             </a-input>
           </a-form-item>
           <a-form-item label="电话" name="phone">
-            <a-input v-model="employerInfo.phone" placeholder="请输入员工电话">
+            <a-input v-model="employerInfo.phone" :rules="[
+            { required: true, message: '请输入员工电话' },
+            { min: 11, max: 11, message: '长度在 11 个字符' },
+          ]" :validate-trigger="['change', 'input']" placeholder="请输入员工电话">
               <template #suffix>
                 <icon-info-circle/>
               </template>
@@ -306,7 +309,7 @@ export default defineComponent({
         Message.error('请选择要删除的数据')
         return
       }
-      sl
+
 
 
       Modal.confirm({
@@ -353,39 +356,51 @@ export default defineComponent({
 
     // 编辑
     function onDataFormConfirm() {
-      modalDialogRef.value?.toggle()
-      if (add) {
-        employerInfo.birthday = Math.round(new Date(employerInfo.birthday).getTime() / 1000);
-        console.log(employerInfo)
-        post({
-          url: add_employer,
-          headers: {
-            Authorization: "Bearer " + userStore.token
-          },
-          data: employerInfo
-        }).then(() => {
-          table.dataList.push(employerInfo)
-          Message.success("添加成功")
-        }).catch((error) => {
-          Message.error(error.message)
-        })
-      } else {
-        employerInfo.birthday = Math.round(new Date(employerInfo.birthday).getTime() / 1000);
+      formRef.value
+          ?.validate()
+          .then((error: any) => {
+            if (error) {
+              return
+            }
+            modalDialogRef.value?.toggle()
+            if (add) {
+              employerInfo.birthday = Math.round(new Date(employerInfo.birthday).getTime() / 1000);
+              console.log(employerInfo)
+              post({
+                url: add_employer,
+                headers: {
+                  Authorization: "Bearer " + userStore.token
+                },
+                data: employerInfo
+              }).then(() => {
+                table.dataList.push(employerInfo)
+                Message.success("添加成功")
+              }).catch((error) => {
+                Message.error(error.message)
+              })
+            } else {
+              employerInfo.birthday = Math.round(new Date(employerInfo.birthday).getTime() / 1000);
 
-        post({
-              url: update_employer,
-              headers: {
-                Authorization: "Bearer " + userStore.token
-              },
-              data: employerInfo
-            },
-        ).then(() => {
+              post({
+                    url: update_employer,
+                    headers: {
+                      Authorization: "Bearer " + userStore.token
+                    },
+                    data: employerInfo
+                  },
+              ).then(() => {
 
-          Message.success("修改成功")
-        }).catch(error => {
-          Message.error(error.message)
-        })
-      }
+                Message.success("修改成功")
+              }).catch(error => {
+                Message.error(error.message)
+              })
+            }
+          })
+          .catch((error: any) => {
+            console.log('error', error)
+            return
+          })
+
 
 
     }

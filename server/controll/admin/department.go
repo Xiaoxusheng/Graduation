@@ -2,6 +2,7 @@ package admin
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"server/dao"
 	"server/global"
@@ -20,6 +21,7 @@ func AddDepartment(c *gin.Context) {
 	d := new(global.Department)
 	err := c.Bind(d)
 	if err != nil {
+		global.Global.Log.Error(err)
 		result.Fail(c, global.BadRequest, global.QueryNotFoundError)
 		return
 	}
@@ -88,6 +90,7 @@ func UpdateDepartment(c *gin.Context) {
 		result.Fail(c, global.BadRequest, global.QueryNotFoundError)
 		return
 	}
+	fmt.Println(d)
 	//判断是否存在
 	val := global.Global.Redis.SIsMember(global.Global.Ctx, global.DepartmentId, d.Identity).Val()
 	if !val {

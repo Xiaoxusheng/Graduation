@@ -36,7 +36,6 @@ func Login(c *gin.Context) {
 		result.Fail(c, global.BadRequest, global.QueryError)
 		return
 	}
-	global.Global.Log.Info(err)
 	//	判断用户是否存在
 	//  查询盐值
 	salt := global.Global.Redis.HGet(global.Global.Ctx, user.Username, global.Salt).Val()
@@ -84,12 +83,14 @@ func Register(c *gin.Context) {
 	r := new(registers)
 	err := c.Bind(r)
 	if err != nil {
+		global.Global.Log.Error(err)
 		result.Fail(c, global.BadRequest, global.QueryError)
 		return
 	}
 	//生成随机盐值
 	salt, err := utils.GenerateSalt(16)
 	if err != nil {
+		global.Global.Log.Error(err)
 		result.Fail(c, global.ServerError, global.QueryError)
 		return
 	}
@@ -103,7 +104,7 @@ func Register(c *gin.Context) {
 	//检查手机号
 	username, err = dao.GetPhone(r.Phone)
 	if username != nil {
-		result.Fail(c, global.DataConflict, global.QueryError)
+		result.Fail(c, global.DataConflict, global.PhoneError)
 		return
 	}
 	id := utils.GetUidV5(r.Username)
@@ -118,6 +119,7 @@ func Register(c *gin.Context) {
 		Salt:     base64.URLEncoding.EncodeToString(salt),
 	})
 	if err != nil {
+		global.Global.Log.Error(err)
 		result.Fail(c, global.DataConflict, global.QueryError)
 		return
 	}

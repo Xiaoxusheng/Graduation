@@ -32,6 +32,7 @@ func StopDepartment(id string) error {
 func UpdateDepartment(department *global.Department) error {
 	d := new(models.Department)
 	return global.Global.Mysql.Model(d).Where("identity=?", department.Identity).Updates(&models.Department{
+		Status: department.Status,
 		Name:   department.Name,
 		Sort:   department.Sort,
 		Leader: department.Leader,

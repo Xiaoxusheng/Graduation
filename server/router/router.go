@@ -53,6 +53,8 @@ func Routers(e *gin.Engine) *gin.Engine {
 	api.POST("/update_department", admin.UpdateDepartment)
 	//新增部门信息
 	api.POST("/add_department", admin.AddDepartment)
+	//获取部门人数信息
+	api.GET("/department_info", admin.DepartmentInfo)
 
 	//获取考勤记录
 	api.GET("/get_clockIn", admin.GetClockInLog)

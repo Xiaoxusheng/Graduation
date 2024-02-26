@@ -20,8 +20,14 @@ export const deleteUserById = '/deleteUserById'
 
 // 部门列表
 export const getDepartmentList = '/get_department_list'
-
-export const addDepartment = '/addDepartment'
+// 获取部门信息
+export const getDepartmentInfoList = '/department_info'
+// 添加部门
+export const addDepartment = '/add_department'
+// 更新部门信息
+export const updateDepartment = '/update_department'
+// 删除部门
+export const delDepartment = '/del_department'
 
 export const getRoleList = '/getRoleList'
 

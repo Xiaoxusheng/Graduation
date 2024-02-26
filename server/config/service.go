@@ -40,6 +40,7 @@ type Redis struct {
 	MinIdleConns    int           `json:"minIdleConns" yaml:"minIdleConns"`
 	MaxIdleConns    int           `json:"maxIdleConns" yaml:"maxIdleConns"`
 	ConnMaxIdleTime time.Duration `json:"connMaxIdleTime" yaml:"connMaxIdleTime"`
+	Times           time.Duration `json:"times" yaml:"times"`
 }
 
 type Jwt struct {

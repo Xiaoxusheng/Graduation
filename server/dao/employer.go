@@ -74,3 +74,12 @@ func UpdateEmployer(employers *global.Employers) error {
 		DepartmentId: employers.Department,
 	}).Error
 }
+
+func GetDepartment() ([]global.EmployerInfo, error) {
+	info := make([]global.EmployerInfo, 0)
+	err := global.Global.Mysql.Table("employee_basic").Select("department_id,count(*) as  'count'").Group("department_id").Scan(&info).Error
+	if err != nil {
+		return nil, err
+	}
+	return info, nil
+}
