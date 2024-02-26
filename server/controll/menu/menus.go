@@ -82,7 +82,31 @@ func AddMenu(c *gin.Context) {
 		global.Global.Log.Error(err)
 		return
 	}
-
+	global.Global.Mutex.Lock()
+	defer global.Global.Mutex.Unlock()
+	err = dao.InsertMenu(&models.Menu{
+		MenuUrl:       menu.MenuUrl,
+		MenuName:      menu.MenuName,
+		Icon:          menu.Icon,
+		ParentPath:    menu.ParentPath,
+		RouteName:     menu.RouteName,
+		Cacheable:     true,
+		Badge:         menu.Badge,
+		LocalFilePath: menu.LocalFilePath,
+		IsRootPath:    false,
+		Children:      nil,
+	})
+	if err != nil {
+		global.Global.Log.Error(err)
+		result.Fail(c, global.ServerError, global.AddMenuError)
+	}
+	go func() {
+		_, err = global.Global.Redis.Del(global.Global.Ctx, global.Menus).Result()
+		if err != nil {
+			global.Global.Log.Error()
+		}
+	}()
+	result.Ok(c, nil)
 }
 
 //删除菜单

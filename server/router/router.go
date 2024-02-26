@@ -74,7 +74,7 @@ func Routers(e *gin.Engine) *gin.Engine {
 	//补卡申请列表
 	api.POST("/make_card_application_liat", admin.GetMarkCardList)
 
-	//菜单
+	//增加菜单
 	api.POST("/add_menu", menu.AddMenu)
 
 	//------------------------------------------------------
