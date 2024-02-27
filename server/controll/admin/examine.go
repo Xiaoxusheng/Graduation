@@ -114,6 +114,7 @@ func MakeCardApplication(c *gin.Context) {
 	}
 }
 
+// GetMarkCardList 补卡申请列表
 func GetMarkCardList(c *gin.Context) {
 	list, err := dao.GetMarkCardList()
 	if err != nil {

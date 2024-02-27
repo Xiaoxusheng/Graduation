@@ -82,7 +82,7 @@ func AddEmployee(c *gin.Context) {
 	result.Ok(c, nil)
 }
 
-// DeleteEmployee 删除员工信息
+// DeleteEmployee 删除员工
 func DeleteEmployee(c *gin.Context) {
 	uid := c.Query("uid")
 	global.Global.Log.Info("uid", uid)
@@ -107,13 +107,18 @@ func DeleteEmployee(c *gin.Context) {
 		result.Fail(c, global.BadRequest, global.DeleteError)
 		return
 	}
+	//删除用户分配的账号
 	err = dao.DeleteUser(e.Identity)
 	if err != nil {
 		result.Fail(c, global.BadRequest, global.DeleteError)
 		return
 	}
 	go func() {
-		_, err = global.Global.Redis.SAdd(global.Global.Ctx, global.Employer, e.Uid).Result()
+		//删除信息
+		_, err = global.Global.Redis.Del(global.Global.Ctx, global.Uid+strconv.Itoa(int(e.Uid))).Result()
+
+		//删除员工
+		_, err = global.Global.Redis.SRem(global.Global.Ctx, global.Employer, e.Uid).Result()
 		if err != nil {
 			global.Global.Log.Error(err)
 		}
@@ -211,7 +216,7 @@ func EmployeeInfo(c *gin.Context) {
 	//插入
 	go func() {
 		if info == nil {
-			_, err = global.Global.Redis.Set(global.Global.Ctx, global.Uid+strconv.Itoa(uid), "null", global.InfoTime).Result()
+			_, err = global.Global.Redis.Set(global.Global.Ctx, global.Uid+strconv.Itoa(uid), "null", global.InfoTime*time.Second).Result()
 			return
 		}
 		marshal, err := json.Marshal(info)
@@ -219,7 +224,7 @@ func EmployeeInfo(c *gin.Context) {
 			global.Global.Log.Error(err)
 			return
 		}
-		_, err = global.Global.Redis.Set(global.Global.Ctx, global.Uid+strconv.Itoa(uid), marshal, 0).Result()
+		_, err = global.Global.Redis.Set(global.Global.Ctx, global.Uid+strconv.Itoa(uid), marshal, global.InfoTime*time.Second).Result()
 		if err != nil {
 			global.Global.Log.Error(err)
 		}
