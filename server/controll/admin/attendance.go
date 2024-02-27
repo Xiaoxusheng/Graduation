@@ -13,16 +13,22 @@ import (
 
 /*考勤模块*/
 
-// GetClockInLog  获取员工的获取考勤记录
+// GetClockInLog  获取员工的所有获取考勤记录
 func GetClockInLog(c *gin.Context) {
 	//工号
 	uid := c.Query("uid")
+	limit := c.DefaultQuery("limit", "1")
+	offset := c.DefaultQuery("offset", "10")
+
 	if uid == "" {
-		global.Global.Log.Warn("identity is null")
+		global.Global.Log.Warn("uid is null")
 		result.Fail(c, global.BadRequest, global.QueryError)
 		return
 	}
 	uids, err := strconv.Atoi(uid)
+	limits, err := strconv.Atoi(limit)
+	offsets, err := strconv.Atoi(offset)
+
 	if err != nil {
 		global.Global.Log.Error(err)
 		return
@@ -32,7 +38,7 @@ func GetClockInLog(c *gin.Context) {
 		result.Fail(c, global.BadRequest, global.EmployerNotFoundError)
 		return
 	}
-	//先在缓存中获取,存的是员工工号
+	//先在缓存中获取,存的是员工考勤记录
 	val := global.Global.Redis.Get(global.Global.Ctx, global.GetClockInLog+uid).Val()
 	if val != "" {
 		//	val存在
@@ -47,7 +53,7 @@ func GetClockInLog(c *gin.Context) {
 		return
 	}
 	//数据库中获取
-	list, err := dao.GetAttendanceList(int32(uids))
+	list, err := dao.GetAttendanceList(limits, offsets, int32(uids))
 	if err != nil {
 		global.Global.Log.Error(err)
 		return
@@ -58,7 +64,7 @@ func GetClockInLog(c *gin.Context) {
 			global.Global.Log.Error(err)
 			return
 		}
-		global.Global.Redis.Set(global.Global.Ctx, global.GetClockInLog+uid, marshal, global.EmployerInfoTime)
+		global.Global.Redis.Set(global.Global.Ctx, global.GetClockInLog+uid, marshal, global.EmployerInfoTime*time.Second)
 	}()
 
 	result.Ok(c, list)
@@ -99,12 +105,21 @@ func EditClockLog(c *gin.Context) {
 	result.Ok(c, nil)
 }
 
-// GetClockList 获取某一天员工所有员工的打卡记录
+// GetClockList 获取某一天所有员工的打卡记录
 func GetClockList(c *gin.Context) {
 	//	获取当前时间
 	//
 	t := c.Query("time")
+	limit := c.DefaultQuery("limit", "1")
+	offset := c.DefaultQuery("offset", "10")
+	if t == "" {
+		global.Global.Log.Warn("identity is null")
+		result.Fail(c, global.BadRequest, global.QueryError)
+		return
+	}
 	t1, err := strconv.Atoi(t)
+	limits, err := strconv.Atoi(limit)
+	offsets, err := strconv.Atoi(offset)
 	if err != nil {
 		global.Global.Log.Error(err)
 		result.Fail(c, global.ServerError, global.AtoiError)
@@ -115,7 +130,7 @@ func GetClockList(c *gin.Context) {
 		result.Fail(c, global.DataValidationError, global.QueryError)
 		return
 	}
-	list, err := dao.GetDateList(date)
+	list, err := dao.GetDateList(limits, offsets, date)
 	if err != nil {
 		result.Fail(c, global.ServerError, global.GetClockError)
 		return
