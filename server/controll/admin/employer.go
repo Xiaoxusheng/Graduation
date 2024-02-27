@@ -16,10 +16,6 @@ import (
 func AddEmployee(c *gin.Context) {
 	e := new(global.Employers)
 	e.Uid = 123
-	//data := make([]byte, 1024)
-	//c.Request.Body.Read(data)
-	//fmt.Println(string(data))
-	//fmt.Println(c.Request.Body)
 	err := c.Bind(e)
 	if err != nil {
 		global.Global.Log.Error(err)

@@ -83,3 +83,11 @@ type Menu struct {
 	LocalFilePath string `json:"localFilePath,omitempty" form:"localFilePath"`
 	IsRootPath    bool   `json:"isRootPath,omitempty" form:"isRootPath"`
 }
+
+// MarkCard 补卡申请
+type MarkCard struct {
+	Uid    int64  `json:"uid,omitempty" binding:"required"  form:"uid"`
+	Url    string `json:"url,omitempty"   binding:"required"  form:"url"`
+	Name   string `json:",omitempty"   binding:"required"  form:"name" `
+	Reason string `json:"reason,omitempty"   binding:"required" form:"reason"`
+}

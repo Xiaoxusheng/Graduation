@@ -54,7 +54,7 @@ func GetOvertimeList() ([]models.Examine, error) {
 	return list, nil
 }
 
-// MakeCard 补卡申请
+// MakeCard 补卡申请审批
 func MakeCard(uid, pass int32) error {
 	examine := new(models.Examine)
 	if pass == 1 {
@@ -78,4 +78,9 @@ func GetMarkCardList() ([]models.Examine, error) {
 		return nil, err
 	}
 	return list, nil
+}
+
+// InsertMarkCardApplication 补卡申请
+func InsertMarkCardApplication(examine *models.Examine) error {
+	return global.Global.Mysql.Create(examine).Error
 }

@@ -72,7 +72,7 @@ func Login(c *gin.Context) {
 	//生成token
 	token := utils.GetToken(use.Identity)
 	go func() {
-		global.Global.Redis.Set(global.Global.Ctx, use.Identity, token, config.Config.Jwt.Time)
+		global.Global.Redis.Set(global.Global.Ctx, use.Identity, token, config.Config.Jwt.Time*time.Hour)
 		global.Global.Redis.HSet(global.Global.Ctx, user.Username, utils.HashPassword(user.Password, salts), use.Identity)
 	}()
 	result.Ok(c, map[string]any{"token": token})
@@ -212,12 +212,16 @@ func AssignedAccount(c *gin.Context) {
 		result.Fail(c, global.ServerError, global.QueryError)
 		return
 	}
-	//放入redis
+	//放入redis uid当key
 	_, err = global.Global.Redis.HSet(global.Global.Ctx, strconv.FormatInt(userInfo.Uid, 10), global.Salt, base64.URLEncoding.EncodeToString(salt)).Result()
 	if err != nil {
 		global.Global.Log.Error(err)
 		result.Fail(c, global.ServerError, global.QueryError)
 		return
+	}
+	_, err = global.Global.Redis.HSet(global.Global.Ctx, uid, userInfo.Identity, global.UidId).Result()
+	if err != nil {
+		global.Global.Log.Error(err)
 	}
 
 	err = dao.InsertUser(&models.User{
@@ -244,14 +248,14 @@ func AssignedAccount(c *gin.Context) {
 
 // ResetPassword 重置密码
 func ResetPassword(c *gin.Context) {
-	uid := c.Query("id")
+	uid := c.Query("uid")
 	if uid == "" {
 		global.Global.Log.Warn("identity is null")
 		result.Fail(c, global.BadRequest, global.QueryError)
 		return
 	}
 	//	获取盐值
-	val := global.Global.Redis.HGet(global.Global.Ctx, global.Uid, global.Salt).Val()
+	val := global.Global.Redis.HGet(global.Global.Ctx, uid, global.Salt).Val()
 	if val != "" {
 		salt, _ := base64.URLEncoding.DecodeString(val)
 		err := dao.UpdatePwd(uid, utils.HashPassword("123456", salt))
@@ -261,6 +265,7 @@ func ResetPassword(c *gin.Context) {
 			return
 		}
 		result.Ok(c, nil)
+		return
 	}
 	//盐值不存在
 	account, err := dao.GetByAccount(uid)

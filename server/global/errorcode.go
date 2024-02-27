@@ -18,7 +18,7 @@ const (
 
 // 服务器错误
 const (
-	ServerError            = 30001 // 内部服务器错误
+	ServerError            = 30001 // 服务器内部错误
 	NotImplemented         = 30002 // 功能未实现
 	ServiceTimeout         = 30003 // 服务超时
 	DependencyServiceError = 30004 // 依赖服务失败
@@ -42,9 +42,10 @@ var (
 	QueryError             = "参数错误！"
 	PhoneError             = "手机号已经存在！"
 	DataUnmarshalError     = "数据解析失败！"
-	UserNotExistError      = "用户不存在！"
+	UserNotExistError      = "用户不存在或密码错误！"
 	QueryNotFoundError     = "获取必要参数失败！"
 	ResetPwdError          = "重置密码失败"
+	ChangePwdError         = "修改密码失败！"
 	ParseError             = "解析错误！"
 	RequestToError         = "请求无法处理！"
 	EmployerNotFoundError  = "员工不存在！"
@@ -80,4 +81,10 @@ var (
 	//	补卡
 	MarkCardApplicationError = "补卡申请审核失败！"
 	GetMarkCardLiatError     = "获取补卡申请列表失败！"
+)
+
+var (
+	UserRepeatClockIn = "重复打卡"
+	ClockInError      = "打卡失败！"
+	MarkCardError     = "补卡失败！"
 )

@@ -15,18 +15,18 @@ func GetMenuList(c *gin.Context) {
 	//判断身份
 
 	//下发对应的菜单
-	val := global.Global.Redis.Get(global.Global.Ctx, global.Menus).Val()
-	if val != "" {
-		menu := make([]global.Menu, 10)
-		err := json.Unmarshal([]byte(val), &menu)
-		if err != nil {
-			global.Global.Log.Error(err)
-			result.Fail(c, global.DataUnmarshal, global.DataUnmarshalError)
-			return
-		}
-		result.Ok(c, menu)
-		return
-	}
+	//val := global.Global.Redis.Get(global.Global.Ctx, global.Menus).Val()
+	//if val != "" {
+	//	menu := make([]global.Menu, 10)
+	//	err := json.Unmarshal([]byte(val), &menu)
+	//	if err != nil {
+	//		global.Global.Log.Error(err)
+	//		result.Fail(c, global.DataUnmarshal, global.DataUnmarshalError)
+	//		return
+	//	}
+	//	result.Ok(c, menu)
+	//	return
+	//}
 	list, err := dao.GetMenuList()
 	if err != nil {
 		return

@@ -21,6 +21,9 @@ var (
 	DepartmentId   = "department_id"  //存放部门identity
 	GetClockInLog  = "GetClockInLog"  //考勤记录
 	Menus          = "menu"           //菜单
+	ClockIn        = "ClockIn"        //打卡
+	UidId          = "uid-identity"   //员工的uid和identity的映射
+
 )
 
 // redis 时间
@@ -29,4 +32,5 @@ const (
 	DepartmentTime   = 60 * 60 * 24 * 7
 	EmployerInfoTime = 60 * 60 * 24
 	MenuTime         = 60 * 60 * 24
+	EmployerUidId    = 60 * 60 * 24 * 7
 )

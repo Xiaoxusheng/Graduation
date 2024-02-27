@@ -64,7 +64,13 @@ func GetByAccount(account string) (*models.User, error) {
 	return user, nil
 }
 
+// DeleteUser 删除
 func DeleteUser(id string) error {
 	user := new(models.User)
 	return global.Global.Mysql.Where("identity=?", id).Delete(user).Error
+}
+
+// 修改密码
+func UpdatePwds() {
+
 }

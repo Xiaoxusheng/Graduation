@@ -12,7 +12,7 @@ func Routers(e *gin.Engine) *gin.Engine {
 	//
 
 	e.POST("/user/login", user.Login)
-	e.GET("/admin/menu_list", menu.GetMenuList)
+	e.POST("/admin/menu_list", menu.GetMenuList)
 	//
 	//u := e.Group("/user")
 	//e.POST("/login", user.Login)
@@ -56,10 +56,12 @@ func Routers(e *gin.Engine) *gin.Engine {
 	//获取部门人数信息
 	api.GET("/department_info", admin.DepartmentInfo)
 
-	//获取考勤记录
+	//获取员工考勤记录
 	api.GET("/get_clockIn", admin.GetClockInLog)
 	//编辑考勤记录
 	api.POST("edit_clockIn", admin.EditClockLog)
+	//获取某一天全部考勤
+	api.GET("/get_all_clockIn", admin.GetClockList)
 
 	//请假申请审核
 	api.POST("/leave_application", admin.LeaveApplication)
@@ -78,9 +80,16 @@ func Routers(e *gin.Engine) *gin.Engine {
 	api.POST("/add_menu", menu.AddMenu)
 
 	//------------------------------------------------------
-	e.Group("/user", middleware.ParseToken())
+	users := e.Group("/user", middleware.ParseToken())
 	//文件上传
-	e.POST("/upload", user.Upload)
+	users.POST("/upload", user.Upload)
+	//打卡
+	users.GET("/clockIn", user.ClockIn)
+	//补卡申请
+	users.POST("/markCard_application", user.MarkCardApplication)
 
+	//修改密码
+	users.GET("/change_password", user.ChangePassword)
+	//
 	return e
 }
