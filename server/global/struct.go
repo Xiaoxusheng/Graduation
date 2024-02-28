@@ -62,13 +62,8 @@ type Attendance struct {
 
 // Application 申请信息
 type Application struct {
-	Uid       int64  `json:"uid,omitempty"  binding:"required" form:"uid"`
-	StartTime int64  `json:"start_time,omitempty"  binding:"required" form:"startTime"`
-	EndTime   int64  `json:"end_time,omitempty"  binding:"required" form:"endTime"`
-	Pass      int32  `json:"pass"  binding:"required" form:"pass"`
-	Reason    string `json:"reason,omitempty"  binding:"required" form:"reason"`
-	Limit     int32  `json:"limit" binding:"required" form:"limit"`
-	Offset    int32  `json:"offset" binding:"required" form:"offset"`
+	Uid  int64 `json:"uid,omitempty"  binding:"required" form:"uid"`
+	Pass int32 `json:"pass"  binding:"required" form:"pass"`
 }
 
 // Menu 菜单

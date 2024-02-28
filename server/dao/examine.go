@@ -19,29 +19,31 @@ func GetExamineList() ([]models.Examine, error) {
 }
 
 // UpdateLeaveStatus 请假审核
-func UpdateLeaveStatus(uid, pass int32) error {
+func UpdateLeaveStatus(uid int64, pass int32, id string) error {
 	examine := new(models.Examine)
+	//审核通过
 	if pass == 1 {
-
+		err := Leave(uid, id)
+		if err != nil {
+			return err
+		}
 	}
 	return global.Global.Mysql.Model(examine).Where("uid=?  and status=?", uid, 4).Update("pass", pass).Error
 }
 
 // UpdateOvertimeStatus 加班申请
-func UpdateOvertimeStatus(uid, pass int32, endTime int64) error {
+func UpdateOvertimeStatus(uid int64, pass int32, endTime int64) error {
 	examine := new(models.Examine)
 	//修改一下时间
 	global.Global.Mutex.Lock()
 	defer global.Global.Mutex.Unlock()
-
+	//审核通过
 	if pass == 1 {
 		err := UpdateEndTime(uid, endTime)
 		if err != nil {
 			return err
 		}
-
 	}
-
 	return global.Global.Mysql.Model(examine).Where("uid=?  and status=?", uid, 1).Updates(&models.Examine{
 		Pass:      pass,
 		IsExamine: 1,
@@ -87,4 +89,13 @@ func GetMarkCardList() ([]models.Examine, error) {
 // InsertMarkCardApplication 补卡申请
 func InsertMarkCardApplication(examine *models.Examine) error {
 	return global.Global.Mysql.Create(examine).Error
+}
+
+func GetByUid(uid int64) (*models.Examine, error) {
+	examine := new(models.Examine)
+	err := global.Global.Mysql.Where("uid=?  and status=? ", uid, 1).First(examine).Error
+	if err != nil {
+		return nil, err
+	}
+	return examine, nil
 }

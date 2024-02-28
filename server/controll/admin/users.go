@@ -310,6 +310,8 @@ func ResetPassword(c *gin.Context) {
 	}
 	//删除
 	err = global.Global.Pool.Submit(func() {
+		global.Global.Wg.Add(1)
+		defer global.Global.Wg.Done()
 		_, err = global.Global.Redis.HDel(global.Global.Ctx, uid, account.Password).Result()
 		if err != nil {
 			global.Global.Log.Warn(err)

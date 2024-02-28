@@ -408,7 +408,7 @@ func OverTimeApplication(c *gin.Context) {
 		global.Global.Log.Error(err)
 		return
 	}
-	overtime := new(global.LeaveApplication)
+	overtime := new(global.OverTime)
 	err = c.Bind(overtime)
 	if err != nil {
 		global.Global.Log.Error(err)

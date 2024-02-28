@@ -68,7 +68,7 @@ func Routers(e *gin.Engine) *gin.Engine {
 	//获取请假申请列表
 	api.GET("/get_LeaveApplication_list", admin.GetLeaveApplicationList)
 	//加班申请审核
-	api.POST("overtime_application", admin.OvertimeApplication)
+	api.POST("/overtime_application", admin.OvertimeApplication)
 	//获取加班申请表
 	api.GET("/get_overtimeApplication_list", admin.GetOvertimeList)
 	//补卡申请审批

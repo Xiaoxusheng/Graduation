@@ -42,11 +42,25 @@ func GetDateList(limits, offset int, t time.Time) ([]models.Attendance, error) {
 }
 
 // UpdateEndTime 加班
-func UpdateEndTime(uid int32, time2 int64) error {
+func UpdateEndTime(uid, time2 int64) error {
 	attendances := new(models.Attendance)
 	return global.Global.Mysql.Model(attendances).Where("uid=?", uid).Updates(&models.Attendance{
 		EndTime: time.Unix(time2, 0),
 		Status:  4,
+	}).Error
+}
+
+/*
+1表示缺勤 2表示打卡 3表示迟到 4表示加班 5表示补卡 6出差 7 请假
+*/
+
+// Leave 请假
+func Leave(uid int64, id string) error {
+	return global.Global.Mysql.Create(&models.Attendance{
+		Identity: id,
+		Uid:      uid,
+		Name:     "",
+		Status:   7,
 	}).Error
 }
 

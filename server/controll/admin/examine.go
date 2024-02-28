@@ -5,6 +5,7 @@ import (
 	"server/dao"
 	"server/global"
 	"server/result"
+	"server/utils"
 )
 
 // LeaveApplication 请假申请审核
@@ -22,8 +23,9 @@ func LeaveApplication(c *gin.Context) {
 		result.Fail(c, global.BadRequest, global.EmployerNotFoundError)
 		return
 	}
-	if application.Pass == 0 || application.Pass == 1 {
-		err = dao.UpdateLeaveStatus(int32(application.Uid), application.Pass)
+	if application.Pass == 1 || application.Pass == 2 {
+		id := utils.GetUidV4()
+		err = dao.UpdateLeaveStatus(application.Uid, application.Pass, id)
 		if err != nil {
 			global.Global.Log.Error(err)
 			result.Fail(c, global.ServerError, global.LeaveApplicationError)
@@ -61,8 +63,14 @@ func OvertimeApplication(c *gin.Context) {
 		result.Fail(c, global.BadRequest, global.EmployerNotFoundError)
 		return
 	}
-	if application.Pass == 0 || application.Pass == 1 {
-		err = dao.UpdateOvertimeStatus(int32(application.Uid), application.Pass, application.EndTime)
+	if application.Pass == 1 || application.Pass == 2 {
+		info, err := dao.GetByUid(application.Uid)
+		if err != nil {
+			global.Global.Log.Error(err)
+			result.Fail(c, global.ServerError, global.OverTimeApplicationError)
+			return
+		}
+		err = dao.UpdateOvertimeStatus(application.Uid, application.Pass, info.EndTime.Unix())
 		if err != nil {
 			global.Global.Log.Error(err)
 			result.Fail(c, global.ServerError, global.OverTimeApplicationError)
@@ -83,7 +91,6 @@ func GetOvertimeList(c *gin.Context) {
 		return
 	}
 	result.Ok(c, list)
-
 }
 
 // MakeCardApplication 补卡申请审核
@@ -102,7 +109,7 @@ func MakeCardApplication(c *gin.Context) {
 		return
 	}
 	//
-	if application.Pass == 0 || application.Pass == 1 {
+	if application.Pass == 1 || application.Pass == 2 {
 		err = dao.MakeCard(int32(application.Uid), application.Pass)
 		if err != nil {
 			global.Global.Log.Error(err)
