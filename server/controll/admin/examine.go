@@ -62,7 +62,7 @@ func OvertimeApplication(c *gin.Context) {
 		return
 	}
 	if application.Pass == 0 || application.Pass == 1 {
-		err = dao.UpdateOvertimeStatus(int32(application.Uid), application.Pass)
+		err = dao.UpdateOvertimeStatus(int32(application.Uid), application.Pass, application.EndTime)
 		if err != nil {
 			global.Global.Log.Error(err)
 			result.Fail(c, global.ServerError, global.OverTimeApplicationError)

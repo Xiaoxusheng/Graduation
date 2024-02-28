@@ -98,7 +98,7 @@ func ChangePassword(c *gin.Context) {
 			return
 		}
 		//
-		_, err = global.Global.Redis.HDel(global.Global.Ctx, uid, utils.HashPassword(p, salt), id).Result()
+		_, err = global.Global.Redis.HDel(global.Global.Ctx, uid, utils.HashPassword(p, salt)).Result()
 		if err != nil {
 			global.Global.Log.Warn(err)
 			result.Fail(c, global.BadRequest, global.ChangePwdError)
@@ -127,6 +127,18 @@ func ChangePassword(c *gin.Context) {
 	if err != nil {
 		global.Global.Log.Warn(err)
 		result.Fail(c, global.BadRequest, global.ResetPwdError)
+		return
+	}
+	_, err = global.Global.Redis.HDel(global.Global.Ctx, uid, utils.HashPassword(p, salt)).Result()
+	if err != nil {
+		global.Global.Log.Warn(err)
+		result.Fail(c, global.BadRequest, global.ChangePwdError)
+		return
+	}
+	_, err = global.Global.Redis.HSet(global.Global.Ctx, uid, utils.HashPassword(pwd, salt), id).Result()
+	if err != nil {
+		global.Global.Log.Warn(err)
+		result.Fail(c, global.BadRequest, global.ChangePwdError)
 		return
 	}
 	result.Ok(c, nil)

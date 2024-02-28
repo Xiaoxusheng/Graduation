@@ -254,14 +254,41 @@ func ResetPassword(c *gin.Context) {
 		result.Fail(c, global.BadRequest, global.QueryError)
 		return
 	}
+	//判断员工是否存在
+	val := global.Global.Redis.SIsMember(global.Global.Ctx, global.Employer, uid).Val()
+	if !val {
+		result.Fail(c, global.BadRequest, global.EmployerNotFoundError)
+		return
+	}
 	//	获取盐值
-	val := global.Global.Redis.HGet(global.Global.Ctx, uid, global.Salt).Val()
-	if val != "" {
-		salt, _ := base64.URLEncoding.DecodeString(val)
-		err := dao.UpdatePwd(uid, utils.HashPassword("123456", salt))
+	vals := global.Global.Redis.HGet(global.Global.Ctx, uid, global.Salt).Val()
+	if vals != "" {
+		salt, _ := base64.URLEncoding.DecodeString(vals)
+
+		account, err := dao.GetByAccount(uid)
+		if err != nil {
+			global.Global.Log.Warn(err)
+			result.Fail(c, global.BadRequest, global.EmployerNotFoundError)
+			return
+		}
+
+		err = dao.UpdatePwd(uid, utils.HashPassword("123456", salt))
 		if err != nil {
 			global.Global.Log.Warn(err)
 			result.Fail(c, global.BadRequest, global.ResetPwdError)
+			return
+		}
+
+		_, err = global.Global.Redis.HDel(global.Global.Ctx, uid, account.Password).Result()
+		if err != nil {
+			global.Global.Log.Warn(err)
+			result.Fail(c, global.BadRequest, global.ChangePwdError)
+			return
+		}
+		_, err = global.Global.Redis.HSet(global.Global.Ctx, uid, utils.HashPassword("123456", salt), account.Identity).Result()
+		if err != nil {
+			global.Global.Log.Warn(err)
+			result.Fail(c, global.BadRequest, global.ChangePwdError)
 			return
 		}
 		result.Ok(c, nil)
@@ -281,5 +308,21 @@ func ResetPassword(c *gin.Context) {
 		result.Fail(c, global.BadRequest, global.ResetPwdError)
 		return
 	}
+	//删除
+	err = global.Global.Pool.Submit(func() {
+		_, err = global.Global.Redis.HDel(global.Global.Ctx, uid, account.Password).Result()
+		if err != nil {
+			global.Global.Log.Warn(err)
+			result.Fail(c, global.BadRequest, global.ChangePwdError)
+			return
+		}
+		_, err = global.Global.Redis.HSet(global.Global.Ctx, uid, utils.HashPassword("123456", salt), account.Identity).Result()
+		if err != nil {
+			global.Global.Log.Warn(err)
+			result.Fail(c, global.BadRequest, global.ChangePwdError)
+			return
+		}
+	})
+
 	result.Ok(c, nil)
 }
