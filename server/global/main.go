@@ -2,6 +2,7 @@ package global
 
 import (
 	"context"
+	"github.com/panjf2000/ants/v2"
 	"github.com/redis/go-redis/v9"
 	log "github.com/sirupsen/logrus"
 	"gorm.io/gorm"
@@ -14,6 +15,8 @@ type Configs struct {
 	Log   *log.Logger     `json:"log"`
 	Ctx   context.Context `json:"ctx"`
 	Mutex *sync.RWMutex   `json:"mutex"`
+	Pool  *ants.MultiPool `json:"pool"`
+	Wg    *sync.WaitGroup `json:"wg"`
 }
 
 var (

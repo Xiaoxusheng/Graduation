@@ -41,3 +41,8 @@ tencentCos:
   url: "https://tally-1308109276.cos.ap-nanjing.myqcloud.com/"
   secretId: "AKIDfBRQAdpkPnukJceOr52JK4XjeIgmb9RS"
   secretKey: "lFRTFkzziAMIyNULvEG0VkofGahZBWaN"
+
+#  协程池
+Pool:
+  size: 10
+  num: 10

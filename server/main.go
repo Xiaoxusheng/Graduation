@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	"server/config"
+	"server/global"
 	"server/middleware"
 	"server/router"
 	"server/utils"
@@ -25,6 +26,8 @@ func main() {
 	config.InitRedis()
 	//初始化锁
 	config.InitMutex()
+	//初始化协程池
+	config.InitPool()
 
 	e := gin.Default()
 
@@ -33,6 +36,7 @@ func main() {
 
 	e = router.Routers(e)
 	go utils.Listen()
+	global.Global.Wg.Wait()
 
 	s := &http.Server{
 		Addr:           ":" + strconv.Itoa(config.Config.Service.Port),

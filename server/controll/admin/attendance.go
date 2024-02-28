@@ -17,8 +17,8 @@ import (
 func GetClockInLog(c *gin.Context) {
 	//工号
 	uid := c.Query("uid")
-	limit := c.DefaultQuery("limit", "1")
-	offset := c.DefaultQuery("offset", "10")
+	limit := c.DefaultQuery("limit", "10")
+	offset := c.DefaultQuery("offset", "1")
 
 	if uid == "" {
 		global.Global.Log.Warn("uid is null")
@@ -30,6 +30,7 @@ func GetClockInLog(c *gin.Context) {
 	offsets, err := strconv.Atoi(offset)
 
 	if err != nil {
+		result.Fail(c, global.DataUnmarshal, global.AtoiError)
 		global.Global.Log.Error(err)
 		return
 	}
@@ -53,8 +54,9 @@ func GetClockInLog(c *gin.Context) {
 		return
 	}
 	//数据库中获取
-	list, err := dao.GetAttendanceList(limits, offsets, int32(uids))
+	list, err := dao.GetAttendanceList(limits, offsets, int64(uids))
 	if err != nil {
+		result.Fail(c, global.ServerError, global.GetClockError)
 		global.Global.Log.Error(err)
 		return
 	}
@@ -110,8 +112,8 @@ func GetClockList(c *gin.Context) {
 	//	获取当前时间
 	//
 	t := c.Query("time")
-	limit := c.DefaultQuery("limit", "1")
-	offset := c.DefaultQuery("offset", "10")
+	limit := c.DefaultQuery("limit", "10")
+	offset := c.DefaultQuery("offset", "1")
 	if t == "" {
 		global.Global.Log.Warn("identity is null")
 		result.Fail(c, global.BadRequest, global.QueryError)

@@ -69,7 +69,8 @@ type TencentCos struct {
 }
 
 type Pool struct {
-	Num int `json:"num" yaml:"num"`
+	Size int `json:"size" yaml:"size"`
+	Num  int `json:"num" yaml:"num"`
 }
 
 type Kafka struct {

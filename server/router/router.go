@@ -29,7 +29,7 @@ func Routers(e *gin.Engine) *gin.Engine {
 	//退出登录
 	api.GET("/logout", admin.Logout)
 	//重置密码
-	api.GET("reset_password", admin.ResetPassword)
+	api.GET("/reset_password", admin.ResetPassword)
 
 	//删除员工
 	api.GET("delete_employer", admin.DeleteEmployee)
@@ -87,6 +87,10 @@ func Routers(e *gin.Engine) *gin.Engine {
 	users.GET("/clockIn", user.ClockIn)
 	//补卡申请
 	users.POST("/markCard_application", user.MarkCardApplication)
+	//请假
+	users.POST("/leave", user.LeaveApplication)
+	//加班
+	users.POST("/overtime", user.OverTimeApplication)
 
 	//修改密码
 	users.GET("/change_password", user.ChangePassword)

@@ -5,6 +5,7 @@ import (
 	"os/signal"
 	"server/global"
 	"syscall"
+	"time"
 )
 
 func Listen() {
@@ -34,6 +35,12 @@ func Listen() {
 				global.Global.Log.Warn("redis close err:", err)
 			}
 			global.Global.Log.Info("redis connect close success")
+			err = global.Global.Pool.ReleaseTimeout(time.Second * 5)
+			if err != nil {
+				global.Global.Log.Error(err)
+				return
+			}
+			global.Global.Log.Info("pool close success")
 
 			//退出
 			os.Exit(0)

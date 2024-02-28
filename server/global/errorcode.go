@@ -87,4 +87,6 @@ var (
 	UserRepeatClockIn = "重复打卡"
 	ClockInError      = "打卡失败！"
 	MarkCardError     = "补卡失败！"
+	LeaveError        = "请假失败！"
+	OverTimeError     = "加班申请失败！"
 )

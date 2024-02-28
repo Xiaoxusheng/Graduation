@@ -7,9 +7,9 @@ import (
 )
 
 // GetAttendanceList 根据uid获取考勤记录
-func GetAttendanceList(limit, offset int, uid int32) ([]*models.Attendance, error) {
+func GetAttendanceList(limit, offset int, uid int64) ([]*models.Attendance, error) {
 	list := make([]*models.Attendance, 0)
-	err := global.Global.Mysql.Where("uid=?", uid).Limit(limit).Offset(offset).Find(&list).Error
+	err := global.Global.Mysql.Where("uid=?", uid).Limit(limit).Offset(offset - 1).Find(&list).Error
 	if err != nil {
 		return nil, err
 	}
@@ -34,7 +34,7 @@ func GetDateList(limits, offset int, t time.Time) ([]models.Attendance, error) {
 	t1 := time.Date(t.Year(), t.Month(), t.Day(), 0, 0, 0, 0, time.Local)
 	//第二天0点
 	t2 := t1.Add(time.Hour * 24)
-	err := global.Global.Mysql.Where("start_time>? and end_time<?", t1, t2).Limit(limits).Offset(offset).Find(&list).Error
+	err := global.Global.Mysql.Where("start_time>? and end_time<?", t1, t2).Limit(limits - 1).Offset(offset).Find(&list).Error
 	if err != nil {
 		return nil, err
 	}
@@ -64,7 +64,7 @@ func ClockIn(attendance *models.Attendance) error {
 }
 
 // AfterWork 下班打卡
-func AfterWork(uid int64, t int64) error {
+func AfterWork(uid int64, t time.Time) error {
 	attendance := new(models.Attendance)
-	return global.Global.Mysql.Model(attendance).Where("uid=?", uid).Update("end_time", t).Error
+	return global.Global.Mysql.Model(attendance).Where("uid=?  and  date=?", uid, t.Format(time.DateOnly)).Update("end_time", t).Error
 }

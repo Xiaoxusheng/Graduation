@@ -86,8 +86,18 @@ type Menu struct {
 
 // MarkCard 补卡申请
 type MarkCard struct {
-	Uid    int64  `json:"uid,omitempty" binding:"required"  form:"uid"`
 	Url    string `json:"url,omitempty"   binding:"required"  form:"url"`
-	Name   string `json:",omitempty"   binding:"required"  form:"name" `
 	Reason string `json:"reason,omitempty"   binding:"required" form:"reason"`
+}
+
+// LeaveApplication 请假
+type LeaveApplication struct {
+	StartTime int64  `json:"start_time" binding:"required"   form:"start_time"`
+	EndTime   int64  `json:"end_time"  binding:"required"   form:"end_time"`
+	Reason    string `json:"reason"   binding:"required"  form:"reason"`
+}
+
+type OverTime struct {
+	StartTime int64 `json:"start_time" binding:"required"   form:"start_time"`
+	EndTime   int64 `json:"end_time"  binding:"required"   form:"end_time"`
 }
