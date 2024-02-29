@@ -76,7 +76,6 @@
         </a-table>
       </template>
 
-
       <template #footer>
         <TableFooter ref="tableFooterRef" :pagination="pagination"/>
       </template>
@@ -303,7 +302,6 @@ export default defineComponent({
       })
     }
 
-
     function onDeleteItems() {
       if (selectedRowKeys.value.length === 0) {
         Message.error('请选择要删除的数据')
@@ -395,12 +393,7 @@ export default defineComponent({
             console.log('error', error)
             return
           })
-
-
-
     }
-
-
     function onAddItem() {
       add = true
       employerInfo.phone = 1

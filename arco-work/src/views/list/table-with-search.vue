@@ -3,8 +3,8 @@
     <TableBody ref="tableBody">
       <template #header>
         <TableHeader
-            :show-filter="true"
-            title="表格搜索"
+            :show-filter="false"
+            title="加班申请"
             @search="onSearch"
             @reset-search="onResetSearch"
         >
@@ -54,7 +54,7 @@
       </template>
       <template #default>
         <a-table
-            :bordered="false"
+            :bordered="true"
             :row-selection="{ selectedRowKeys, showCheckedAll }"
             :loading="tableLoading"
             :data="dataList"
@@ -84,12 +84,29 @@
                     :autocapitalize="30"
                     :style="{ backgroundColor: 'var(--color-primary-light-1)' }"
                 >
-                  {{ record.nickName.substring(0, 1) }}
+                  {{ record.name }}
                 </a-avatar>
               </template>
               <template v-else-if="item.key === 'status'" #cell="{ record }">
-                <a-tag color="blue" size="small" v-if="record.status === 1">正常</a-tag>
-                <a-tag color="red" size="small" v-else>禁用</a-tag>
+
+                <a-tag color="red" size="small">加班</a-tag>
+              </template>
+              <template v-else-if="item.key === 'pass'" #cell="{ record }">
+                <a-tag v-if="record.pass === 1" color="blue" size="small">通过</a-tag>
+                <a-tag v-if="record.pass === 2" color="blue" size="small">未通过</a-tag>
+                <a-tag v-else color="red" size="small">未审核</a-tag>
+              </template>
+
+              <template v-else-if="item.key === 'sex'" #cell="{ record }">
+                <a-tag v-if="record.sex === 1" color="#ff5722" size="small">男</a-tag>
+                <a-tag v-else color="#ff5722" size="small">女</a-tag>
+              </template>
+              <template v-else-if="item.key === 'actions'" #cell="{ record }">
+                <a-space>
+                  <a-button size="mini" status="success" @click="onUpdateItem(record)">
+                    审核
+                  </a-button>
+                </a-space>
               </template>
             </a-table-column>
           </template>
@@ -103,20 +120,15 @@
 </template>
 
 <script lang="ts">
-import {post} from '@/api/http'
-import {getTableList} from '@/api/url'
-import {
-  usePagination,
-  useRowKey,
-  useRowSelection,
-  useTable,
-  useTableColumn,
-} from '@/hooks/table'
+import {get} from '@/api/http'
+import {getLeaveApplicationList} from '@/api/url'
+import {usePagination, useRowKey, useRowSelection, useTable, useTableColumn,} from '@/hooks/table'
 import FormRender from '@/components/FormRender'
 import {FormItem} from '@/types/components'
-import {Input, Message} from '@arco-design/web-vue'
+import {Input} from '@arco-design/web-vue'
 import {defineComponent, h, onMounted, ref} from 'vue'
 import type {Dayjs} from 'dayjs'
+import useUserStore from "@/store/modules/user";
 
 const conditionItems: Array<FormItem> = [
   {
@@ -130,7 +142,7 @@ const conditionItems: Array<FormItem> = [
     },
     render: (formItem: FormItem) => {
       return h(Input, {
-        placeholder: '这是render渲染的',
+        placeholder: '请输入姓名',
         modelValue: formItem.value.value,
         'onUpdate:modelValue': (value) => {
           formItem.value.value = value
@@ -185,15 +197,9 @@ export default defineComponent({
     const tableColumns = useTableColumn([
       table.indexColumn,
       {
-        title: '名称',
-        key: 'nickName',
-        dataIndex: 'nickName',
-      },
-      {
-        title: '性别',
-        key: 'gender',
-        dataIndex: 'gender',
-        width: 100,
+        title: '员工姓名',
+        key: 'name',
+        dataIndex: 'name',
       },
       {
         title: '头像',
@@ -201,61 +207,103 @@ export default defineComponent({
         dataIndex: 'avatar',
       },
       {
-        title: '地址',
-        key: 'address',
-        dataIndex: 'address',
+        title: '工号',
+        key: 'uid',
+        dataIndex: 'uid',
       },
       {
-        title: '登录时间',
-        key: 'lastLoginTime',
-        dataIndex: 'lastLoginTime',
+        title: '性别',
+        key: 'sex',
+        dataIndex: 'sex',
       },
       {
-        title: '登录IP',
-        key: 'lastLoginIp',
-        dataIndex: 'lastLoginIp',
+        title: '开始时间',
+        key: 'start_time',
+        dataIndex: 'start_time',
       },
       {
-        title: '状态',
+        title: '结束时间',
+        key: 'end_time',
+        dataIndex: 'end_time',
+      },
+      {
+        title: '类型',
         key: 'status',
         dataIndex: 'status',
       },
+      {
+        title: '审核状态',
+        key: 'pass',
+        dataIndex: 'pass',
+      },
+      {
+        title: '说明',
+        key: 'reason',
+        dataIndex: 'reason',
+      },
+      {
+        title: '操作',
+        key: 'actions',
+        dataIndex: 'actions',
+      }
     ])
+    const userStore = useUserStore()
+
 
     function doRefresh() {
-      post({
-        url: getTableList,
+      get({
+        url: getLeaveApplicationList,
+        headers: {
+          Authorization: "Bearer " + userStore.token
+        },
         data: () => {
           return {
-            page: pagination.page,
-            pageSize: pagination.pageSize,
+            offset: pagination.page,
+            limit: pagination.pageSize,
           }
         },
-      })
-          .then((res) => {
+      }).then((res) => {
+        res.data.forEach((i: any) => {
+          const date = new Date(i.start_time);
+          const year = date.getFullYear();
+          const month = String(date.getMonth() + 1).padStart(2, "0");
+          const day = String(date.getDate()).padStart(2, "0");
+          const date1 = new Date(i.end_time);
+          const year1 = date.getFullYear();
+          const month1 = String(date.getMonth() + 1).padStart(2, "0");
+          const day1 = String(date.getDate()).padStart(2, "0");
+          i.end_time = `${year1}-${month1}-${day1} : ${date1.getHours() > 10 ? date1.getHours() : '0' + date1.getHours()}:${date1.getMinutes() > 10 ? date1.getMinutes() : '0' + date1.getMinutes()}:${date1.getSeconds() > 10 ? date1.getSeconds() : '0' + date1.getSeconds()}`
+          i.start_time = `${year}-${month}-${day} : ${date.getHours() > 10 ? date.getHours() : '0' + date.getHours()}:${date.getMinutes() > 10 ? date.getMinutes() : '0' + date.getMinutes()}:${date.getSeconds() > 10 ? date.getSeconds() : '0' + date.getSeconds()}`
+          return
+        })
             table.handleSuccess(res)
-            pagination.setTotalSize(res.totalSize || 10)
-          })
-          .catch(console.log)
+        pagination.setTotalSize(res.data.length || 10)
+      }).catch(error => console.log(error()))
     }
 
     function onSearch() {
-      Message.success(
-          '模拟查询成功，参数为：' +
-          JSON.stringify(
-              conditionItems.reduce((pre, cur) => {
-                ;(pre as any)[cur.key] = cur.value.value
-                return pre
-              }, {})
-          )
-      )
-    }
+      const data: any = conditionItems.reduce((pre, cur) => {
+        ;(pre as any)[cur.key] = cur.value.value
+        return pre
+      }, {})
+      const tableList = table.dataList.filter(i => {
+        if (i.name === data.name || i.sex === data.sex) {
+          return i
+        }
+      })
+      table.handleSuccess(tableList)
+      pagination.setTotalSize(tableList.length || 10)
 
     function onResetSearch() {
       conditionItems.forEach((it) => {
         it.reset ? it.reset() : (it.value.value = '')
       })
     }
+
+      // 审核
+      function onUpdateItem(record: any) {
+
+      }
 
     onMounted(doRefresh)
     return {
@@ -270,6 +318,7 @@ export default defineComponent({
       selectedRowKeys,
       showCheckedAll,
       onSelectionChange,
+      onUpdateItem,
     }
   },
 })

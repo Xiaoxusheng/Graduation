@@ -45,6 +45,9 @@ export const add_employer = '/add_employer'
 export const delete_employer = '/delete_employer'
 // 更新员工信息
 export const update_employer = '/update_employer'
+// 获取请假列表
+export const getLeaveApplicationList = '/get_LeaveApplication_list'
+
 
 
 export const getTableList = '/employer_list'

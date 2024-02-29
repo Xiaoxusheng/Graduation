@@ -9,9 +9,9 @@ import (
 //'1表示加班申请 2表示补卡申请 3出差申请 4请假申请'
 
 // GetExamineList 请假审批表
-func GetExamineList() ([]models.Examine, error) {
-	list := make([]models.Examine, 0)
-	err := global.Global.Mysql.Where("status=? and created_at<?", 4, time.Now()).Find(&list).Error
+func GetExamineList(limits, offset int) ([]global.Applications, error) {
+	list := make([]global.Applications, 0)
+	err := global.Global.Mysql.Table("examine_basic").Select("employee_basic.sex,employee_basic.name,examine_basic.*").Joins("join employee_basic on   employee_basic.uid=examine_basic.uid").Where("examine_basic.status=? and examine_basic.created_at<?", 4, time.Now()).Limit(limits).Offset(offset - 1).Scan(&list).Error
 	if err != nil {
 		return nil, err
 	}
@@ -51,9 +51,9 @@ func UpdateOvertimeStatus(uid int64, pass int32, endTime int64) error {
 }
 
 // GetOvertimeList 获取加班申请列表,包括审批过的
-func GetOvertimeList() ([]models.Examine, error) {
+func GetOvertimeList(limits, offsets int) ([]models.Examine, error) {
 	list := make([]models.Examine, 0)
-	err := global.Global.Mysql.Where("status=? ", 1).Find(&list).Error
+	err := global.Global.Mysql.Where("status=? ", 1).Limit(limits).Offset(offsets - 1).Find(&list).Error
 	if err != nil {
 		return nil, err
 	}
@@ -77,9 +77,9 @@ func MakeCard(uid int64, star, end time.Time, pass int32, id string) error {
 }
 
 // GetMarkCardList 补卡申请列表
-func GetMarkCardList() ([]models.Examine, error) {
+func GetMarkCardList(limits, offsets int) ([]models.Examine, error) {
 	list := make([]models.Examine, 0)
-	err := global.Global.Mysql.Where("status=? ", 2).Find(&list).Error
+	err := global.Global.Mysql.Where("status=? ", 2).Limit(limits).Offset(offsets - 1).Find(&list).Error
 	if err != nil {
 		return nil, err
 	}

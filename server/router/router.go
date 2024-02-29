@@ -39,7 +39,7 @@ func Routers(e *gin.Engine) *gin.Engine {
 	e.POST("/admin/login", admin.Login)
 
 	api := e.Group("/admin")
-	api.Use(middleware.ParseToken(), middleware.CasBin())
+	api.Use(middleware.Log(), middleware.ParseToken(), middleware.CasBin())
 	//注册
 	e.POST("/register", admin.Register)
 	//个人信息

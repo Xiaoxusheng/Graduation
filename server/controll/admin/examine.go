@@ -6,6 +6,7 @@ import (
 	"server/global"
 	"server/result"
 	"server/utils"
+	"strconv"
 )
 
 // LeaveApplication 请假申请审核
@@ -46,7 +47,17 @@ func LeaveApplication(c *gin.Context) {
 
 // GetLeaveApplicationList 获取请假申请列表
 func GetLeaveApplicationList(c *gin.Context) {
-	list, err := dao.GetExamineList()
+	limit := c.DefaultQuery("limit", "10")
+	offset := c.DefaultQuery("offset", "1")
+
+	limits, err := strconv.Atoi(limit)
+	offsets, err := strconv.Atoi(offset)
+	if err != nil {
+		global.Global.Log.Error(err)
+		result.Fail(c, global.ServerError, global.AtoiError)
+		return
+	}
+	list, err := dao.GetExamineList(limits, offsets)
 	if err != nil {
 		global.Global.Log.Error(err)
 		result.Fail(c, global.ServerError, global.GetLeaveListError)
@@ -91,7 +102,17 @@ func OvertimeApplication(c *gin.Context) {
 
 // GetOvertimeList 获取加班申请审核列表
 func GetOvertimeList(c *gin.Context) {
-	list, err := dao.GetOvertimeList()
+	limit := c.DefaultQuery("limit", "10")
+	offset := c.DefaultQuery("offset", "1")
+
+	limits, err := strconv.Atoi(limit)
+	offsets, err := strconv.Atoi(offset)
+	if err != nil {
+		global.Global.Log.Error(err)
+		result.Fail(c, global.ServerError, global.AtoiError)
+		return
+	}
+	list, err := dao.GetOvertimeList(limits, offsets)
 	if err != nil {
 		global.Global.Log.Error(err)
 		result.Fail(c, global.ServerError, global.GetOverTimeError)
@@ -137,7 +158,17 @@ func MakeCardApplication(c *gin.Context) {
 
 // GetMarkCardList 补卡申请列表
 func GetMarkCardList(c *gin.Context) {
-	list, err := dao.GetMarkCardList()
+	limit := c.DefaultQuery("limit", "10")
+	offset := c.DefaultQuery("offset", "1")
+
+	limits, err := strconv.Atoi(limit)
+	offsets, err := strconv.Atoi(offset)
+	if err != nil {
+		global.Global.Log.Error(err)
+		result.Fail(c, global.ServerError, global.AtoiError)
+		return
+	}
+	list, err := dao.GetMarkCardList(limits, offsets)
 	if err != nil {
 		global.Global.Log.Error(err)
 		result.Fail(c, global.ServerError, global.GetMarkCardLiatError)

@@ -34,7 +34,7 @@ func main() {
 	e := gin.Default()
 
 	//中间件
-	e.Use(middleware.Log(), middleware.Cors(), middleware.RateLimit())
+	e.Use(middleware.Cors(), middleware.RateLimit())
 
 	e = router.Routers(e)
 	go utils.Listen()

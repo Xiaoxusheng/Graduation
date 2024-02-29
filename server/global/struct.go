@@ -93,7 +93,22 @@ type LeaveApplication struct {
 	Reason    string `json:"reason"   binding:"required"  form:"reason"`
 }
 
+// OverTime 加班
 type OverTime struct {
 	StartTime int64 `json:"start_time" binding:"required"   form:"start_time"`
 	EndTime   int64 `json:"end_time"  binding:"required"   form:"end_time"`
+}
+
+type Applications struct {
+	Uid       int64     `json:"uid,omitempty"`
+	Pass      int32     `json:"pass"`
+	IsExamine int32     `json:"is_examine,omitempty"`
+	Sex       int32     `json:"sex"`
+	StartTime time.Time `json:"start_time,omitempty"`
+	EndTime   time.Time `json:"end_time,omitempty"`
+	Status    int32     `json:"status"`
+	Reason    string    `json:"reason,omitempty"`
+	Name      string    `json:"name"`
+	Url       string    `json:"url"`
+	Identity  string    `json:"identity,omitempty"`
 }
