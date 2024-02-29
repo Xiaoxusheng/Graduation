@@ -250,11 +250,13 @@ func MarkCardApplication(c *gin.Context) {
 	}
 	//插入数据
 	err = dao.InsertMarkCardApplication(&models.Examine{
-		Identity: utils.GetUidV4(),
-		Uid:      int64(uids),
-		Status:   1,
-		Reason:   markCard.Reason,
-		Url:      markCard.Url,
+		StartTime: time.Unix(markCard.Date, 0).Add(time.Hour * 9),
+		EndTime:   time.Unix(markCard.Date, 0).Add(time.Hour * 17).Add(time.Minute * 20),
+		Identity:  utils.GetUidV4(),
+		Uid:       int64(uids),
+		Status:    2,
+		Reason:    markCard.Reason,
+		Url:       markCard.Url,
 	})
 	if err != nil {
 		global.Global.Log.Error(err)

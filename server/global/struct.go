@@ -81,6 +81,7 @@ type Menu struct {
 
 // MarkCard 补卡申请
 type MarkCard struct {
+	Date   int64  `json:"date"    binding:"required"   form:"date"`
 	Url    string `json:"url,omitempty"   binding:"required"  form:"url"`
 	Reason string `json:"reason,omitempty"   binding:"required" form:"reason"`
 }

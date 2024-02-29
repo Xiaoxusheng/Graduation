@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"server/controll/admin"
 	"server/controll/menu"
+	"server/controll/root"
 	"server/controll/user"
 	"server/middleware"
 )
@@ -17,11 +18,28 @@ func Routers(e *gin.Engine) *gin.Engine {
 	//u := e.Group("/user")
 	//e.POST("/login", user.Login)
 
+	roots := e.Group("/root")
+	roots.Use(middleware.ParseToken(), middleware.CasBin())
+	//分配角色
+	roots.POST("/add_rolesForUser", root.AddRolesForUser)
+	//分配资源
+	roots.POST("/add_resource", root.AddResource)
+	//删除角色
+	roots.POST("/delete_roleForUser", root.DeleteRoleForUser)
+	//删除资源
+	roots.POST("/delete_permissionForUser", root.DeletePermissionForUser)
+	//更新权限
+	roots.POST("/update_policy", root.UpdatePolicy)
+	//查看能访问的资源
+	roots.POST("/get_permissionsForUser", root.GetPermissionsForUser)
+	//查看所有权限
+	roots.POST("/get_allNamedSubjects", root.GetAllNamedSubjects)
+
 	//登录
 	e.POST("/admin/login", admin.Login)
 
 	api := e.Group("/admin")
-	api.Use(middleware.ParseToken())
+	api.Use(middleware.ParseToken(), middleware.CasBin())
 	//注册
 	e.POST("/register", admin.Register)
 	//个人信息
@@ -32,7 +50,7 @@ func Routers(e *gin.Engine) *gin.Engine {
 	api.GET("/reset_password", admin.ResetPassword)
 
 	//删除员工
-	api.GET("delete_employer", admin.DeleteEmployee)
+	api.GET("/delete_employer", admin.DeleteEmployee)
 	//创建员工信息
 	api.POST("/add_employer", admin.AddEmployee)
 	//更新员工信息
@@ -59,7 +77,7 @@ func Routers(e *gin.Engine) *gin.Engine {
 	//获取员工考勤记录
 	api.GET("/get_clockIn", admin.GetClockInLog)
 	//编辑考勤记录
-	api.POST("edit_clockIn", admin.EditClockLog)
+	api.POST("/edit_clockIn", admin.EditClockLog)
 	//获取某一天全部考勤
 	api.GET("/get_all_clockIn", admin.GetClockList)
 
@@ -74,7 +92,7 @@ func Routers(e *gin.Engine) *gin.Engine {
 	//补卡申请审批
 	api.POST("/make_card_application", admin.MakeCardApplication)
 	//补卡申请列表
-	api.POST("/make_card_application_liat", admin.GetMarkCardList)
+	api.GET("/make_card_application_list", admin.GetMarkCardList)
 
 	//增加菜单
 	api.POST("/add_menu", menu.AddMenu)

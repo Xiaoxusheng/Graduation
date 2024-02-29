@@ -37,7 +37,7 @@ const (
 
 // *错误信息*/
 var (
-	TokenError             = "token格式不对"
+	TokenError             = "token格式错误"
 	FileError              = "文件数量超过限制！"
 	QueryError             = "参数错误！"
 	PhoneError             = "手机号已经存在！"
@@ -89,4 +89,17 @@ var (
 	MarkCardError     = "补卡失败！"
 	LeaveError        = "请假失败！"
 	OverTimeError     = "加班申请失败！"
+)
+
+// 超级管理员
+var (
+	PermissionDeniedError     = "权限不足！"
+	AddRoleFail               = "添加角色失败！"
+	AddPermissionFail         = "分配资源失败！"
+	RoleNotfound              = "角色不存在！"
+	DelRoleFail               = "删除角色失败！"
+	DelPermissionFail         = "删除资源失败！"
+	UpdatePermissionFail      = "更新资源失败！"
+	PermissionNotFound        = "资源不存存在！"
+	GetPermissionsForUserFail = "获取列表失败！"
 )

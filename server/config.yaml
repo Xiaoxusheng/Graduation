@@ -26,7 +26,7 @@ redis:
 
 #Jwt
 jwt:
-  time: 12
+  time: 120
   key: "welcome to use Tally by M"
 
 #日志相关配置

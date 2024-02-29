@@ -28,6 +28,8 @@ func main() {
 	config.InitMutex()
 	//初始化协程池
 	config.InitPool()
+	//初始化casBin
+	config.InitCasBin()
 
 	e := gin.Default()
 
@@ -39,11 +41,11 @@ func main() {
 	global.Global.Wg.Wait()
 
 	s := &http.Server{
-		Addr:           ":" + strconv.Itoa(config.Config.Service.Port),
-		Handler:        e,
-		ReadTimeout:    config.Config.Service.ReadTime * time.Second,
-		WriteTimeout:   config.Config.Service.WriteTime * time.Second,
-		MaxHeaderBytes: config.Config.Service.MaxHeaderBytes << 20,
+		Addr:           ":" + strconv.Itoa(config.Config.Service.Port), //端口
+		Handler:        e,                                              //路由
+		ReadTimeout:    config.Config.Service.ReadTime * time.Second,   //读超时时间
+		WriteTimeout:   config.Config.Service.WriteTime * time.Second,  //写超时时间
+		MaxHeaderBytes: config.Config.Service.MaxHeaderBytes << 20,     //最大请求头
 	}
 	err := s.ListenAndServe()
 	if err != nil {
