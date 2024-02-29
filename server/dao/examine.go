@@ -19,11 +19,11 @@ func GetExamineList() ([]models.Examine, error) {
 }
 
 // UpdateLeaveStatus 请假审核
-func UpdateLeaveStatus(uid int64, pass int32, id string) error {
+func UpdateLeaveStatus(uid int64, pass int32, id string, start, end time.Time) error {
 	examine := new(models.Examine)
 	//审核通过
 	if pass == 1 {
-		err := Leave(uid, id)
+		err := Leave(uid, id, start, end)
 		if err != nil {
 			return err
 		}
@@ -61,10 +61,10 @@ func GetOvertimeList() ([]models.Examine, error) {
 }
 
 // MakeCard 补卡申请审批
-func MakeCard(uid, pass int32) error {
+func MakeCard(uid int64, star, end time.Time, pass int32, id string) error {
 	examine := new(models.Examine)
 	if pass == 1 {
-		err := UpdateMakeCard(uid)
+		err := UpdateMakeCard(uid, star, end, id)
 		if err != nil {
 			return err
 		}
@@ -91,9 +91,9 @@ func InsertMarkCardApplication(examine *models.Examine) error {
 	return global.Global.Mysql.Create(examine).Error
 }
 
-func GetByUid(uid int64) (*models.Examine, error) {
+func GetByUid(uid int64, status int32) (*models.Examine, error) {
 	examine := new(models.Examine)
-	err := global.Global.Mysql.Where("uid=?  and status=? ", uid, 1).First(examine).Error
+	err := global.Global.Mysql.Where("uid=?  and status=? ", uid, status).First(examine).Error
 	if err != nil {
 		return nil, err
 	}

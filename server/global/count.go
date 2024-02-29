@@ -28,9 +28,9 @@ var (
 
 // redis 时间
 const (
-	InfoTime         = 60 * 60 * 24 * 7
-	DepartmentTime   = 60 * 60 * 24 * 7
-	EmployerInfoTime = 60 * 60 * 24
-	MenuTime         = 60 * 60 * 24
-	EmployerUidId    = 60 * 60 * 24 * 7
+	InfoTime          = 60 * 60 * 24 * 7
+	DepartmentTime    = 60 * 60 * 24 * 7
+	EmployerClockTime = 60 * 60
+	MenuTime          = 60 * 60 * 24
+	EmployerUidId     = 60 * 60 * 24 * 7
 )

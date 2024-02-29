@@ -24,8 +24,15 @@ func LeaveApplication(c *gin.Context) {
 		return
 	}
 	if application.Pass == 1 || application.Pass == 2 {
+		info, err := dao.GetByUid(application.Uid, 1)
+		if err != nil {
+			global.Global.Log.Error(err)
+			result.Fail(c, global.ServerError, global.OverTimeApplicationError)
+			return
+		}
+
 		id := utils.GetUidV4()
-		err = dao.UpdateLeaveStatus(application.Uid, application.Pass, id)
+		err = dao.UpdateLeaveStatus(application.Uid, application.Pass, id, info.StartTime, info.EndTime)
 		if err != nil {
 			global.Global.Log.Error(err)
 			result.Fail(c, global.ServerError, global.LeaveApplicationError)
@@ -64,7 +71,7 @@ func OvertimeApplication(c *gin.Context) {
 		return
 	}
 	if application.Pass == 1 || application.Pass == 2 {
-		info, err := dao.GetByUid(application.Uid)
+		info, err := dao.GetByUid(application.Uid, 1)
 		if err != nil {
 			global.Global.Log.Error(err)
 			result.Fail(c, global.ServerError, global.OverTimeApplicationError)
@@ -110,7 +117,14 @@ func MakeCardApplication(c *gin.Context) {
 	}
 	//
 	if application.Pass == 1 || application.Pass == 2 {
-		err = dao.MakeCard(int32(application.Uid), application.Pass)
+		info, err := dao.GetByUid(application.Uid, 2)
+		if err != nil {
+			global.Global.Log.Error(err)
+			result.Fail(c, global.ServerError, global.MarkCardApplicationError)
+			return
+		}
+		id := utils.GetUidV4()
+		err = dao.MakeCard(application.Uid, info.StartTime, info.EndTime, application.Pass, id)
 		if err != nil {
 			global.Global.Log.Error(err)
 			result.Fail(c, global.ServerError, global.MarkCardApplicationError)

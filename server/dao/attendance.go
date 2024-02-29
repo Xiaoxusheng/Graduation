@@ -55,20 +55,27 @@ func UpdateEndTime(uid, time2 int64) error {
 */
 
 // Leave 请假
-func Leave(uid int64, id string) error {
+func Leave(uid int64, id string, start, end time.Time) error {
 	return global.Global.Mysql.Create(&models.Attendance{
-		Identity: id,
-		Uid:      uid,
-		Name:     "",
-		Status:   7,
+		StartTime: start,
+		EndTime:   end,
+		Date:      start,
+		Identity:  id,
+		Uid:       uid,
+		Name:      "",
+		Status:    7,
 	}).Error
 }
 
 // UpdateMakeCard 修改补卡
-func UpdateMakeCard(uid int32) error {
-	attendances := new(models.Attendance)
-	return global.Global.Mysql.Model(attendances).Where("uid=?", uid).Updates(&models.Attendance{
-		Status: 5,
+func UpdateMakeCard(uid int64, start, end time.Time, id string) error {
+	return global.Global.Mysql.Create(&models.Attendance{
+		Identity:  id,
+		Uid:       uid,
+		StartTime: start,
+		EndTime:   end,
+		Date:      start,
+		Status:    5,
 	}).Error
 }
 

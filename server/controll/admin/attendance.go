@@ -60,14 +60,19 @@ func GetClockInLog(c *gin.Context) {
 		global.Global.Log.Error(err)
 		return
 	}
-	go func() {
+	err = global.Global.Pool.Submit(func() {
 		marshal, err := json.Marshal(list)
 		if err != nil {
 			global.Global.Log.Error(err)
 			return
 		}
-		global.Global.Redis.Set(global.Global.Ctx, global.GetClockInLog+uid, marshal, global.EmployerInfoTime*time.Second)
-	}()
+		global.Global.Redis.Set(global.Global.Ctx, global.GetClockInLog+uid, marshal, global.EmployerClockTime*time.Second)
+	})
+	if err != nil {
+		global.Global.Log.Error(err)
+		result.Fail(c, global.ServerError, global.GetClockError)
+		return
+	}
 
 	result.Ok(c, list)
 
