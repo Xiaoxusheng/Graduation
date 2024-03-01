@@ -66,6 +66,35 @@ func InitMysql() {
 	//	global.Global.Log.Error(err)
 	//}
 
+	//err = global.Global.Mysql.Create([]models.Menu{
+	//	{
+	//		MenuUrl:    "/log",
+	//		MenuName:   "系统监控",
+	//		Icon:       "icon-computer",
+	//		ParentPath: "",
+	//		RouteName:  "log",
+	//		Cacheable:  true,
+	//		Badge:      "",
+	//	},
+	//	{
+	//		MenuUrl:    "/log/operation",
+	//		MenuName:   "操作日志",
+	//		RouteName:  "operation",
+	//		Icon:       "",
+	//		Cacheable:  true,
+	//		ParentPath: "/log",
+	//		Badge:      "",
+	//	}, {
+	//		MenuUrl:    "/log/system",
+	//		MenuName:   "系统日志",
+	//		RouteName:  "system",
+	//		Icon:       "icon-common",
+	//		Cacheable:  true,
+	//		ParentPath: "/log",
+	//		Badge:      "",
+	//	},
+	//}).Error
+
 	//err = global.Global.Mysql.Create(&models.Menu{
 	//	MenuUrl:       "/other",
 	//	MenuName:      "功能/组件",
@@ -94,7 +123,8 @@ func InitMysql() {
 	//		Cacheable:  true,
 	//		ParentPath: "/index",
 	//		Badge:      "",
-	//	}, {
+	//	},
+	//	{
 	//		MenuUrl:    "/index/work-place",
 	//		MenuName:   "工作台",
 	//		RouteName:  "workPlace",

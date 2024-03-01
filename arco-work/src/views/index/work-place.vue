@@ -208,7 +208,7 @@ export default defineComponent({
         {
           title: '首页',
           icon: 'icon-dashboard',
-          path: '/',
+          path: '/index/home',
           color: COLORS[random(0, COLORS.length)],
         },
         {

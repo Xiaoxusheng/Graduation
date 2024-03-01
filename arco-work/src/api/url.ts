@@ -45,9 +45,29 @@ export const add_employer = '/add_employer'
 export const delete_employer = '/delete_employer'
 // 更新员工信息
 export const update_employer = '/update_employer'
-// 获取请假列表
+// 获取请假申请列表
 export const getLeaveApplicationList = '/get_LeaveApplication_list'
+//获取加班申请列表
+export const getOvertimeApplicationList = '/get_overtimeApplication_list'
+// 补卡申请列表
+export const makeCardApplicationList = '/make_card_application_list'
 
+// 请假审批
+export const leaveApplication = '/leave_application'
+
+// 加班审批
+export const overtimeApplication = '/overtime_application'
+
+// 补卡申请审批
+export const makeCardApplication = '/make_card_application'
+
+
+// 考勤
+export const getAllClockIn = '/get_all_clockIn'
+
+
+// 日志
+export const logList = '/log_list'
 
 
 export const getTableList = '/employer_list'

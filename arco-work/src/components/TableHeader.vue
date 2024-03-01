@@ -1,10 +1,10 @@
 <template>
   <div id="tableHeaderContainer" class="relative" :style="{ zIndex: 9 }">
-    <a-card :title="title" size="small" :bordered="isBordered">
+    <a-card :title="title" size="small">
       <template #extra v-if="showFilter">
         <a-space>
           <a-button type="primary" size="small" @click="doSearch">搜索</a-button>
-          <a-button status="danger" size="small" @click="doResetSearch">重置</a-button>
+          <a-button size="small" @click="doResetSearch">重置</a-button>
         </a-space>
       </template>
       <slot name="search-content"></slot>

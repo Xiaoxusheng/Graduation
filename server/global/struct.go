@@ -100,15 +100,28 @@ type OverTime struct {
 }
 
 type Applications struct {
-	Uid       int64     `json:"uid,omitempty"`
-	Pass      int32     `json:"pass"`
-	IsExamine int32     `json:"is_examine,omitempty"`
-	Sex       int32     `json:"sex"`
-	StartTime time.Time `json:"start_time,omitempty"`
-	EndTime   time.Time `json:"end_time,omitempty"`
-	Status    int32     `json:"status"`
-	Reason    string    `json:"reason,omitempty"`
-	Name      string    `json:"name"`
-	Url       string    `json:"url"`
-	Identity  string    `json:"identity,omitempty"`
+	Uid          int64     `json:"uid,omitempty"`
+	Pass         int32     `json:"pass"`
+	IsExamine    int32     `json:"is_examine"`
+	Sex          int32     `json:"sex"`
+	StartTime    time.Time `json:"start_time,omitempty"`
+	EndTime      time.Time `json:"end_time,omitempty"`
+	Status       int32     `json:"status"`
+	DepartmentId int32     `json:"department_id"`
+	Reason       string    `json:"reason,omitempty"`
+	Name         string    `json:"name"`
+	Url          string    `json:"url"`
+	Identity     string    `json:"identity,omitempty"`
+}
+
+type ClockingIn struct {
+	Identity     string    `json:"identity,omitempty"`
+	Uid          int64     `json:"uid,omitempty"`
+	Sex          int32     `json:"sex"`
+	Name         string    `json:"name,omitempty"`
+	DepartmentId int32     `json:"department_id,omitempty"`
+	StartTime    time.Time `json:"start_time,omitempty"`
+	EndTime      time.Time `json:"end_time,omitempty"`
+	Date         time.Time `json:"date,omitempty"`
+	Status       int32     `json:"status"`
 }

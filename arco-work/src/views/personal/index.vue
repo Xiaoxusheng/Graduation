@@ -3,7 +3,8 @@
     <div class="box-wrapper">
       <div class="flex">
         <a-card
-            :bordered="false"
+            :bordered="true"
+            hoverable
             class="card-border-radius personal-box"
             :body-style="{ padding: '10px' }"
         >
@@ -14,7 +15,7 @@
                   :class="{ 'avatar-touch': touched, 'avatar-end': uploaded }"
                   @mouseenter="avatarTouchStart"
               >
-                <img :src="avatar"/>
+                <img :src="avatar" alt=""/>
               </div>
               <div class="flex items-center justify-center camera-layer" @click="uploadAvatar">
                 <icon-camera style="color: #fff; font-size: 30px"/>
@@ -54,7 +55,8 @@
           </div>
         </a-card>
         <a-card
-            :bordered="false"
+            :bordered="true"
+            hoverable
             title="待办事项"
             class="flex-1 card-border-radius wating-box"
             :body-style="{ padding: '10px' }"
@@ -73,7 +75,8 @@
       </div>
       <div class="mt-2">
         <a-card
-            :bordered="false"
+            :bordered="true"
+            hoverable
             title="消息中心"
             class="card-border-radius flex-sub"
             :body-style="{ padding: '10px' }"

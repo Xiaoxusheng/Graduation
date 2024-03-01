@@ -54,7 +54,7 @@
       </template>
       <template #default>
         <a-table
-            :bordered="true"
+            :bordered="{ wrapper: true, cell: true }"
             :row-selection="{ selectedRowKeys, showCheckedAll }"
             :loading="tableLoading"
             :data="dataList"
@@ -76,8 +76,10 @@
               <template v-if="item.key === 'index'" #cell="{ rowIndex }">
                 {{ rowIndex + 1 }}
               </template>
-              <template v-else-if="item.key === 'gender'" #cell="{ record }">
-                {{ record.gender === 1 ? '男' : '女' }}
+              <template v-else-if="item.key === 'department_id'" #cell="{ record }">
+                <a-tag :color="record.department_id === 1 ? 'green' : 'blue'">
+                  {{ storedMap.get(record.department_id as number) }}
+                </a-tag>
               </template>
               <template v-else-if="item.key === 'avatar'" #cell="{ record }">
                 <a-avatar
@@ -88,23 +90,25 @@
                 </a-avatar>
               </template>
               <template v-else-if="item.key === 'status'" #cell="{ record }">
-
-                <a-tag color="red" size="small">加班</a-tag>
+                <a-tag color="purple" size="small">请假</a-tag>
               </template>
               <template v-else-if="item.key === 'pass'" #cell="{ record }">
                 <a-tag v-if="record.pass === 1" color="blue" size="small">通过</a-tag>
-                <a-tag v-if="record.pass === 2" color="blue" size="small">未通过</a-tag>
-                <a-tag v-else color="red" size="small">未审核</a-tag>
+                <a-tag v-else-if="record.pass === 2" color="red" size="small">未通过</a-tag>
+                <a-tag v-else color="purple" size="small">未审核</a-tag>
               </template>
 
               <template v-else-if="item.key === 'sex'" #cell="{ record }">
-                <a-tag v-if="record.sex === 1" color="#ff5722" size="small">男</a-tag>
-                <a-tag v-else color="#ff5722" size="small">女</a-tag>
+                <a-tag v-if="record.sex === 1" color="blue" size="small">男</a-tag>
+                <a-tag v-else color="blue" size="small">女</a-tag>
               </template>
-              <template v-else-if="item.key === 'actions'" #cell="{ record }">
+              <template v-else-if="item.key === 'actions' " #cell="{ record }">
                 <a-space>
-                  <a-button size="mini" status="success" @click="onUpdateItem(record)">
+                  <a-button v-if="record.is_examine!==1" size="mini" type="primary" @click="onUpdateItem(record)">
                     审核
+                  </a-button>
+                  <a-button v-else disabled size="mini" type="primary" @click="onUpdateItem(record)">
+                    已审核
                   </a-button>
                 </a-space>
               </template>
@@ -116,19 +120,52 @@
         <TableFooter :pagination="pagination"/>
       </template>
     </TableBody>
+    <ModalDialog ref="modalDialogRef" :title="actionTitle" @confirm="onDataFormConfirm">
+      <template #content>
+        <a-form :label-col-props="{ span: 5 }" :model="formRef">
+          <a-form-item
+              v-for="item of formItems"
+              :key="item.key"
+              :label="item.label"
+              :row-class="[item.required ? 'form-item__require' : 'form-item__no_require']"
+              label-align="left"
+          >
+            <template v-if="item.type === 'input'">
+              <a-input v-model="item.value.value" :placeholder="item.placeholder" disabled></a-input>
+            </template>
+            <template v-if="item.type === 'textarea'">
+              <a-textarea
+                  v-model="item.value.value"
+                  :auto-size="{ minRows: 2, maxRows: 5 }"
+                  :placeholder="item.placeholder"
+                  disabled
+              />
+            </template>
+            <template v-if="item.type === 'switch'">
+              <a-switch v-model="item.value.value" checked-children="开" un-checked-children="关"/>
+            </template>
+            <template v-if="item.type === 'date-range'">
+              <a-range-picker v-model="item.value.value" :defaultValue="['2019-08-08 00:00:00', '2019-08-18 00:00:00']" :position="'tr'" disabled
+                              showTime/>
+            </template>
+          </a-form-item>
+        </a-form>
+      </template>
+    </ModalDialog>
   </div>
 </template>
 
 <script lang="ts">
-import {get} from '@/api/http'
-import {getLeaveApplicationList} from '@/api/url'
+import {get, post} from '@/api/http'
+import {getLeaveApplicationList, leaveApplication,} from '@/api/url'
 import {usePagination, useRowKey, useRowSelection, useTable, useTableColumn,} from '@/hooks/table'
 import FormRender from '@/components/FormRender'
-import {FormItem} from '@/types/components'
-import {Input} from '@arco-design/web-vue'
+import {FormItem, ModalDialogType} from '@/types/components'
+import {Form, Input, Message} from '@arco-design/web-vue'
 import {defineComponent, h, onMounted, ref} from 'vue'
 import type {Dayjs} from 'dayjs'
 import useUserStore from "@/store/modules/user";
+import ModalDialog from "@/components/ModalDialog.vue";
 
 const conditionItems: Array<FormItem> = [
   {
@@ -186,6 +223,7 @@ const conditionItems: Array<FormItem> = [
 export default defineComponent({
   name: 'TableWithSearch',
   components: {
+    ModalDialog,
     FormRender,
   },
   setup() {
@@ -215,6 +253,11 @@ export default defineComponent({
         title: '性别',
         key: 'sex',
         dataIndex: 'sex',
+      },
+      {
+        title: '部门',
+        key: 'department_id',
+        dataIndex: 'department_id',
       },
       {
         title: '开始时间',
@@ -248,7 +291,68 @@ export default defineComponent({
       }
     ])
     const userStore = useUserStore()
+    const actionTitle = ref('请假审核')
+    const modalDialogRef = ref<ModalDialogType | null>(null)
+    const formItems = [
+      {
+        label: '姓名',
+        key: 'name',
+        type: 'input',
+        placeholder: '请选择会议类型',
+        value: ref(null),
+      },
+      {
+        label: '工号',
+        key: 'uid',
+        type: 'input',
+        placeholder: '请选择会议类型',
+        value: ref(undefined),
+      },
+      {
+        label: '性别',
+        key: 'sex',
+        type: 'input',
+        placeholder: '请输入会议内容',
+        value: ref(null),
+      },
+      {
+        label: '起止日期',
+        key: 'startEndDate',
+        type: 'date-range',
+        value: ref<Dayjs[]>([]),
+        reset: function () {
+          this.value.value = []
+        },
+      },
+      {
+        label: '请假原因',
+        key: 'reason',
+        placeholder: '请输入会议备注',
+        type: 'textarea',
+        value: ref(null),
+      },
+      {
+        label: '是否通过',
+        key: 'pass',
+        type: 'switch',
+        value: ref(false),
+        required: true,
+        placeholder: '请审核',
+        validator: function () {
+          if (!this.value.value) {
+            Message.error(this.placeholder || '')
+            return false
+          }
+          return true
+        },
+      },
+    ] as FormItem[]
+    const submitLoading = ref(false)
+    const storedMapString = localStorage.getItem('departmentMap');
+    const storedMapArray = JSON.parse(storedMapString);
+    const storedMap = new Map(storedMapArray)
 
+    let formRef = ref<typeof Form>()
 
     function doRefresh() {
       get({
@@ -272,17 +376,17 @@ export default defineComponent({
           const year1 = date.getFullYear();
           const month1 = String(date.getMonth() + 1).padStart(2, "0");
           const day1 = String(date.getDate()).padStart(2, "0");
-          i.end_time = `${year1}-${month1}-${day1} : ${date1.getHours() > 10 ? date1.getHours() : '0' + date1.getHours()}:${date1.getMinutes() > 10 ? date1.getMinutes() : '0' + date1.getMinutes()}:${date1.getSeconds() > 10 ? date1.getSeconds() : '0' + date1.getSeconds()}`
-          i.start_time = `${year}-${month}-${day} : ${date.getHours() > 10 ? date.getHours() : '0' + date.getHours()}:${date.getMinutes() > 10 ? date.getMinutes() : '0' + date.getMinutes()}:${date.getSeconds() > 10 ? date.getSeconds() : '0' + date.getSeconds()}`
+          i.end_time = `${year1}-${month1}-${day1}  ${date1.getHours() > 10 ? date1.getHours() : '0' + date1.getHours()}:${date1.getMinutes() > 10 ? date1.getMinutes() : '0' + date1.getMinutes()}:${date1.getSeconds() > 10 ? date1.getSeconds() : '0' + date1.getSeconds()}`
+          i.start_time = `${year}-${month}-${day}  ${date.getHours() > 10 ? date.getHours() : '0' + date.getHours()}:${date.getMinutes() > 10 ? date.getMinutes() : '0' + date.getMinutes()}:${date.getSeconds() > 10 ? date.getSeconds() : '0' + date.getSeconds()}`
           return
         })
-            table.handleSuccess(res)
+        table.handleSuccess(res)
         pagination.setTotalSize(res.data.length || 10)
       }).catch(error => console.log(error()))
     }
 
     function onSearch() {
-      const data: any = conditionItems.reduce((pre, cur) => {
+      let data: any = conditionItems.reduce((pre, cur) => {
         ;(pre as any)[cur.key] = cur.value.value
         return pre
       }, {})
@@ -293,6 +397,7 @@ export default defineComponent({
       })
       table.handleSuccess(tableList)
       pagination.setTotalSize(tableList.length || 10)
+    }
 
     function onResetSearch() {
       conditionItems.forEach((it) => {
@@ -300,10 +405,73 @@ export default defineComponent({
       })
     }
 
-      // 审核
-      function onUpdateItem(record: any) {
 
+    // 审核
+    function onUpdateItem(record: any) {
+      // 处理数据
+      /* [ "2023-02-08 21:17:58", "2024-03-20 21:14:58" ] */
+      formItems.forEach(i => {
+        if (i.key == 'name') {
+          i.value.value = record.name
+        }
+        if (i.key == 'sex') {
+          i.value.value = record.sex
+        }
+        if (i.key == 'uid') {
+          i.value.value = record.uid
+        }
+        if (i.key == 'pass') {
+          i.value.value = record.pass
+        }
+        if (i.key == 'reason') {
+          i.value.value = record.reason
+        }
+        if (i.key == 'startEndDate') {
+          i.value.value = [record.start_time, record.end_time]
+        }
+      })
+      modalDialogRef.value?.toggle()
+    }
+
+    //   弹窗
+    function onDataFormConfirm() {
+      //
+      if (formItems.every((it) => (it.validator ? it.validator() : true))) {
+        let uid: number
+        let pass: number
+        formItems.forEach(i => {
+          if (i.key == 'uid') {
+            uid = i.value.value
+          }
+          if (i.key == "pass") {
+            pass = i.value.value ? 1 : 2
+          }
+        })
+        post({
+          url: leaveApplication,
+          headers: {
+            Authorization: "Bearer " + userStore.token
+          },
+          data: () => {
+            return {
+              uid: uid,
+              pass: pass as number,
+            }
+          },
+        }).then((res) => {
+          Message.success('审核成功')
+          console.log(res)
+          doRefresh()
+        }).catch(error => {
+          console.log(error)
+          Message.success(error.toString(),)
+        })
+
+        modalDialogRef.value?.toggle()
       }
+
+    }
+
 
     onMounted(doRefresh)
     return {
@@ -317,14 +485,25 @@ export default defineComponent({
       onResetSearch,
       selectedRowKeys,
       showCheckedAll,
+      actionTitle,
+      modalDialogRef,
+      formItems,
+      submitLoading,
+      formRef,
+      storedMap,
       onSelectionChange,
       onUpdateItem,
+      onDataFormConfirm,
     }
   },
 })
 </script>
 
 <style lang="less" scoped>
+.form-wrapper {
+  font-size: small;
+}
+
 .avatar-container {
   position: relative;
   width: 30px;

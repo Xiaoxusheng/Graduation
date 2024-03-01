@@ -1,5 +1,5 @@
 <template>
-  <a-card :bodyStyle="{ padding: '0 10px 10px 10px' }" :bordered="false">
+  <a-card :bodyStyle="{ padding: '0 10px 10px 10px' }" :bordered="true">
     <slot name="header"></slot>
     <slot name="default"></slot>
     <div class="mt-1"></div>

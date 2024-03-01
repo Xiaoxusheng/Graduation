@@ -10,7 +10,7 @@
       </template>
       <template #default>
         <a-table
-            :bordered="true"
+            :bordered="{ wrapper: true, cell: true }"
             :loading="tableLoading"
             :data="dataList"
             :pagination="false"

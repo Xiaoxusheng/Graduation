@@ -88,7 +88,7 @@ func GetDepartment() ([]global.EmployerInfo, error) {
 // GetUserById 用户identity 查询
 func GetUserById(identity string) (*models.Employee, error) {
 	employer := new(models.Employee)
-	err := global.Global.Mysql.Where("identity=?", identity).Find(employer).Error
+	err := global.Global.Mysql.Where("identity=?", identity).First(employer).Error
 	if err != nil {
 		return nil, err
 	}

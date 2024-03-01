@@ -15,6 +15,7 @@ import useUserStore from "@/store/modules/user";
 
 const userStore = useUserStore()
 
+
 export default defineComponent({
   name: 'EnrollmentChannelsChart',
   setup() {

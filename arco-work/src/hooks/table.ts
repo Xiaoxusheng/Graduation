@@ -55,8 +55,9 @@ export const useTable = function (): Table {
     const bordered = ref(false)
     const striped = ref(false)
     const tableLoading = ref(true)
-    const department = new Map()
+    let department = new Map()
     const handleSuccess = ({data = []}): Promise<any> => {
+        console.log(data)
         tableLoading.value = false
         dataList.length = 0
         dataList.push(...data)
@@ -131,6 +132,7 @@ export const usePagination = function (callback: () => void) {
         pageSizes: ['10', '20', '30', '40'],
         onChange,
         setTotalSize(totalSize: number) {
+            console.log(totalSize)
             paginationInfo.pageCount = totalSize
         },
         addTotalSize() {

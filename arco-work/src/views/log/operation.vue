@@ -1,17 +1,57 @@
 <template>
   <a-watermark content="员工管理系统">
-    <div style="width: 100%; height:100%;"/>
+    <div style="width: 100%; height:80%;"/>
     <TableBody>
       <template #header>
         <TableHeader ref="tableHeaderRef" :show-filter="false">
-          <template #table-config>
-            <add-button @add="onAddItem"/>
+          <template #search-content :title="'操作日志'">
+            <a-form :model="{}" layout="inline">
+              <a-form-item v-for="item of conditionItems" :key="item.key" :label="item.label">
+                <template v-if="item.render">
+                  <FormRender :formItem="item" :render="item.render"/>
+                </template>
+                <template v-else>
+                  <template v-if="item.type === 'input'">
+                    <a-input v-model="item.value.value" :placeholder="item.placeholder"/>
+                  </template>
+                  <template v-if="item.type === 'select'">
+                    <a-select
+                        v-model="item.value.value"
+                        :placeholder="item.placeholder"
+                        style="width: 150px"
+                    >
+                      <a-option
+                          v-for="optionItem of item.optionItems"
+                          :key="optionItem.value"
+                          :value="optionItem.value"
+                      >
+                        {{ optionItem.label }}
+                      </a-option>
+                    </a-select>
+                  </template>
+                  <template v-if="item.type === 'date'">
+                    <a-date-picker v-model="item.value.value"/>
+                  </template>
+                  <template v-if="item.type === 'time'">
+                    <a-time-picker v-model="item.value.value" value-format="HH:mm:ss"/>
+                  </template>
+                  <template v-if="item.type === 'check-group'">
+                    <a-checkbox-group v-model="item.value.value">
+                      <a-checkbox v-for="it of item.optionItems" :key="it.value" :value="it.value">
+                        {{ item.label }}
+                      </a-checkbox>
+                    </a-checkbox-group>
+                  </template>
+                </template>
+              </a-form-item>
+            </a-form>
           </template>
         </TableHeader>
       </template>
       <template #default>
         <a-table
             :bordered="{ wrapper: true, cell: true }"
+            :column-resizable="true"
             :data="dataList"
             :hoverable="true"
             :loading="tableLoading"
@@ -36,40 +76,29 @@
               <template v-if="item.key === 'index'" #cell="{ rowIndex }">
                 {{ rowIndex + 1 }}
               </template>
-              <template v-else-if="item.key === 'sex'" #cell="{ record }">
-                <a-tag :color="record.sex === 1 ? 'green' : 'red'">
-                  {{ record.sex === 1 ? '男' : '女' }}
-                </a-tag>
-              </template>
-              <template v-else-if="item.key === 'position'" #cell="{ record }">
-                <a-tag :color="record.position === 0 ? 'green' : 'black'">
-                  {{ map[record.position] }}
-                </a-tag>
-              </template>
-              <template v-else-if="item.key === 'department_id'" #cell="{ record }">
-                <a-tag :color="record.department_id === 1 ? 'green' : 'blue'">
-                  {{ department[record.department_id] }}
-                </a-tag>
-              </template>
 
+              <template v-else-if="item.key === 'http_code'" #cell="{ record }">
+                <a-tag :color="record.http_code ==200 ? 'green' : 'red'">
+                  {{ "record.http_code === 200" ? '成功' : '失败' }}
+                </a-tag>
+              </template>
+              <template v-else-if="item.key === 'path'" #cell="{ record }">
+                {{ record.path }}
+              </template>
+              <template v-else-if="item.key === 'time'" #cell="{ record }">
+                <a-tag :color="record.time <=100 ? 'blue' : 'red'">
+                  {{ record.time + 'ms' }}
+                </a-tag>
+              </template>
+              <template v-else-if="item.key === 'method'" #cell="{ record }">
+                <a-tag :color="record.method ==='GET' ? 'purple' : 'brown'">
+                  {{ record.method }}
+                </a-tag>
+              </template>
               <template v-else-if="item.key === 'image_Url'" #cell="{}">
                 <a-avatar :size="30" :style="{ backgroundColor: 'var(--color-primary-light-1)' }">
                   <IconUser/>
                 </a-avatar>
-              </template>
-              <template v-else-if="item.key === 'actions'" #cell="{ record }">
-                <a-space>
-                  <a-button size="mini" status="success" @click="onUpdateItem(record)">
-                    编辑
-                  </a-button>
-                  <a-button size="mini" status="danger" @click="onDeleteItem(record)">
-                    删除
-                  </a-button>
-                </a-space>
-              </template>
-              <template v-else-if="item.key === 'status'" #cell="{ record }">
-                <a-tag v-if="record.status === 1" color="blue" size="small">正常</a-tag>
-                <a-tag v-else color="red" size="small">离职</a-tag>
               </template>
             </a-table-column>
           </template>
@@ -81,89 +110,24 @@
       </template>
     </TableBody>
     <!--    继续-->
-    <ModalDialog ref="modalDialogRef" :title="actionTitle" @confirm="onDataFormConfirm">
-      <template #content>
-        {{ employerInfo }}
-
-        <a-form ref="formRef" :labelCol="{ span: 4 }" :model="employerInfo">
-          <a-form-item :rules="[
-            { required: true, message: '请输入员工姓名' },
-            { min: 3, max: 10, message: '长度在 3 - 10个字符' },
-          ]" :validate-trigger="['change', 'input']" field="name" label="员工姓名">
-            <a-input v-model="employerInfo.name" placeholder="请输入员工姓名">
-              <template #suffix>
-                <icon-info-circle/>
-              </template>
-            </a-input>
-          </a-form-item>
-          <a-form-item :rules="[
-            { required: true, message: '请输入部门编号' },
-            { min: 1, max: 2, message: '长度在 1个字符' },
-          ]" :validate-trigger="['change', 'input']" field="department" label="部门编号">
-            <a-input v-model.number="employerInfo.department" placeholder="请输入部门编号">
-              <template #suffix>
-                <icon-info-circle/>
-              </template>
-            </a-input>
-          </a-form-item>
-          <a-form-item label="电话" name="phone">
-            <a-input v-model="employerInfo.phone" :rules="[
-            { required: true, message: '请输入员工电话' },
-            { min: 11, max: 11, message: '长度在 11 个字符' },
-          ]" :validate-trigger="['change', 'input']" placeholder="请输入员工电话">
-              <template #suffix>
-                <icon-info-circle/>
-              </template>
-            </a-input>
-          </a-form-item>
-          <a-form-item label="员工生日" name="birthday">
-            <a-date-picker
-                v-model="employerInfo.birthday"
-                default-value="2000-01-01"
-                format=YYYY:MM:DD
-                style="width: 100%"
-                type="time"
-            />
-          </a-form-item>
-          <a-form-item label="职位" name="position">
-            <a-select v-model.number="employerInfo.position" placeholder="请选择职位">
-              <a-option v-for="(value, key) of map" :key="key" :value="key as number">
-                {{ value }}
-              </a-option>
-            </a-select>
-
-          </a-form-item>
-          <a-form-item label="性别" name="sex">
-            <a-radio-group v-model="employerInfo.sex">
-              <a-radio :value="1">男</a-radio>
-              <a-radio :value="2">女</a-radio>
-            </a-radio-group>
-          </a-form-item>
-          <a-form-item label="状态" name="status">
-            <a-radio-group v-model="employerInfo.status">
-              <a-radio :value="1">正常</a-radio>
-              <a-radio :value="2">离职</a-radio>
-            </a-radio-group>
-          </a-form-item>
-        </a-form>
-      </template>
-    </ModalDialog>
   </a-watermark>
 </template>
 
 <script lang="ts">
-import {add_employer, delete_employer, employerList, update_employer} from '@/api/url'
+import {add_employer, delete_employer, logList, update_employer} from '@/api/url'
 import {usePagination, useRowKey, useRowSelection, useTable, useTableColumn, useTableHeight,} from '@/hooks/table'
-import {Form, Message, Modal} from '@arco-design/web-vue'
-import {defineComponent, getCurrentInstance, onMounted, reactive, ref} from 'vue'
+import {Form, Input, Message, Modal} from '@arco-design/web-vue'
+import {defineComponent, getCurrentInstance, h, onMounted, reactive, ref} from 'vue'
 import AddButton from "@/components/AddButton.vue";
 import useUserStore from "@/store/modules/user";
-import {ModalDialogType} from "@/types/components";
+import {FormItem, ModalDialogType} from "@/types/components";
 import usePost from '@/hooks/usePost'
 import useGet from "@/hooks/useGet";
+import FormRender from "@/components/FormRender";
+import type {Dayjs} from "dayjs";
 
 export default defineComponent({
-  components: {AddButton},
+  components: {FormRender, AddButton},
   name: 'UserList',
   setup: function () {
     const table = useTable()
@@ -183,6 +147,54 @@ export default defineComponent({
       2: "人事部",
       3: "财务部",
     }
+
+    const conditionItems: Array<FormItem> = [
+      {
+        key: 'name',
+        label: '用户姓名',
+        type: 'input',
+        placeholder: '请输入用户姓名',
+        value: ref(''),
+        reset: function () {
+          this.value.value = ''
+        },
+        render: (formItem: FormItem) => {
+          return h(Input, {
+            placeholder: '请输入姓名',
+            modelValue: formItem.value.value,
+            'onUpdate:modelValue': (value) => {
+              formItem.value.value = value
+            },
+          })
+        },
+      },
+      {
+        key: 'date',
+        label: '创建日期',
+        type: 'date',
+        value: ref<Dayjs>(),
+      },
+      {
+        key: 'sex',
+        label: '用户姓别',
+        value: ref(),
+        type: 'select',
+        placeholder: '请选择用户姓别',
+        optionItems: [
+          {
+            label: '男',
+            value: 1,
+          },
+          {
+            label: '女',
+            value: 2,
+          },
+        ],
+        reset: function () {
+          this.value.value = undefined
+        },
+      },
+    ]
 
     interface EmployerInfo {
       uid: number
@@ -204,58 +216,39 @@ export default defineComponent({
     const tableColumns = useTableColumn([
       table.indexColumn,
       {
-        title: '工号',
+        title: '操作者',
         key: 'uid',
         dataIndex: 'uid',
       },
       {
-        title: '姓名',
-        key: 'name',
-        dataIndex: 'name',
+        title: '请求方式',
+        key: 'method',
+        dataIndex: 'method',
       },
       {
-        title: '性别',
-        key: 'sex',
-        dataIndex: 'sex',
-      },
-      {
-        title: '头像',
-        key: 'image_Url',
-        dataIndex: 'image_Url ',
-      },
-      {
-        title: '生日',
-        key: 'birthday',
-        dataIndex: 'birthday',
-      },
-      {
-        title: '在职状态',
-        key: 'status',
-        dataIndex: 'status',
-      },
-      {
-        title: '职位',
-        key: 'position',
-        dataIndex: 'position',
-      },
-      {
-        title: '部门',
-        key: 'department_id',
-        dataIndex: 'department_id',
-      }, {
-        title: '电话',
-        key: 'phone',
-        dataIndex: 'phone',
+        title: '路径',
+        key: 'path',
+        dataIndex: 'path',
       },
       {
         title: 'IP',
-        key: 'IP',
-        dataIndex: 'IP',
+        key: 'ip',
+        dataIndex: 'ip ',
       },
       {
-        title: '操作',
-        key: 'actions',
-        dataIndex: 'actions',
+        title: '耗时',
+        key: 'time',
+        dataIndex: 'time',
+      },
+      {
+        title: '状态',
+        key: 'http_code',
+        dataIndex: 'http_code',
+      },
+      {
+        title: '操作时间',
+        key: 'CreatedAt',
+        dataIndex: 'CreatedAt',
       },
     ])
     const expandAllFlag = ref(true)
@@ -277,7 +270,7 @@ export default defineComponent({
 
     function doRefresh() {
       get({
-        url: employerList,
+        url: logList,
         headers: {
           Authorization: "Bearer " + userStore.token
         },
@@ -289,34 +282,17 @@ export default defineComponent({
         },
       }).then((res) => {
         res.data.forEach(i => {
-          const date = new Date(i.birthday);
+          const date = new Date(i.CreatedAt);
           const year = date.getFullYear();
           const month = String(date.getMonth() + 1).padStart(2, "0");
           const day = String(date.getDate()).padStart(2, "0");
-          return i.birthday = `${year}-${month}-${day} `
+          i.CreatedAt = `${year}-${month}-${day}  ${date.getHours() > 10 ? date.getHours() : '0' + date.getHours()}:${date.getMinutes() > 10 ? date.getMinutes() : '0' + date.getMinutes()}:${date.getSeconds() > 10 ? date.getSeconds() : '0' + date.getSeconds()}`
         })
         table.handleSuccess(res)
-        pagination.setTotalSize(table.dataList.length)
+        console.log(res)
+        pagination.setTotalSize(res.count)
       }).catch(error => {
         console.log(error)
-      })
-    }
-
-    function onDeleteItems() {
-      if (selectedRowKeys.value.length === 0) {
-        Message.error('请选择要删除的数据')
-        return
-      }
-      Modal.confirm({
-        title: '提示',
-        content: '确定要删除此数据吗？',
-        cancelText: '取消',
-        okText: '删除',
-        onOk: () => {
-          Message.success(
-              '数据模拟删除成功，所选择的Keys为：' + JSON.stringify(selectedRowKeys.value)
-          )
-        },
       })
     }
 
@@ -394,6 +370,7 @@ export default defineComponent({
             return
           })
     }
+
     function onAddItem() {
       add = true
       employerInfo.phone = 1
@@ -443,7 +420,8 @@ export default defineComponent({
       map,
       add,
       onUpdateItem,
-      onDataFormConfirm
+      onDataFormConfirm,
+      conditionItems
     }
   },
 })

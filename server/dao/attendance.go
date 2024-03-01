@@ -1,6 +1,7 @@
 package dao
 
 import (
+	"fmt"
 	"server/global"
 	"server/models"
 	"time"
@@ -29,12 +30,13 @@ func UpdateAttendance(attendance *global.Attendance) error {
 }
 
 // GetDateList 获取某一天所有的打卡记录
-func GetDateList(limits, offset int, t time.Time) ([]models.Attendance, error) {
-	list := make([]models.Attendance, 0)
+func GetDateList(limits, offset int, t time.Time) ([]global.ClockingIn, error) {
+	list := make([]global.ClockingIn, 0)
 	t1 := time.Date(t.Year(), t.Month(), t.Day(), 0, 0, 0, 0, time.Local)
 	//第二天0点
 	t2 := t1.Add(time.Hour * 24)
-	err := global.Global.Mysql.Where("start_time>? and end_time<?", t1, t2).Limit(limits - 1).Offset(offset).Find(&list).Error
+	fmt.Println(t1, t2)
+	err := global.Global.Mysql.Table("attendance_basic").Select("attendance_basic.uid,attendance_basic.Identity,attendance_basic.status,attendance_basic.start_time,attendance_basic.end_time,attendance_basic.date,employee_basic.department_id,employee_basic.name,employee_basic.sex").Joins("join employee_basic  on  employee_basic.uid=attendance_basic.uid").Where("attendance_basic.start_time>? and attendance_basic.end_time<?", t1, t2).Limit(limits).Offset(offset - 1).Find(&list).Error
 	if err != nil {
 		return nil, err
 	}

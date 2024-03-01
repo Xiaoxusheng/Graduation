@@ -11,7 +11,8 @@
           </TableHeader>
         </template>
         <template #default>
-          <a-table :bordered="true" :data="dataList" :loading="tableLoading" :pagination="false" :row-key="rowKey"
+          <a-table :bordered="{ wrapper: true, cell: true }" :data="dataList" :loading="tableLoading"
+                   :pagination="false" :row-key="rowKey"
                    :show-header=true>
             <template #columns>
               <a-table-column v-for="item of tableColumns" :key="item.key" :align="item.align"
@@ -131,10 +132,10 @@ export default defineComponent({
       },
     ])
     const departmentModel = reactive<Department>({
-      identity: 0,
+      identity: "",
       name: '',
       leader: '',
-      sort: 3,
+      sort: 0,
       status: 1,
     })
     const formRef = ref<typeof Form>()
@@ -221,10 +222,16 @@ export default defineComponent({
 
     function onAddItem() {
       add = true
+      let n: number = 0
+      table.dataList.forEach(i => {
+        if (n < i.sort) {
+          n = i.sort as number
+        }
+      })
       dialogTitle.value = '添加部门'
       departmentModel.identity = ''
       departmentModel.status = 1
-      departmentModel.sort = 3
+      departmentModel.sort = n + 1
       departmentModel.name = ''
       departmentModel.leader = ''
       modalDialog.value?.toggle()

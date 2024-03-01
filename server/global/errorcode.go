@@ -81,6 +81,9 @@ var (
 	//	补卡
 	MarkCardApplicationError = "补卡申请审核失败！"
 	GetMarkCardLiatError     = "获取补卡申请列表失败！"
+
+	//	日志
+	GetLogList = "获取日志列表失败！"
 )
 
 var (
@@ -96,7 +99,7 @@ var (
 	PermissionDeniedError     = "权限不足！"
 	AddRoleFail               = "添加角色失败！"
 	AddPermissionFail         = "分配资源失败！"
-	RoleNotfound              = "角色不存在！"
+	RoleNotfound              = "角色不存在,请先分配角色！"
 	DelRoleFail               = "删除角色失败！"
 	DelPermissionFail         = "删除资源失败！"
 	UpdatePermissionFail      = "更新资源失败！"

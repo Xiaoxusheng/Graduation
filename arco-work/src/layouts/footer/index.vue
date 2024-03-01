@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue'
-import {projectName} from '../../setting'
+import {projectName} from '@/setting'
 
 export default defineComponent({
   name: 'Footer',

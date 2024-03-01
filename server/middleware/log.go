@@ -22,8 +22,22 @@ func Log() gin.HandlerFunc {
 		httpCode := c.Writer.Status()
 		id := c.GetString("identity")
 		val := global.Global.Redis.HGet(global.Global.Ctx, global.UidId, id).Val()
+		if val == "" {
+			employer, err := dao.GetInfoByIdentity(id)
+			if err != nil {
+				global.Global.Log.Error(err)
+				return
+			}
+			_, err = global.Global.Redis.HSet(global.Global.Ctx, global.UidId, id, employer.Account).Result()
+			if err != nil {
+				global.Global.Log.Error(err)
+				return
+			}
+		}
+		val = global.Global.Redis.HGet(global.Global.Ctx, global.UidId, id).Val()
 		atoi, err := strconv.Atoi(val)
 		if err != nil {
+			global.Global.Log.Error(err)
 			return
 		}
 		//	写入数据库
@@ -37,6 +51,7 @@ func Log() gin.HandlerFunc {
 			HttpCode: int32(httpCode),
 		})
 		if err != nil {
+			global.Global.Log.Error(err)
 			return
 		}
 		global.Global.Log.Info(time.Now().Sub(t))

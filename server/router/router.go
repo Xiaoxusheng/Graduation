@@ -22,12 +22,16 @@ func Routers(e *gin.Engine) *gin.Engine {
 	roots.Use(middleware.ParseToken(), middleware.CasBin())
 	//分配角色
 	roots.POST("/add_rolesForUser", root.AddRolesForUser)
-	//分配资源
+	//给角色分配资源
 	roots.POST("/add_resource", root.AddResource)
+	//分配资源
+	roots.POST("/add_permissionForUser", root.AddPermissionForUser)
 	//删除角色
 	roots.POST("/delete_roleForUser", root.DeleteRoleForUser)
-	//删除资源
+	//删除单个权限
 	roots.POST("/delete_permissionForUser", root.DeletePermissionForUser)
+	//删除所有的权限
+	roots.POST("/delete_Permission", root.DeletePermissionsForUser)
 	//更新权限
 	roots.POST("/update_policy", root.UpdatePolicy)
 	//查看能访问的资源
@@ -96,6 +100,9 @@ func Routers(e *gin.Engine) *gin.Engine {
 
 	//增加菜单
 	api.POST("/add_menu", menu.AddMenu)
+
+	//日志
+	api.GET("/log_list", admin.GetLogList)
 
 	//------------------------------------------------------
 	users := e.Group("/user", middleware.ParseToken())
