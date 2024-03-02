@@ -98,6 +98,11 @@ func Routers(e *gin.Engine) *gin.Engine {
 	//补卡申请列表
 	api.GET("/make_card_application_list", admin.GetMarkCardList)
 
+	//工资
+	api.GET("/get_salary", admin.GetSalary)
+	//获取所有的工资列表
+	api.GET("/get_salary_list", admin.GetSalaryList)
+
 	//增加菜单
 	api.POST("/add_menu", menu.AddMenu)
 

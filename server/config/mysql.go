@@ -56,7 +56,7 @@ func InitMysql() {
 			global.Global.Mysql = db
 		})
 	//建表
-	//err = global.Global.Mysql.AutoMigrate(&models.Employee{})
+	//err = global.Global.Mysql.AutoMigrate(&models.Salary{})
 	//err = global.Global.Mysql.AutoMigrate(&models.User{})
 	//err = global.Global.Mysql.AutoMigrate(&models.Department{})
 	//err = global.Global.Mysql.AutoMigrate(&models.Log{})
@@ -65,7 +65,28 @@ func InitMysql() {
 	//if err != nil {
 	//	global.Global.Log.Error(err)
 	//}
-
+	//err = global.Global.Mysql.Create([]models.Menu{
+	//	{
+	//		MenuUrl:    "/salary",
+	//		MenuName:   "财务数据",
+	//		Icon:       "icon-file",
+	//		ParentPath: "",
+	//		RouteName:  "salary",
+	//		Cacheable:  true,
+	//		Badge:      "",
+	//	},
+	//	{
+	//		MenuUrl:    "/salary/salary",
+	//		MenuName:   "工资详情",
+	//		RouteName:  "salary",
+	//		Icon:       "icon-empty",
+	//		Cacheable:  true,
+	//		ParentPath: "/salary",
+	//		Badge:      "",
+	//	},
+	//}).Error
+	//global.Global.Log.Error(err)
+	//
 	//err = global.Global.Mysql.Create([]models.Menu{
 	//	{
 	//		MenuUrl:    "/log",

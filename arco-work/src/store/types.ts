@@ -2,7 +2,7 @@ import {Ref, UnwrapRef} from 'vue'
 import {RouteRecordRaw} from 'vue-router'
 
 export interface UserState {
-    userId: number
+    identity: number
     token: string
     roleId: number
     roles: string[] | null

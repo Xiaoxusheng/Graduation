@@ -28,7 +28,7 @@ func Log() gin.HandlerFunc {
 				global.Global.Log.Error(err)
 				return
 			}
-			_, err = global.Global.Redis.HSet(global.Global.Ctx, global.UidId, id, employer.Account).Result()
+			_, err = global.Global.Redis.HSet(global.Global.Ctx, global.UidId, id, employer.Uid).Result()
 			if err != nil {
 				global.Global.Log.Error(err)
 				return

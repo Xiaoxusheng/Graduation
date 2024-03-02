@@ -49,7 +49,7 @@ func Login(c *gin.Context) {
 		}
 		//   token不存在
 		token = utils.GetToken(val)
-		global.Global.Redis.Set(global.Global.Ctx, val, token, config.Config.Jwt.Time*time.Minute*60)
+		global.Global.Redis.Set(global.Global.Ctx, val, token, config.Config.Jwt.Time*time.Hour)
 		result.Ok(c, map[string]any{
 			"token": token,
 		})

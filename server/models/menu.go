@@ -2,6 +2,7 @@ package models
 
 import "gorm.io/gorm"
 
+// Menu 菜单表
 type Menu struct {
 	MenuUrl       string `gorm:"type:varchar(100) not null unique; comment:'菜单路径'" json:"menuUrl,omitempty"`
 	MenuName      string `gorm:"type:varchar(100) not null unique; comment:'菜单名称'" json:"menuName,omitempty"`

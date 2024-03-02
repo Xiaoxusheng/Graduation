@@ -10,6 +10,19 @@ type UrlList struct {
 	Index int    `json:"index,omitempty"`
 }
 
+type AdminInfo struct {
+	Sex          int32     `json:"sex"`
+	Birthday     time.Time `json:"birthday"`
+	DepartmentId int32     `json:"department_id"`
+	Position     int32     `json:"position"`
+	Uid          int64     `json:"uid"`
+	NickName     string    `json:"nickName"`
+	ImageUrl     string    `json:"avatar"`
+	IP           string    `json:"IP"`
+	Identity     string    `json:"user_identity,"`
+	Username     string    `json:"username"`
+}
+
 // Department 部门
 type Department struct {
 	Identity string `json:"identity,omitempty" form:"identity"`
@@ -62,8 +75,9 @@ type Attendance struct {
 
 // Application 申请信息
 type Application struct {
-	Uid  int64 `json:"uid,omitempty"  binding:"required" form:"uid"`
-	Pass int32 `json:"pass"  binding:"required" form:"pass"`
+	Uid  int64  `json:"uid,omitempty"  binding:"required" form:"uid"`
+	Pass int32  `json:"pass"  binding:"required" form:"pass"`
+	Url  string `json:"url,omitempty"   binding:"required"  form:"url"`
 }
 
 // Menu 菜单
@@ -95,8 +109,9 @@ type LeaveApplication struct {
 
 // OverTime 加班
 type OverTime struct {
-	StartTime int64 `json:"start_time" binding:"required"   form:"start_time"`
-	EndTime   int64 `json:"end_time"  binding:"required"   form:"end_time"`
+	StartTime int64  `json:"start_time" binding:"required"   form:"start_time"`
+	EndTime   int64  `json:"end_time"  binding:"required"   form:"end_time"`
+	Url       string `json:"url,omitempty"   binding:"required"  form:"url"`
 }
 
 type Applications struct {

@@ -10,7 +10,7 @@ const defaultAvatar = Avatar
 const useUserStore = defineStore('user-info', {
     state: () => {
         return {
-            // userId: 0,
+            identity: 0,
             // roleId: 0,
             token: '',
             userName: '',
@@ -21,17 +21,17 @@ const useUserStore = defineStore('user-info', {
     actions: {
         saveUser(userInfo: UserState) {
             return new Promise<UserState>((resolve) => {
-                // this.userId = userInfo.userId
+                this.identity = userInfo.identity
                 // this.roleId = userInfo.roleId
                 this.token = userInfo.token
-                this.userName = 'admin'
-                this.nickName = '超级管理员'
+                this.userName = userInfo.userName ? userInfo.userName : 'admin'
+                this.nickName = userInfo.nickName ? userInfo.nickName : '超级管理员'
                 this.avatar = userInfo.avatar || defaultAvatar
                 resolve(userInfo)
-                this.SetToken()
+                this.setToken()
             })
         },
-        SetToken() {
+        setToken() {
             localStorage.setItem("token", this.token)
         },
         isTokenExpire() {

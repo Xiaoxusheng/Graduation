@@ -1,5 +1,4 @@
 <template>
-  <a-watermark content="员工管理系统">
     <div style="width: 100%; height:100%;"/>
     <div class="main-container">
       <TableBody>
@@ -68,7 +67,6 @@
         </template>
       </ModalDialog>
     </div>
-  </a-watermark>
 </template>
 
 <script lang="ts">

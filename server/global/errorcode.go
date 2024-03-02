@@ -84,6 +84,10 @@ var (
 
 	//	日志
 	GetLogList = "获取日志列表失败！"
+
+	//	工资
+	GetSalaryError     = "获取工资失败！"
+	GetSalaryListError = "获取工资列表失败！"
 )
 
 var (

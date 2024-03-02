@@ -89,6 +89,10 @@
                   {{ record.name }}
                 </a-avatar>
               </template>
+              <template v-else-if="item.key === 'sex'" #cell="{ record }">
+                <a-tag v-if="record.sex === 1" color="blue" size="small">男</a-tag>
+                <a-tag v-else color="blue" size="small">女</a-tag>
+              </template>
               <template v-else-if="item.key === 'status'" #cell="{ record }">
                 <a-tag color="purple" size="small">请假</a-tag>
               </template>
@@ -97,10 +101,14 @@
                 <a-tag v-else-if="record.pass === 2" color="red" size="small">未通过</a-tag>
                 <a-tag v-else color="purple" size="small">未审核</a-tag>
               </template>
-
-              <template v-else-if="item.key === 'sex'" #cell="{ record }">
-                <a-tag v-if="record.sex === 1" color="blue" size="small">男</a-tag>
-                <a-tag v-else color="blue" size="small">女</a-tag>
+              <template v-else-if="item.key === 'url'" #cell="{ record }">
+                <a-image
+                    :preview-props="{
+                     actionsLayout: ['rotateRight', 'zoomIn', 'zoomOut'],
+               }"
+                    :src="record.url"
+                    width="100"
+                />
               </template>
               <template v-else-if="item.key === 'actions' " #cell="{ record }">
                 <a-space>
@@ -273,6 +281,11 @@ export default defineComponent({
         title: '类型',
         key: 'status',
         dataIndex: 'status',
+      },
+      {
+        title: '图片',
+        key: 'url',
+        dataIndex: 'url',
       },
       {
         title: '审核状态',
@@ -471,8 +484,6 @@ export default defineComponent({
       }
 
     }
-
-
     onMounted(doRefresh)
     return {
       ...table,

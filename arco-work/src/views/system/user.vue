@@ -1,5 +1,4 @@
 <template>
-  <a-watermark content="员工管理系统">
     <div style="width: 100%; height:100%;"/>
     <TableBody>
       <template #header>
@@ -16,7 +15,6 @@
             :hoverable="true"
             :loading="tableLoading"
             :pagination="false"
-            :row-selection="{ selectedRowKeys }"
             :rowKey="rowKey"
             :scroll="{ y: tableHeight }"
             :stripe="true"
@@ -42,13 +40,13 @@
                 </a-tag>
               </template>
               <template v-else-if="item.key === 'position'" #cell="{ record }">
-                <a-tag :color="record.position === 0 ? 'green' : 'black'">
+                <a-tag :color="record.position === 0 ? 'green' : 'purple'">
                   {{ map[record.position] }}
                 </a-tag>
               </template>
               <template v-else-if="item.key === 'department_id'" #cell="{ record }">
                 <a-tag :color="record.department_id === 1 ? 'green' : 'blue'">
-                  {{ department[record.department_id] }}
+                  {{ storedMap.get(record.department_id) }}
                 </a-tag>
               </template>
 
@@ -83,8 +81,6 @@
     <!--    继续-->
     <ModalDialog ref="modalDialogRef" :title="actionTitle" @confirm="onDataFormConfirm">
       <template #content>
-        {{ employerInfo }}
-
         <a-form ref="formRef" :labelCol="{ span: 4 }" :model="employerInfo">
           <a-form-item :rules="[
             { required: true, message: '请输入员工姓名' },
@@ -100,7 +96,7 @@
             { required: true, message: '请输入部门编号' },
             { min: 1, max: 2, message: '长度在 1个字符' },
           ]" :validate-trigger="['change', 'input']" field="department" label="部门编号">
-            <a-input v-model.number="employerInfo.department" placeholder="请输入部门编号">
+            <a-input v-model.number="employerInfo.department_id" placeholder="请输入部门编号">
               <template #suffix>
                 <icon-info-circle/>
               </template>
@@ -119,7 +115,6 @@
           <a-form-item label="员工生日" name="birthday">
             <a-date-picker
                 v-model="employerInfo.birthday"
-                default-value="2000-01-01"
                 format=YYYY:MM:DD
                 style="width: 100%"
                 type="time"
@@ -148,7 +143,6 @@
         </a-form>
       </template>
     </ModalDialog>
-  </a-watermark>
 </template>
 
 <script lang="ts">
@@ -178,6 +172,11 @@ export default defineComponent({
       5: "经理",
     }
 
+    const storedMapString = localStorage.getItem('departmentMap');
+    const storedMapArray = JSON.parse(storedMapString);
+    const storedMap = new Map(storedMapArray)
+
+
     const department = {
       1: "程序部",
       2: "人事部",
@@ -188,11 +187,11 @@ export default defineComponent({
       uid: number
       name: string
       birthday: number
-      sex: number
-      department: number
-      status: number
+      sex: number | undefined
+      department_id: number | undefined
+      status: number | undefined
       position: number | undefined
-      phone: number
+      phone: number | undefined
     }
 
     const formRef = ref<typeof Form>()
@@ -269,10 +268,10 @@ export default defineComponent({
       name: '',
       birthday: 0,
       sex: 1,
-      department: 1,
+      department_id: undefined,
       status: 1,
       position: undefined,
-      phone: 1,
+      phone: undefined,
     })
 
     function doRefresh() {
@@ -368,7 +367,7 @@ export default defineComponent({
                 },
                 data: employerInfo
               }).then(() => {
-                table.dataList.push(employerInfo)
+                doRefresh()
                 Message.success("添加成功")
               }).catch((error) => {
                 Message.error(error.message)
@@ -383,6 +382,7 @@ export default defineComponent({
                     data: employerInfo
                   },
               ).then(() => {
+                doRefresh()
                 Message.success("修改成功")
               }).catch(error => {
                 Message.error(error.message)
@@ -394,9 +394,10 @@ export default defineComponent({
             return
           })
     }
+
     function onAddItem() {
       add = true
-      employerInfo.phone = 1
+      employerInfo.phone = undefined
       employerInfo.sex = 1
       employerInfo.status = 1
       employerInfo.name = ''
@@ -407,6 +408,7 @@ export default defineComponent({
     }
 
     function onUpdateItem(record: EmployerInfo) {
+      console.log(record)
       add = false
       actionTitle.value = '更新员工信息'
       modalDialogRef.value?.toggle()
@@ -415,6 +417,7 @@ export default defineComponent({
       employerInfo.sex = record.sex
       employerInfo.status = record.status
       employerInfo.name = record.name
+      employerInfo.department_id = record.department_id
       employerInfo.birthday = record.birthday
       employerInfo.position = record.position
     }
@@ -442,6 +445,7 @@ export default defineComponent({
       formRef,
       map,
       add,
+      storedMap,
       onUpdateItem,
       onDataFormConfirm
     }

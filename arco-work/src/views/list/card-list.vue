@@ -3,6 +3,12 @@
     <TableBody>
       <template #header>
         <TableHeader :show-filter="false">
+          <template #date-content>
+            <a-space class="ml-4">
+              请选择考勤日期 ：
+              <a-date-picker v-model="date" style="width: 200px;" @change="check"/>
+            </a-space>
+          </template>
           <template #table-config>
             <a-space>
               <SortableTable :columns="tableColumns" class="ml-4" @update="onUpdateTable"/>
@@ -109,7 +115,8 @@
               <a-switch v-model.number="item.value.value" checked-children="1" un-checked-children="2"/>
             </template>
             <template v-if="item.type === 'date-range'">
-              <a-range-picker v-model="item.value.value" :defaultValue="['2019-08-08 00:00:00', '2019-08-18 00:00:00']" :position="'tr'" disabled
+              <a-range-picker v-model="item.value.value" :defaultValue="['2019-08-08 00:00:00', '2019-08-18 00:00:00']"
+                              :position="'tr'" disabled
                               showTime/>
             </template>
           </a-form-item>
@@ -238,9 +245,17 @@ export default defineComponent({
       6: "请假",
     }
 
-    let formRef = ref<typeof Form>()
+    const date = ref('')
 
-    const time = Math.floor(Date.now() / 1000)
+    let formRef = ref<typeof Form>()
+// 获取当前日期
+    const today = new Date();
+
+// 设置时间为 0 点
+    today.setHours(0, 0, 0, 0);
+
+    const time = Math.floor(today.getTime() / 1000)
+
     function doRefresh() {
       console.log(time)
       get({
@@ -250,7 +265,7 @@ export default defineComponent({
         },
         data: () => {
           return {
-            time: 1709168400
+            time: time
           }
         },
       }).then((res) => {
@@ -365,6 +380,42 @@ export default defineComponent({
       modalDialogRef.value?.toggle()
     }
 
+    // 时间
+    function check(data: any) {
+      const today = new Date(date.value);
+      today.setHours(0, 0, 0, 0);
+      let time = Math.floor(today.getTime() / 1000)
+      get({
+        url: getAllClockIn,
+        headers: {
+          Authorization: "Bearer " + userStore.token
+        },
+        data: () => {
+          return {
+            time: time
+          }
+        },
+      }).then((res) => {
+        console.log(res)
+        res.data.forEach((i: any) => {
+          const date = new Date(i.start_time);
+          const year = date.getFullYear();
+          const month = String(date.getMonth() + 1).padStart(2, "0");
+          const day = String(date.getDate()).padStart(2, "0");
+          const date1 = new Date(i.end_time);
+          const year1 = date.getFullYear();
+          const month1 = String(date.getMonth() + 1).padStart(2, "0");
+          const day1 = String(date.getDate()).padStart(2, "0");
+          i.end_time = `${year1}-${month1}-${day1}  ${date1.getHours() > 10 ? date1.getHours() : '0' + date1.getHours()}:${date1.getMinutes() > 10 ? date1.getMinutes() : '0' + date1.getMinutes()}:${date1.getSeconds() > 10 ? date1.getSeconds() : '0' + date1.getSeconds()}`
+          i.start_time = `${year}-${month}-${day}  ${date.getHours() > 10 ? date.getHours() : '0' + date.getHours()}:${date.getMinutes() > 10 ? date.getMinutes() : '0' + date.getMinutes()}:${date.getSeconds() > 10 ? date.getSeconds() : '0' + date.getSeconds()}`
+          return
+        })
+        table.handleSuccess(res)
+        pagination.setTotalSize(res.data.length || 10)
+      }).catch(error => {
+        Message.error(error.toString())
+      })
+    }
     onMounted(doRefresh)
     return {
       ...table,
@@ -377,6 +428,7 @@ export default defineComponent({
       formItems,
       modalDialogRef,
       map,
+      date,
       onUpdateTable,
       onDeleteItem,
       doRefresh,
@@ -385,6 +437,7 @@ export default defineComponent({
       rowClassNameFun,
       onUpdateItem,
       onDataFormConfirm,
+      check,
     }
   },
 })

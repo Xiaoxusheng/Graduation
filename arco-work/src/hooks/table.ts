@@ -15,6 +15,7 @@ interface Table {
     tableHeight: Ref<number>
     department: {},
     handleSuccess: (res: any) => Promise<any>
+    handle: any
     useTableColumn: (columns: TableColumnPops[], options: TableColumnPops) => Array<any>
     indexColumn: {
         title: string
@@ -63,6 +64,11 @@ export const useTable = function (): Table {
         dataList.push(...data)
         return Promise.resolve(data)
     }
+    const handle = (data: any) => {
+        tableLoading.value = false
+        dataList.length = 0
+        dataList.push(data)
+    }
 
     return {
         dataList,
@@ -73,6 +79,7 @@ export const useTable = function (): Table {
         striped,
         tableLoading,
         department,
+        handle,
         handleSuccess,
         useTableColumn,
         indexColumn: useTableIndexColumn(),
@@ -100,7 +107,7 @@ export const useRowSelection = function () {
 
 export const useTableColumn = function (
     columns: TableColumnPops[],
-    options: TableColumnPops = {dataIndex: '', key: '', align: 'center'}
+    options: TableColumnPops = {dataIndex: '', key: '', align: 'center',}
 ) {
     return columns.map((it) => {
         return {

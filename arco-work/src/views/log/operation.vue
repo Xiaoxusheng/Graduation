@@ -1,10 +1,9 @@
 <template>
-  <a-watermark content="员工管理系统">
-    <div style="width: 100%; height:80%;"/>
+  <div style="width: 100%; height:100%;"/>
     <TableBody>
       <template #header>
         <TableHeader ref="tableHeaderRef" :show-filter="false">
-          <template #search-content :title="'操作日志'">
+          <template #table-config :title="'操作日志'">
             <a-form :model="{}" layout="inline">
               <a-form-item v-for="item of conditionItems" :key="item.key" :label="item.label">
                 <template v-if="item.render">
@@ -50,18 +49,16 @@
       </template>
       <template #default>
         <a-table
-            :bordered="{ wrapper: true, cell: true }"
-            :column-resizable="true"
+            :column-resizable="false"
             :data="dataList"
             :hoverable="true"
             :loading="tableLoading"
             :pagination="false"
-            :row-selection="{ selectedRowKeys }"
             :rowKey="rowKey"
             :scroll="{ y: tableHeight }"
             :stripe="true"
             size="small"
-            table-layout-fixed
+            table-layout-fixe
             @selection-change="onSelectionChange"
         >
           <template #columns>
@@ -76,14 +73,10 @@
               <template v-if="item.key === 'index'" #cell="{ rowIndex }">
                 {{ rowIndex + 1 }}
               </template>
-
               <template v-else-if="item.key === 'http_code'" #cell="{ record }">
                 <a-tag :color="record.http_code ==200 ? 'green' : 'red'">
                   {{ "record.http_code === 200" ? '成功' : '失败' }}
                 </a-tag>
-              </template>
-              <template v-else-if="item.key === 'path'" #cell="{ record }">
-                {{ record.path }}
               </template>
               <template v-else-if="item.key === 'time'" #cell="{ record }">
                 <a-tag :color="record.time <=100 ? 'blue' : 'red'">
@@ -110,14 +103,13 @@
       </template>
     </TableBody>
     <!--    继续-->
-  </a-watermark>
 </template>
 
 <script lang="ts">
-import {add_employer, delete_employer, logList, update_employer} from '@/api/url'
+import {delete_employer, logList,} from '@/api/url'
 import {usePagination, useRowKey, useRowSelection, useTable, useTableColumn, useTableHeight,} from '@/hooks/table'
 import {Form, Input, Message, Modal} from '@arco-design/web-vue'
-import {defineComponent, getCurrentInstance, h, onMounted, reactive, ref} from 'vue'
+import {defineComponent, getCurrentInstance, h, onMounted, ref} from 'vue'
 import AddButton from "@/components/AddButton.vue";
 import useUserStore from "@/store/modules/user";
 import {FormItem, ModalDialogType} from "@/types/components";
@@ -134,19 +126,8 @@ export default defineComponent({
     const rowKey = useRowKey('id')
     const pagination = usePagination(doRefresh)
     const {selectedRowKeys, onSelectionChange} = useRowSelection()
-    const map = {
-      1: "普通员工",
-      2: "副主管",
-      3: "主管",
-      4: "副经理",
-      5: "经理",
-    }
 
-    const department = {
-      1: "程序部",
-      2: "人事部",
-      3: "财务部",
-    }
+
 
     const conditionItems: Array<FormItem> = [
       {
@@ -196,16 +177,7 @@ export default defineComponent({
       },
     ]
 
-    interface EmployerInfo {
-      uid: number
-      name: string
-      birthday: number
-      sex: number
-      department: number
-      status: number
-      position: number | undefined
-      phone: number
-    }
+
 
     const formRef = ref<typeof Form>()
 
@@ -226,12 +198,12 @@ export default defineComponent({
         dataIndex: 'method',
       },
       {
-        title: '路径',
+        title: '请求URL',
         key: 'path',
         dataIndex: 'path',
       },
       {
-        title: 'IP',
+        title: 'IP地址',
         key: 'ip',
         dataIndex: 'ip ',
       },
@@ -255,18 +227,7 @@ export default defineComponent({
     const userStore = useUserStore()
     const post = usePost()
     const get = useGet()
-    let add = true
-    //
-    let employerInfo = reactive<EmployerInfo>({
-      uid: 0,
-      name: '',
-      birthday: 0,
-      sex: 1,
-      department: 1,
-      status: 1,
-      position: undefined,
-      phone: 1,
-    })
+
 
     function doRefresh() {
       get({
@@ -325,76 +286,6 @@ export default defineComponent({
       })
     }
 
-    // 编辑
-    function onDataFormConfirm() {
-      formRef.value
-          ?.validate()
-          .then((error: any) => {
-            if (error) {
-              return
-            }
-            modalDialogRef.value?.toggle()
-            if (add) {
-              employerInfo.birthday = Math.round(new Date(employerInfo.birthday).getTime() / 1000);
-              console.log(employerInfo)
-              post({
-                url: add_employer,
-                headers: {
-                  Authorization: "Bearer " + userStore.token
-                },
-                data: employerInfo
-              }).then(() => {
-                table.dataList.push(employerInfo)
-                Message.success("添加成功")
-              }).catch((error) => {
-                Message.error(error.message)
-              })
-            } else {
-              employerInfo.birthday = Math.round(new Date(employerInfo.birthday).getTime() / 1000);
-              post({
-                    url: update_employer,
-                    headers: {
-                      Authorization: "Bearer " + userStore.token
-                    },
-                    data: employerInfo
-                  },
-              ).then(() => {
-                Message.success("修改成功")
-              }).catch(error => {
-                Message.error(error.message)
-              })
-            }
-          })
-          .catch((error: any) => {
-            console.log('error', error)
-            return
-          })
-    }
-
-    function onAddItem() {
-      add = true
-      employerInfo.phone = 1
-      employerInfo.sex = 1
-      employerInfo.status = 1
-      employerInfo.name = ''
-      employerInfo.birthday = 0
-      employerInfo.position = undefined
-      actionTitle.value = '添加员工'
-      modalDialogRef.value?.toggle()
-    }
-
-    function onUpdateItem(record: EmployerInfo) {
-      add = false
-      actionTitle.value = '更新员工信息'
-      modalDialogRef.value?.toggle()
-      employerInfo.uid = record.uid
-      employerInfo.phone = record.phone
-      employerInfo.sex = record.sex
-      employerInfo.status = record.status
-      employerInfo.name = record.name
-      employerInfo.birthday = record.birthday
-      employerInfo.position = record.position
-    }
 
     onMounted(async () => {
       table.tableHeight.value = await useTableHeight(getCurrentInstance())
@@ -410,17 +301,9 @@ export default defineComponent({
       pagination,
       formModel,
       actionTitle,
-
       modalDialogRef,
-      onAddItem,
       onDeleteItem,
-      department,
-      employerInfo,
       formRef,
-      map,
-      add,
-      onUpdateItem,
-      onDataFormConfirm,
       conditionItems
     }
   },

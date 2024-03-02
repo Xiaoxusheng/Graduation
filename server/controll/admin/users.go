@@ -57,7 +57,7 @@ func Login(c *gin.Context) {
 		}
 		//   token不存在
 		token = utils.GetToken(val)
-		global.Global.Redis.Set(global.Global.Ctx, val, token, config.Config.Jwt.Time*time.Minute*60)
+		global.Global.Redis.Set(global.Global.Ctx, val, token, config.Config.Jwt.Time*time.Hour)
 		result.Ok(c, map[string]any{
 			"token": token,
 		})
@@ -142,7 +142,7 @@ func Info(c *gin.Context) {
 	//
 	val := global.Global.Redis.Get(global.Global.Ctx, global.Info+id).Val()
 	if val != "" {
-		user := new(models.User)
+		user := new(global.AdminInfo)
 		err := json.Unmarshal([]byte(val), user)
 		if err != nil {
 			result.Fail(c, global.ServerError, global.ParseError)
@@ -153,6 +153,7 @@ func Info(c *gin.Context) {
 	}
 	userInfo, err := dao.GetInfoByIdentity(id)
 	if err != nil || userInfo == nil {
+		global.Global.Log.Error(err)
 		result.Fail(c, global.DataNotFound, global.UserNotExistError)
 		return
 	}
@@ -219,7 +220,7 @@ func AssignedAccount(c *gin.Context) {
 		result.Fail(c, global.ServerError, global.QueryError)
 		return
 	}
-	_, err = global.Global.Redis.HSet(global.Global.Ctx, uid, userInfo.Identity, global.UidId).Result()
+	_, err = global.Global.Redis.HSet(global.Global.Ctx, global.UidId, uid, userInfo.Identity).Result()
 	if err != nil {
 		global.Global.Log.Error(err)
 	}

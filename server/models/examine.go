@@ -20,5 +20,5 @@ type Examine struct {
 }
 
 func (e *Examine) TableName() string {
-	return "Examine_basic"
+	return "examine_basic"
 }

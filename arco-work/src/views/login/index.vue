@@ -45,8 +45,7 @@
         'Vue3 + Vite + Typescript + Arco Design  ©   ' +
         projectName +
         '    ' +
-        version +
-        ' · Made by qingqingxuan'
+        version
       }}
     </div>
   </div>

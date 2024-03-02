@@ -52,6 +52,15 @@
               <template v-else-if="item.key === 'status'" #cell="{ record }">
                 <a-tag color="red" size="small">加班</a-tag>
               </template>
+              <template v-else-if="item.key === 'url'" #cell="{ record }">
+                <a-image
+                    :preview-props="{
+                     actionsLayout: ['rotateRight', 'zoomIn', 'zoomOut'],
+               }"
+                    :src="record.url"
+                    width="100px"
+                />
+              </template>
               <template v-else-if="item.key === 'pass'" #cell="{ record }">
                 <a-tag v-if="record.pass === 1" color="blue" size="small">通过</a-tag>
                 <a-tag v-else-if="record.pass === 2" color="red" size="small">未通过</a-tag>
@@ -171,6 +180,11 @@ export default defineComponent({
             title: '类型',
             key: 'status',
             dataIndex: 'status',
+          },
+          {
+            title: '图片',
+            key: 'url',
+            dataIndex: 'url',
           },
           {
             title: '审核状态',

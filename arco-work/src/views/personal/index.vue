@@ -110,7 +110,10 @@
 
 <script lang="ts">
 import useUserStore from '@/store/modules/user'
-import {defineComponent, ref} from 'vue'
+import {defineComponent, onMounted, ref} from 'vue'
+import {get, Response} from "@/api/http";
+import {info} from "@/api/url";
+import {Message} from "@arco-design/web-vue";
 
 export default defineComponent({
   name: 'Personal',
@@ -127,6 +130,22 @@ export default defineComponent({
         uploaded.value = false
       }, 1000)
     }
+
+    function getInfo() {
+      // 再次请求信息接口
+      get({
+        url: info,
+        headers: {
+          Authorization: "Bearer " + userStore.token
+        },
+      }).then(({data}: Response) => {
+        console.log(data)
+      }).catch(error => {
+        Message.error(error.message)
+      })
+    }
+
+    onMounted(getInfo)
     const userStore = useUserStore()
     return {
       touched,

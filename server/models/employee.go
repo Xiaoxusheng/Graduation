@@ -17,7 +17,7 @@ type Employee struct {
 	Position     int32     `gorm:"type:int; comment:职位 1 普通员工 2副主管 3主管 4 经理  5 经理 " json:"position,omitempty"`
 	DepartmentId int32     `gorm:"type:int; comment:部门id" json:"department_id,omitempty"`
 	IP           string    `gorm:"type:varchar(64) not null; comment:'IP地址'" json:"IP,omitempty"`
-	ImageUrl     string    `gorm:"type:varchar(64); comment:'头像'" json:"image_url,omitempty"`
+	ImageUrl     string    `gorm:"type:varchar(128); comment:'头像'" json:"image_url,omitempty"`
 	gorm.Model
 }
 

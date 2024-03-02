@@ -91,3 +91,15 @@ func AfterWork(uid int64, t time.Time) error {
 	attendance := new(models.Attendance)
 	return global.Global.Mysql.Model(attendance).Where("uid=?  and  date=?", uid, t.Format(time.DateOnly)).Update("end_time", t).Error
 }
+
+// GetAttendance 计算
+func GetAttendance(uid int64, t time.Time) ([]*models.Attendance, error) {
+	list := make([]*models.Attendance, 0)
+	err := global.Global.Mysql.Where("uid=? and start_time>? and start_time<?", uid,
+		time.Date(t.Year(), t.Month(), 1, 0, 0, 0, 0, time.Local),
+		time.Date(t.Year(), t.Month()+1, 1, 0, 0, 0, 0, time.Local)).Find(&list).Error
+	if err != nil {
+		return nil, err
+	}
+	return list, nil
+}

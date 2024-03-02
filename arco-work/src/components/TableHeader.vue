@@ -1,12 +1,13 @@
 <template>
   <div id="tableHeaderContainer" class="relative" :style="{ zIndex: 9 }">
-    <a-card :title="title" size="small">
+    <a-card :bordered="isBordered" :title="title" size="small">
       <template #extra v-if="showFilter">
         <a-space>
           <a-button type="primary" size="small" @click="doSearch">搜索</a-button>
-          <a-button size="small" @click="doResetSearch">重置</a-button>
+          <a-button size="small" status="danger" @click="doResetSearch">重置</a-button>
         </a-space>
       </template>
+      <slot name="date-content"></slot>
       <slot name="search-content"></slot>
       <div class="flex justify-end">
         <slot name="table-config"></slot>

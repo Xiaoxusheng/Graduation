@@ -12,7 +12,6 @@ const FileNumber = 4
 
 // redis 前缀
 var (
-	Sign           = "sign"           //登录
 	Salt           = "salt"           //盐值
 	Info           = "info"           //个人信息
 	Uid            = "uid"            //uid
@@ -24,6 +23,7 @@ var (
 	ClockIn        = "ClockIn"        //打卡
 	UidId          = "uid-identity"   //员工的uid和identity的映射
 	Role           = "role"           //超级管理员
+	SalaryList     = "salary-list"    //工资列表
 )
 
 // redis 时间
@@ -33,4 +33,5 @@ const (
 	EmployerClockTime = 60 * 60
 	MenuTime          = 60 * 60 * 24
 	EmployerUidId     = 60 * 60 * 24 * 7
+	SalaryListTime    = 60 * 60
 )

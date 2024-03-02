@@ -38,6 +38,11 @@ export default defineComponent({
         data.push(d)
       })
     }).catch(error => {
+      const d = [{value: 20, name: '程序部'},
+        {value: 50, name: '销售部'},
+        {value: 10, name: '法务部'},
+        {value: 29, name: '财务部'},]
+      data.push(d)
       console.log(error)
     })
     const init = () => {

@@ -8,6 +8,9 @@ export const test = '/test'
 export const login = '/login'
 // 退出登录
 export const logouts = '/logout'
+// 获取个人信息
+export const info = '/info'
+
 
 export const updateUserInfo = '/updateUser'
 
@@ -64,6 +67,9 @@ export const makeCardApplication = '/make_card_application'
 
 // 考勤
 export const getAllClockIn = '/get_all_clockIn'
+
+// 工资列表
+export const getSalary = '/get_salary'
 
 
 // 日志
