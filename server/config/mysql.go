@@ -4,6 +4,7 @@ import (
 	"log"
 	"os"
 	"server/global"
+	"server/models"
 	"sync"
 	"time"
 
@@ -61,71 +62,21 @@ func InitMysql() {
 	//err = global.Global.Mysql.AutoMigrate(&models.Department{})
 	//err = global.Global.Mysql.AutoMigrate(&models.Log{})
 	//err = global.Global.Mysql.AutoMigrate(&models.Attendance{})
-	//err = global.Global.Mysql.AutoMigrate(&models.Examine{})
+	//err = global.Global.Mysql.AutoMigrate(&models.Menu{})
 	//if err != nil {
 	//	global.Global.Log.Error(err)
 	//}
-	//err = global.Global.Mysql.Create([]models.Menu{
-	//	{
-	//		MenuUrl:    "/salary",
-	//		MenuName:   "财务数据",
-	//		Icon:       "icon-file",
-	//		ParentPath: "",
-	//		RouteName:  "salary",
-	//		Cacheable:  true,
-	//		Badge:      "",
-	//	},
-	//	{
-	//		MenuUrl:    "/salary/salary",
-	//		MenuName:   "工资详情",
-	//		RouteName:  "salary",
-	//		Icon:       "icon-empty",
-	//		Cacheable:  true,
-	//		ParentPath: "/salary",
-	//		Badge:      "",
-	//	},
-	//}).Error
-	//global.Global.Log.Error(err)
-	//
-	//err = global.Global.Mysql.Create([]models.Menu{
-	//	{
-	//		MenuUrl:    "/log",
-	//		MenuName:   "系统监控",
-	//		Icon:       "icon-computer",
-	//		ParentPath: "",
-	//		RouteName:  "log",
-	//		Cacheable:  true,
-	//		Badge:      "",
-	//	},
-	//	{
-	//		MenuUrl:    "/log/operation",
-	//		MenuName:   "操作日志",
-	//		RouteName:  "operation",
-	//		Icon:       "",
-	//		Cacheable:  true,
-	//		ParentPath: "/log",
-	//		Badge:      "",
-	//	}, {
-	//		MenuUrl:    "/log/system",
-	//		MenuName:   "系统日志",
-	//		RouteName:  "system",
-	//		Icon:       "icon-common",
-	//		Cacheable:  true,
-	//		ParentPath: "/log",
-	//		Badge:      "",
-	//	},
-	//}).Error
 
-	//err = global.Global.Mysql.Create(&models.Menu{
-	//	MenuUrl:       "/other",
-	//	MenuName:      "功能/组件",
-	//	Icon:          "icon-apps",
-	//	ParentPath:    "",
-	//	RouteName:     "",
-	//	Badge:         "",
-	//	LocalFilePath: "",
-	//}).Error
-	//global.Global.Log.Warn(err)
+	err = global.Global.Mysql.Create(&models.Menu{
+		MenuUrl:       "/other",
+		MenuName:      "功能/组件",
+		Icon:          "icon-apps",
+		ParentPath:    "",
+		RouteName:     "",
+		Badge:         "",
+		LocalFilePath: "",
+	}).Error
+	global.Global.Log.Warn(err)
 	//err = global.Global.Mysql.Create([]models.Menu{
 	//	{
 	//		MenuUrl:    "/index",
@@ -165,39 +116,43 @@ func InitMysql() {
 	//		Badge:      "",
 	//	},
 	//	{
-	//		MenuUrl:       "/system/department",
+	//		MenuUrl:       "/systems/department",
 	//		MenuName:      "部门管理",
 	//		RouteName:     "department",
 	//		Icon:          "icon-apps",
 	//		Cacheable:     true,
-	//		ParentPath:    "/system",
+	//		ParentPath:    "/systems",
 	//		Badge:         "new",
 	//		LocalFilePath: "/system/local-path/department",
-	//	}, {
-	//		MenuUrl:    "/system/user",
+	//	},
+	//	{
+	//		MenuUrl:    "/systems/user",
 	//		MenuName:   "员工管理",
 	//		RouteName:  "user",
 	//		Icon:       "icon-user",
 	//		Cacheable:  true,
-	//		ParentPath: "/system",
+	//		ParentPath: "/systems",
 	//		Badge:      "dot",
-	//	}, {
-	//		MenuUrl:    "/system/role",
+	//	},
+	//	{
+	//		MenuUrl:    "/systems/role",
 	//		MenuName:   "角色管理",
 	//		RouteName:  "",
 	//		Icon:       "icon-stamp",
 	//		Cacheable:  true,
-	//		ParentPath: "/system",
+	//		ParentPath: "/systems",
 	//		Badge:      "12",
-	//	}, {
-	//		MenuUrl:    "/system/menu",
+	//	},
+	//	{
+	//		MenuUrl:    "/systems/menu",
 	//		MenuName:   "菜单管理",
 	//		RouteName:  "",
 	//		Icon:       "",
 	//		Cacheable:  true,
-	//		ParentPath: "/system",
+	//		ParentPath: "/systems",
 	//		Badge:      "",
-	//	}, {
+	//	},
+	//	{
 	//		MenuUrl:    "/list",
 	//		MenuName:   "考勤管理",
 	//		RouteName:  "",
@@ -205,7 +160,8 @@ func InitMysql() {
 	//		Cacheable:  true,
 	//		ParentPath: "",
 	//		Badge:      "",
-	//	}, {
+	//	},
+	//	{
 	//		MenuUrl:    "/list/table-with-search",
 	//		MenuName:   "请假申请",
 	//		RouteName:  "",
@@ -213,15 +169,17 @@ func InitMysql() {
 	//		Cacheable:  true,
 	//		ParentPath: "/list",
 	//		Badge:      "",
-	//	}, {
-	//		MenuUrl:    "/list/table-with-custom",
+	//	},
+	//	{
+	//		MenuUrl:    "/list/table-custom",
 	//		MenuName:   "加班申请",
 	//		RouteName:  "",
 	//		Icon:       "",
 	//		Cacheable:  true,
 	//		ParentPath: "/list",
 	//		Badge:      "",
-	//	}, {
+	//	},
+	//	{
 	//		MenuUrl:    "/list/list",
 	//		MenuName:   "补卡申请",
 	//		RouteName:  "",
@@ -229,7 +187,8 @@ func InitMysql() {
 	//		Cacheable:  true,
 	//		ParentPath: "/list",
 	//		Badge:      "",
-	//	}, {
+	//	},
+	//	{
 	//		MenuUrl:    "/list/card-list",
 	//		MenuName:   "考勤列表",
 	//		RouteName:  "",
@@ -237,7 +196,8 @@ func InitMysql() {
 	//		Cacheable:  true,
 	//		ParentPath: "/list",
 	//		Badge:      "",
-	//	}, {
+	//	},
+	//	{
 	//		MenuUrl:    "/form",
 	//		MenuName:   "表单demo",
 	//		RouteName:  "",
@@ -245,15 +205,26 @@ func InitMysql() {
 	//		Cacheable:  true,
 	//		ParentPath: "",
 	//		Badge:      "dot",
-	//	}, {
+	//	},
+	//	{
 	//		MenuUrl:    "/form/base-form-view",
-	//		MenuName:   "功能/组件",
+	//		MenuName:   "表单",
 	//		RouteName:  "",
 	//		Icon:       "icon-apps",
 	//		Cacheable:  true,
 	//		ParentPath: "/form",
 	//		Badge:      "",
-	//	}, {
+	//	},
+	//	{
+	//		MenuUrl:       "/other",
+	//		MenuName:      "功能/组件",
+	//		Icon:          "icon-apps",
+	//		ParentPath:    "",
+	//		RouteName:     "",
+	//		Badge:         "",
+	//		LocalFilePath: "",
+	//	},
+	//	{
 	//		MenuUrl:    "/other/print",
 	//		MenuName:   "打印",
 	//		RouteName:  "",
@@ -261,7 +232,8 @@ func InitMysql() {
 	//		Cacheable:  true,
 	//		ParentPath: "/other",
 	//		Badge:      "",
-	//	}, {
+	//	},
+	//	{
 	//		MenuUrl:    "/other/clipboard",
 	//		MenuName:   "剪贴板",
 	//		RouteName:  "",
@@ -269,7 +241,8 @@ func InitMysql() {
 	//		Cacheable:  true,
 	//		ParentPath: "/other",
 	//		Badge:      "",
-	//	}, {
+	//	},
+	//	{
 	//		MenuUrl:    "/other/player",
 	//		MenuName:   "视频播放器",
 	//		RouteName:  "",
@@ -277,7 +250,8 @@ func InitMysql() {
 	//		Cacheable:  true,
 	//		ParentPath: "/other",
 	//		Badge:      "",
-	//	}, {
+	//	},
+	//	{
 	//		MenuUrl:    "/other/flow",
 	//		MenuName:   "流程图",
 	//		RouteName:  "",
@@ -285,7 +259,8 @@ func InitMysql() {
 	//		Cacheable:  true,
 	//		ParentPath: "/other",
 	//		Badge:      "",
-	//	}, {
+	//	},
+	//	{
 	//		MenuUrl:    "/excel",
 	//		MenuName:   "Excel",
 	//		RouteName:  "",
@@ -293,7 +268,8 @@ func InitMysql() {
 	//		Cacheable:  true,
 	//		ParentPath: "",
 	//		Badge:      "",
-	//	}, {
+	//	},
+	//	{
 	//		MenuUrl:    "/excel/export-excel",
 	//		MenuName:   "导出Excel",
 	//		RouteName:  "",
@@ -301,7 +277,8 @@ func InitMysql() {
 	//		Cacheable:  true,
 	//		ParentPath: "/excel",
 	//		Badge:      "",
-	//	}, {
+	//	},
+	//	{
 	//		MenuUrl:    "/excel/export-rows-excel",
 	//		MenuName:   "导出选中行",
 	//		RouteName:  "",
@@ -309,7 +286,8 @@ func InitMysql() {
 	//		Cacheable:  true,
 	//		ParentPath: "/excel",
 	//		Badge:      "",
-	//	}, {
+	//	},
+	//	{
 	//		MenuUrl:    "/draggable",
 	//		MenuName:   "拖拽",
 	//		RouteName:  "",
@@ -317,13 +295,58 @@ func InitMysql() {
 	//		Cacheable:  true,
 	//		ParentPath: "",
 	//		Badge:      "",
-	//	}, {
+	//	},
+	//	{
 	//		MenuUrl:    "/draggable/card-draggable",
 	//		MenuName:   "卡片拖拽",
 	//		RouteName:  "",
 	//		Icon:       "",
 	//		Cacheable:  true,
 	//		ParentPath: "/draggable",
+	//		Badge:      "",
+	//	},
+	//	{
+	//		MenuUrl:    "/log",
+	//		MenuName:   "系统监控",
+	//		Icon:       "icon-computer",
+	//		ParentPath: "",
+	//		RouteName:  "log",
+	//		Cacheable:  true,
+	//		Badge:      "",
+	//	},
+	//	{
+	//		MenuUrl:    "/log/operation",
+	//		MenuName:   "操作日志",
+	//		RouteName:  "operation",
+	//		Icon:       "",
+	//		Cacheable:  true,
+	//		ParentPath: "/log",
+	//		Badge:      "",
+	//	}, {
+	//		MenuUrl:    "/log/system",
+	//		MenuName:   "系统日志",
+	//		RouteName:  "system",
+	//		Icon:       "icon-common",
+	//		Cacheable:  true,
+	//		ParentPath: "/log",
+	//		Badge:      "",
+	//	},
+	//	{
+	//		MenuUrl:    "/salary",
+	//		MenuName:   "财务数据",
+	//		Icon:       "icon-file",
+	//		ParentPath: "",
+	//		RouteName:  "salary",
+	//		Cacheable:  true,
+	//		Badge:      "",
+	//	},
+	//	{
+	//		MenuUrl:    "/salary/salary",
+	//		MenuName:   "工资详情",
+	//		RouteName:  "salary",
+	//		Icon:       "icon-empty",
+	//		Cacheable:  true,
+	//		ParentPath: "/salary",
 	//		Badge:      "",
 	//	},
 	//}).Error

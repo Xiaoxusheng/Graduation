@@ -12,7 +12,6 @@ import (
 
 // AddRolesForUser 为用户分配角色
 func AddRolesForUser(c *gin.Context) {
-	// role 为角色 identity  user 是角色 admin或root这种
 	role := c.PostForm("role")
 	user := c.PostForm("user")
 	if role == "" || user == "" {
@@ -20,14 +19,13 @@ func AddRolesForUser(c *gin.Context) {
 		return
 	}
 	//限制
-	//写入redis
-	_, err := global.Global.Redis.SAdd(global.Global.Ctx, global.Role+user, role).Result()
+	//写入redis,记录用户所拥有的角色
+	_, err := global.Global.Redis.SAdd(global.Global.Ctx, global.User+user, role).Result()
 	if err != nil {
 		result.Fail(c, global.ServerError, global.AddRoleFail)
 		global.Global.Log.Error(err)
 		return
 	}
-
 	_, err = global.Global.CasBin.AddRoleForUser(user, role)
 	if err != nil {
 		global.Global.Log.Error(err)
@@ -39,34 +37,34 @@ func AddRolesForUser(c *gin.Context) {
 }
 
 // AddResource 给所有的角色添加权限可以访问的资源
-func AddResource(c *gin.Context) {
-	user := c.PostForm("user")
-	method := strings.ToUpper(c.PostForm("method"))
-	path := c.PostForm("path")
-	if method == "" || path == "" || user == "" {
-		result.Fail(c, global.BadRequest, global.QueryError)
-		return
-	}
-	//判断角色是否存在
-	val := global.Global.Redis.SMembers(global.Global.Ctx, global.Role+user).Val()
-	if len(val) == 0 {
-		result.Fail(c, global.BadRequest, global.RoleNotfound)
-		return
-	}
-	//分配资源
-	for i := 0; i < len(val); i++ {
-		_, err := global.Global.CasBin.AddPermissionForUser(val[i], path, method)
-		if err != nil {
-			global.Global.Log.Error(err)
-			result.Fail(c, global.DataValidationError, global.AddPermissionFail)
-			return
-		}
-	}
-	result.Ok(c, nil)
-	return
-}
+//func AddResource(c *gin.Context) {
+//	role := c.PostForm("role")
+//	method := strings.ToUpper(c.PostForm("method"))
+//	path := c.PostForm("path")
+//	if method == "" || path == "" || role == "" {
+//		result.Fail(c, global.BadRequest, global.QueryError)
+//		return
+//	}
+//	//判断角色是否存在
+//	val := global.Global.Redis.SMembers(global.Global.Ctx, global.Role+role).Val()
+//	if len(val) == 0 {
+//		result.Fail(c, global.BadRequest, global.RoleNotfound)
+//		return
+//	}
+//	//分配资源
+//	for i := 0; i < len(val); i++ {
+//		_, err := global.Global.CasBin.AddPermissionForUser(val[i], path, method)
+//		if err != nil {
+//			global.Global.Log.Error(err)
+//			result.Fail(c, global.DataValidationError, global.AddPermissionFail)
+//			return
+//		}
+//	}
+//	result.Ok(c, nil)
+//	return
+//}
 
-// AddPermissionForUser 为用户添加单个资源
+// AddPermissionForUser 为角色添加单个资源
 func AddPermissionForUser(c *gin.Context) {
 	role := c.PostForm("role")
 	method := strings.ToUpper(c.PostForm("method"))
@@ -75,12 +73,6 @@ func AddPermissionForUser(c *gin.Context) {
 		result.Fail(c, global.BadRequest, global.QueryError)
 		return
 	}
-	val := global.Global.Redis.SIsMember(global.Global.Ctx, global.Role+"admin", role).Val()
-	if !val {
-		result.Fail(c, global.BadRequest, global.RoleNotfound)
-		return
-	}
-	//判断是否
 	ok, err := global.Global.CasBin.AddPermissionForUser(role, path, method)
 	if err != nil || !ok {
 		global.Global.Log.Error(err)
@@ -90,21 +82,21 @@ func AddPermissionForUser(c *gin.Context) {
 	result.Ok(c, nil)
 }
 
-// DeletePermissionForUser 删除用户能访问的资源
+// DeletePermissionForUser 删除用户权限
 func DeletePermissionForUser(c *gin.Context) {
-	role := c.PostForm("role")
+	user := c.PostForm("user")
 	method := strings.ToUpper(c.PostForm("method"))
 	path := strings.ReplaceAll(c.PostForm("path"), " ", "")
-	if method == "" || path == "" || role == "" {
+	if method == "" || path == "" || user == "" {
 		result.Fail(c, global.BadRequest, global.QueryError)
 		return
 	}
 	//判断是否存在
-	if !global.Global.CasBin.HasPolicy(role, path, method) {
+	if !global.Global.CasBin.HasPolicy(user, path, method) {
 		result.Fail(c, global.BadRequest, global.PermissionNotFound)
 		return
 	}
-	_, err := global.Global.CasBin.DeletePermissionForUser(role, path, method)
+	_, err := global.Global.CasBin.DeletePermissionForUser(user, path, method)
 	if err != nil {
 		global.Global.Log.Error(err)
 		result.Fail(c, global.ServerError, global.DelPermissionFail)
@@ -114,95 +106,33 @@ func DeletePermissionForUser(c *gin.Context) {
 	return
 }
 
-// DeletePermissionsForUser 删除所有的权限
+// DeletePermissionsForUser 删除用户所有的权限
 func DeletePermissionsForUser(c *gin.Context) {
-	role := c.PostForm("role")
-	if role == "" {
-		result.Fail(c, global.BadRequest, global.QueryError)
-		return
-	}
-	//判断角色是否存在
-	ok, err := global.Global.CasBin.HasRoleForUser("admin", role)
-	if err != nil || !ok {
-		global.Global.Log.Error(err)
-		result.Fail(c, global.ServerError, global.DelPermissionFail)
-		return
-	}
-	ok, err = global.Global.CasBin.DeletePermissionsForUser(role)
-	if err != nil || !ok {
-		result.Fail(c, global.ServerError, global.DelPermissionFail)
-		return
-	}
-	result.Ok(c, nil)
-
-}
-
-// DeleteRoleForUser 删除用户的角色
-func DeleteRoleForUser(c *gin.Context) {
-	role := c.PostForm("role")
 	user := c.PostForm("user")
-	if role == "" || user == "" {
+	if user == "" {
 		result.Fail(c, global.BadRequest, global.QueryError)
 		return
 	}
-	_, err := global.Global.Redis.SRem(global.Global.Ctx, global.Role+user, role).Result()
-	if err != nil {
-		global.Global.Log.Error(err)
-		return
-	}
-	//删除角色
-	ok, err := global.Global.CasBin.DeleteRoleForUser(user, role)
-	if err != nil || !ok {
-		global.Global.Log.Error(err)
-		result.Fail(c, global.ServerError, global.DelRoleFail)
-		return
-	}
-
-	//删除所有资源
-	ok, err = global.Global.CasBin.DeletePermissionsForUser(role)
+	ok, err := global.Global.CasBin.DeletePermissionsForUser(user)
 	if err != nil || !ok {
 		result.Fail(c, global.ServerError, global.DelPermissionFail)
 		return
 	}
 	result.Ok(c, nil)
-	return
-}
-
-// GetPermissionsForUser 查看用户能访问的资源
-func GetPermissionsForUser(c *gin.Context) {
-	role := c.PostForm("role")
-	if role == "" {
-		result.Fail(c, global.BadRequest, global.QueryError)
-		return
-	}
-	list, err := global.Global.CasBin.GetPermissionsForUser(role)
-	if err != nil {
-		global.Global.Log.Error(err)
-		result.Fail(c, global.ServerError, global.GetPermissionsForUserFail)
-		return
-	}
-	result.Ok(c, list)
-}
-
-// GetAllNamedSubjects 查看所有用户权限
-func GetAllNamedSubjects(c *gin.Context) {
-	list := global.Global.CasBin.GetNamedPolicy("p")
-	result.Ok(c, list)
-	return
 }
 
 // UpdatePolicy 修改用户权限
 func UpdatePolicy(c *gin.Context) {
 	//获取用户的权限
-	role := c.PostForm("role")
+	user := c.PostForm("user")
 	path := c.PostForm("path")
 	newPath := strings.ReplaceAll(c.PostForm("newPath"), " ", "")
-	if role == "" || path == "" || newPath == "" {
+	if user == "" || path == "" || newPath == "" {
 		result.Fail(c, global.BadRequest, global.QueryError)
 		return
 	}
-	fmt.Println(role, path, newPath)
-	list, _ := global.Global.CasBin.GetPermissionsForUser(role)
+	fmt.Println(user, path, newPath)
+	list, _ := global.Global.CasBin.GetPermissionsForUser(user)
 	fmt.Println(list)
 	for i := 0; i < len(list); i++ {
 		old := list[i]
@@ -220,6 +150,86 @@ func UpdatePolicy(c *gin.Context) {
 	if err != nil {
 		global.Global.Log.Error(err)
 		result.Fail(c, global.ServerError, global.UpdatePermissionFail)
+		return
+	}
+	result.Ok(c, nil)
+}
+
+// DeleteRoleForUser 删除用户的角色
+func DeleteRoleForUser(c *gin.Context) {
+	//role 角色 user用户
+	role := c.PostForm("role")
+	user := c.PostForm("user")
+	if role == "" || user == "" {
+		result.Fail(c, global.BadRequest, global.QueryError)
+		return
+	}
+	_, err := global.Global.Redis.SRem(global.Global.Ctx, global.User+role, user).Result()
+	if err != nil {
+		result.Fail(c, global.ServerError, global.RoleNotfound)
+		global.Global.Log.Error(err)
+		return
+	}
+	//删除角色
+	ok, err := global.Global.CasBin.DeleteRoleForUser(user, role)
+	if err != nil || !ok {
+		global.Global.Log.Error(err)
+		result.Fail(c, global.ServerError, global.DelRoleFail)
+		return
+	}
+	result.Ok(c, nil)
+	return
+}
+
+// GetPermissionsForUser 查看用户的权限
+func GetPermissionsForUser(c *gin.Context) {
+	user := c.PostForm("user")
+	if user == "" {
+		result.Fail(c, global.BadRequest, global.QueryError)
+		return
+	}
+	list, err := global.Global.CasBin.GetPermissionsForUser(user)
+	if err != nil {
+		global.Global.Log.Error(err)
+		result.Fail(c, global.ServerError, global.GetPermissionsForUserFail)
+		return
+	}
+	result.Ok(c, list)
+}
+
+// GetAllNamedSubjects 查看所有用户权限
+func GetAllNamedSubjects(c *gin.Context) {
+	list := global.Global.CasBin.GetNamedPolicy("p")
+	result.Ok(c, list)
+	return
+}
+
+// DeleteRole 删除角色，同时也删除所有的权限
+func DeleteRole(c *gin.Context) {
+	role := c.PostForm("role")
+	if role == "" {
+		result.Fail(c, global.BadRequest, global.QueryError)
+		return
+	}
+	ok, err := global.Global.CasBin.DeleteRole(role)
+	if err != nil || !ok {
+		global.Global.Log.Error(err)
+		return
+	}
+	result.Ok(c, nil)
+}
+
+func Add(c *gin.Context) {
+	role := c.PostForm("role")
+	list := c.PostForm("list")
+	if list == "" || role == "" {
+		result.Fail(c, global.BadRequest, global.QueryError)
+		return
+	}
+	ok, err := global.Global.CasBin.AddPermissionForUser(role, list)
+	if err != nil || !ok {
+		global.Global.Log.Error(err)
+		result.Fail(c, global.ServerError, global.AddPermissionFail)
 		return
 	}
 	result.Ok(c, nil)

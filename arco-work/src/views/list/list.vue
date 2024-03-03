@@ -282,8 +282,8 @@ export default defineComponent({
           const year1 = date.getFullYear();
           const month1 = String(date.getMonth() + 1).padStart(2, "0");
           const day1 = String(date.getDate()).padStart(2, "0");
-          i.end_time = `${year1}-${month1}-${day1}  ${date1.getHours() > 10 ? date1.getHours() : '0' + date1.getHours()}:${date1.getMinutes() > 10 ? date1.getMinutes() : '0' + date1.getMinutes()}:${date1.getSeconds() > 10 ? date1.getSeconds() : '0' + date1.getSeconds()}`
-          i.start_time = `${year}-${month}-${day}  ${date.getHours() > 10 ? date.getHours() : '0' + date.getHours()}:${date.getMinutes() > 10 ? date.getMinutes() : '0' + date.getMinutes()}:${date.getSeconds() > 10 ? date.getSeconds() : '0' + date.getSeconds()}`
+          i.end_time = `${year1}-${month1}-${day1}  ${date1.getHours() >= 10 ? date1.getHours() : '0' + date1.getHours()}:${date1.getMinutes() > 10 ? date1.getMinutes() : '0' + date1.getMinutes()}:${date1.getSeconds() > 10 ? date1.getSeconds() : '0' + date1.getSeconds()}`
+          i.start_time = `${year}-${month}-${day}  ${date.getHours() >= 10 ? date.getHours() : '0' + date.getHours()}:${date.getMinutes() > 10 ? date.getMinutes() : '0' + date.getMinutes()}:${date.getSeconds() > 10 ? date.getSeconds() : '0' + date.getSeconds()}`
           return
         })
         table.handleSuccess(res)

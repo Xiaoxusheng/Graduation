@@ -44,6 +44,7 @@
                 </template>
               </a-form-item>
             </a-form>
+            <a-button size="small" type="primary">查询</a-button>
           </template>
         </TableHeader>
       </template>
@@ -58,6 +59,7 @@
             :scroll="{ y: tableHeight }"
             :stripe="true"
             size="small"
+            show-header
             table-layout-fixe
             @selection-change="onSelectionChange"
         >
@@ -66,6 +68,7 @@
                 v-for="item of tableColumns"
                 :key="item.identity"
                 :align="item.align"
+                :width="item.width"
                 :data-index="(item.key as string)"
                 :fixed="item.fixed"
                 :title="(item.title as string)"
@@ -131,17 +134,17 @@ export default defineComponent({
 
     const conditionItems: Array<FormItem> = [
       {
-        key: 'name',
-        label: '用户姓名',
+        key: 'IP',
+        label: 'IP地址',
         type: 'input',
-        placeholder: '请输入用户姓名',
+        placeholder: '请输入IP地址',
         value: ref(''),
         reset: function () {
           this.value.value = ''
         },
         render: (formItem: FormItem) => {
           return h(Input, {
-            placeholder: '请输入姓名',
+            placeholder: '请输入IP地址',
             modelValue: formItem.value.value,
             'onUpdate:modelValue': (value) => {
               formItem.value.value = value
@@ -157,18 +160,18 @@ export default defineComponent({
       },
       {
         key: 'sex',
-        label: '用户姓别',
+        label: '请求方式',
         value: ref(),
         type: 'select',
-        placeholder: '请选择用户姓别',
+        placeholder: '请选择请求方式',
         optionItems: [
           {
-            label: '男',
-            value: 1,
+            label: 'GET',
+            value: 'GET',
           },
           {
-            label: '女',
-            value: 2,
+            label: 'POST',
+            value: 'POST',
           },
         ],
         reset: function () {
@@ -201,11 +204,14 @@ export default defineComponent({
         title: '请求URL',
         key: 'path',
         dataIndex: 'path',
+        width: 300,
+        align: 'left'
       },
       {
         title: 'IP地址',
         key: 'ip',
         dataIndex: 'ip ',
+        align: 'left'
       },
       {
         title: '耗时',
@@ -275,7 +281,6 @@ export default defineComponent({
             }
           }).then((res) => {
             table.dataList.splice(table.dataList.indexOf(item), 1)
-
             pagination.setTotalSize(table.dataList.length)
             Message.success('删除成功')
           }).catch(error => {
@@ -303,6 +308,7 @@ export default defineComponent({
       actionTitle,
       modalDialogRef,
       onDeleteItem,
+
       formRef,
       conditionItems
     }

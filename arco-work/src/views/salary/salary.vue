@@ -40,6 +40,7 @@
               v-for="item of tableColumns"
               :key="item.identity"
               :align="item.align"
+              :width="item.width"
               :data-index="(item.key as string)"
               :fixed="item.fixed"
               :title="(item.title as string)"
@@ -47,25 +48,15 @@
             <template v-if="item.key === 'index'" #cell="{ rowIndex }">
               {{ rowIndex + 1 }}
             </template>
-            <template v-else-if="item.key === 'http_code'" #cell="{ record }">
-              <a-tag :color="record.http_code ==200 ? 'green' : 'red'">
-                {{ "record.http_code === 200" ? '成功' : '失败' }}
+            <template v-else-if="item.key === 'expected_attendance_hours'" #cell="{ record }">
+              <a-tag :color="'blue'">
+                {{ record.expected_attendance_hours.toFixed(1) }}
               </a-tag>
             </template>
-            <template v-else-if="item.key === 'time'" #cell="{ record }">
-              <a-tag :color="record.time <=100 ? 'blue' : 'red'">
-                {{ record.time + 'ms' }}
+            <template v-else-if="item.key === 'attendance_hours'" #cell="{ record }">
+              <a-tag :color="'green'">
+                {{ record.attendance_hours.toFixed(1) }}
               </a-tag>
-            </template>
-            <template v-else-if="item.key === 'method'" #cell="{ record }">
-              <a-tag :color="record.method ==='GET' ? 'purple' : 'brown'">
-                {{ record.method }}
-              </a-tag>
-            </template>
-            <template v-else-if="item.key === 'image_Url'" #cell="{}">
-              <a-avatar :size="30" :style="{ backgroundColor: 'var(--color-primary-light-1)' }">
-                <IconUser/>
-              </a-avatar>
             </template>
           </a-table-column>
         </template>
@@ -178,6 +169,7 @@ export default defineComponent({
         title: '生成时间',
         key: 'CreatedAt',
         dataIndex: 'CreatedAt',
+        width: 200,
       },
       {
         title: '工资',

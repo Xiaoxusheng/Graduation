@@ -1,152 +1,155 @@
 <template>
-    <div style="width: 100%; height:100%;"/>
-    <TableBody>
-      <template #header>
-        <TableHeader ref="tableHeaderRef" :show-filter="false">
-          <template #table-config>
-            <add-button @add="onAddItem"/>
-          </template>
-        </TableHeader>
-      </template>
-      <template #default>
-        <a-table
-            :bordered="{ wrapper: true, cell: true }"
-            :data="dataList"
-            :hoverable="true"
-            :loading="tableLoading"
-            :pagination="false"
-            :rowKey="rowKey"
-            :scroll="{ y: tableHeight }"
-            :stripe="true"
-            size="small"
-            table-layout-fixed
-            @selection-change="onSelectionChange"
-        >
-          <template #columns>
-            <a-table-column
-                v-for="item of tableColumns"
-                :key="item.identity"
-                :align="item.align"
-                :data-index="(item.key as string)"
-                :fixed="item.fixed"
-                :title="(item.title as string)"
-            >
-              <template v-if="item.key === 'index'" #cell="{ rowIndex }">
-                {{ rowIndex + 1 }}
-              </template>
-              <template v-else-if="item.key === 'sex'" #cell="{ record }">
-                <a-tag :color="record.sex === 1 ? 'green' : 'red'">
-                  {{ record.sex === 1 ? '男' : '女' }}
-                </a-tag>
-              </template>
-              <template v-else-if="item.key === 'position'" #cell="{ record }">
-                <a-tag :color="record.position === 0 ? 'green' : 'purple'">
-                  {{ map[record.position] }}
-                </a-tag>
-              </template>
-              <template v-else-if="item.key === 'department_id'" #cell="{ record }">
-                <a-tag :color="record.department_id === 1 ? 'green' : 'blue'">
-                  {{ storedMap.get(record.department_id) }}
-                </a-tag>
-              </template>
+  <div style="width: 100%; height:100%;"/>
+  <TableBody>
+    <template #header>
+      <TableHeader ref="tableHeaderRef" :show-filter="false">
+        <template #table-config>
+          <add-button @add="onAddItem"/>
+        </template>
+      </TableHeader>
+    </template>
+    <template #default>
+      <a-table
+          :bordered="{ wrapper: true, cell: true }"
+          :data="dataList"
+          :hoverable="true"
+          :loading="tableLoading"
+          :pagination="false"
+          :rowKey="rowKey"
+          :scroll="{ y: tableHeight }"
+          :stripe="true"
+          size="small"
+          table-layout-fixed
+          @selection-change="onSelectionChange"
+      >
+        <template #columns>
+          <a-table-column
+              v-for="item of tableColumns"
+              :key="item.identity"
+              :align="item.align"
+              :data-index="(item.key as string)"
+              :fixed="item.fixed"
+              :title="(item.title as string)"
+              :width="item.width"
+          >
+            <template v-if="item.key === 'index'" #cell="{ rowIndex }">
+              {{ rowIndex + 1 }}
+            </template>
+            <template v-else-if="item.key === 'sex'" #cell="{ record }">
+              <a-tag :color="record.sex === 1 ? 'green' : 'red'">
+                {{ record.sex === 1 ? '男' : '女' }}
+              </a-tag>
+            </template>
+            <template v-else-if="item.key === 'position'" #cell="{ record }">
+              <a-tag :color="record.position === 0 ? 'green' : 'purple'">
+                {{ map[record.position] }}
+              </a-tag>
+            </template>
+            <template v-else-if="item.key === 'department_id'" #cell="{ record }">
+              <a-tag :color="record.department_id === 1 ? 'green' : 'blue'">
+                {{ storedMap.get(record.department_id) }}
+              </a-tag>
+            </template>
 
-              <template v-else-if="item.key === 'image_Url'" #cell="{}">
-                <a-avatar :size="30" :style="{ backgroundColor: 'var(--color-primary-light-1)' }">
-                  <IconUser/>
-                </a-avatar>
-              </template>
-              <template v-else-if="item.key === 'actions'" #cell="{ record }">
-                <a-space>
-                  <a-button size="mini" status="success" @click="onUpdateItem(record)">
-                    编辑
-                  </a-button>
-                  <a-button size="mini" status="danger" @click="onDeleteItem(record)">
-                    删除
-                  </a-button>
-                </a-space>
-              </template>
-              <template v-else-if="item.key === 'status'" #cell="{ record }">
-                <a-tag v-if="record.status === 1" color="blue" size="small">正常</a-tag>
-                <a-tag v-else color="red" size="small">离职</a-tag>
-              </template>
-            </a-table-column>
-          </template>
-        </a-table>
-      </template>
+            <template v-else-if="item.key === 'image_Url'" #cell="{}">
+              <a-avatar :size="30" :style="{ backgroundColor: 'var(--color-primary-light-1)' }">
+                <IconUser/>
+              </a-avatar>
+            </template>
+            <template v-else-if="item.key === 'actions'" #cell="{ record }">
+              <a-space>
+                <a-button size="mini" status="success" @click="onUpdateItem(record)">
+                  编辑信息
+                </a-button>
+                <a-button size="mini" status="normal" @click="distribution(record)">
+                  分配账号
+                </a-button>
+                <a-button size="mini" status="danger" @click="onDeleteItem(record)">
+                  删除
+                </a-button>
+              </a-space>
+            </template>
+            <template v-else-if="item.key === 'status'" #cell="{ record }">
+              <a-tag v-if="record.status === 1" color="blue" size="small">正常</a-tag>
+              <a-tag v-else color="red" size="small">离职</a-tag>
+            </template>
+          </a-table-column>
+        </template>
+      </a-table>
+    </template>
 
-      <template #footer>
-        <TableFooter ref="tableFooterRef" :pagination="pagination"/>
-      </template>
-    </TableBody>
-    <!--    继续-->
-    <ModalDialog ref="modalDialogRef" :title="actionTitle" @confirm="onDataFormConfirm">
-      <template #content>
-        <a-form ref="formRef" :labelCol="{ span: 4 }" :model="employerInfo">
-          <a-form-item :rules="[
+    <template #footer>
+      <TableFooter ref="tableFooterRef" :pagination="pagination"/>
+    </template>
+  </TableBody>
+  <!--    继续-->
+  <ModalDialog ref="modalDialogRef" :title="actionTitle" @confirm="onDataFormConfirm">
+    <template #content>
+      <a-form ref="formRef" :labelCol="{ span: 4 }" :model="employerInfo">
+        <a-form-item :rules="[
             { required: true, message: '请输入员工姓名' },
             { min: 3, max: 10, message: '长度在 3 - 10个字符' },
           ]" :validate-trigger="['change', 'input']" field="name" label="员工姓名">
-            <a-input v-model="employerInfo.name" placeholder="请输入员工姓名">
-              <template #suffix>
-                <icon-info-circle/>
-              </template>
-            </a-input>
-          </a-form-item>
-          <a-form-item :rules="[
+          <a-input v-model="employerInfo.name" placeholder="请输入员工姓名">
+            <template #suffix>
+              <icon-info-circle/>
+            </template>
+          </a-input>
+        </a-form-item>
+        <a-form-item :rules="[
             { required: true, message: '请输入部门编号' },
             { min: 1, max: 2, message: '长度在 1个字符' },
-          ]" :validate-trigger="['change', 'input']" field="department" label="部门编号">
-            <a-input v-model.number="employerInfo.department_id" placeholder="请输入部门编号">
-              <template #suffix>
-                <icon-info-circle/>
-              </template>
-            </a-input>
-          </a-form-item>
-          <a-form-item label="电话" name="phone">
-            <a-input v-model="employerInfo.phone" :rules="[
+          ]" :validate-trigger="['change', 'input']" field="department_id" label="部门编号">
+          <a-input v-model.number="employerInfo.department_id" placeholder="请输入部门编号">
+            <template #suffix>
+              <icon-info-circle/>
+            </template>
+          </a-input>
+        </a-form-item>
+        <a-form-item label="电话" name="phone">
+          <a-input v-model="employerInfo.phone" :rules="[
             { required: true, message: '请输入员工电话' },
             { min: 11, max: 11, message: '长度在 11 个字符' },
           ]" :validate-trigger="['change', 'input']" placeholder="请输入员工电话">
-              <template #suffix>
-                <icon-info-circle/>
-              </template>
-            </a-input>
-          </a-form-item>
-          <a-form-item label="员工生日" name="birthday">
-            <a-date-picker
-                v-model="employerInfo.birthday"
-                format=YYYY:MM:DD
-                style="width: 100%"
-                type="time"
-            />
-          </a-form-item>
-          <a-form-item label="职位" name="position">
-            <a-select v-model.number="employerInfo.position" placeholder="请选择职位">
-              <a-option v-for="(value, key) of map" :key="key" :value="key as number">
-                {{ value }}
-              </a-option>
-            </a-select>
-
-          </a-form-item>
-          <a-form-item label="性别" name="sex">
-            <a-radio-group v-model="employerInfo.sex">
-              <a-radio :value="1">男</a-radio>
-              <a-radio :value="2">女</a-radio>
-            </a-radio-group>
-          </a-form-item>
-          <a-form-item label="状态" name="status">
-            <a-radio-group v-model="employerInfo.status">
-              <a-radio :value="1">正常</a-radio>
-              <a-radio :value="2">离职</a-radio>
-            </a-radio-group>
-          </a-form-item>
-        </a-form>
-      </template>
-    </ModalDialog>
+            <template #suffix>
+              <icon-info-circle/>
+            </template>
+          </a-input>
+        </a-form-item>
+        <a-form-item label="员工生日" name="birthday">
+          <a-date-picker
+              v-model="employerInfo.birthday"
+              format=YYYY:MM:DD
+              style="width: 100%"
+              type="time"
+          />
+        </a-form-item>
+        <a-form-item label="职位" name="position">
+          <a-select v-model.number="employerInfo.position" placeholder="请选择职位">
+            <a-option v-for="(value, key) of map" :key="key" :value="key as number">
+              {{ value }}
+            </a-option>
+          </a-select>
+        </a-form-item>
+        <a-form-item label="性别" name="sex">
+          <a-radio-group v-model="employerInfo.sex">
+            <a-radio :value="1">男</a-radio>
+            <a-radio :value="2">女</a-radio>
+          </a-radio-group>
+        </a-form-item>
+        <a-form-item label="状态" name="status">
+          <a-radio-group v-model="employerInfo.status">
+            <a-radio :value="1">正常</a-radio>
+            <a-radio :value="2">离职</a-radio>
+          </a-radio-group>
+        </a-form-item>
+      </a-form>
+    </template>
+  </ModalDialog>
 </template>
 
 <script lang="ts">
-import {add_employer, delete_employer, employerList, update_employer} from '@/api/url'
+import {add_employer, assignedAccount, delete_employer, employerList, update_employer} from '@/api/url'
 import {usePagination, useRowKey, useRowSelection, useTable, useTableColumn, useTableHeight,} from '@/hooks/table'
 import {Form, Message, Modal} from '@arco-design/web-vue'
 import {defineComponent, getCurrentInstance, onMounted, reactive, ref} from 'vue'
@@ -171,12 +174,9 @@ export default defineComponent({
       4: "副经理",
       5: "经理",
     }
-
     const storedMapString = localStorage.getItem('departmentMap');
     const storedMapArray = JSON.parse(storedMapString);
     const storedMap = new Map(storedMapArray)
-
-
     const department = {
       1: "程序部",
       2: "人事部",
@@ -245,16 +245,20 @@ export default defineComponent({
         title: '电话',
         key: 'phone',
         dataIndex: 'phone',
+        align: 'left'
       },
       {
         title: 'IP',
         key: 'IP',
         dataIndex: 'IP',
+        align: 'left'
+
       },
       {
         title: '操作',
         key: 'actions',
         dataIndex: 'actions',
+        width: 250,
       },
     ])
     const expandAllFlag = ref(true)
@@ -422,6 +426,25 @@ export default defineComponent({
       employerInfo.position = record.position
     }
 
+    // 分配账号
+    function distribution(item: any) {
+      get({
+        url: assignedAccount,
+        headers: {
+          Authorization: "Bearer " + userStore.token
+        },
+        data: {
+          uid: item.uid
+        }
+      }).then((data) => {
+        Message.success("分配成功")
+      }).catch(error => {
+        Message.error(error.message)
+      })
+
+
+    }
+
     onMounted(async () => {
       table.tableHeight.value = await useTableHeight(getCurrentInstance())
       doRefresh()
@@ -436,7 +459,6 @@ export default defineComponent({
       pagination,
       formModel,
       actionTitle,
-
       modalDialogRef,
       onAddItem,
       onDeleteItem,
@@ -447,7 +469,8 @@ export default defineComponent({
       add,
       storedMap,
       onUpdateItem,
-      onDataFormConfirm
+      onDataFormConfirm,
+      distribution,
     }
   },
 })

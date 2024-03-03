@@ -22,7 +22,7 @@ var (
 	Menus          = "menu"           //菜单
 	ClockIn        = "ClockIn"        //打卡
 	UidId          = "uid-identity"   //员工的uid和identity的映射
-	Role           = "role"           //超级管理员
+	User           = "User"           //超级管理员
 	SalaryList     = "salary-list"    //工资列表
 )
 

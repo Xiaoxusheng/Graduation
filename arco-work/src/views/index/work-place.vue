@@ -224,14 +224,14 @@ export default defineComponent({
           color: COLORS[random(0, COLORS.length)],
         },
         {
-          title: '表单',
-          path: '/form/base-form-view',
+          title: '系统日志',
+          path: '/log/system',
           icon: 'icon-edit',
           color: COLORS[random(0, COLORS.length)],
         },
         {
-          title: '多级菜单',
-          path: '/next/menu2/menu-2-1/menu-2-1-1',
+          title: '财务',
+          path: '/salary/salary',
           icon: 'icon-share-alt',
           color: COLORS[random(0, COLORS.length)],
         },

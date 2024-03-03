@@ -49,7 +49,7 @@ func main() {
 	}
 	err := s.ListenAndServe()
 	if err != nil {
-		log.Println("server start fail")
+		log.Println("server start fail :" + err.Error())
 	}
 
 	//err := e.Run(":80")

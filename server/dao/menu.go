@@ -19,3 +19,13 @@ func GetMenuList() ([]models.Menu, error) {
 func InsertMenu(menu *models.Menu) error {
 	return global.Global.Mysql.Create(menu).Error
 }
+
+// DelMenu 删除菜单
+func DelMenu(menu *models.Menu) error {
+	return global.Global.Mysql.Unscoped().Where("menu_url=?", menu.MenuUrl).Delete(menu).Error
+}
+
+// UpdateMenu 更新 菜单信息
+func UpdateMenu(menu *models.Menu) error {
+	return global.Global.Mysql.Where("menu_url=?", menu.MenuUrl).Updates(menu).Error
+}

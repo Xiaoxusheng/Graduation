@@ -13,6 +13,7 @@ func Routers(e *gin.Engine) *gin.Engine {
 	//
 
 	e.POST("/user/login", user.Login)
+	//菜单列表
 	e.POST("/admin/menu_list", menu.GetMenuList)
 	//
 	//u := e.Group("/user")
@@ -22,23 +23,23 @@ func Routers(e *gin.Engine) *gin.Engine {
 	roots.Use(middleware.ParseToken(), middleware.CasBin())
 	//分配角色
 	roots.POST("/add_rolesForUser", root.AddRolesForUser)
-	//给角色分配资源
-	roots.POST("/add_resource", root.AddResource)
 	//分配资源
 	roots.POST("/add_permissionForUser", root.AddPermissionForUser)
-	//删除角色
+	//删除用户的角色
 	roots.POST("/delete_roleForUser", root.DeleteRoleForUser)
+	//删除角色,包括删除角色所有权限
+	roots.POST("/delete_role", root.DeleteRole)
 	//删除单个权限
 	roots.POST("/delete_permissionForUser", root.DeletePermissionForUser)
-	//删除所有的权限
+	//删除用户所有的权限
 	roots.POST("/delete_Permission", root.DeletePermissionsForUser)
 	//更新权限
 	roots.POST("/update_policy", root.UpdatePolicy)
-	//查看能访问的资源
+	//查看角色的权限
 	roots.POST("/get_permissionsForUser", root.GetPermissionsForUser)
 	//查看所有权限
 	roots.POST("/get_allNamedSubjects", root.GetAllNamedSubjects)
-
+	roots.POST("/add", root.Add)
 	//登录
 	e.POST("/admin/login", admin.Login)
 
@@ -105,6 +106,10 @@ func Routers(e *gin.Engine) *gin.Engine {
 
 	//增加菜单
 	api.POST("/add_menu", menu.AddMenu)
+	//删除菜单
+	api.GET("/del_menu", menu.DeleteMenu)
+	//更新菜单
+	api.POST("/update_menu", menu.UpdateMenu)
 
 	//日志
 	api.GET("/log_list", admin.GetLogList)
@@ -117,9 +122,9 @@ func Routers(e *gin.Engine) *gin.Engine {
 	users.GET("/clockIn", user.ClockIn)
 	//补卡申请
 	users.POST("/markCard_application", user.MarkCardApplication)
-	//请假
+	//请假申请
 	users.POST("/leave", user.LeaveApplication)
-	//加班
+	//加班申请
 	users.POST("/overtime", user.OverTimeApplication)
 
 	//修改密码

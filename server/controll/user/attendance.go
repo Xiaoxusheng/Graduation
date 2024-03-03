@@ -28,6 +28,7 @@ func ClockIn(c *gin.Context) {
 	//考虑重复打卡
 	if global.Global.Redis.SIsMember(global.Global.Ctx, global.ClockIn, id).Val() {
 		//  已经打卡一次
+		//获取uid
 		val := global.Global.Redis.HGet(global.Global.Ctx, global.UidId, id).Val()
 		if val != "" {
 			n, err := strconv.Atoi(val)
@@ -297,6 +298,7 @@ func LeaveApplication(c *gin.Context) {
 			StartTime: time.Unix(leave.StartTime, 0),
 			EndTime:   time.Unix(leave.EndTime, 0),
 			Status:    4,
+			Url:       leave.Url,
 			Reason:    leave.Reason,
 			Model:     gorm.Model{},
 		})
@@ -338,6 +340,7 @@ func LeaveApplication(c *gin.Context) {
 	err = dao.InsertMarkCardApplication(&models.Examine{
 		Identity:  utils.GetUidV4(),
 		Uid:       int64(uids),
+		Url:       leave.Url,
 		StartTime: time.Unix(leave.StartTime, 0),
 		EndTime:   time.Unix(leave.EndTime, 0),
 		Status:    4,
@@ -379,6 +382,7 @@ func OverTimeApplication(c *gin.Context) {
 		err = dao.InsertMarkCardApplication(&models.Examine{
 			Identity:  utils.GetUidV4(),
 			Uid:       employer.Uid,
+			Url:       overtime.Url,
 			StartTime: time.Unix(overtime.StartTime, 0),
 			EndTime:   time.Unix(overtime.EndTime, 0),
 			Status:    1,
@@ -421,6 +425,7 @@ func OverTimeApplication(c *gin.Context) {
 	err = dao.InsertMarkCardApplication(&models.Examine{
 		Identity:  utils.GetUidV4(),
 		Uid:       int64(uids),
+		Url:       overtime.Url,
 		StartTime: time.Unix(overtime.StartTime, 0),
 		EndTime:   time.Unix(overtime.EndTime, 0),
 		Status:    1,

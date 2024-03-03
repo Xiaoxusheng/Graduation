@@ -12,12 +12,23 @@ export const logouts = '/logout'
 export const info = '/info'
 
 
+// 分配账号
+export const assignedAccount = '/assigned_account'
+
+
 export const updateUserInfo = '/updateUser'
 
 export const addUserInfo = '/addUser'
 
 // 菜单列表
 export const getMenuListByRoleId = '/menu_list'
+// 增加菜单
+export const addMenu = '/add_menu'
+// 删除菜单
+export const delMenu = '/del_menu'
+// 更新菜单
+export const updateMenu = '/update_menu'
+
 
 export const getAllMenuByRoleId = '/getAllMenuByRoleId'
 

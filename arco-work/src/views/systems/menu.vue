@@ -113,11 +113,12 @@
 
 <script lang="ts">
 import {defineComponent, onMounted, ref, Ref} from 'vue'
-import {post} from '@/api/http'
-import {getMenuList} from '@/api/url'
+import {get, post} from '@/api/http'
+import {addMenu, delMenu, getMenuListByRoleId, updateMenu} from '@/api/url'
 import {useRowKey, useTable, useTableColumn} from '@/hooks/table'
 import {FormItem, ModalDialogType} from '@/types/components'
 import {Message, Modal} from '@arco-design/web-vue'
+import useUserStore from "@/store/modules/user";
 
 interface TreeItem {
   title: string
@@ -282,6 +283,8 @@ export default defineComponent({
         },
       },
     ] as Array<FormItem>
+    const userStore = useUserStore()
+
 
     function transformRoutes(routes: any[], parentPath: string = '/'): TreeItem[] {
       const list: TreeItem[] = []
@@ -302,7 +305,7 @@ export default defineComponent({
 
     function doRefresh() {
       post({
-        url: getMenuList,
+        url: getMenuListByRoleId,
         data: {},
       })
           .then(table.handleSuccess)
@@ -339,18 +342,43 @@ export default defineComponent({
       if (actionModel.value === 'add') {
         if (itemFormOptions.every((it) => (it.validator ? it.validator() : true))) {
           modalDialog.value?.close()
-          Message.success(
-              '模拟创建菜单成功, 参数为:' +
-              JSON.stringify(
-                  itemFormOptions.reduce((pre, cur) => {
-                    ;(pre as any)[cur.key] = cur.value.value || ''
-                    return pre
-                  }, {})
-              )
-          )
+          post({
+            url: addMenu,
+            headers: {
+              Authorization: "Bearer " + userStore.token
+            },
+            data: itemFormOptions.reduce((pre, cur) => {
+              ;(pre as any)[cur.key] = cur.value.value || ''
+              return pre
+            }, {})
+          }).then(res => {
+            doRefresh()
+            Message.success(
+                '添加成功'
+            )
+          }).catch(error => {
+            Message.error(error.message)
+          })
         }
       } else {
         if (itemFormOptions.every((it) => (it.validator ? it.validator() : true))) {
+          post({
+            url: updateMenu,
+            headers: {
+              Authorization: "Bearer " + userStore.token
+            },
+            data: itemFormOptions.reduce((pre, cur) => {
+              ;(pre as any)[cur.key] = cur.value.value || ''
+              return pre
+            }, {})
+          }).then(res => {
+            doRefresh()
+            Message.success(
+                '更新成功'
+            )
+          }).catch(error => {
+            Message.error(error.message)
+          })
           modalDialog.value?.close()
           Message.success(
               '模拟修改菜单成功, 参数为:' +
@@ -365,14 +393,29 @@ export default defineComponent({
       }
     }
 
+    // 删除
     function onDeleteItem(item: any) {
+      console.log(item)
       Modal.confirm({
         title: '提示',
         content: '是否要删除此数据？',
         okText: '删除',
         cancelText: '取消',
         onOk: () => {
-          Message.success('模拟删除成功，参数为：' + JSON.stringify(item))
+          get({
+            url: delMenu,
+            headers: {
+              Authorization: "Bearer " + userStore.token
+            },
+            data: item,
+          }).then(res => {
+            doRefresh()
+            Message.success(
+                '删除成功'
+            )
+          }).catch(error => {
+            Message.error(error.message)
+          })
         },
       })
     }

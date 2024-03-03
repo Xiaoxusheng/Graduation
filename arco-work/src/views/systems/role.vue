@@ -84,7 +84,7 @@
         </a-form>
       </template>
     </ModalDialog>
-    <ModalDialog ref="menuModalDialogRef" title="编辑菜单权限">
+    <ModalDialog ref="menuModalDialogRef" title="编辑菜单权限" @confirm="onDataFormConfirm">
       <template #content>
         <a-tree
             :data="menuData"
@@ -207,6 +207,7 @@ export default defineComponent({
     const defaultCheckedKeys = ref([] as Array<string>)
     const defaultExpandedKeys = ref([] as Array<string>)
     const formModel = ref({})
+    let num = 1
 
     function doRefresh() {
       post({
@@ -218,6 +219,7 @@ export default defineComponent({
     }
 
     function onAddItem() {
+      num = 1
       actionTitle.value = '添加角色'
       modalDialogRef.value?.toggle()
       formItems.forEach((it) => {
@@ -231,6 +233,7 @@ export default defineComponent({
 
     function onUpdateItem(item: any) {
       actionTitle.value = '编辑角色'
+      num = 2
       modalDialogRef.value?.toggle()
       nextTick(() => {
         formItems.forEach((it) => {
@@ -260,21 +263,31 @@ export default defineComponent({
     }
 
     function onDataFormConfirm() {
-      if (formItems.every((it) => (it.validator ? it.validator() : true))) {
-        modalDialogRef.value?.toggle()
-        Message.success(
-            '模拟菜单添加成功，参数为：' +
-            JSON.stringify(
-                formItems.reduce((pre, cur) => {
-                  ;(pre as any)[cur.key] = cur.value.value
-                  return pre
-                }, {})
-            )
-        )
+      if (num === 1) {
+
       }
+      if (num == 2) {
+      }
+      if (num == 3) {
+      }
+      menuModalDialogRef.value?.toggle()
+
+      // if (formItems.every((it) => (it.validator ? it.validator() : true))) {
+      //   modalDialogRef.value?.toggle()
+      //   Message.success(
+      //       '模拟菜单添加成功，参数为：' +
+      //       JSON.stringify(
+      //           formItems.reduce((pre, cur) => {
+      //             ;(pre as any)[cur.key] = cur.value.value
+      //             return pre
+      //           }, {})
+      //       )
+      //   )
+      // }
     }
 
     function onShowMenu(item: any) {
+      num = 3
       post({
         url: getMenuListByRoleId,
         data: {
@@ -309,6 +322,7 @@ export default defineComponent({
       defaultCheckedKeys,
       defaultExpandedKeys,
       ...table,
+      num,
       onAddItem,
       onDataFormConfirm,
       onShowMenu,

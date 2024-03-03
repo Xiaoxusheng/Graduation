@@ -8,6 +8,10 @@
               请选择考勤日期 ：
               <a-date-picker v-model="date" style="width: 200px;" @change="check"/>
             </a-space>
+
+            <a-space class="ml-8">
+              <a-button size="small" type="primary" @click="exportExcel">导出Excel</a-button>
+            </a-space>
           </template>
           <template #table-config>
             <a-space>
@@ -23,6 +27,7 @@
       </template>
       <template #default>
         <a-table
+            ref="tableRef"
             :bordered="{ wrapper: bordered, cell: bordered }"
             :data="dataList"
             :loading="tableLoading"
@@ -137,6 +142,7 @@ import {defineComponent, onMounted, reactive, ref} from 'vue'
 import useUserStore from "@/store/modules/user";
 import ModalDialog from "@/components/ModalDialog.vue";
 import type {Dayjs} from "dayjs";
+import XLSX from "xlsx";
 
 export default defineComponent({
   name: 'TableCustom',
@@ -145,6 +151,7 @@ export default defineComponent({
     const table = useTable()
     const pagination = usePagination(doRefresh)
     const rowKey = useRowKey('id')
+    const tableRef = ref(null)
     const tableColumns = reactive(
         useTableColumn([
           table.indexColumn,
@@ -279,8 +286,8 @@ export default defineComponent({
           const year1 = date.getFullYear();
           const month1 = String(date.getMonth() + 1).padStart(2, "0");
           const day1 = String(date.getDate()).padStart(2, "0");
-          i.end_time = `${year1}-${month1}-${day1}  ${date1.getHours() > 10 ? date1.getHours() : '0' + date1.getHours()}:${date1.getMinutes() > 10 ? date1.getMinutes() : '0' + date1.getMinutes()}:${date1.getSeconds() > 10 ? date1.getSeconds() : '0' + date1.getSeconds()}`
-          i.start_time = `${year}-${month}-${day}  ${date.getHours() > 10 ? date.getHours() : '0' + date.getHours()}:${date.getMinutes() > 10 ? date.getMinutes() : '0' + date.getMinutes()}:${date.getSeconds() > 10 ? date.getSeconds() : '0' + date.getSeconds()}`
+          i.end_time = `${year1}-${month1}-${day1}  ${date1.getHours() >= 10 ? date1.getHours() : '0' + date1.getHours()}:${date1.getMinutes() > 10 ? date1.getMinutes() : '0' + date1.getMinutes()}:${date1.getSeconds() > 10 ? date1.getSeconds() : '0' + date1.getSeconds()}`
+          i.start_time = `${year}-${month}-${day}  ${date.getHours() >= 10 ? date.getHours() : '0' + date.getHours()}:${date.getMinutes() > 10 ? date.getMinutes() : '0' + date.getMinutes()}:${date.getSeconds() > 10 ? date.getSeconds() : '0' + date.getSeconds()}`
           return
         })
         table.handleSuccess(res)
@@ -416,6 +423,14 @@ export default defineComponent({
         Message.error(error.toString())
       })
     }
+
+    // 导出excel
+    function exportExcel() {
+      const workSheet = XLSX.utils.table_to_sheet((tableRef.value as any).$el)
+      const workBook = XLSX.utils.book_new()
+      XLSX.utils.book_append_sheet(workBook, workSheet, '数据报表')
+      XLSX.writeFile(workBook, 'tale-list.xlsx')
+    }
     onMounted(doRefresh)
     return {
       ...table,
@@ -429,6 +444,7 @@ export default defineComponent({
       modalDialogRef,
       map,
       date,
+      tableRef,
       onUpdateTable,
       onDeleteItem,
       doRefresh,
@@ -438,6 +454,7 @@ export default defineComponent({
       onUpdateItem,
       onDataFormConfirm,
       check,
+      exportExcel,
     }
   },
 })

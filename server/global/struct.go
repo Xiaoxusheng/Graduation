@@ -75,9 +75,8 @@ type Attendance struct {
 
 // Application 申请信息
 type Application struct {
-	Uid  int64  `json:"uid,omitempty"  binding:"required" form:"uid"`
-	Pass int32  `json:"pass"  binding:"required" form:"pass"`
-	Url  string `json:"url,omitempty"   binding:"required"  form:"url"`
+	Uid  int64 `json:"uid,omitempty"  binding:"required" form:"uid"`
+	Pass int32 `json:"pass"  binding:"required" form:"pass"`
 }
 
 // Menu 菜单
@@ -105,6 +104,7 @@ type LeaveApplication struct {
 	StartTime int64  `json:"start_time" binding:"required"   form:"start_time"`
 	EndTime   int64  `json:"end_time"  binding:"required"   form:"end_time"`
 	Reason    string `json:"reason"   binding:"required"  form:"reason"`
+	Url       string `json:"url,omitempty"   binding:"required"  form:"url"`
 }
 
 // OverTime 加班

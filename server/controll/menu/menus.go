@@ -13,6 +13,7 @@ import (
 // GetMenuList 获取菜单接口
 func GetMenuList(c *gin.Context) {
 	//判断身份
+	//判断为
 
 	//下发对应的菜单
 	//val := global.Global.Redis.Get(global.Global.Ctx, global.Menus).Val()
@@ -109,4 +110,59 @@ func AddMenu(c *gin.Context) {
 	result.Ok(c, nil)
 }
 
-//删除菜单
+// DeleteMenu 删除菜单
+func DeleteMenu(c *gin.Context) {
+	menu := new(global.Menu)
+	err := c.Bind(menu)
+	if err != nil {
+		result.Fail(c, global.BadRequest, global.QueryError)
+		global.Global.Log.Error(err)
+		return
+	}
+	//	删除菜单
+	err = dao.DelMenu(&models.Menu{
+		MenuUrl:       menu.MenuUrl,
+		MenuName:      menu.MenuName,
+		Icon:          menu.Icon,
+		ParentPath:    menu.ParentPath,
+		RouteName:     menu.RouteName,
+		Cacheable:     true,
+		Badge:         menu.Badge,
+		LocalFilePath: menu.LocalFilePath,
+		IsRootPath:    menu.IsRootPath,
+	})
+	if err != nil {
+		result.Fail(c, global.BadRequest, global.DeleteMenuError)
+		global.Global.Log.Error(err)
+		return
+	}
+	result.Ok(c, nil)
+}
+
+// UpdateMenu 更新菜单信息
+func UpdateMenu(c *gin.Context) {
+	menu := new(global.Menu)
+	err := c.Bind(menu)
+	if err != nil {
+		result.Fail(c, global.BadRequest, global.QueryError)
+		global.Global.Log.Error(err)
+		return
+	}
+	err = dao.UpdateMenu(&models.Menu{
+		MenuUrl:       menu.MenuUrl,
+		MenuName:      menu.MenuName,
+		Icon:          menu.Icon,
+		ParentPath:    menu.ParentPath,
+		RouteName:     menu.RouteName,
+		Cacheable:     menu.Cacheable,
+		Badge:         menu.Badge,
+		LocalFilePath: menu.LocalFilePath,
+		IsRootPath:    menu.IsRootPath,
+	})
+	if err != nil {
+		result.Fail(c, global.BadRequest, global.UpdateMenuError)
+		global.Global.Log.Error(err)
+		return
+	}
+	result.Ok(c, nil)
+}

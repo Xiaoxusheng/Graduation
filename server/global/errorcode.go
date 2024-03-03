@@ -64,7 +64,9 @@ var (
 	UpdateClockInLogError  = "修改考勤记录失败！"
 
 	//菜单
-	AddMenuError = "新增菜单失败！"
+	AddMenuError    = "新增菜单失败！"
+	DeleteMenuError = "删除菜单失败！"
+	UpdateMenuError = "更新菜单失败！"
 
 	//考勤
 	GetClockError = "获取考勤列表失败！"
@@ -103,7 +105,7 @@ var (
 	PermissionDeniedError     = "权限不足！"
 	AddRoleFail               = "添加角色失败！"
 	AddPermissionFail         = "分配资源失败！"
-	RoleNotfound              = "角色不存在,请先分配角色！"
+	RoleNotfound              = "角色不存在！"
 	DelRoleFail               = "删除角色失败！"
 	DelPermissionFail         = "删除资源失败！"
 	UpdatePermissionFail      = "更新资源失败！"
