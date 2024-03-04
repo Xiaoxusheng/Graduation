@@ -1,0 +1,1668 @@
+[server] [2024-02-27 10:06:38] [0kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-27 10:06:38] [0kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (6 handlers)
+[GIN-debug] GET    /admin/menu_list          --> server/controll/menu.GetMenuList (6 handlers)
+[GIN-debug] POST   /admin/login              --> server/controll/admin.Login (6 handlers)
+[GIN-debug] POST   /register                 --> server/controll/admin.Register (6 handlers)
+[GIN-debug] GET    /admin/info               --> server/controll/admin.Info (7 handlers)
+[GIN-debug] GET    /admin/logout             --> server/controll/admin.Logout (7 handlers)
+[GIN-debug] GET    /admin/reset_password     --> server/controll/admin.ResetPassword (7 handlers)
+[GIN-debug] GET    /admin/delete_employer    --> server/controll/admin.DeleteEmployee (7 handlers)
+[GIN-debug] POST   /admin/add_employer       --> server/controll/admin.AddEmployee (7 handlers)
+[GIN-debug] POST   /admin/update_employer    --> server/controll/admin.UpdateEmployee (7 handlers)
+[GIN-debug] GET    /admin/employer_list      --> server/controll/admin.EmployeeList (7 handlers)
+[GIN-debug] GET    /admin/employer_info      --> server/controll/admin.EmployeeInfo (7 handlers)
+[GIN-debug] GET    /admin/assigned_account   --> server/controll/admin.AssignedAccount (7 handlers)
+[GIN-debug] GET    /admin/get_department_list --> server/controll/admin.GetDepartmentList (7 handlers)
+[GIN-debug] GET    /admin/del_department     --> server/controll/admin.DeleteDepartment (7 handlers)
+[GIN-debug] POST   /admin/update_department  --> server/controll/admin.UpdateDepartment (7 handlers)
+[GIN-debug] POST   /admin/add_department     --> server/controll/admin.AddDepartment (7 handlers)
+[GIN-debug] GET    /admin/department_info    --> server/controll/admin.DepartmentInfo (7 handlers)
+[GIN-debug] GET    /admin/get_clockIn        --> server/controll/admin.GetClockInLog (7 handlers)
+[GIN-debug] POST   /admin/edit_clockIn       --> server/controll/admin.EditClockLog (7 handlers)
+[GIN-debug] POST   /admin/leave_application  --> server/controll/admin.LeaveApplication (7 handlers)
+[GIN-debug] GET    /admin/get_LeaveApplication_list --> server/controll/admin.GetLeaveApplicationList (7 handlers)
+[GIN-debug] POST   /admin/overtime_application --> server/controll/admin.OvertimeApplication (7 handlers)
+[GIN-debug] GET    /admin/get_overtimeApplication_list --> server/controll/admin.GetOvertimeList (7 handlers)
+[GIN-debug] POST   /admin/make_card_application --> server/controll/admin.MakeCardApplication (7 handlers)
+[GIN-debug] POST   /admin/make_card_application_liat --> server/controll/admin.GetMarkCardList (7 handlers)
+[GIN-debug] POST   /admin/add_menu           --> server/controll/menu.AddMenu (7 handlers)
+[GIN-debug] POST   /upload                   --> server/controll/user.Upload (6 handlers)
+[server] [2024-02-27 10:06:50] [3kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 0s
+[GIN] 2024/02/27 - 10:06:50 |[97;42m 204 [0m|       504.3µs |             ::1 |[90;47m OPTIONS [0m "/admin/login"
+[server] [2024-02-27 10:06:50] [3kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 80.8873ms
+[GIN] 2024/02/27 - 10:06:50 |[97;42m 200 [0m|     81.7486ms |             ::1 |[97;46m POST    [0m "/admin/login"
+[server] [2024-02-27 10:07:06] [3kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 0s
+[GIN] 2024/02/27 - 10:07:06 |[97;42m 204 [0m|       504.2µs |             ::1 |[90;47m OPTIONS [0m "/admin/login"
+[server] [2024-02-27 10:07:06] [3kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 59.7239ms
+[GIN] 2024/02/27 - 10:07:06 |[97;42m 200 [0m|     60.2023ms |             ::1 |[97;46m POST    [0m "/admin/login"
+[server] [2024-02-27 10:07:06] [4kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 0s
+[GIN] 2024/02/27 - 10:07:06 |[97;42m 204 [0m|      4.2292ms |             ::1 |[90;47m OPTIONS [0m "/admin/menu_list"
+[server] [2024-02-27 10:07:06] [4kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 0s
+[GIN] 2024/02/27 - 10:07:06 |[90;43m 404 [0m|      2.8275ms |             ::1 |[97;46m POST    [0m "/admin/menu_list"
+[server] [2024-02-27 10:07:18] [4kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 0s
+[GIN] 2024/02/27 - 10:07:18 |[97;42m 204 [0m|            0s |             ::1 |[90;47m OPTIONS [0m "/admin/login"
+[server] [2024-02-27 10:07:18] [4kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 65.3872ms
+[GIN] 2024/02/27 - 10:07:18 |[97;42m 200 [0m|     65.7134ms |             ::1 |[97;46m POST    [0m "/admin/login"
+[server] [2024-02-27 10:07:42] [4kb] [38m[info][0m utils.Listen：21 server/utils.Listen Received signal: interrupt
+
+[server] [2024-02-27 10:07:42] [5kb] [38m[info][0m utils.Listen：27 server/utils.Listen mysql connect close success
+[server] [2024-02-27 10:07:42] [5kb] [38m[info][0m utils.Listen：36 server/utils.Listen redis connect close success
+[server] [2024-02-27 10:07:45] [5kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-27 10:07:45] [5kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (6 handlers)
+[GIN-debug] GET    /admin/menu_list          --> server/controll/menu.GetMenuList (6 handlers)
+[GIN-debug] POST   /admin/login              --> server/controll/admin.Login (6 handlers)
+[GIN-debug] POST   /register                 --> server/controll/admin.Register (6 handlers)
+[GIN-debug] GET    /admin/info               --> server/controll/admin.Info (7 handlers)
+[GIN-debug] GET    /admin/logout             --> server/controll/admin.Logout (7 handlers)
+[GIN-debug] GET    /admin/reset_password     --> server/controll/admin.ResetPassword (7 handlers)
+[GIN-debug] GET    /admin/delete_employer    --> server/controll/admin.DeleteEmployee (7 handlers)
+[GIN-debug] POST   /admin/add_employer       --> server/controll/admin.AddEmployee (7 handlers)
+[GIN-debug] POST   /admin/update_employer    --> server/controll/admin.UpdateEmployee (7 handlers)
+[GIN-debug] GET    /admin/employer_list      --> server/controll/admin.EmployeeList (7 handlers)
+[GIN-debug] GET    /admin/employer_info      --> server/controll/admin.EmployeeInfo (7 handlers)
+[GIN-debug] GET    /admin/assigned_account   --> server/controll/admin.AssignedAccount (7 handlers)
+[GIN-debug] GET    /admin/get_department_list --> server/controll/admin.GetDepartmentList (7 handlers)
+[GIN-debug] GET    /admin/del_department     --> server/controll/admin.DeleteDepartment (7 handlers)
+[GIN-debug] POST   /admin/update_department  --> server/controll/admin.UpdateDepartment (7 handlers)
+[GIN-debug] POST   /admin/add_department     --> server/controll/admin.AddDepartment (7 handlers)
+[GIN-debug] GET    /admin/department_info    --> server/controll/admin.DepartmentInfo (7 handlers)
+[GIN-debug] GET    /admin/get_clockIn        --> server/controll/admin.GetClockInLog (7 handlers)
+[GIN-debug] POST   /admin/edit_clockIn       --> server/controll/admin.EditClockLog (7 handlers)
+[GIN-debug] POST   /admin/leave_application  --> server/controll/admin.LeaveApplication (7 handlers)
+[GIN-debug] GET    /admin/get_LeaveApplication_list --> server/controll/admin.GetLeaveApplicationList (7 handlers)
+[GIN-debug] POST   /admin/overtime_application --> server/controll/admin.OvertimeApplication (7 handlers)
+[GIN-debug] GET    /admin/get_overtimeApplication_list --> server/controll/admin.GetOvertimeList (7 handlers)
+[GIN-debug] POST   /admin/make_card_application --> server/controll/admin.MakeCardApplication (7 handlers)
+[GIN-debug] POST   /admin/make_card_application_liat --> server/controll/admin.GetMarkCardList (7 handlers)
+[GIN-debug] POST   /admin/add_menu           --> server/controll/menu.AddMenu (7 handlers)
+[GIN-debug] POST   /upload                   --> server/controll/user.Upload (6 handlers)
+[server] [2024-02-27 10:07:49] [8kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 0s
+[GIN] 2024/02/27 - 10:07:49 |[97;42m 204 [0m|            0s |             ::1 |[90;47m OPTIONS [0m "/admin/login"
+[server] [2024-02-27 10:07:49] [8kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 7.3971ms
+[GIN] 2024/02/27 - 10:07:49 |[97;42m 200 [0m|      7.7627ms |             ::1 |[97;46m POST    [0m "/admin/login"
+[server] [2024-02-27 10:08:27] [8kb] [38m[info][0m utils.Listen：21 server/utils.Listen Received signal: interrupt
+
+[server] [2024-02-27 10:08:27] [9kb] [38m[info][0m utils.Listen：27 server/utils.Listen mysql connect close success
+[server] [2024-02-27 10:08:27] [9kb] [38m[info][0m utils.Listen：36 server/utils.Listen redis connect close success
+[server] [2024-02-27 10:08:33] [9kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-27 10:08:33] [9kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (6 handlers)
+[GIN-debug] GET    /admin/menu_list          --> server/controll/menu.GetMenuList (6 handlers)
+[GIN-debug] POST   /admin/login              --> server/controll/admin.Login (6 handlers)
+[GIN-debug] POST   /register                 --> server/controll/admin.Register (6 handlers)
+[GIN-debug] GET    /admin/info               --> server/controll/admin.Info (7 handlers)
+[GIN-debug] GET    /admin/logout             --> server/controll/admin.Logout (7 handlers)
+[GIN-debug] GET    /admin/reset_password     --> server/controll/admin.ResetPassword (7 handlers)
+[GIN-debug] GET    /admin/delete_employer    --> server/controll/admin.DeleteEmployee (7 handlers)
+[GIN-debug] POST   /admin/add_employer       --> server/controll/admin.AddEmployee (7 handlers)
+[GIN-debug] POST   /admin/update_employer    --> server/controll/admin.UpdateEmployee (7 handlers)
+[GIN-debug] GET    /admin/employer_list      --> server/controll/admin.EmployeeList (7 handlers)
+[GIN-debug] GET    /admin/employer_info      --> server/controll/admin.EmployeeInfo (7 handlers)
+[GIN-debug] GET    /admin/assigned_account   --> server/controll/admin.AssignedAccount (7 handlers)
+[GIN-debug] GET    /admin/get_department_list --> server/controll/admin.GetDepartmentList (7 handlers)
+[GIN-debug] GET    /admin/del_department     --> server/controll/admin.DeleteDepartment (7 handlers)
+[GIN-debug] POST   /admin/update_department  --> server/controll/admin.UpdateDepartment (7 handlers)
+[GIN-debug] POST   /admin/add_department     --> server/controll/admin.AddDepartment (7 handlers)
+[GIN-debug] GET    /admin/department_info    --> server/controll/admin.DepartmentInfo (7 handlers)
+[GIN-debug] GET    /admin/get_clockIn        --> server/controll/admin.GetClockInLog (7 handlers)
+[GIN-debug] POST   /admin/edit_clockIn       --> server/controll/admin.EditClockLog (7 handlers)
+[GIN-debug] POST   /admin/leave_application  --> server/controll/admin.LeaveApplication (7 handlers)
+[GIN-debug] GET    /admin/get_LeaveApplication_list --> server/controll/admin.GetLeaveApplicationList (7 handlers)
+[GIN-debug] POST   /admin/overtime_application --> server/controll/admin.OvertimeApplication (7 handlers)
+[GIN-debug] GET    /admin/get_overtimeApplication_list --> server/controll/admin.GetOvertimeList (7 handlers)
+[GIN-debug] POST   /admin/make_card_application --> server/controll/admin.MakeCardApplication (7 handlers)
+[GIN-debug] POST   /admin/make_card_application_liat --> server/controll/admin.GetMarkCardList (7 handlers)
+[GIN-debug] POST   /admin/add_menu           --> server/controll/menu.AddMenu (7 handlers)
+[GIN-debug] POST   /upload                   --> server/controll/user.Upload (6 handlers)
+[server] [2024-02-27 10:08:38] [12kb] [38m[info][0m middleware.Log.func1：22 server/middleware.Log.func1 0s
+[GIN] 2024/02/27 - 10:08:38 |[97;42m 204 [0m|            0s |             ::1 |[90;47m OPTIONS [0m "/admin/login"
+[server] [2024-02-27 10:08:38] [12kb] [38m[info][0m middleware.Log.func1：22 server/middleware.Log.func1 7.1642ms
+[GIN] 2024/02/27 - 10:08:38 |[97;42m 200 [0m|      8.0382ms |             ::1 |[97;46m POST    [0m "/admin/login"
+[server] [2024-02-27 10:08:53] [12kb] [38m[info][0m middleware.Log.func1：22 server/middleware.Log.func1 0s
+[GIN] 2024/02/27 - 10:08:53 |[97;42m 204 [0m|            0s |             ::1 |[90;47m OPTIONS [0m "/admin/login"
+[server] [2024-02-27 10:08:53] [13kb] [38m[info][0m middleware.Log.func1：22 server/middleware.Log.func1 59.3081ms
+[GIN] 2024/02/27 - 10:08:53 |[97;42m 200 [0m|     59.7522ms |             ::1 |[97;46m POST    [0m "/admin/login"
+[server] [2024-02-27 10:08:53] [13kb] [38m[info][0m middleware.Log.func1：22 server/middleware.Log.func1 0s
+[GIN] 2024/02/27 - 10:08:53 |[97;42m 204 [0m|      1.4927ms |             ::1 |[90;47m OPTIONS [0m "/admin/menu_list"
+[server] [2024-02-27 10:08:53] [13kb] [38m[info][0m middleware.Log.func1：22 server/middleware.Log.func1 0s
+[GIN] 2024/02/27 - 10:08:53 |[90;43m 404 [0m|      2.8121ms |             ::1 |[97;46m POST    [0m "/admin/menu_list"
+[server] [2024-02-27 10:09:52] [13kb] [38m[info][0m middleware.Log.func1：22 server/middleware.Log.func1 75.6502ms
+[GIN] 2024/02/27 - 10:09:52 |[97;42m 200 [0m|     76.0152ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-27 10:11:17] [14kb] [38m[info][0m middleware.Log.func1：22 server/middleware.Log.func1 1m9.1937441s
+[GIN] 2024/02/27 - 10:11:17 |[97;42m 200 [0m|          1m9s |       127.0.0.1 |[97;44m GET     [0m "/admin/menu_list"
+[server] [2024-02-27 10:11:17] [14kb] [38m[info][0m utils.Listen：21 server/utils.Listen Received signal: interrupt
+
+[server] [2024-02-27 10:11:17] [14kb] [38m[info][0m utils.Listen：27 server/utils.Listen mysql connect close success
+[server] [2024-02-27 10:11:17] [14kb] [38m[info][0m utils.Listen：36 server/utils.Listen redis connect close success
+[server] [2024-02-27 10:11:21] [14kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-27 10:11:21] [14kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (6 handlers)
+[GIN-debug] POST   /admin/menu_list          --> server/controll/menu.GetMenuList (6 handlers)
+[GIN-debug] POST   /admin/login              --> server/controll/admin.Login (6 handlers)
+[GIN-debug] POST   /register                 --> server/controll/admin.Register (6 handlers)
+[GIN-debug] GET    /admin/info               --> server/controll/admin.Info (7 handlers)
+[GIN-debug] GET    /admin/logout             --> server/controll/admin.Logout (7 handlers)
+[GIN-debug] GET    /admin/reset_password     --> server/controll/admin.ResetPassword (7 handlers)
+[GIN-debug] GET    /admin/delete_employer    --> server/controll/admin.DeleteEmployee (7 handlers)
+[GIN-debug] POST   /admin/add_employer       --> server/controll/admin.AddEmployee (7 handlers)
+[GIN-debug] POST   /admin/update_employer    --> server/controll/admin.UpdateEmployee (7 handlers)
+[GIN-debug] GET    /admin/employer_list      --> server/controll/admin.EmployeeList (7 handlers)
+[GIN-debug] GET    /admin/employer_info      --> server/controll/admin.EmployeeInfo (7 handlers)
+[GIN-debug] GET    /admin/assigned_account   --> server/controll/admin.AssignedAccount (7 handlers)
+[GIN-debug] GET    /admin/get_department_list --> server/controll/admin.GetDepartmentList (7 handlers)
+[GIN-debug] GET    /admin/del_department     --> server/controll/admin.DeleteDepartment (7 handlers)
+[GIN-debug] POST   /admin/update_department  --> server/controll/admin.UpdateDepartment (7 handlers)
+[GIN-debug] POST   /admin/add_department     --> server/controll/admin.AddDepartment (7 handlers)
+[GIN-debug] GET    /admin/department_info    --> server/controll/admin.DepartmentInfo (7 handlers)
+[GIN-debug] GET    /admin/get_clockIn        --> server/controll/admin.GetClockInLog (7 handlers)
+[GIN-debug] POST   /admin/edit_clockIn       --> server/controll/admin.EditClockLog (7 handlers)
+[GIN-debug] POST   /admin/leave_application  --> server/controll/admin.LeaveApplication (7 handlers)
+[GIN-debug] GET    /admin/get_LeaveApplication_list --> server/controll/admin.GetLeaveApplicationList (7 handlers)
+[GIN-debug] POST   /admin/overtime_application --> server/controll/admin.OvertimeApplication (7 handlers)
+[GIN-debug] GET    /admin/get_overtimeApplication_list --> server/controll/admin.GetOvertimeList (7 handlers)
+[GIN-debug] POST   /admin/make_card_application --> server/controll/admin.MakeCardApplication (7 handlers)
+[GIN-debug] POST   /admin/make_card_application_liat --> server/controll/admin.GetMarkCardList (7 handlers)
+[GIN-debug] POST   /admin/add_menu           --> server/controll/menu.AddMenu (7 handlers)
+[GIN-debug] POST   /upload                   --> server/controll/user.Upload (6 handlers)
+[server] [2024-02-27 10:12:35] [17kb] [38m[info][0m utils.Listen：21 server/utils.Listen Received signal: interrupt
+
+[server] [2024-02-27 10:12:35] [18kb] [38m[info][0m utils.Listen：27 server/utils.Listen mysql connect close success
+[server] [2024-02-27 10:12:35] [18kb] [38m[info][0m utils.Listen：36 server/utils.Listen redis connect close success
+[server] [2024-02-27 10:12:39] [18kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-27 10:12:39] [18kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (6 handlers)
+[GIN-debug] GET    /admin/menu_list          --> server/controll/menu.GetMenuList (6 handlers)
+[GIN-debug] POST   /admin/login              --> server/controll/admin.Login (6 handlers)
+[GIN-debug] POST   /register                 --> server/controll/admin.Register (6 handlers)
+[GIN-debug] GET    /admin/info               --> server/controll/admin.Info (7 handlers)
+[GIN-debug] GET    /admin/logout             --> server/controll/admin.Logout (7 handlers)
+[GIN-debug] GET    /admin/reset_password     --> server/controll/admin.ResetPassword (7 handlers)
+[GIN-debug] GET    /admin/delete_employer    --> server/controll/admin.DeleteEmployee (7 handlers)
+[GIN-debug] POST   /admin/add_employer       --> server/controll/admin.AddEmployee (7 handlers)
+[GIN-debug] POST   /admin/update_employer    --> server/controll/admin.UpdateEmployee (7 handlers)
+[GIN-debug] GET    /admin/employer_list      --> server/controll/admin.EmployeeList (7 handlers)
+[GIN-debug] GET    /admin/employer_info      --> server/controll/admin.EmployeeInfo (7 handlers)
+[GIN-debug] GET    /admin/assigned_account   --> server/controll/admin.AssignedAccount (7 handlers)
+[GIN-debug] GET    /admin/get_department_list --> server/controll/admin.GetDepartmentList (7 handlers)
+[GIN-debug] GET    /admin/del_department     --> server/controll/admin.DeleteDepartment (7 handlers)
+[GIN-debug] POST   /admin/update_department  --> server/controll/admin.UpdateDepartment (7 handlers)
+[GIN-debug] POST   /admin/add_department     --> server/controll/admin.AddDepartment (7 handlers)
+[GIN-debug] GET    /admin/department_info    --> server/controll/admin.DepartmentInfo (7 handlers)
+[GIN-debug] GET    /admin/get_clockIn        --> server/controll/admin.GetClockInLog (7 handlers)
+[GIN-debug] POST   /admin/edit_clockIn       --> server/controll/admin.EditClockLog (7 handlers)
+[GIN-debug] POST   /admin/leave_application  --> server/controll/admin.LeaveApplication (7 handlers)
+[GIN-debug] GET    /admin/get_LeaveApplication_list --> server/controll/admin.GetLeaveApplicationList (7 handlers)
+[GIN-debug] POST   /admin/overtime_application --> server/controll/admin.OvertimeApplication (7 handlers)
+[GIN-debug] GET    /admin/get_overtimeApplication_list --> server/controll/admin.GetOvertimeList (7 handlers)
+[GIN-debug] POST   /admin/make_card_application --> server/controll/admin.MakeCardApplication (7 handlers)
+[GIN-debug] POST   /admin/make_card_application_liat --> server/controll/admin.GetMarkCardList (7 handlers)
+[GIN-debug] POST   /admin/add_menu           --> server/controll/menu.AddMenu (7 handlers)
+[GIN-debug] POST   /upload                   --> server/controll/user.Upload (6 handlers)
+[server] [2024-02-27 10:12:41] [21kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 0s
+[GIN] 2024/02/27 - 10:12:41 |[97;42m 204 [0m|       505.3µs |             ::1 |[90;47m OPTIONS [0m "/admin/login"
+[server] [2024-02-27 10:12:41] [21kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 7.6164ms
+[GIN] 2024/02/27 - 10:12:41 |[97;42m 200 [0m|      8.7742ms |             ::1 |[97;46m POST    [0m "/admin/login"
+[server] [2024-02-27 10:12:41] [21kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 8.223ms
+[GIN] 2024/02/27 - 10:12:41 |[97;42m 200 [0m|      9.6034ms |             ::1 |[97;44m GET     [0m "/admin/menu_list"
+[server] [2024-02-27 10:12:50] [22kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 0s
+[GIN] 2024/02/27 - 10:12:50 |[97;42m 204 [0m|       480.9µs |             ::1 |[90;47m OPTIONS [0m "/admin/login"
+[server] [2024-02-27 10:12:50] [22kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 3.2202ms
+[GIN] 2024/02/27 - 10:12:50 |[97;42m 200 [0m|      4.3059ms |             ::1 |[97;46m POST    [0m "/admin/login"
+[server] [2024-02-27 10:12:50] [22kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 3.2535ms
+[GIN] 2024/02/27 - 10:12:50 |[97;42m 200 [0m|      4.8753ms |             ::1 |[97;44m GET     [0m "/admin/menu_list"
+[server] [2024-02-27 10:14:00] [22kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 72.3506ms
+[GIN] 2024/02/27 - 10:14:00 |[97;42m 200 [0m|     73.2423ms |             ::1 |[97;44m GET     [0m "/admin/menu_list"
+[server] [2024-02-27 10:14:03] [23kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 0s
+[GIN] 2024/02/27 - 10:14:03 |[97;42m 204 [0m|            0s |             ::1 |[90;47m OPTIONS [0m "/admin/login"
+[server] [2024-02-27 10:14:03] [23kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 4.1236ms
+[GIN] 2024/02/27 - 10:14:03 |[97;42m 200 [0m|       4.492ms |             ::1 |[97;46m POST    [0m "/admin/login"
+[server] [2024-02-27 10:14:03] [23kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 1.5821ms
+[GIN] 2024/02/27 - 10:14:03 |[97;42m 200 [0m|      2.8106ms |             ::1 |[97;44m GET     [0m "/admin/menu_list"
+[server] [2024-02-27 10:14:25] [23kb] [38m[info][0m utils.Listen：21 server/utils.Listen Received signal: interrupt
+
+[server] [2024-02-27 10:14:25] [23kb] [38m[info][0m utils.Listen：27 server/utils.Listen mysql connect close success
+[server] [2024-02-27 10:14:25] [23kb] [38m[info][0m utils.Listen：36 server/utils.Listen redis connect close success
+[server] [2024-02-27 10:14:29] [24kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-27 10:14:29] [24kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (6 handlers)
+[GIN-debug] POST   /admin/menu_list          --> server/controll/menu.GetMenuList (6 handlers)
+[GIN-debug] POST   /admin/login              --> server/controll/admin.Login (6 handlers)
+[GIN-debug] POST   /register                 --> server/controll/admin.Register (6 handlers)
+[GIN-debug] GET    /admin/info               --> server/controll/admin.Info (7 handlers)
+[GIN-debug] GET    /admin/logout             --> server/controll/admin.Logout (7 handlers)
+[GIN-debug] GET    /admin/reset_password     --> server/controll/admin.ResetPassword (7 handlers)
+[GIN-debug] GET    /admin/delete_employer    --> server/controll/admin.DeleteEmployee (7 handlers)
+[GIN-debug] POST   /admin/add_employer       --> server/controll/admin.AddEmployee (7 handlers)
+[GIN-debug] POST   /admin/update_employer    --> server/controll/admin.UpdateEmployee (7 handlers)
+[GIN-debug] GET    /admin/employer_list      --> server/controll/admin.EmployeeList (7 handlers)
+[GIN-debug] GET    /admin/employer_info      --> server/controll/admin.EmployeeInfo (7 handlers)
+[GIN-debug] GET    /admin/assigned_account   --> server/controll/admin.AssignedAccount (7 handlers)
+[GIN-debug] GET    /admin/get_department_list --> server/controll/admin.GetDepartmentList (7 handlers)
+[GIN-debug] GET    /admin/del_department     --> server/controll/admin.DeleteDepartment (7 handlers)
+[GIN-debug] POST   /admin/update_department  --> server/controll/admin.UpdateDepartment (7 handlers)
+[GIN-debug] POST   /admin/add_department     --> server/controll/admin.AddDepartment (7 handlers)
+[GIN-debug] GET    /admin/department_info    --> server/controll/admin.DepartmentInfo (7 handlers)
+[GIN-debug] GET    /admin/get_clockIn        --> server/controll/admin.GetClockInLog (7 handlers)
+[GIN-debug] POST   /admin/edit_clockIn       --> server/controll/admin.EditClockLog (7 handlers)
+[GIN-debug] POST   /admin/leave_application  --> server/controll/admin.LeaveApplication (7 handlers)
+[GIN-debug] GET    /admin/get_LeaveApplication_list --> server/controll/admin.GetLeaveApplicationList (7 handlers)
+[GIN-debug] POST   /admin/overtime_application --> server/controll/admin.OvertimeApplication (7 handlers)
+[GIN-debug] GET    /admin/get_overtimeApplication_list --> server/controll/admin.GetOvertimeList (7 handlers)
+[GIN-debug] POST   /admin/make_card_application --> server/controll/admin.MakeCardApplication (7 handlers)
+[GIN-debug] POST   /admin/make_card_application_liat --> server/controll/admin.GetMarkCardList (7 handlers)
+[GIN-debug] POST   /admin/add_menu           --> server/controll/menu.AddMenu (7 handlers)
+[GIN-debug] POST   /upload                   --> server/controll/user.Upload (6 handlers)
+[server] [2024-02-27 10:14:31] [27kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 0s
+[GIN] 2024/02/27 - 10:14:31 |[97;42m 204 [0m|         506µs |             ::1 |[90;47m OPTIONS [0m "/admin/login"
+[server] [2024-02-27 10:14:31] [27kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 12.1896ms
+[GIN] 2024/02/27 - 10:14:31 |[97;42m 200 [0m|     12.3206ms |             ::1 |[97;46m POST    [0m "/admin/login"
+[server] [2024-02-27 10:14:31] [27kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 0s
+[GIN] 2024/02/27 - 10:14:31 |[97;42m 204 [0m|       767.1µs |             ::1 |[90;47m OPTIONS [0m "/admin/menu_list"
+[server] [2024-02-27 10:14:31] [27kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 2.2448ms
+[GIN] 2024/02/27 - 10:14:31 |[97;42m 200 [0m|      2.4365ms |             ::1 |[97;46m POST    [0m "/admin/menu_list"
+[server] [2024-02-27 10:14:37] [28kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 0s
+[GIN] 2024/02/27 - 10:14:37 |[97;42m 204 [0m|       347.1µs |             ::1 |[90;47m OPTIONS [0m "/admin/login"
+[server] [2024-02-27 10:14:37] [28kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 4.3417ms
+[GIN] 2024/02/27 - 10:14:37 |[97;42m 200 [0m|      4.4128ms |             ::1 |[97;46m POST    [0m "/admin/login"
+[server] [2024-02-27 10:14:37] [28kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 0s
+[GIN] 2024/02/27 - 10:14:37 |[97;42m 204 [0m|      2.6447ms |             ::1 |[90;47m OPTIONS [0m "/admin/menu_list"
+[server] [2024-02-27 10:14:37] [28kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 371.9µs
+[GIN] 2024/02/27 - 10:14:37 |[97;42m 200 [0m|      1.7879ms |             ::1 |[97;46m POST    [0m "/admin/menu_list"
+[server] [2024-02-27 10:14:47] [29kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 0s
+[GIN] 2024/02/27 - 10:14:47 |[97;42m 204 [0m|      1.0022ms |             ::1 |[90;47m OPTIONS [0m "/admin/login"
+[server] [2024-02-27 10:14:47] [29kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 64.751ms
+[GIN] 2024/02/27 - 10:14:47 |[97;42m 200 [0m|     65.1629ms |             ::1 |[97;46m POST    [0m "/admin/login"
+[server] [2024-02-27 10:15:15] [29kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 0s
+[GIN] 2024/02/27 - 10:15:15 |[97;42m 204 [0m|            0s |             ::1 |[90;47m OPTIONS [0m "/admin/login"
+[server] [2024-02-27 10:15:15] [29kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 54.6457ms
+[GIN] 2024/02/27 - 10:15:15 |[97;42m 200 [0m|     55.0936ms |             ::1 |[97;46m POST    [0m "/admin/login"
+[server] [2024-02-27 10:15:15] [29kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 0s
+[GIN] 2024/02/27 - 10:15:15 |[97;42m 204 [0m|      2.9413ms |             ::1 |[90;47m OPTIONS [0m "/admin/menu_list"
+[server] [2024-02-27 10:15:15] [30kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 3.8977ms
+[GIN] 2024/02/27 - 10:15:15 |[97;42m 200 [0m|      5.5196ms |             ::1 |[97;46m POST    [0m "/admin/menu_list"
+[server] [2024-02-27 10:15:16] [30kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 4.4611ms
+[GIN] 2024/02/27 - 10:15:16 |[97;42m 200 [0m|      5.4647ms |             ::1 |[97;46m POST    [0m "/admin/login"
+[server] [2024-02-27 10:15:45] [30kb] [38m[info][0m utils.Listen：21 server/utils.Listen Received signal: interrupt
+
+[server] [2024-02-27 10:15:45] [30kb] [38m[info][0m utils.Listen：27 server/utils.Listen mysql connect close success
+[server] [2024-02-27 10:15:45] [30kb] [38m[info][0m utils.Listen：36 server/utils.Listen redis connect close success
+[server] [2024-02-27 10:15:47] [30kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-27 10:15:47] [31kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (6 handlers)
+[GIN-debug] POST   /admin/menu_list          --> server/controll/menu.GetMenuList (6 handlers)
+[GIN-debug] POST   /admin/login              --> server/controll/admin.Login (6 handlers)
+[GIN-debug] POST   /register                 --> server/controll/admin.Register (6 handlers)
+[GIN-debug] GET    /admin/info               --> server/controll/admin.Info (7 handlers)
+[GIN-debug] GET    /admin/logout             --> server/controll/admin.Logout (7 handlers)
+[GIN-debug] GET    /admin/reset_password     --> server/controll/admin.ResetPassword (7 handlers)
+[GIN-debug] GET    /admin/delete_employer    --> server/controll/admin.DeleteEmployee (7 handlers)
+[GIN-debug] POST   /admin/add_employer       --> server/controll/admin.AddEmployee (7 handlers)
+[GIN-debug] POST   /admin/update_employer    --> server/controll/admin.UpdateEmployee (7 handlers)
+[GIN-debug] GET    /admin/employer_list      --> server/controll/admin.EmployeeList (7 handlers)
+[GIN-debug] GET    /admin/employer_info      --> server/controll/admin.EmployeeInfo (7 handlers)
+[GIN-debug] GET    /admin/assigned_account   --> server/controll/admin.AssignedAccount (7 handlers)
+[GIN-debug] GET    /admin/get_department_list --> server/controll/admin.GetDepartmentList (7 handlers)
+[GIN-debug] GET    /admin/del_department     --> server/controll/admin.DeleteDepartment (7 handlers)
+[GIN-debug] POST   /admin/update_department  --> server/controll/admin.UpdateDepartment (7 handlers)
+[GIN-debug] POST   /admin/add_department     --> server/controll/admin.AddDepartment (7 handlers)
+[GIN-debug] GET    /admin/department_info    --> server/controll/admin.DepartmentInfo (7 handlers)
+[GIN-debug] GET    /admin/get_clockIn        --> server/controll/admin.GetClockInLog (7 handlers)
+[GIN-debug] POST   /admin/edit_clockIn       --> server/controll/admin.EditClockLog (7 handlers)
+[GIN-debug] POST   /admin/leave_application  --> server/controll/admin.LeaveApplication (7 handlers)
+[GIN-debug] GET    /admin/get_LeaveApplication_list --> server/controll/admin.GetLeaveApplicationList (7 handlers)
+[GIN-debug] POST   /admin/overtime_application --> server/controll/admin.OvertimeApplication (7 handlers)
+[GIN-debug] GET    /admin/get_overtimeApplication_list --> server/controll/admin.GetOvertimeList (7 handlers)
+[GIN-debug] POST   /admin/make_card_application --> server/controll/admin.MakeCardApplication (7 handlers)
+[GIN-debug] POST   /admin/make_card_application_liat --> server/controll/admin.GetMarkCardList (7 handlers)
+[GIN-debug] POST   /admin/add_menu           --> server/controll/menu.AddMenu (7 handlers)
+[GIN-debug] POST   /upload                   --> server/controll/user.Upload (6 handlers)
+[server] [2024-02-27 10:15:53] [34kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 0s
+[GIN] 2024/02/27 - 10:15:53 |[97;42m 204 [0m|       529.9µs |             ::1 |[90;47m OPTIONS [0m "/admin/login"
+[server] [2024-02-27 10:15:53] [34kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 4.0486ms
+[GIN] 2024/02/27 - 10:15:53 |[97;42m 200 [0m|      4.6213ms |             ::1 |[97;46m POST    [0m "/admin/login"
+[server] [2024-02-27 10:15:53] [34kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 0s
+[GIN] 2024/02/27 - 10:15:53 |[97;42m 204 [0m|        80.1µs |             ::1 |[90;47m OPTIONS [0m "/admin/menu_list"
+[server] [2024-02-27 10:15:53] [34kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 594.2µs
+[GIN] 2024/02/27 - 10:15:53 |[97;42m 200 [0m|      1.6479ms |             ::1 |[97;46m POST    [0m "/admin/menu_list"
+[server] [2024-02-27 10:16:02] [35kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 0s
+[GIN] 2024/02/27 - 10:16:02 |[97;42m 204 [0m|       389.5µs |             ::1 |[90;47m OPTIONS [0m "/admin/login"
+[server] [2024-02-27 10:16:02] [35kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 7.0555ms
+[GIN] 2024/02/27 - 10:16:02 |[97;42m 200 [0m|      7.2518ms |             ::1 |[97;46m POST    [0m "/admin/login"
+[server] [2024-02-27 10:16:02] [35kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 0s
+[GIN] 2024/02/27 - 10:16:02 |[97;42m 204 [0m|      2.5516ms |             ::1 |[90;47m OPTIONS [0m "/admin/menu_list"
+[server] [2024-02-27 10:16:02] [35kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 633.5µs
+[GIN] 2024/02/27 - 10:16:02 |[97;42m 200 [0m|      1.9071ms |             ::1 |[97;46m POST    [0m "/admin/menu_list"
+[server] [2024-02-27 10:16:27] [35kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 0s
+[GIN] 2024/02/27 - 10:16:27 |[97;42m 204 [0m|       548.8µs |             ::1 |[90;47m OPTIONS [0m "/admin/menu_list"
+[server] [2024-02-27 10:16:27] [36kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 64.2468ms
+[GIN] 2024/02/27 - 10:16:27 |[97;42m 200 [0m|     64.8656ms |             ::1 |[97;46m POST    [0m "/admin/menu_list"
+[server] [2024-02-27 10:16:29] [36kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 0s
+[GIN] 2024/02/27 - 10:16:29 |[97;42m 204 [0m|       435.4µs |             ::1 |[90;47m OPTIONS [0m "/admin/login"
+[server] [2024-02-27 10:16:29] [36kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 4.9751ms
+[GIN] 2024/02/27 - 10:16:29 |[97;42m 200 [0m|      5.9633ms |             ::1 |[97;46m POST    [0m "/admin/login"
+[server] [2024-02-27 10:17:38] [36kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 0s
+[GIN] 2024/02/27 - 10:17:38 |[90;43m 404 [0m|       893.7µs |       127.0.0.1 |[97;44m GET     [0m "/admin/menu_list"
+[server] [2024-02-27 10:17:41] [37kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 59.3122ms
+[GIN] 2024/02/27 - 10:17:41 |[97;42m 200 [0m|     60.2274ms |       127.0.0.1 |[97;46m POST    [0m "/admin/menu_list"
+[server] [2024-02-27 10:17:50] [37kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 5.6091ms
+[GIN] 2024/02/27 - 10:17:50 |[97;42m 200 [0m|      5.8264ms |       127.0.0.1 |[97;46m POST    [0m "/admin/menu_list"
+[server] [2024-02-27 10:17:51] [37kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 5.0834ms
+[GIN] 2024/02/27 - 10:17:51 |[97;42m 200 [0m|      5.7504ms |       127.0.0.1 |[97;46m POST    [0m "/admin/menu_list"
+[server] [2024-02-27 10:17:53] [37kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 2.0331ms
+[GIN] 2024/02/27 - 10:17:53 |[97;42m 200 [0m|      2.8799ms |       127.0.0.1 |[97;46m POST    [0m "/admin/menu_list"
+[server] [2024-02-27 10:17:54] [37kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 2.5199ms
+[GIN] 2024/02/27 - 10:17:54 |[97;42m 200 [0m|      3.1488ms |       127.0.0.1 |[97;46m POST    [0m "/admin/menu_list"
+[server] [2024-02-27 10:17:58] [38kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 0s
+[GIN] 2024/02/27 - 10:17:58 |[97;42m 204 [0m|         505µs |             ::1 |[90;47m OPTIONS [0m "/admin/login"
+[server] [2024-02-27 10:17:58] [38kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 4.1212ms
+[GIN] 2024/02/27 - 10:17:58 |[97;42m 200 [0m|      4.5465ms |             ::1 |[97;46m POST    [0m "/admin/login"
+[server] [2024-02-27 10:19:21] [38kb] [38m[info][0m utils.Listen：21 server/utils.Listen Received signal: interrupt
+
+[server] [2024-02-27 10:19:21] [38kb] [38m[info][0m utils.Listen：27 server/utils.Listen mysql connect close success
+[server] [2024-02-27 10:19:21] [38kb] [38m[info][0m utils.Listen：36 server/utils.Listen redis connect close success
+[server] [2024-02-27 10:19:25] [38kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-27 10:19:25] [39kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (6 handlers)
+[GIN-debug] POST   /admin/menu_list          --> server/controll/menu.GetMenuList (6 handlers)
+[GIN-debug] POST   /admin/login              --> server/controll/admin.Login (6 handlers)
+[GIN-debug] POST   /register                 --> server/controll/admin.Register (6 handlers)
+[GIN-debug] GET    /admin/info               --> server/controll/admin.Info (7 handlers)
+[GIN-debug] GET    /admin/logout             --> server/controll/admin.Logout (7 handlers)
+[GIN-debug] GET    /admin/reset_password     --> server/controll/admin.ResetPassword (7 handlers)
+[GIN-debug] GET    /admin/delete_employer    --> server/controll/admin.DeleteEmployee (7 handlers)
+[GIN-debug] POST   /admin/add_employer       --> server/controll/admin.AddEmployee (7 handlers)
+[GIN-debug] POST   /admin/update_employer    --> server/controll/admin.UpdateEmployee (7 handlers)
+[GIN-debug] GET    /admin/employer_list      --> server/controll/admin.EmployeeList (7 handlers)
+[GIN-debug] GET    /admin/employer_info      --> server/controll/admin.EmployeeInfo (7 handlers)
+[GIN-debug] GET    /admin/assigned_account   --> server/controll/admin.AssignedAccount (7 handlers)
+[GIN-debug] GET    /admin/get_department_list --> server/controll/admin.GetDepartmentList (7 handlers)
+[GIN-debug] GET    /admin/del_department     --> server/controll/admin.DeleteDepartment (7 handlers)
+[GIN-debug] POST   /admin/update_department  --> server/controll/admin.UpdateDepartment (7 handlers)
+[GIN-debug] POST   /admin/add_department     --> server/controll/admin.AddDepartment (7 handlers)
+[GIN-debug] GET    /admin/department_info    --> server/controll/admin.DepartmentInfo (7 handlers)
+[GIN-debug] GET    /admin/get_clockIn        --> server/controll/admin.GetClockInLog (7 handlers)
+[GIN-debug] POST   /admin/edit_clockIn       --> server/controll/admin.EditClockLog (7 handlers)
+[GIN-debug] POST   /admin/leave_application  --> server/controll/admin.LeaveApplication (7 handlers)
+[GIN-debug] GET    /admin/get_LeaveApplication_list --> server/controll/admin.GetLeaveApplicationList (7 handlers)
+[GIN-debug] POST   /admin/overtime_application --> server/controll/admin.OvertimeApplication (7 handlers)
+[GIN-debug] GET    /admin/get_overtimeApplication_list --> server/controll/admin.GetOvertimeList (7 handlers)
+[GIN-debug] POST   /admin/make_card_application --> server/controll/admin.MakeCardApplication (7 handlers)
+[GIN-debug] POST   /admin/make_card_application_liat --> server/controll/admin.GetMarkCardList (7 handlers)
+[GIN-debug] POST   /admin/add_menu           --> server/controll/menu.AddMenu (7 handlers)
+[GIN-debug] POST   /upload                   --> server/controll/user.Upload (6 handlers)
+[server] [2024-02-27 10:19:28] [42kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 0s
+[GIN] 2024/02/27 - 10:19:28 |[97;42m 204 [0m|       505.8µs |             ::1 |[90;47m OPTIONS [0m "/admin/login"
+[server] [2024-02-27 10:19:28] [42kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 10.1906ms
+[GIN] 2024/02/27 - 10:19:28 |[97;42m 200 [0m|     11.0128ms |             ::1 |[97;46m POST    [0m "/admin/login"
+[server] [2024-02-27 10:19:33] [42kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 0s
+[GIN] 2024/02/27 - 10:19:33 |[97;42m 204 [0m|         666µs |             ::1 |[90;47m OPTIONS [0m "/admin/login"
+[server] [2024-02-27 10:19:34] [42kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 6.5714ms
+[GIN] 2024/02/27 - 10:19:34 |[97;42m 200 [0m|      7.5263ms |             ::1 |[97;46m POST    [0m "/admin/login"
+[server] [2024-02-27 10:19:34] [43kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 0s
+[GIN] 2024/02/27 - 10:19:34 |[97;42m 204 [0m|       2.133ms |             ::1 |[90;47m OPTIONS [0m "/admin/menu_list"
+[server] [2024-02-27 10:19:34] [43kb] [38m[info][0m menu.GetMenuList：42 server/controll/menu.GetMenuList [{/index Dashborad icon-dashboard  dashborad true   false [] {1 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/system 系统管理 icon-settings  system true   false [] {4 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/list 考勤管理 icon-list   true   false [] {9 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/form 表单demo icon-edit   true dot  false [] {14 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/excel Excel icon-nav   true   false [] {20 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/draggable 拖拽 icon-drag-arrow   true   false [] {23 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/other 功能/组件 icon-apps   true   false [] {26 2024-02-21 17:45:15.611 +0800 CST 2024-02-21 17:45:15.611 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}}]
+[server] [2024-02-27 10:19:34] [44kb] [38m[info][0m menu.GetMenuList：69 server/controll/menu.GetMenuList [{/index Dashborad icon-dashboard  dashborad true   false [{/index/home 主控台  /index home true   false [] {2 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/index/work-place 工作台 icon-subscribed /index workPlace true   true [] {3 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}}] {1 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/system 系统管理 icon-settings  system true   false [{/system/department 部门管理 icon-apps /system department true new /system/local-path/department false [] {5 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/system/user 员工管理 icon-user /system user true dot  false [] {6 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/system/role 角色管理 icon-stamp /system  true 12  false [] {7 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/system/menu 菜单管理  /system  true   false [] {8 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}}] {4 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/list 考勤管理 icon-list   true   false [{/list/table-with-search 请假申请 icon-user-group /list  true   false [] {10 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/list/table-custom 加班申请 icon-calendar /list  true   false [] {11 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/list/list 补卡申请 icon-select-all /list  true   false [] {12 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/list/card-list 考勤列表 icon-command /list  true   false [] {13 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}}] {9 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/form 表单demo icon-edit   true dot  false [{/form/base-form-view 基本表单 icon-apps /form  true   false [] {15 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}}] {14 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/excel Excel icon-nav   true   false [{/excel/export-excel 导出Excel icon-nav /excel  true   false [] {21 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/excel/export-rows-excel 导出选中行  /excel  true   false [] {22 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}}] {20 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/draggable 拖拽 icon-drag-arrow   true   false [{/draggable/card-draggable 卡片拖拽  /draggable  true   false [] {24 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}}] {23 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/other 功能/组件 icon-apps   true   false [{/other/print 打印 icon-printer /other  true   false [] {16 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/other/clipboard 剪贴板 icon-printer /other  true   false [] {17 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/other/player 视频播放器 icon-video-camera /other  true   false [] {18 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/other/flow 流程图  /other  true   false [] {19 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}}] {26 2024-02-21 17:45:15.611 +0800 CST 2024-02-21 17:45:15.611 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}}]
+[server] [2024-02-27 10:19:34] [48kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 25.7697ms
+[GIN] 2024/02/27 - 10:19:34 |[97;42m 200 [0m|     26.2993ms |             ::1 |[97;46m POST    [0m "/admin/menu_list"
+[server] [2024-02-27 10:19:43] [49kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 0s
+[GIN] 2024/02/27 - 10:19:43 |[97;42m 204 [0m|       174.2µs |             ::1 |[90;47m OPTIONS [0m "/admin/get_department_list"
+[server] [2024-02-27 10:19:43] [49kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 12.991ms
+[GIN] 2024/02/27 - 10:19:43 |[97;42m 200 [0m|     13.4953ms |             ::1 |[97;44m GET     [0m "/admin/get_department_list"
+[server] [2024-02-27 10:19:44] [49kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 0s
+[GIN] 2024/02/27 - 10:19:44 |[97;42m 204 [0m|       964.9µs |             ::1 |[90;47m OPTIONS [0m "/admin/employer_list?offset=1&limit=10"
+[server] [2024-02-27 10:19:44] [49kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 13.2973ms
+[GIN] 2024/02/27 - 10:19:44 |[97;42m 200 [0m|     13.7995ms |             ::1 |[97;44m GET     [0m "/admin/employer_list?offset=1&limit=10"
+[server] [2024-02-27 10:26:38] [50kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 0s
+[GIN] 2024/02/27 - 10:26:38 |[97;42m 204 [0m|       503.7µs |             ::1 |[90;47m OPTIONS [0m "/admin/department_info"
+[server] [2024-02-27 10:26:38] [50kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 74.4587ms
+[GIN] 2024/02/27 - 10:26:38 |[97;42m 200 [0m|     74.9633ms |             ::1 |[97;44m GET     [0m "/admin/department_info"
+[server] [2024-02-27 12:30:39] [50kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 503.4µs
+[GIN] 2024/02/27 - 12:30:39 |[97;42m 204 [0m|      1.3708ms |             ::1 |[90;47m OPTIONS [0m "/admin/menu_list"
+[server] [2024-02-27 12:30:39] [50kb] [38m[info][0m menu.GetMenuList：42 server/controll/menu.GetMenuList [{/index Dashborad icon-dashboard  dashborad true   false [] {1 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/system 系统管理 icon-settings  system true   false [] {4 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/list 考勤管理 icon-list   true   false [] {9 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/form 表单demo icon-edit   true dot  false [] {14 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/excel Excel icon-nav   true   false [] {20 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/draggable 拖拽 icon-drag-arrow   true   false [] {23 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/other 功能/组件 icon-apps   true   false [] {26 2024-02-21 17:45:15.611 +0800 CST 2024-02-21 17:45:15.611 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}}]
+[server] [2024-02-27 12:30:39] [51kb] [38m[info][0m menu.GetMenuList：69 server/controll/menu.GetMenuList [{/index Dashborad icon-dashboard  dashborad true   false [{/index/home 主控台  /index home true   false [] {2 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/index/work-place 工作台 icon-subscribed /index workPlace true   true [] {3 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}}] {1 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/system 系统管理 icon-settings  system true   false [{/system/department 部门管理 icon-apps /system department true new /system/local-path/department false [] {5 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/system/user 员工管理 icon-user /system user true dot  false [] {6 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/system/role 角色管理 icon-stamp /system  true 12  false [] {7 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/system/menu 菜单管理  /system  true   false [] {8 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}}] {4 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/list 考勤管理 icon-list   true   false [{/list/table-with-search 请假申请 icon-user-group /list  true   false [] {10 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/list/table-custom 加班申请 icon-calendar /list  true   false [] {11 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/list/list 补卡申请 icon-select-all /list  true   false [] {12 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/list/card-list 考勤列表 icon-command /list  true   false [] {13 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}}] {9 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/form 表单demo icon-edit   true dot  false [{/form/base-form-view 基本表单 icon-apps /form  true   false [] {15 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}}] {14 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/excel Excel icon-nav   true   false [{/excel/export-excel 导出Excel icon-nav /excel  true   false [] {21 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/excel/export-rows-excel 导出选中行  /excel  true   false [] {22 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}}] {20 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/draggable 拖拽 icon-drag-arrow   true   false [{/draggable/card-draggable 卡片拖拽  /draggable  true   false [] {24 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}}] {23 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/other 功能/组件 icon-apps   true   false [{/other/print 打印 icon-printer /other  true   false [] {16 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/other/clipboard 剪贴板 icon-printer /other  true   false [] {17 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/other/player 视频播放器 icon-video-camera /other  true   false [] {18 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {/other/flow 流程图  /other  true   false [] {19 2024-02-21 14:40:34.859 +0800 CST 2024-02-21 14:40:34.859 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}}] {26 2024-02-21 17:45:15.611 +0800 CST 2024-02-21 17:45:15.611 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}}]
+[server] [2024-02-27 12:30:39] [56kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 7.1916ms
+[GIN] 2024/02/27 - 12:30:39 |[97;42m 200 [0m|      7.1916ms |             ::1 |[97;46m POST    [0m "/admin/menu_list"
+[server] [2024-02-27 12:30:39] [56kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 0s
+[GIN] 2024/02/27 - 12:30:39 |[97;42m 204 [0m|       802.4µs |             ::1 |[90;47m OPTIONS [0m "/admin/department_info"
+[server] [2024-02-27 12:30:39] [56kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 4.4418ms
+[GIN] 2024/02/27 - 12:30:39 |[97;42m 200 [0m|      4.4418ms |             ::1 |[97;44m GET     [0m "/admin/department_info"
+[server] [2024-02-27 12:33:45] [56kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 0s
+[GIN] 2024/02/27 - 12:33:45 |[97;42m 204 [0m|            0s |             ::1 |[90;47m OPTIONS [0m "/admin/get_department_list"
+[server] [2024-02-27 12:33:45] [57kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 107.4813ms
+[GIN] 2024/02/27 - 12:33:45 |[97;42m 200 [0m|    107.9854ms |             ::1 |[97;44m GET     [0m "/admin/get_department_list"
+[server] [2024-02-27 12:33:46] [57kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 0s
+[GIN] 2024/02/27 - 12:33:46 |[97;42m 204 [0m|      1.2797ms |             ::1 |[90;47m OPTIONS [0m "/admin/employer_list?offset=1&limit=10"
+[server] [2024-02-27 12:33:46] [57kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 7.8455ms
+[GIN] 2024/02/27 - 12:33:46 |[97;42m 200 [0m|      7.8455ms |             ::1 |[97;44m GET     [0m "/admin/employer_list?offset=1&limit=10"
+[server] [2024-02-27 12:33:54] [57kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 0s
+[GIN] 2024/02/27 - 12:33:54 |[97;42m 204 [0m|      1.3555ms |             ::1 |[90;47m OPTIONS [0m "/admin/employer_list?offset=1&limit=10"
+[server] [2024-02-27 12:33:54] [58kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 7.2713ms
+[GIN] 2024/02/27 - 12:33:54 |[97;42m 200 [0m|      7.8163ms |             ::1 |[97;44m GET     [0m "/admin/employer_list?offset=1&limit=10"
+[server] [2024-02-27 14:02:10] [58kb] [38m[info][0m utils.Listen：21 server/utils.Listen Received signal: interrupt
+
+[server] [2024-02-27 14:02:10] [58kb] [38m[info][0m utils.Listen：27 server/utils.Listen mysql connect close success
+[server] [2024-02-27 14:02:10] [58kb] [38m[info][0m utils.Listen：36 server/utils.Listen redis connect close success
+[server] [2024-02-27 14:02:21] [58kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-27 14:02:21] [58kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (6 handlers)
+[GIN-debug] POST   /admin/menu_list          --> server/controll/menu.GetMenuList (6 handlers)
+[GIN-debug] POST   /admin/login              --> server/controll/admin.Login (6 handlers)
+[GIN-debug] POST   /register                 --> server/controll/admin.Register (6 handlers)
+[GIN-debug] GET    /admin/info               --> server/controll/admin.Info (7 handlers)
+[GIN-debug] GET    /admin/logout             --> server/controll/admin.Logout (7 handlers)
+[GIN-debug] GET    /admin/reset_password     --> server/controll/admin.ResetPassword (7 handlers)
+[GIN-debug] GET    /admin/delete_employer    --> server/controll/admin.DeleteEmployee (7 handlers)
+[GIN-debug] POST   /admin/add_employer       --> server/controll/admin.AddEmployee (7 handlers)
+[GIN-debug] POST   /admin/update_employer    --> server/controll/admin.UpdateEmployee (7 handlers)
+[GIN-debug] GET    /admin/employer_list      --> server/controll/admin.EmployeeList (7 handlers)
+[GIN-debug] GET    /admin/employer_info      --> server/controll/admin.EmployeeInfo (7 handlers)
+[GIN-debug] GET    /admin/assigned_account   --> server/controll/admin.AssignedAccount (7 handlers)
+[GIN-debug] GET    /admin/get_department_list --> server/controll/admin.GetDepartmentList (7 handlers)
+[GIN-debug] GET    /admin/del_department     --> server/controll/admin.DeleteDepartment (7 handlers)
+[GIN-debug] POST   /admin/update_department  --> server/controll/admin.UpdateDepartment (7 handlers)
+[GIN-debug] POST   /admin/add_department     --> server/controll/admin.AddDepartment (7 handlers)
+[GIN-debug] GET    /admin/department_info    --> server/controll/admin.DepartmentInfo (7 handlers)
+[GIN-debug] GET    /admin/get_clockIn        --> server/controll/admin.GetClockInLog (7 handlers)
+[GIN-debug] POST   /admin/edit_clockIn       --> server/controll/admin.EditClockLog (7 handlers)
+[GIN-debug] POST   /admin/leave_application  --> server/controll/admin.LeaveApplication (7 handlers)
+[GIN-debug] GET    /admin/get_LeaveApplication_list --> server/controll/admin.GetLeaveApplicationList (7 handlers)
+[GIN-debug] POST   /admin/overtime_application --> server/controll/admin.OvertimeApplication (7 handlers)
+[GIN-debug] GET    /admin/get_overtimeApplication_list --> server/controll/admin.GetOvertimeList (7 handlers)
+[GIN-debug] POST   /admin/make_card_application --> server/controll/admin.MakeCardApplication (7 handlers)
+[GIN-debug] POST   /admin/make_card_application_liat --> server/controll/admin.GetMarkCardList (7 handlers)
+[GIN-debug] POST   /admin/add_menu           --> server/controll/menu.AddMenu (7 handlers)
+[GIN-debug] POST   /upload                   --> server/controll/user.Upload (6 handlers)
+[GIN-debug] GET    /clockIn                  --> server/controll/user.ClockIn (6 handlers)
+[server] [2024-02-27 14:03:19] [62kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 55.7347ms
+[GIN] 2024/02/27 - 14:03:19 |[97;42m 200 [0m|     55.9594ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-27 14:03:45] [62kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 0s
+[GIN] 2024/02/27 - 14:03:45 |[90;43m 404 [0m|        97.2µs |       127.0.0.1 |[97;44m GET     [0m "/user/clockIn"
+[server] [2024-02-27 14:04:41] [62kb] [38m[info][0m utils.Listen：21 server/utils.Listen Received signal: interrupt
+
+[server] [2024-02-27 14:04:41] [62kb] [38m[info][0m utils.Listen：27 server/utils.Listen mysql connect close success
+[server] [2024-02-27 14:04:41] [62kb] [38m[info][0m utils.Listen：36 server/utils.Listen redis connect close success
+[server] [2024-02-27 14:04:46] [62kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-27 14:04:46] [63kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (6 handlers)
+[GIN-debug] POST   /admin/menu_list          --> server/controll/menu.GetMenuList (6 handlers)
+[GIN-debug] POST   /admin/login              --> server/controll/admin.Login (6 handlers)
+[GIN-debug] POST   /register                 --> server/controll/admin.Register (6 handlers)
+[GIN-debug] GET    /admin/info               --> server/controll/admin.Info (7 handlers)
+[GIN-debug] GET    /admin/logout             --> server/controll/admin.Logout (7 handlers)
+[GIN-debug] GET    /admin/reset_password     --> server/controll/admin.ResetPassword (7 handlers)
+[GIN-debug] GET    /admin/delete_employer    --> server/controll/admin.DeleteEmployee (7 handlers)
+[GIN-debug] POST   /admin/add_employer       --> server/controll/admin.AddEmployee (7 handlers)
+[GIN-debug] POST   /admin/update_employer    --> server/controll/admin.UpdateEmployee (7 handlers)
+[GIN-debug] GET    /admin/employer_list      --> server/controll/admin.EmployeeList (7 handlers)
+[GIN-debug] GET    /admin/employer_info      --> server/controll/admin.EmployeeInfo (7 handlers)
+[GIN-debug] GET    /admin/assigned_account   --> server/controll/admin.AssignedAccount (7 handlers)
+[GIN-debug] GET    /admin/get_department_list --> server/controll/admin.GetDepartmentList (7 handlers)
+[GIN-debug] GET    /admin/del_department     --> server/controll/admin.DeleteDepartment (7 handlers)
+[GIN-debug] POST   /admin/update_department  --> server/controll/admin.UpdateDepartment (7 handlers)
+[GIN-debug] POST   /admin/add_department     --> server/controll/admin.AddDepartment (7 handlers)
+[GIN-debug] GET    /admin/department_info    --> server/controll/admin.DepartmentInfo (7 handlers)
+[GIN-debug] GET    /admin/get_clockIn        --> server/controll/admin.GetClockInLog (7 handlers)
+[GIN-debug] POST   /admin/edit_clockIn       --> server/controll/admin.EditClockLog (7 handlers)
+[GIN-debug] POST   /admin/leave_application  --> server/controll/admin.LeaveApplication (7 handlers)
+[GIN-debug] GET    /admin/get_LeaveApplication_list --> server/controll/admin.GetLeaveApplicationList (7 handlers)
+[GIN-debug] POST   /admin/overtime_application --> server/controll/admin.OvertimeApplication (7 handlers)
+[GIN-debug] GET    /admin/get_overtimeApplication_list --> server/controll/admin.GetOvertimeList (7 handlers)
+[GIN-debug] POST   /admin/make_card_application --> server/controll/admin.MakeCardApplication (7 handlers)
+[GIN-debug] POST   /admin/make_card_application_liat --> server/controll/admin.GetMarkCardList (7 handlers)
+[GIN-debug] POST   /admin/add_menu           --> server/controll/menu.AddMenu (7 handlers)
+[GIN-debug] POST   /user/upload              --> server/controll/user.Upload (7 handlers)
+[GIN-debug] GET    /user/clockIn             --> server/controll/user.ClockIn (7 handlers)
+[server] [2024-02-27 14:05:08] [66kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 70.2297ms
+[GIN] 2024/02/27 - 14:05:08 |[97;42m 200 [0m|     70.8512ms |       127.0.0.1 |[97;44m GET     [0m "/user/clockIn"
+[server] [2024-02-27 14:11:45] [66kb] [38m[info][0m utils.Listen：21 server/utils.Listen Received signal: interrupt
+
+[server] [2024-02-27 14:11:45] [66kb] [38m[info][0m utils.Listen：27 server/utils.Listen mysql connect close success
+[server] [2024-02-27 14:11:45] [66kb] [38m[info][0m utils.Listen：36 server/utils.Listen redis connect close success
+[server] [2024-02-27 14:11:50] [66kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-27 14:11:50] [66kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (6 handlers)
+[GIN-debug] POST   /admin/menu_list          --> server/controll/menu.GetMenuList (6 handlers)
+[GIN-debug] POST   /admin/login              --> server/controll/admin.Login (6 handlers)
+[GIN-debug] POST   /register                 --> server/controll/admin.Register (6 handlers)
+[GIN-debug] GET    /admin/info               --> server/controll/admin.Info (7 handlers)
+[GIN-debug] GET    /admin/logout             --> server/controll/admin.Logout (7 handlers)
+[GIN-debug] GET    /admin/reset_password     --> server/controll/admin.ResetPassword (7 handlers)
+[GIN-debug] GET    /admin/delete_employer    --> server/controll/admin.DeleteEmployee (7 handlers)
+[GIN-debug] POST   /admin/add_employer       --> server/controll/admin.AddEmployee (7 handlers)
+[GIN-debug] POST   /admin/update_employer    --> server/controll/admin.UpdateEmployee (7 handlers)
+[GIN-debug] GET    /admin/employer_list      --> server/controll/admin.EmployeeList (7 handlers)
+[GIN-debug] GET    /admin/employer_info      --> server/controll/admin.EmployeeInfo (7 handlers)
+[GIN-debug] GET    /admin/assigned_account   --> server/controll/admin.AssignedAccount (7 handlers)
+[GIN-debug] GET    /admin/get_department_list --> server/controll/admin.GetDepartmentList (7 handlers)
+[GIN-debug] GET    /admin/del_department     --> server/controll/admin.DeleteDepartment (7 handlers)
+[GIN-debug] POST   /admin/update_department  --> server/controll/admin.UpdateDepartment (7 handlers)
+[GIN-debug] POST   /admin/add_department     --> server/controll/admin.AddDepartment (7 handlers)
+[GIN-debug] GET    /admin/department_info    --> server/controll/admin.DepartmentInfo (7 handlers)
+[GIN-debug] GET    /admin/get_clockIn        --> server/controll/admin.GetClockInLog (7 handlers)
+[GIN-debug] POST   /admin/edit_clockIn       --> server/controll/admin.EditClockLog (7 handlers)
+[GIN-debug] POST   /admin/leave_application  --> server/controll/admin.LeaveApplication (7 handlers)
+[GIN-debug] GET    /admin/get_LeaveApplication_list --> server/controll/admin.GetLeaveApplicationList (7 handlers)
+[GIN-debug] POST   /admin/overtime_application --> server/controll/admin.OvertimeApplication (7 handlers)
+[GIN-debug] GET    /admin/get_overtimeApplication_list --> server/controll/admin.GetOvertimeList (7 handlers)
+[GIN-debug] POST   /admin/make_card_application --> server/controll/admin.MakeCardApplication (7 handlers)
+[GIN-debug] POST   /admin/make_card_application_liat --> server/controll/admin.GetMarkCardList (7 handlers)
+[GIN-debug] POST   /admin/add_menu           --> server/controll/menu.AddMenu (7 handlers)
+[GIN-debug] POST   /user/upload              --> server/controll/user.Upload (7 handlers)
+[GIN-debug] GET    /user/clockIn             --> server/controll/user.ClockIn (7 handlers)
+[server] [2024-02-27 14:11:52] [70kb] [31m[error][0m user.ClockIn：131 server/controll/user.ClockIn Error 1292 (22007): Incorrect datetime value: '1709014312' for column 'start_time' at row 1
+[server] [2024-02-27 14:11:52] [70kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 19.4432ms
+[GIN] 2024/02/27 - 14:11:52 |[97;42m 200 [0m|     19.5555ms |       127.0.0.1 |[97;44m GET     [0m "/user/clockIn"
+[server] [2024-02-27 14:11:55] [70kb] [31m[error][0m user.ClockIn：131 server/controll/user.ClockIn Error 1292 (22007): Incorrect datetime value: '1709014315' for column 'start_time' at row 1
+[server] [2024-02-27 14:11:55] [70kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 11.5021ms
+[GIN] 2024/02/27 - 14:11:55 |[97;42m 200 [0m|     11.5021ms |       127.0.0.1 |[97;44m GET     [0m "/user/clockIn"
+[server] [2024-02-27 14:13:07] [70kb] [38m[info][0m utils.Listen：21 server/utils.Listen Received signal: interrupt
+
+[server] [2024-02-27 14:13:07] [71kb] [38m[info][0m utils.Listen：27 server/utils.Listen mysql connect close success
+[server] [2024-02-27 14:13:07] [71kb] [38m[info][0m utils.Listen：36 server/utils.Listen redis connect close success
+[server] [2024-02-27 14:15:16] [71kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-27 14:15:16] [71kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (6 handlers)
+[GIN-debug] POST   /admin/menu_list          --> server/controll/menu.GetMenuList (6 handlers)
+[GIN-debug] POST   /admin/login              --> server/controll/admin.Login (6 handlers)
+[GIN-debug] POST   /register                 --> server/controll/admin.Register (6 handlers)
+[GIN-debug] GET    /admin/info               --> server/controll/admin.Info (7 handlers)
+[GIN-debug] GET    /admin/logout             --> server/controll/admin.Logout (7 handlers)
+[GIN-debug] GET    /admin/reset_password     --> server/controll/admin.ResetPassword (7 handlers)
+[GIN-debug] GET    /admin/delete_employer    --> server/controll/admin.DeleteEmployee (7 handlers)
+[GIN-debug] POST   /admin/add_employer       --> server/controll/admin.AddEmployee (7 handlers)
+[GIN-debug] POST   /admin/update_employer    --> server/controll/admin.UpdateEmployee (7 handlers)
+[GIN-debug] GET    /admin/employer_list      --> server/controll/admin.EmployeeList (7 handlers)
+[GIN-debug] GET    /admin/employer_info      --> server/controll/admin.EmployeeInfo (7 handlers)
+[GIN-debug] GET    /admin/assigned_account   --> server/controll/admin.AssignedAccount (7 handlers)
+[GIN-debug] GET    /admin/get_department_list --> server/controll/admin.GetDepartmentList (7 handlers)
+[GIN-debug] GET    /admin/del_department     --> server/controll/admin.DeleteDepartment (7 handlers)
+[GIN-debug] POST   /admin/update_department  --> server/controll/admin.UpdateDepartment (7 handlers)
+[GIN-debug] POST   /admin/add_department     --> server/controll/admin.AddDepartment (7 handlers)
+[GIN-debug] GET    /admin/department_info    --> server/controll/admin.DepartmentInfo (7 handlers)
+[GIN-debug] GET    /admin/get_clockIn        --> server/controll/admin.GetClockInLog (7 handlers)
+[GIN-debug] POST   /admin/edit_clockIn       --> server/controll/admin.EditClockLog (7 handlers)
+[GIN-debug] POST   /admin/leave_application  --> server/controll/admin.LeaveApplication (7 handlers)
+[GIN-debug] GET    /admin/get_LeaveApplication_list --> server/controll/admin.GetLeaveApplicationList (7 handlers)
+[GIN-debug] POST   /admin/overtime_application --> server/controll/admin.OvertimeApplication (7 handlers)
+[GIN-debug] GET    /admin/get_overtimeApplication_list --> server/controll/admin.GetOvertimeList (7 handlers)
+[GIN-debug] POST   /admin/make_card_application --> server/controll/admin.MakeCardApplication (7 handlers)
+[GIN-debug] POST   /admin/make_card_application_liat --> server/controll/admin.GetMarkCardList (7 handlers)
+[GIN-debug] POST   /admin/add_menu           --> server/controll/menu.AddMenu (7 handlers)
+[GIN-debug] POST   /user/upload              --> server/controll/user.Upload (7 handlers)
+[GIN-debug] GET    /user/clockIn             --> server/controll/user.ClockIn (7 handlers)
+[server] [2024-02-27 14:15:22] [74kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 36.1732ms
+[GIN] 2024/02/27 - 14:15:22 |[97;42m 200 [0m|      36.676ms |       127.0.0.1 |[97;44m GET     [0m "/user/clockIn"
+[server] [2024-02-27 14:16:29] [74kb] [38m[info][0m utils.Listen：21 server/utils.Listen Received signal: interrupt
+
+[server] [2024-02-27 14:16:29] [74kb] [38m[info][0m utils.Listen：27 server/utils.Listen mysql connect close success
+[server] [2024-02-27 14:16:29] [75kb] [38m[info][0m utils.Listen：36 server/utils.Listen redis connect close success
+[server] [2024-02-27 14:16:37] [75kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-27 14:16:37] [75kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (6 handlers)
+[GIN-debug] POST   /admin/menu_list          --> server/controll/menu.GetMenuList (6 handlers)
+[GIN-debug] POST   /admin/login              --> server/controll/admin.Login (6 handlers)
+[GIN-debug] POST   /register                 --> server/controll/admin.Register (6 handlers)
+[GIN-debug] GET    /admin/info               --> server/controll/admin.Info (7 handlers)
+[GIN-debug] GET    /admin/logout             --> server/controll/admin.Logout (7 handlers)
+[GIN-debug] GET    /admin/reset_password     --> server/controll/admin.ResetPassword (7 handlers)
+[GIN-debug] GET    /admin/delete_employer    --> server/controll/admin.DeleteEmployee (7 handlers)
+[GIN-debug] POST   /admin/add_employer       --> server/controll/admin.AddEmployee (7 handlers)
+[GIN-debug] POST   /admin/update_employer    --> server/controll/admin.UpdateEmployee (7 handlers)
+[GIN-debug] GET    /admin/employer_list      --> server/controll/admin.EmployeeList (7 handlers)
+[GIN-debug] GET    /admin/employer_info      --> server/controll/admin.EmployeeInfo (7 handlers)
+[GIN-debug] GET    /admin/assigned_account   --> server/controll/admin.AssignedAccount (7 handlers)
+[GIN-debug] GET    /admin/get_department_list --> server/controll/admin.GetDepartmentList (7 handlers)
+[GIN-debug] GET    /admin/del_department     --> server/controll/admin.DeleteDepartment (7 handlers)
+[GIN-debug] POST   /admin/update_department  --> server/controll/admin.UpdateDepartment (7 handlers)
+[GIN-debug] POST   /admin/add_department     --> server/controll/admin.AddDepartment (7 handlers)
+[GIN-debug] GET    /admin/department_info    --> server/controll/admin.DepartmentInfo (7 handlers)
+[GIN-debug] GET    /admin/get_clockIn        --> server/controll/admin.GetClockInLog (7 handlers)
+[GIN-debug] POST   /admin/edit_clockIn       --> server/controll/admin.EditClockLog (7 handlers)
+[GIN-debug] POST   /admin/leave_application  --> server/controll/admin.LeaveApplication (7 handlers)
+[GIN-debug] GET    /admin/get_LeaveApplication_list --> server/controll/admin.GetLeaveApplicationList (7 handlers)
+[GIN-debug] POST   /admin/overtime_application --> server/controll/admin.OvertimeApplication (7 handlers)
+[GIN-debug] GET    /admin/get_overtimeApplication_list --> server/controll/admin.GetOvertimeList (7 handlers)
+[GIN-debug] POST   /admin/make_card_application --> server/controll/admin.MakeCardApplication (7 handlers)
+[GIN-debug] POST   /admin/make_card_application_liat --> server/controll/admin.GetMarkCardList (7 handlers)
+[GIN-debug] POST   /admin/add_menu           --> server/controll/menu.AddMenu (7 handlers)
+[GIN-debug] POST   /user/upload              --> server/controll/user.Upload (7 handlers)
+[GIN-debug] GET    /user/clockIn             --> server/controll/user.ClockIn (7 handlers)
+[server] [2024-02-27 14:19:44] [78kb] [31m[error][0m user.ClockIn：129 server/controll/user.ClockIn Error 1062 (23000): Duplicate entry '0' for key 'attendance_basic.uid'
+[server] [2024-02-27 14:19:44] [78kb] [38m[info][0m middleware.Log.func1：22 server/middleware.Log.func1 3m7.4582079s
+[GIN] 2024/02/27 - 14:19:44 |[97;42m 200 [0m|          3m7s |       127.0.0.1 |[97;44m GET     [0m "/user/clockIn"
+[server] [2024-02-27 14:19:44] [78kb] [38m[info][0m middleware.Log.func1：22 server/middleware.Log.func1 83.3608ms
+[GIN] 2024/02/27 - 14:19:44 |[97;42m 200 [0m|     83.9743ms |       127.0.0.1 |[97;44m GET     [0m "/admin/employer_info?uid=10000024"
+[server] [2024-02-27 14:19:45] [79kb] [38m[info][0m utils.Listen：21 server/utils.Listen Received signal: interrupt
+
+[server] [2024-02-27 14:19:45] [79kb] [38m[info][0m utils.Listen：27 server/utils.Listen mysql connect close success
+[server] [2024-02-27 14:19:45] [79kb] [38m[info][0m utils.Listen：36 server/utils.Listen redis connect close success
+[server] [2024-02-27 14:19:49] [79kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-27 14:19:49] [79kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (6 handlers)
+[GIN-debug] POST   /admin/menu_list          --> server/controll/menu.GetMenuList (6 handlers)
+[GIN-debug] POST   /admin/login              --> server/controll/admin.Login (6 handlers)
+[GIN-debug] POST   /register                 --> server/controll/admin.Register (6 handlers)
+[GIN-debug] GET    /admin/info               --> server/controll/admin.Info (7 handlers)
+[GIN-debug] GET    /admin/logout             --> server/controll/admin.Logout (7 handlers)
+[GIN-debug] GET    /admin/reset_password     --> server/controll/admin.ResetPassword (7 handlers)
+[GIN-debug] GET    /admin/delete_employer    --> server/controll/admin.DeleteEmployee (7 handlers)
+[GIN-debug] POST   /admin/add_employer       --> server/controll/admin.AddEmployee (7 handlers)
+[GIN-debug] POST   /admin/update_employer    --> server/controll/admin.UpdateEmployee (7 handlers)
+[GIN-debug] GET    /admin/employer_list      --> server/controll/admin.EmployeeList (7 handlers)
+[GIN-debug] GET    /admin/employer_info      --> server/controll/admin.EmployeeInfo (7 handlers)
+[GIN-debug] GET    /admin/assigned_account   --> server/controll/admin.AssignedAccount (7 handlers)
+[GIN-debug] GET    /admin/get_department_list --> server/controll/admin.GetDepartmentList (7 handlers)
+[GIN-debug] GET    /admin/del_department     --> server/controll/admin.DeleteDepartment (7 handlers)
+[GIN-debug] POST   /admin/update_department  --> server/controll/admin.UpdateDepartment (7 handlers)
+[GIN-debug] POST   /admin/add_department     --> server/controll/admin.AddDepartment (7 handlers)
+[GIN-debug] GET    /admin/department_info    --> server/controll/admin.DepartmentInfo (7 handlers)
+[GIN-debug] GET    /admin/get_clockIn        --> server/controll/admin.GetClockInLog (7 handlers)
+[GIN-debug] POST   /admin/edit_clockIn       --> server/controll/admin.EditClockLog (7 handlers)
+[GIN-debug] POST   /admin/leave_application  --> server/controll/admin.LeaveApplication (7 handlers)
+[GIN-debug] GET    /admin/get_LeaveApplication_list --> server/controll/admin.GetLeaveApplicationList (7 handlers)
+[GIN-debug] POST   /admin/overtime_application --> server/controll/admin.OvertimeApplication (7 handlers)
+[GIN-debug] GET    /admin/get_overtimeApplication_list --> server/controll/admin.GetOvertimeList (7 handlers)
+[GIN-debug] POST   /admin/make_card_application --> server/controll/admin.MakeCardApplication (7 handlers)
+[GIN-debug] POST   /admin/make_card_application_liat --> server/controll/admin.GetMarkCardList (7 handlers)
+[GIN-debug] POST   /admin/add_menu           --> server/controll/menu.AddMenu (7 handlers)
+[GIN-debug] POST   /user/upload              --> server/controll/user.Upload (7 handlers)
+[GIN-debug] GET    /user/clockIn             --> server/controll/user.ClockIn (7 handlers)
+[server] [2024-02-27 14:19:58] [82kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 7.3077ms
+[GIN] 2024/02/27 - 14:19:58 |[97;42m 200 [0m|      7.8109ms |       127.0.0.1 |[97;44m GET     [0m "/admin/employer_info?uid=10000024"
+[server] [2024-02-27 14:20:06] [83kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 10.0006ms
+[GIN] 2024/02/27 - 14:20:06 |[97;42m 200 [0m|     10.5047ms |       127.0.0.1 |[97;44m GET     [0m "/admin/employer_list"
+[server] [2024-02-27 14:21:00] [83kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 129.3725ms
+[GIN] 2024/02/27 - 14:21:00 |[97;42m 200 [0m|    129.3725ms |       127.0.0.1 |[97;44m GET     [0m "/admin/employer_info?uid=10000050"
+[server] [2024-02-27 14:21:01] [83kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 27.735ms
+[GIN] 2024/02/27 - 14:21:01 |[97;42m 200 [0m|     28.2562ms |       127.0.0.1 |[97;44m GET     [0m "/admin/employer_info?uid=10000050"
+[server] [2024-02-27 14:21:48] [83kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 73.351ms
+[GIN] 2024/02/27 - 14:21:48 |[97;42m 200 [0m|     73.8622ms |       127.0.0.1 |[97;44m GET     [0m "/admin/assigned_account?uid=10000050"
+[server] [2024-02-27 14:22:04] [83kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 60.6192ms
+[GIN] 2024/02/27 - 14:22:04 |[97;42m 200 [0m|     60.6192ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-27 14:22:16] [84kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 91.1671ms
+[GIN] 2024/02/27 - 14:22:16 |[97;42m 200 [0m|     91.1671ms |       127.0.0.1 |[97;44m GET     [0m "/user/clockIn"
+[server] [2024-02-27 14:22:20] [84kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 1.4856ms
+[GIN] 2024/02/27 - 14:22:20 |[97;42m 200 [0m|      1.4856ms |       127.0.0.1 |[97;44m GET     [0m "/user/clockIn"
+[server] [2024-02-27 14:23:04] [84kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 59.4409ms
+[GIN] 2024/02/27 - 14:23:04 |[97;42m 200 [0m|     59.4409ms |       127.0.0.1 |[97;44m GET     [0m "/user/clockIn"
+[server] [2024-02-27 14:23:05] [84kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 2.4272ms
+[GIN] 2024/02/27 - 14:23:05 |[97;42m 200 [0m|      2.4272ms |       127.0.0.1 |[97;44m GET     [0m "/user/clockIn"
+[server] [2024-02-27 14:24:16] [85kb] [38m[info][0m utils.Listen：21 server/utils.Listen Received signal: interrupt
+
+[server] [2024-02-27 14:24:16] [85kb] [38m[info][0m utils.Listen：27 server/utils.Listen mysql connect close success
+[server] [2024-02-27 14:24:16] [85kb] [38m[info][0m utils.Listen：36 server/utils.Listen redis connect close success
+[server] [2024-02-27 14:24:19] [85kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-27 14:24:19] [85kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (6 handlers)
+[GIN-debug] POST   /admin/menu_list          --> server/controll/menu.GetMenuList (6 handlers)
+[GIN-debug] POST   /admin/login              --> server/controll/admin.Login (6 handlers)
+[GIN-debug] POST   /register                 --> server/controll/admin.Register (6 handlers)
+[GIN-debug] GET    /admin/info               --> server/controll/admin.Info (7 handlers)
+[GIN-debug] GET    /admin/logout             --> server/controll/admin.Logout (7 handlers)
+[GIN-debug] GET    /admin/reset_password     --> server/controll/admin.ResetPassword (7 handlers)
+[GIN-debug] GET    /admin/delete_employer    --> server/controll/admin.DeleteEmployee (7 handlers)
+[GIN-debug] POST   /admin/add_employer       --> server/controll/admin.AddEmployee (7 handlers)
+[GIN-debug] POST   /admin/update_employer    --> server/controll/admin.UpdateEmployee (7 handlers)
+[GIN-debug] GET    /admin/employer_list      --> server/controll/admin.EmployeeList (7 handlers)
+[GIN-debug] GET    /admin/employer_info      --> server/controll/admin.EmployeeInfo (7 handlers)
+[GIN-debug] GET    /admin/assigned_account   --> server/controll/admin.AssignedAccount (7 handlers)
+[GIN-debug] GET    /admin/get_department_list --> server/controll/admin.GetDepartmentList (7 handlers)
+[GIN-debug] GET    /admin/del_department     --> server/controll/admin.DeleteDepartment (7 handlers)
+[GIN-debug] POST   /admin/update_department  --> server/controll/admin.UpdateDepartment (7 handlers)
+[GIN-debug] POST   /admin/add_department     --> server/controll/admin.AddDepartment (7 handlers)
+[GIN-debug] GET    /admin/department_info    --> server/controll/admin.DepartmentInfo (7 handlers)
+[GIN-debug] GET    /admin/get_clockIn        --> server/controll/admin.GetClockInLog (7 handlers)
+[GIN-debug] POST   /admin/edit_clockIn       --> server/controll/admin.EditClockLog (7 handlers)
+[GIN-debug] POST   /admin/leave_application  --> server/controll/admin.LeaveApplication (7 handlers)
+[GIN-debug] GET    /admin/get_LeaveApplication_list --> server/controll/admin.GetLeaveApplicationList (7 handlers)
+[GIN-debug] POST   /admin/overtime_application --> server/controll/admin.OvertimeApplication (7 handlers)
+[GIN-debug] GET    /admin/get_overtimeApplication_list --> server/controll/admin.GetOvertimeList (7 handlers)
+[GIN-debug] POST   /admin/make_card_application --> server/controll/admin.MakeCardApplication (7 handlers)
+[GIN-debug] POST   /admin/make_card_application_liat --> server/controll/admin.GetMarkCardList (7 handlers)
+[GIN-debug] POST   /admin/add_menu           --> server/controll/menu.AddMenu (7 handlers)
+[GIN-debug] POST   /user/upload              --> server/controll/user.Upload (7 handlers)
+[GIN-debug] GET    /user/clockIn             --> server/controll/user.ClockIn (7 handlers)
+[server] [2024-02-27 14:25:50] [88kb] [38m[info][0m middleware.Log.func1：22 server/middleware.Log.func1 1m29.1301798s
+[GIN] 2024/02/27 - 14:25:50 |[97;42m 200 [0m|         1m29s |       127.0.0.1 |[97;44m GET     [0m "/user/clockIn"
+[server] [2024-02-27 14:25:50] [88kb] [38m[info][0m utils.Listen：21 server/utils.Listen Received signal: interrupt
+
+[server] [2024-02-27 14:25:50] [89kb] [38m[info][0m utils.Listen：27 server/utils.Listen mysql connect close success
+[server] [2024-02-27 14:25:50] [89kb] [38m[info][0m utils.Listen：36 server/utils.Listen redis connect close success
+[server] [2024-02-27 14:25:53] [89kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-27 14:25:53] [89kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (6 handlers)
+[GIN-debug] POST   /admin/menu_list          --> server/controll/menu.GetMenuList (6 handlers)
+[GIN-debug] POST   /admin/login              --> server/controll/admin.Login (6 handlers)
+[GIN-debug] POST   /register                 --> server/controll/admin.Register (6 handlers)
+[GIN-debug] GET    /admin/info               --> server/controll/admin.Info (7 handlers)
+[GIN-debug] GET    /admin/logout             --> server/controll/admin.Logout (7 handlers)
+[GIN-debug] GET    /admin/reset_password     --> server/controll/admin.ResetPassword (7 handlers)
+[GIN-debug] GET    /admin/delete_employer    --> server/controll/admin.DeleteEmployee (7 handlers)
+[GIN-debug] POST   /admin/add_employer       --> server/controll/admin.AddEmployee (7 handlers)
+[GIN-debug] POST   /admin/update_employer    --> server/controll/admin.UpdateEmployee (7 handlers)
+[GIN-debug] GET    /admin/employer_list      --> server/controll/admin.EmployeeList (7 handlers)
+[GIN-debug] GET    /admin/employer_info      --> server/controll/admin.EmployeeInfo (7 handlers)
+[GIN-debug] GET    /admin/assigned_account   --> server/controll/admin.AssignedAccount (7 handlers)
+[GIN-debug] GET    /admin/get_department_list --> server/controll/admin.GetDepartmentList (7 handlers)
+[GIN-debug] GET    /admin/del_department     --> server/controll/admin.DeleteDepartment (7 handlers)
+[GIN-debug] POST   /admin/update_department  --> server/controll/admin.UpdateDepartment (7 handlers)
+[GIN-debug] POST   /admin/add_department     --> server/controll/admin.AddDepartment (7 handlers)
+[GIN-debug] GET    /admin/department_info    --> server/controll/admin.DepartmentInfo (7 handlers)
+[GIN-debug] GET    /admin/get_clockIn        --> server/controll/admin.GetClockInLog (7 handlers)
+[GIN-debug] POST   /admin/edit_clockIn       --> server/controll/admin.EditClockLog (7 handlers)
+[GIN-debug] POST   /admin/leave_application  --> server/controll/admin.LeaveApplication (7 handlers)
+[GIN-debug] GET    /admin/get_LeaveApplication_list --> server/controll/admin.GetLeaveApplicationList (7 handlers)
+[GIN-debug] POST   /admin/overtime_application --> server/controll/admin.OvertimeApplication (7 handlers)
+[GIN-debug] GET    /admin/get_overtimeApplication_list --> server/controll/admin.GetOvertimeList (7 handlers)
+[GIN-debug] POST   /admin/make_card_application --> server/controll/admin.MakeCardApplication (7 handlers)
+[GIN-debug] POST   /admin/make_card_application_liat --> server/controll/admin.GetMarkCardList (7 handlers)
+[GIN-debug] POST   /admin/add_menu           --> server/controll/menu.AddMenu (7 handlers)
+[GIN-debug] POST   /user/upload              --> server/controll/user.Upload (7 handlers)
+[GIN-debug] GET    /user/clockIn             --> server/controll/user.ClockIn (7 handlers)
+[server] [2024-02-27 14:25:57] [92kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 1.8465ms
+[GIN] 2024/02/27 - 14:25:57 |[97;42m 200 [0m|      1.8465ms |       127.0.0.1 |[97;44m GET     [0m "/user/clockIn"
+[server] [2024-02-27 14:26:00] [92kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 5.9742ms
+[GIN] 2024/02/27 - 14:26:00 |[97;42m 200 [0m|      6.1873ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-27 14:26:12] [93kb] [31m[error][0m user.ClockIn：129 server/controll/user.ClockIn Error 1062 (23000): Duplicate entry '' for key 'attendance_basic.name'
+[server] [2024-02-27 14:26:12] [93kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 56.4616ms
+[GIN] 2024/02/27 - 14:26:12 |[97;42m 200 [0m|     56.4616ms |       127.0.0.1 |[97;44m GET     [0m "/user/clockIn"
+[server] [2024-02-27 14:26:13] [93kb] [31m[error][0m user.ClockIn：129 server/controll/user.ClockIn Error 1062 (23000): Duplicate entry '' for key 'attendance_basic.name'
+[server] [2024-02-27 14:26:13] [93kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 13.4115ms
+[GIN] 2024/02/27 - 14:26:13 |[97;42m 200 [0m|     13.9162ms |       127.0.0.1 |[97;44m GET     [0m "/user/clockIn"
+[server] [2024-02-27 14:27:58] [93kb] [38m[info][0m utils.Listen：21 server/utils.Listen Received signal: interrupt
+
+[server] [2024-02-27 14:27:58] [93kb] [38m[info][0m utils.Listen：27 server/utils.Listen mysql connect close success
+[server] [2024-02-27 14:27:58] [94kb] [38m[info][0m utils.Listen：36 server/utils.Listen redis connect close success
+[server] [2024-02-27 14:28:21] [94kb] [38m[info][0m config.InitMysql.func1：46 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-27 14:28:21] [94kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (6 handlers)
+[GIN-debug] POST   /admin/menu_list          --> server/controll/menu.GetMenuList (6 handlers)
+[GIN-debug] POST   /admin/login              --> server/controll/admin.Login (6 handlers)
+[GIN-debug] POST   /register                 --> server/controll/admin.Register (6 handlers)
+[GIN-debug] GET    /admin/info               --> server/controll/admin.Info (7 handlers)
+[GIN-debug] GET    /admin/logout             --> server/controll/admin.Logout (7 handlers)
+[GIN-debug] GET    /admin/reset_password     --> server/controll/admin.ResetPassword (7 handlers)
+[GIN-debug] GET    /admin/delete_employer    --> server/controll/admin.DeleteEmployee (7 handlers)
+[GIN-debug] POST   /admin/add_employer       --> server/controll/admin.AddEmployee (7 handlers)
+[GIN-debug] POST   /admin/update_employer    --> server/controll/admin.UpdateEmployee (7 handlers)
+[GIN-debug] GET    /admin/employer_list      --> server/controll/admin.EmployeeList (7 handlers)
+[GIN-debug] GET    /admin/employer_info      --> server/controll/admin.EmployeeInfo (7 handlers)
+[GIN-debug] GET    /admin/assigned_account   --> server/controll/admin.AssignedAccount (7 handlers)
+[GIN-debug] GET    /admin/get_department_list --> server/controll/admin.GetDepartmentList (7 handlers)
+[GIN-debug] GET    /admin/del_department     --> server/controll/admin.DeleteDepartment (7 handlers)
+[GIN-debug] POST   /admin/update_department  --> server/controll/admin.UpdateDepartment (7 handlers)
+[GIN-debug] POST   /admin/add_department     --> server/controll/admin.AddDepartment (7 handlers)
+[GIN-debug] GET    /admin/department_info    --> server/controll/admin.DepartmentInfo (7 handlers)
+[GIN-debug] GET    /admin/get_clockIn        --> server/controll/admin.GetClockInLog (7 handlers)
+[GIN-debug] POST   /admin/edit_clockIn       --> server/controll/admin.EditClockLog (7 handlers)
+[GIN-debug] POST   /admin/leave_application  --> server/controll/admin.LeaveApplication (7 handlers)
+[GIN-debug] GET    /admin/get_LeaveApplication_list --> server/controll/admin.GetLeaveApplicationList (7 handlers)
+[GIN-debug] POST   /admin/overtime_application --> server/controll/admin.OvertimeApplication (7 handlers)
+[GIN-debug] GET    /admin/get_overtimeApplication_list --> server/controll/admin.GetOvertimeList (7 handlers)
+[GIN-debug] POST   /admin/make_card_application --> server/controll/admin.MakeCardApplication (7 handlers)
+[GIN-debug] POST   /admin/make_card_application_liat --> server/controll/admin.GetMarkCardList (7 handlers)
+[GIN-debug] POST   /admin/add_menu           --> server/controll/menu.AddMenu (7 handlers)
+[GIN-debug] POST   /user/upload              --> server/controll/user.Upload (7 handlers)
+[GIN-debug] GET    /user/clockIn             --> server/controll/user.ClockIn (7 handlers)
+[server] [2024-02-27 14:29:18] [97kb] [38m[info][0m utils.Listen：21 server/utils.Listen Received signal: interrupt
+
+[server] [2024-02-27 14:29:18] [97kb] [38m[info][0m utils.Listen：27 server/utils.Listen mysql connect close success
+[server] [2024-02-27 14:29:18] [97kb] [38m[info][0m utils.Listen：36 server/utils.Listen redis connect close success
+[server] [2024-02-27 14:29:23] [97kb] [38m[info][0m config.InitMysql.func1：46 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-27 14:29:23] [98kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (6 handlers)
+[GIN-debug] POST   /admin/menu_list          --> server/controll/menu.GetMenuList (6 handlers)
+[GIN-debug] POST   /admin/login              --> server/controll/admin.Login (6 handlers)
+[GIN-debug] POST   /register                 --> server/controll/admin.Register (6 handlers)
+[GIN-debug] GET    /admin/info               --> server/controll/admin.Info (7 handlers)
+[GIN-debug] GET    /admin/logout             --> server/controll/admin.Logout (7 handlers)
+[GIN-debug] GET    /admin/reset_password     --> server/controll/admin.ResetPassword (7 handlers)
+[GIN-debug] GET    /admin/delete_employer    --> server/controll/admin.DeleteEmployee (7 handlers)
+[GIN-debug] POST   /admin/add_employer       --> server/controll/admin.AddEmployee (7 handlers)
+[GIN-debug] POST   /admin/update_employer    --> server/controll/admin.UpdateEmployee (7 handlers)
+[GIN-debug] GET    /admin/employer_list      --> server/controll/admin.EmployeeList (7 handlers)
+[GIN-debug] GET    /admin/employer_info      --> server/controll/admin.EmployeeInfo (7 handlers)
+[GIN-debug] GET    /admin/assigned_account   --> server/controll/admin.AssignedAccount (7 handlers)
+[GIN-debug] GET    /admin/get_department_list --> server/controll/admin.GetDepartmentList (7 handlers)
+[GIN-debug] GET    /admin/del_department     --> server/controll/admin.DeleteDepartment (7 handlers)
+[GIN-debug] POST   /admin/update_department  --> server/controll/admin.UpdateDepartment (7 handlers)
+[GIN-debug] POST   /admin/add_department     --> server/controll/admin.AddDepartment (7 handlers)
+[GIN-debug] GET    /admin/department_info    --> server/controll/admin.DepartmentInfo (7 handlers)
+[GIN-debug] GET    /admin/get_clockIn        --> server/controll/admin.GetClockInLog (7 handlers)
+[GIN-debug] POST   /admin/edit_clockIn       --> server/controll/admin.EditClockLog (7 handlers)
+[GIN-debug] POST   /admin/leave_application  --> server/controll/admin.LeaveApplication (7 handlers)
+[GIN-debug] GET    /admin/get_LeaveApplication_list --> server/controll/admin.GetLeaveApplicationList (7 handlers)
+[GIN-debug] POST   /admin/overtime_application --> server/controll/admin.OvertimeApplication (7 handlers)
+[GIN-debug] GET    /admin/get_overtimeApplication_list --> server/controll/admin.GetOvertimeList (7 handlers)
+[GIN-debug] POST   /admin/make_card_application --> server/controll/admin.MakeCardApplication (7 handlers)
+[GIN-debug] POST   /admin/make_card_application_liat --> server/controll/admin.GetMarkCardList (7 handlers)
+[GIN-debug] POST   /admin/add_menu           --> server/controll/menu.AddMenu (7 handlers)
+[GIN-debug] POST   /user/upload              --> server/controll/user.Upload (7 handlers)
+[GIN-debug] GET    /user/clockIn             --> server/controll/user.ClockIn (7 handlers)
+[server] [2024-02-27 14:29:34] [101kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 64.9641ms
+[GIN] 2024/02/27 - 14:29:34 |[97;42m 200 [0m|     65.4677ms |       127.0.0.1 |[97;44m GET     [0m "/user/clockIn"
+[server] [2024-02-27 15:03:23] [101kb] [38m[info][0m utils.Listen：21 server/utils.Listen Received signal: interrupt
+
+[server] [2024-02-27 15:03:23] [101kb] [38m[info][0m utils.Listen：27 server/utils.Listen mysql connect close success
+[server] [2024-02-27 15:03:23] [101kb] [38m[info][0m utils.Listen：36 server/utils.Listen redis connect close success
+[server] [2024-02-27 15:04:12] [101kb] [38m[info][0m config.InitMysql.func1：46 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-27 15:04:12] [101kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (6 handlers)
+[GIN-debug] POST   /admin/menu_list          --> server/controll/menu.GetMenuList (6 handlers)
+[GIN-debug] POST   /admin/login              --> server/controll/admin.Login (6 handlers)
+[GIN-debug] POST   /register                 --> server/controll/admin.Register (6 handlers)
+[GIN-debug] GET    /admin/info               --> server/controll/admin.Info (7 handlers)
+[GIN-debug] GET    /admin/logout             --> server/controll/admin.Logout (7 handlers)
+[GIN-debug] GET    /admin/reset_password     --> server/controll/admin.ResetPassword (7 handlers)
+[GIN-debug] GET    /admin/delete_employer    --> server/controll/admin.DeleteEmployee (7 handlers)
+[GIN-debug] POST   /admin/add_employer       --> server/controll/admin.AddEmployee (7 handlers)
+[GIN-debug] POST   /admin/update_employer    --> server/controll/admin.UpdateEmployee (7 handlers)
+[GIN-debug] GET    /admin/employer_list      --> server/controll/admin.EmployeeList (7 handlers)
+[GIN-debug] GET    /admin/employer_info      --> server/controll/admin.EmployeeInfo (7 handlers)
+[GIN-debug] GET    /admin/assigned_account   --> server/controll/admin.AssignedAccount (7 handlers)
+[GIN-debug] GET    /admin/get_department_list --> server/controll/admin.GetDepartmentList (7 handlers)
+[GIN-debug] GET    /admin/del_department     --> server/controll/admin.DeleteDepartment (7 handlers)
+[GIN-debug] POST   /admin/update_department  --> server/controll/admin.UpdateDepartment (7 handlers)
+[GIN-debug] POST   /admin/add_department     --> server/controll/admin.AddDepartment (7 handlers)
+[GIN-debug] GET    /admin/department_info    --> server/controll/admin.DepartmentInfo (7 handlers)
+[GIN-debug] GET    /admin/get_clockIn        --> server/controll/admin.GetClockInLog (7 handlers)
+[GIN-debug] POST   /admin/edit_clockIn       --> server/controll/admin.EditClockLog (7 handlers)
+[GIN-debug] POST   /admin/leave_application  --> server/controll/admin.LeaveApplication (7 handlers)
+[GIN-debug] GET    /admin/get_LeaveApplication_list --> server/controll/admin.GetLeaveApplicationList (7 handlers)
+[GIN-debug] POST   /admin/overtime_application --> server/controll/admin.OvertimeApplication (7 handlers)
+[GIN-debug] GET    /admin/get_overtimeApplication_list --> server/controll/admin.GetOvertimeList (7 handlers)
+[GIN-debug] POST   /admin/make_card_application --> server/controll/admin.MakeCardApplication (7 handlers)
+[GIN-debug] POST   /admin/make_card_application_liat --> server/controll/admin.GetMarkCardList (7 handlers)
+[GIN-debug] POST   /admin/add_menu           --> server/controll/menu.AddMenu (7 handlers)
+[GIN-debug] POST   /user/upload              --> server/controll/user.Upload (7 handlers)
+[GIN-debug] GET    /user/clockIn             --> server/controll/user.ClockIn (7 handlers)
+[server] [2024-02-27 15:04:18] [105kb] [38m[info][0m utils.Listen：21 server/utils.Listen Received signal: interrupt
+
+[server] [2024-02-27 15:04:18] [105kb] [38m[info][0m utils.Listen：27 server/utils.Listen mysql connect close success
+[server] [2024-02-27 15:04:18] [105kb] [38m[info][0m utils.Listen：36 server/utils.Listen redis connect close success
+[server] [2024-02-27 15:04:23] [105kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-27 15:04:23] [105kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (6 handlers)
+[GIN-debug] POST   /admin/menu_list          --> server/controll/menu.GetMenuList (6 handlers)
+[GIN-debug] POST   /admin/login              --> server/controll/admin.Login (6 handlers)
+[GIN-debug] POST   /register                 --> server/controll/admin.Register (6 handlers)
+[GIN-debug] GET    /admin/info               --> server/controll/admin.Info (7 handlers)
+[GIN-debug] GET    /admin/logout             --> server/controll/admin.Logout (7 handlers)
+[GIN-debug] GET    /admin/reset_password     --> server/controll/admin.ResetPassword (7 handlers)
+[GIN-debug] GET    /admin/delete_employer    --> server/controll/admin.DeleteEmployee (7 handlers)
+[GIN-debug] POST   /admin/add_employer       --> server/controll/admin.AddEmployee (7 handlers)
+[GIN-debug] POST   /admin/update_employer    --> server/controll/admin.UpdateEmployee (7 handlers)
+[GIN-debug] GET    /admin/employer_list      --> server/controll/admin.EmployeeList (7 handlers)
+[GIN-debug] GET    /admin/employer_info      --> server/controll/admin.EmployeeInfo (7 handlers)
+[GIN-debug] GET    /admin/assigned_account   --> server/controll/admin.AssignedAccount (7 handlers)
+[GIN-debug] GET    /admin/get_department_list --> server/controll/admin.GetDepartmentList (7 handlers)
+[GIN-debug] GET    /admin/del_department     --> server/controll/admin.DeleteDepartment (7 handlers)
+[GIN-debug] POST   /admin/update_department  --> server/controll/admin.UpdateDepartment (7 handlers)
+[GIN-debug] POST   /admin/add_department     --> server/controll/admin.AddDepartment (7 handlers)
+[GIN-debug] GET    /admin/department_info    --> server/controll/admin.DepartmentInfo (7 handlers)
+[GIN-debug] GET    /admin/get_clockIn        --> server/controll/admin.GetClockInLog (7 handlers)
+[GIN-debug] POST   /admin/edit_clockIn       --> server/controll/admin.EditClockLog (7 handlers)
+[GIN-debug] POST   /admin/leave_application  --> server/controll/admin.LeaveApplication (7 handlers)
+[GIN-debug] GET    /admin/get_LeaveApplication_list --> server/controll/admin.GetLeaveApplicationList (7 handlers)
+[GIN-debug] POST   /admin/overtime_application --> server/controll/admin.OvertimeApplication (7 handlers)
+[GIN-debug] GET    /admin/get_overtimeApplication_list --> server/controll/admin.GetOvertimeList (7 handlers)
+[GIN-debug] POST   /admin/make_card_application --> server/controll/admin.MakeCardApplication (7 handlers)
+[GIN-debug] POST   /admin/make_card_application_liat --> server/controll/admin.GetMarkCardList (7 handlers)
+[GIN-debug] POST   /admin/add_menu           --> server/controll/menu.AddMenu (7 handlers)
+[GIN-debug] POST   /user/upload              --> server/controll/user.Upload (7 handlers)
+[GIN-debug] GET    /user/clockIn             --> server/controll/user.ClockIn (7 handlers)
+[server] [2024-02-27 15:04:24] [108kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 15.5779ms
+[GIN] 2024/02/27 - 15:04:24 |[97;42m 200 [0m|     15.8563ms |       127.0.0.1 |[97;44m GET     [0m "/user/clockIn"
+[server] [2024-02-27 15:06:28] [108kb] [38m[info][0m utils.Listen：21 server/utils.Listen Received signal: interrupt
+
+[server] [2024-02-27 15:06:28] [109kb] [38m[info][0m utils.Listen：27 server/utils.Listen mysql connect close success
+[server] [2024-02-27 15:06:28] [109kb] [38m[info][0m utils.Listen：36 server/utils.Listen redis connect close success
+[server] [2024-02-27 15:06:33] [109kb] [38m[info][0m config.InitMysql.func1：46 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-27 15:06:33] [109kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (6 handlers)
+[GIN-debug] POST   /admin/menu_list          --> server/controll/menu.GetMenuList (6 handlers)
+[GIN-debug] POST   /admin/login              --> server/controll/admin.Login (6 handlers)
+[GIN-debug] POST   /register                 --> server/controll/admin.Register (6 handlers)
+[GIN-debug] GET    /admin/info               --> server/controll/admin.Info (7 handlers)
+[GIN-debug] GET    /admin/logout             --> server/controll/admin.Logout (7 handlers)
+[GIN-debug] GET    /admin/reset_password     --> server/controll/admin.ResetPassword (7 handlers)
+[GIN-debug] GET    /admin/delete_employer    --> server/controll/admin.DeleteEmployee (7 handlers)
+[GIN-debug] POST   /admin/add_employer       --> server/controll/admin.AddEmployee (7 handlers)
+[GIN-debug] POST   /admin/update_employer    --> server/controll/admin.UpdateEmployee (7 handlers)
+[GIN-debug] GET    /admin/employer_list      --> server/controll/admin.EmployeeList (7 handlers)
+[GIN-debug] GET    /admin/employer_info      --> server/controll/admin.EmployeeInfo (7 handlers)
+[GIN-debug] GET    /admin/assigned_account   --> server/controll/admin.AssignedAccount (7 handlers)
+[GIN-debug] GET    /admin/get_department_list --> server/controll/admin.GetDepartmentList (7 handlers)
+[GIN-debug] GET    /admin/del_department     --> server/controll/admin.DeleteDepartment (7 handlers)
+[GIN-debug] POST   /admin/update_department  --> server/controll/admin.UpdateDepartment (7 handlers)
+[GIN-debug] POST   /admin/add_department     --> server/controll/admin.AddDepartment (7 handlers)
+[GIN-debug] GET    /admin/department_info    --> server/controll/admin.DepartmentInfo (7 handlers)
+[GIN-debug] GET    /admin/get_clockIn        --> server/controll/admin.GetClockInLog (7 handlers)
+[GIN-debug] POST   /admin/edit_clockIn       --> server/controll/admin.EditClockLog (7 handlers)
+[GIN-debug] POST   /admin/leave_application  --> server/controll/admin.LeaveApplication (7 handlers)
+[GIN-debug] GET    /admin/get_LeaveApplication_list --> server/controll/admin.GetLeaveApplicationList (7 handlers)
+[GIN-debug] POST   /admin/overtime_application --> server/controll/admin.OvertimeApplication (7 handlers)
+[GIN-debug] GET    /admin/get_overtimeApplication_list --> server/controll/admin.GetOvertimeList (7 handlers)
+[GIN-debug] POST   /admin/make_card_application --> server/controll/admin.MakeCardApplication (7 handlers)
+[GIN-debug] POST   /admin/make_card_application_liat --> server/controll/admin.GetMarkCardList (7 handlers)
+[GIN-debug] POST   /admin/add_menu           --> server/controll/menu.AddMenu (7 handlers)
+[GIN-debug] POST   /user/upload              --> server/controll/user.Upload (7 handlers)
+[GIN-debug] GET    /user/clockIn             --> server/controll/user.ClockIn (7 handlers)
+[server] [2024-02-27 15:06:48] [112kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 73.2663ms
+[GIN] 2024/02/27 - 15:06:48 |[97;42m 200 [0m|     73.7156ms |       127.0.0.1 |[97;44m GET     [0m "/user/clockIn"
+[server] [2024-02-27 15:06:59] [112kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 58.5448ms
+[GIN] 2024/02/27 - 15:06:59 |[97;42m 200 [0m|     58.9078ms |       127.0.0.1 |[97;44m GET     [0m "/user/clockIn"
+[server] [2024-02-27 15:08:41] [113kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 76.6218ms
+[GIN] 2024/02/27 - 15:08:41 |[97;42m 200 [0m|     77.3561ms |       127.0.0.1 |[97;44m GET     [0m "/user/clockIn"
+[server] [2024-02-27 16:15:28] [113kb] [38m[info][0m utils.Listen：21 server/utils.Listen Received signal: interrupt
+
+[server] [2024-02-27 16:15:28] [113kb] [38m[info][0m utils.Listen：27 server/utils.Listen mysql connect close success
+[server] [2024-02-27 16:15:28] [113kb] [38m[info][0m utils.Listen：36 server/utils.Listen redis connect close success
+[server] [2024-02-27 16:15:33] [113kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-27 16:15:34] [113kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (6 handlers)
+[GIN-debug] POST   /admin/menu_list          --> server/controll/menu.GetMenuList (6 handlers)
+[GIN-debug] POST   /admin/login              --> server/controll/admin.Login (6 handlers)
+[GIN-debug] POST   /register                 --> server/controll/admin.Register (6 handlers)
+[GIN-debug] GET    /admin/info               --> server/controll/admin.Info (7 handlers)
+[GIN-debug] GET    /admin/logout             --> server/controll/admin.Logout (7 handlers)
+[GIN-debug] GET    /admin/reset_password     --> server/controll/admin.ResetPassword (7 handlers)
+[GIN-debug] GET    /admin/delete_employer    --> server/controll/admin.DeleteEmployee (7 handlers)
+[GIN-debug] POST   /admin/add_employer       --> server/controll/admin.AddEmployee (7 handlers)
+[GIN-debug] POST   /admin/update_employer    --> server/controll/admin.UpdateEmployee (7 handlers)
+[GIN-debug] GET    /admin/employer_list      --> server/controll/admin.EmployeeList (7 handlers)
+[GIN-debug] GET    /admin/employer_info      --> server/controll/admin.EmployeeInfo (7 handlers)
+[GIN-debug] GET    /admin/assigned_account   --> server/controll/admin.AssignedAccount (7 handlers)
+[GIN-debug] GET    /admin/get_department_list --> server/controll/admin.GetDepartmentList (7 handlers)
+[GIN-debug] GET    /admin/del_department     --> server/controll/admin.DeleteDepartment (7 handlers)
+[GIN-debug] POST   /admin/update_department  --> server/controll/admin.UpdateDepartment (7 handlers)
+[GIN-debug] POST   /admin/add_department     --> server/controll/admin.AddDepartment (7 handlers)
+[GIN-debug] GET    /admin/department_info    --> server/controll/admin.DepartmentInfo (7 handlers)
+[GIN-debug] GET    /admin/get_clockIn        --> server/controll/admin.GetClockInLog (7 handlers)
+[GIN-debug] POST   /admin/edit_clockIn       --> server/controll/admin.EditClockLog (7 handlers)
+[GIN-debug] POST   /admin/leave_application  --> server/controll/admin.LeaveApplication (7 handlers)
+[GIN-debug] GET    /admin/get_LeaveApplication_list --> server/controll/admin.GetLeaveApplicationList (7 handlers)
+[GIN-debug] POST   /admin/overtime_application --> server/controll/admin.OvertimeApplication (7 handlers)
+[GIN-debug] GET    /admin/get_overtimeApplication_list --> server/controll/admin.GetOvertimeList (7 handlers)
+[GIN-debug] POST   /admin/make_card_application --> server/controll/admin.MakeCardApplication (7 handlers)
+[GIN-debug] POST   /admin/make_card_application_liat --> server/controll/admin.GetMarkCardList (7 handlers)
+[GIN-debug] POST   /admin/add_menu           --> server/controll/menu.AddMenu (7 handlers)
+[GIN-debug] POST   /user/upload              --> server/controll/user.Upload (7 handlers)
+[GIN-debug] GET    /user/clockIn             --> server/controll/user.ClockIn (7 handlers)
+[GIN-debug] GET    /user/change_password     --> server/controll/user.ChangePassword (7 handlers)
+[server] [2024-02-27 16:17:02] [117kb] [38m[info][0m utils.Listen：21 server/utils.Listen Received signal: interrupt
+
+[server] [2024-02-27 16:17:02] [117kb] [38m[info][0m utils.Listen：27 server/utils.Listen mysql connect close success
+[server] [2024-02-27 16:17:02] [117kb] [38m[info][0m utils.Listen：36 server/utils.Listen redis connect close success
+[server] [2024-02-27 16:17:08] [117kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-27 16:17:08] [117kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (6 handlers)
+[GIN-debug] POST   /admin/menu_list          --> server/controll/menu.GetMenuList (6 handlers)
+[GIN-debug] POST   /admin/login              --> server/controll/admin.Login (6 handlers)
+[GIN-debug] POST   /register                 --> server/controll/admin.Register (6 handlers)
+[GIN-debug] GET    /admin/info               --> server/controll/admin.Info (7 handlers)
+[GIN-debug] GET    /admin/logout             --> server/controll/admin.Logout (7 handlers)
+[GIN-debug] GET    /admin/reset_password     --> server/controll/admin.ResetPassword (7 handlers)
+[GIN-debug] GET    /admin/delete_employer    --> server/controll/admin.DeleteEmployee (7 handlers)
+[GIN-debug] POST   /admin/add_employer       --> server/controll/admin.AddEmployee (7 handlers)
+[GIN-debug] POST   /admin/update_employer    --> server/controll/admin.UpdateEmployee (7 handlers)
+[GIN-debug] GET    /admin/employer_list      --> server/controll/admin.EmployeeList (7 handlers)
+[GIN-debug] GET    /admin/employer_info      --> server/controll/admin.EmployeeInfo (7 handlers)
+[GIN-debug] GET    /admin/assigned_account   --> server/controll/admin.AssignedAccount (7 handlers)
+[GIN-debug] GET    /admin/get_department_list --> server/controll/admin.GetDepartmentList (7 handlers)
+[GIN-debug] GET    /admin/del_department     --> server/controll/admin.DeleteDepartment (7 handlers)
+[GIN-debug] POST   /admin/update_department  --> server/controll/admin.UpdateDepartment (7 handlers)
+[GIN-debug] POST   /admin/add_department     --> server/controll/admin.AddDepartment (7 handlers)
+[GIN-debug] GET    /admin/department_info    --> server/controll/admin.DepartmentInfo (7 handlers)
+[GIN-debug] GET    /admin/get_clockIn        --> server/controll/admin.GetClockInLog (7 handlers)
+[GIN-debug] POST   /admin/edit_clockIn       --> server/controll/admin.EditClockLog (7 handlers)
+[GIN-debug] POST   /admin/leave_application  --> server/controll/admin.LeaveApplication (7 handlers)
+[GIN-debug] GET    /admin/get_LeaveApplication_list --> server/controll/admin.GetLeaveApplicationList (7 handlers)
+[GIN-debug] POST   /admin/overtime_application --> server/controll/admin.OvertimeApplication (7 handlers)
+[GIN-debug] GET    /admin/get_overtimeApplication_list --> server/controll/admin.GetOvertimeList (7 handlers)
+[GIN-debug] POST   /admin/make_card_application --> server/controll/admin.MakeCardApplication (7 handlers)
+[GIN-debug] POST   /admin/make_card_application_liat --> server/controll/admin.GetMarkCardList (7 handlers)
+[GIN-debug] POST   /admin/add_menu           --> server/controll/menu.AddMenu (7 handlers)
+[GIN-debug] POST   /user/upload              --> server/controll/user.Upload (7 handlers)
+[GIN-debug] GET    /user/clockIn             --> server/controll/user.ClockIn (7 handlers)
+[GIN-debug] GET    /user/change_password     --> server/controll/user.ChangePassword (7 handlers)
+[server] [2024-02-27 16:18:05] [120kb] [38m[info][0m middleware.Log.func1：22 server/middleware.Log.func1 50.1985836s
+[GIN] 2024/02/27 - 16:18:05 |[97;42m 200 [0m|   50.1985836s |       127.0.0.1 |[97;44m GET     [0m "/user/change_password?pwd=123456&passwprd=leilong"
+[server] [2024-02-27 16:18:05] [121kb] [38m[info][0m utils.Listen：21 server/utils.Listen Received signal: interrupt
+
+[server] [2024-02-27 16:18:05] [121kb] [38m[info][0m utils.Listen：27 server/utils.Listen mysql connect close success
+[server] [2024-02-27 16:18:05] [121kb] [38m[info][0m utils.Listen：36 server/utils.Listen redis connect close success
+[server] [2024-02-27 16:18:08] [121kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-27 16:18:08] [121kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (6 handlers)
+[GIN-debug] POST   /admin/menu_list          --> server/controll/menu.GetMenuList (6 handlers)
+[GIN-debug] POST   /admin/login              --> server/controll/admin.Login (6 handlers)
+[GIN-debug] POST   /register                 --> server/controll/admin.Register (6 handlers)
+[GIN-debug] GET    /admin/info               --> server/controll/admin.Info (7 handlers)
+[GIN-debug] GET    /admin/logout             --> server/controll/admin.Logout (7 handlers)
+[GIN-debug] GET    /admin/reset_password     --> server/controll/admin.ResetPassword (7 handlers)
+[GIN-debug] GET    /admin/delete_employer    --> server/controll/admin.DeleteEmployee (7 handlers)
+[GIN-debug] POST   /admin/add_employer       --> server/controll/admin.AddEmployee (7 handlers)
+[GIN-debug] POST   /admin/update_employer    --> server/controll/admin.UpdateEmployee (7 handlers)
+[GIN-debug] GET    /admin/employer_list      --> server/controll/admin.EmployeeList (7 handlers)
+[GIN-debug] GET    /admin/employer_info      --> server/controll/admin.EmployeeInfo (7 handlers)
+[GIN-debug] GET    /admin/assigned_account   --> server/controll/admin.AssignedAccount (7 handlers)
+[GIN-debug] GET    /admin/get_department_list --> server/controll/admin.GetDepartmentList (7 handlers)
+[GIN-debug] GET    /admin/del_department     --> server/controll/admin.DeleteDepartment (7 handlers)
+[GIN-debug] POST   /admin/update_department  --> server/controll/admin.UpdateDepartment (7 handlers)
+[GIN-debug] POST   /admin/add_department     --> server/controll/admin.AddDepartment (7 handlers)
+[GIN-debug] GET    /admin/department_info    --> server/controll/admin.DepartmentInfo (7 handlers)
+[GIN-debug] GET    /admin/get_clockIn        --> server/controll/admin.GetClockInLog (7 handlers)
+[GIN-debug] POST   /admin/edit_clockIn       --> server/controll/admin.EditClockLog (7 handlers)
+[GIN-debug] POST   /admin/leave_application  --> server/controll/admin.LeaveApplication (7 handlers)
+[GIN-debug] GET    /admin/get_LeaveApplication_list --> server/controll/admin.GetLeaveApplicationList (7 handlers)
+[GIN-debug] POST   /admin/overtime_application --> server/controll/admin.OvertimeApplication (7 handlers)
+[GIN-debug] GET    /admin/get_overtimeApplication_list --> server/controll/admin.GetOvertimeList (7 handlers)
+[GIN-debug] POST   /admin/make_card_application --> server/controll/admin.MakeCardApplication (7 handlers)
+[GIN-debug] POST   /admin/make_card_application_liat --> server/controll/admin.GetMarkCardList (7 handlers)
+[GIN-debug] POST   /admin/add_menu           --> server/controll/menu.AddMenu (7 handlers)
+[GIN-debug] POST   /user/upload              --> server/controll/user.Upload (7 handlers)
+[GIN-debug] GET    /user/clockIn             --> server/controll/user.ClockIn (7 handlers)
+[GIN-debug] GET    /user/change_password     --> server/controll/user.ChangePassword (7 handlers)
+[server] [2024-02-27 16:18:42] [124kb] [38m[info][0m middleware.Log.func1：22 server/middleware.Log.func1 31.8590214s
+[GIN] 2024/02/27 - 16:18:42 |[97;42m 200 [0m|   31.8595344s |       127.0.0.1 |[97;44m GET     [0m "/user/change_password?pwd=123456&password=leilong"
+[server] [2024-02-27 16:18:53] [125kb] [38m[info][0m utils.Listen：21 server/utils.Listen Received signal: interrupt
+
+[server] [2024-02-27 16:18:53] [125kb] [38m[info][0m utils.Listen：27 server/utils.Listen mysql connect close success
+[server] [2024-02-27 16:18:53] [125kb] [38m[info][0m utils.Listen：36 server/utils.Listen redis connect close success
+[server] [2024-02-27 16:18:58] [125kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-27 16:18:58] [125kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (6 handlers)
+[GIN-debug] POST   /admin/menu_list          --> server/controll/menu.GetMenuList (6 handlers)
+[GIN-debug] POST   /admin/login              --> server/controll/admin.Login (6 handlers)
+[GIN-debug] POST   /register                 --> server/controll/admin.Register (6 handlers)
+[GIN-debug] GET    /admin/info               --> server/controll/admin.Info (7 handlers)
+[GIN-debug] GET    /admin/logout             --> server/controll/admin.Logout (7 handlers)
+[GIN-debug] GET    /admin/reset_password     --> server/controll/admin.ResetPassword (7 handlers)
+[GIN-debug] GET    /admin/delete_employer    --> server/controll/admin.DeleteEmployee (7 handlers)
+[GIN-debug] POST   /admin/add_employer       --> server/controll/admin.AddEmployee (7 handlers)
+[GIN-debug] POST   /admin/update_employer    --> server/controll/admin.UpdateEmployee (7 handlers)
+[GIN-debug] GET    /admin/employer_list      --> server/controll/admin.EmployeeList (7 handlers)
+[GIN-debug] GET    /admin/employer_info      --> server/controll/admin.EmployeeInfo (7 handlers)
+[GIN-debug] GET    /admin/assigned_account   --> server/controll/admin.AssignedAccount (7 handlers)
+[GIN-debug] GET    /admin/get_department_list --> server/controll/admin.GetDepartmentList (7 handlers)
+[GIN-debug] GET    /admin/del_department     --> server/controll/admin.DeleteDepartment (7 handlers)
+[GIN-debug] POST   /admin/update_department  --> server/controll/admin.UpdateDepartment (7 handlers)
+[GIN-debug] POST   /admin/add_department     --> server/controll/admin.AddDepartment (7 handlers)
+[GIN-debug] GET    /admin/department_info    --> server/controll/admin.DepartmentInfo (7 handlers)
+[GIN-debug] GET    /admin/get_clockIn        --> server/controll/admin.GetClockInLog (7 handlers)
+[GIN-debug] POST   /admin/edit_clockIn       --> server/controll/admin.EditClockLog (7 handlers)
+[GIN-debug] POST   /admin/leave_application  --> server/controll/admin.LeaveApplication (7 handlers)
+[GIN-debug] GET    /admin/get_LeaveApplication_list --> server/controll/admin.GetLeaveApplicationList (7 handlers)
+[GIN-debug] POST   /admin/overtime_application --> server/controll/admin.OvertimeApplication (7 handlers)
+[GIN-debug] GET    /admin/get_overtimeApplication_list --> server/controll/admin.GetOvertimeList (7 handlers)
+[GIN-debug] POST   /admin/make_card_application --> server/controll/admin.MakeCardApplication (7 handlers)
+[GIN-debug] POST   /admin/make_card_application_liat --> server/controll/admin.GetMarkCardList (7 handlers)
+[GIN-debug] POST   /admin/add_menu           --> server/controll/menu.AddMenu (7 handlers)
+[GIN-debug] POST   /user/upload              --> server/controll/user.Upload (7 handlers)
+[GIN-debug] GET    /user/clockIn             --> server/controll/user.ClockIn (7 handlers)
+[GIN-debug] GET    /user/change_password     --> server/controll/user.ChangePassword (7 handlers)
+[server] [2024-02-27 16:18:59] [128kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 10.885ms
+[GIN] 2024/02/27 - 16:18:59 |[97;42m 200 [0m|     11.3891ms |       127.0.0.1 |[97;44m GET     [0m "/user/change_password?pwd=123456&password=leilong"
+[server] [2024-02-27 16:19:04] [129kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 6.6432ms
+[GIN] 2024/02/27 - 16:19:04 |[97;42m 200 [0m|      7.4827ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-27 16:19:05] [129kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 4.7432ms
+[GIN] 2024/02/27 - 16:19:05 |[97;42m 200 [0m|      5.2766ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-27 16:19:06] [129kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 4.1925ms
+[GIN] 2024/02/27 - 16:19:06 |[97;42m 200 [0m|      5.0474ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-27 16:19:14] [129kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 9.2272ms
+[GIN] 2024/02/27 - 16:19:14 |[97;42m 200 [0m|     10.0853ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-27 16:19:15] [130kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 6.5767ms
+[GIN] 2024/02/27 - 16:19:15 |[97;42m 200 [0m|      6.7771ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-27 16:19:16] [130kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 4.1896ms
+[GIN] 2024/02/27 - 16:19:16 |[97;42m 200 [0m|      4.5686ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-27 16:19:16] [130kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 4.4679ms
+[GIN] 2024/02/27 - 16:19:16 |[97;42m 200 [0m|       5.095ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-27 16:19:17] [130kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 4.2942ms
+[GIN] 2024/02/27 - 16:19:17 |[97;42m 200 [0m|      4.4065ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-27 16:19:18] [130kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 4.1891ms
+[GIN] 2024/02/27 - 16:19:18 |[97;42m 200 [0m|      4.7223ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-27 16:19:52] [131kb] [38m[info][0m utils.Listen：21 server/utils.Listen Received signal: interrupt
+
+[server] [2024-02-27 16:19:52] [131kb] [38m[info][0m utils.Listen：27 server/utils.Listen mysql connect close success
+[server] [2024-02-27 16:19:52] [131kb] [38m[info][0m utils.Listen：36 server/utils.Listen redis connect close success
+[server] [2024-02-27 16:19:58] [131kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-27 16:19:58] [131kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (6 handlers)
+[GIN-debug] POST   /admin/menu_list          --> server/controll/menu.GetMenuList (6 handlers)
+[GIN-debug] POST   /admin/login              --> server/controll/admin.Login (6 handlers)
+[GIN-debug] POST   /register                 --> server/controll/admin.Register (6 handlers)
+[GIN-debug] GET    /admin/info               --> server/controll/admin.Info (7 handlers)
+[GIN-debug] GET    /admin/logout             --> server/controll/admin.Logout (7 handlers)
+[GIN-debug] GET    /admin/reset_password     --> server/controll/admin.ResetPassword (7 handlers)
+[GIN-debug] GET    /admin/delete_employer    --> server/controll/admin.DeleteEmployee (7 handlers)
+[GIN-debug] POST   /admin/add_employer       --> server/controll/admin.AddEmployee (7 handlers)
+[GIN-debug] POST   /admin/update_employer    --> server/controll/admin.UpdateEmployee (7 handlers)
+[GIN-debug] GET    /admin/employer_list      --> server/controll/admin.EmployeeList (7 handlers)
+[GIN-debug] GET    /admin/employer_info      --> server/controll/admin.EmployeeInfo (7 handlers)
+[GIN-debug] GET    /admin/assigned_account   --> server/controll/admin.AssignedAccount (7 handlers)
+[GIN-debug] GET    /admin/get_department_list --> server/controll/admin.GetDepartmentList (7 handlers)
+[GIN-debug] GET    /admin/del_department     --> server/controll/admin.DeleteDepartment (7 handlers)
+[GIN-debug] POST   /admin/update_department  --> server/controll/admin.UpdateDepartment (7 handlers)
+[GIN-debug] POST   /admin/add_department     --> server/controll/admin.AddDepartment (7 handlers)
+[GIN-debug] GET    /admin/department_info    --> server/controll/admin.DepartmentInfo (7 handlers)
+[GIN-debug] GET    /admin/get_clockIn        --> server/controll/admin.GetClockInLog (7 handlers)
+[GIN-debug] POST   /admin/edit_clockIn       --> server/controll/admin.EditClockLog (7 handlers)
+[GIN-debug] POST   /admin/leave_application  --> server/controll/admin.LeaveApplication (7 handlers)
+[GIN-debug] GET    /admin/get_LeaveApplication_list --> server/controll/admin.GetLeaveApplicationList (7 handlers)
+[GIN-debug] POST   /admin/overtime_application --> server/controll/admin.OvertimeApplication (7 handlers)
+[GIN-debug] GET    /admin/get_overtimeApplication_list --> server/controll/admin.GetOvertimeList (7 handlers)
+[GIN-debug] POST   /admin/make_card_application --> server/controll/admin.MakeCardApplication (7 handlers)
+[GIN-debug] POST   /admin/make_card_application_liat --> server/controll/admin.GetMarkCardList (7 handlers)
+[GIN-debug] POST   /admin/add_menu           --> server/controll/menu.AddMenu (7 handlers)
+[GIN-debug] POST   /user/upload              --> server/controll/user.Upload (7 handlers)
+[GIN-debug] GET    /user/clockIn             --> server/controll/user.ClockIn (7 handlers)
+[GIN-debug] GET    /user/change_password     --> server/controll/user.ChangePassword (7 handlers)
+[server] [2024-02-27 16:20:28] [134kb] [38m[info][0m middleware.Log.func1：22 server/middleware.Log.func1 26.4073914s
+[GIN] 2024/02/27 - 16:20:28 |[97;42m 200 [0m|    26.407895s |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-27 16:20:35] [135kb] [38m[info][0m utils.Listen：21 server/utils.Listen Received signal: interrupt
+
+[server] [2024-02-27 16:20:35] [135kb] [38m[info][0m utils.Listen：27 server/utils.Listen mysql connect close success
+[server] [2024-02-27 16:20:35] [135kb] [38m[info][0m utils.Listen：36 server/utils.Listen redis connect close success
+[server] [2024-02-27 16:20:38] [135kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-27 16:20:39] [135kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (6 handlers)
+[GIN-debug] POST   /admin/menu_list          --> server/controll/menu.GetMenuList (6 handlers)
+[GIN-debug] POST   /admin/login              --> server/controll/admin.Login (6 handlers)
+[GIN-debug] POST   /register                 --> server/controll/admin.Register (6 handlers)
+[GIN-debug] GET    /admin/info               --> server/controll/admin.Info (7 handlers)
+[GIN-debug] GET    /admin/logout             --> server/controll/admin.Logout (7 handlers)
+[GIN-debug] GET    /admin/reset_password     --> server/controll/admin.ResetPassword (7 handlers)
+[GIN-debug] GET    /admin/delete_employer    --> server/controll/admin.DeleteEmployee (7 handlers)
+[GIN-debug] POST   /admin/add_employer       --> server/controll/admin.AddEmployee (7 handlers)
+[GIN-debug] POST   /admin/update_employer    --> server/controll/admin.UpdateEmployee (7 handlers)
+[GIN-debug] GET    /admin/employer_list      --> server/controll/admin.EmployeeList (7 handlers)
+[GIN-debug] GET    /admin/employer_info      --> server/controll/admin.EmployeeInfo (7 handlers)
+[GIN-debug] GET    /admin/assigned_account   --> server/controll/admin.AssignedAccount (7 handlers)
+[GIN-debug] GET    /admin/get_department_list --> server/controll/admin.GetDepartmentList (7 handlers)
+[GIN-debug] GET    /admin/del_department     --> server/controll/admin.DeleteDepartment (7 handlers)
+[GIN-debug] POST   /admin/update_department  --> server/controll/admin.UpdateDepartment (7 handlers)
+[GIN-debug] POST   /admin/add_department     --> server/controll/admin.AddDepartment (7 handlers)
+[GIN-debug] GET    /admin/department_info    --> server/controll/admin.DepartmentInfo (7 handlers)
+[GIN-debug] GET    /admin/get_clockIn        --> server/controll/admin.GetClockInLog (7 handlers)
+[GIN-debug] POST   /admin/edit_clockIn       --> server/controll/admin.EditClockLog (7 handlers)
+[GIN-debug] POST   /admin/leave_application  --> server/controll/admin.LeaveApplication (7 handlers)
+[GIN-debug] GET    /admin/get_LeaveApplication_list --> server/controll/admin.GetLeaveApplicationList (7 handlers)
+[GIN-debug] POST   /admin/overtime_application --> server/controll/admin.OvertimeApplication (7 handlers)
+[GIN-debug] GET    /admin/get_overtimeApplication_list --> server/controll/admin.GetOvertimeList (7 handlers)
+[GIN-debug] POST   /admin/make_card_application --> server/controll/admin.MakeCardApplication (7 handlers)
+[GIN-debug] POST   /admin/make_card_application_liat --> server/controll/admin.GetMarkCardList (7 handlers)
+[GIN-debug] POST   /admin/add_menu           --> server/controll/menu.AddMenu (7 handlers)
+[GIN-debug] POST   /user/upload              --> server/controll/user.Upload (7 handlers)
+[GIN-debug] GET    /user/clockIn             --> server/controll/user.ClockIn (7 handlers)
+[GIN-debug] GET    /user/change_password     --> server/controll/user.ChangePassword (7 handlers)
+[server] [2024-02-27 16:21:30] [138kb] [38m[info][0m middleware.Log.func1：22 server/middleware.Log.func1 32.7865981s
+[GIN] 2024/02/27 - 16:21:30 |[97;42m 200 [0m|   32.7865981s |       127.0.0.1 |[97;44m GET     [0m "/user/change_password?pwd=123456&password=leilong"
+[server] [2024-02-27 16:21:36] [139kb] [38m[info][0m middleware.Log.func1：22 server/middleware.Log.func1 2.8020051s
+[GIN] 2024/02/27 - 16:21:36 |[97;42m 200 [0m|    2.8025201s |       127.0.0.1 |[97;44m GET     [0m "/user/change_password?pwd=123456&password=leilong"
+[server] [2024-02-27 16:21:36] [139kb] [38m[info][0m utils.Listen：21 server/utils.Listen Received signal: interrupt
+
+[server] [2024-02-27 16:21:36] [139kb] [38m[info][0m utils.Listen：27 server/utils.Listen mysql connect close success
+[server] [2024-02-27 16:21:36] [139kb] [38m[info][0m utils.Listen：36 server/utils.Listen redis connect close success
+[server] [2024-02-27 16:21:42] [139kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-27 16:21:42] [139kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (6 handlers)
+[GIN-debug] POST   /admin/menu_list          --> server/controll/menu.GetMenuList (6 handlers)
+[GIN-debug] POST   /admin/login              --> server/controll/admin.Login (6 handlers)
+[GIN-debug] POST   /register                 --> server/controll/admin.Register (6 handlers)
+[GIN-debug] GET    /admin/info               --> server/controll/admin.Info (7 handlers)
+[GIN-debug] GET    /admin/logout             --> server/controll/admin.Logout (7 handlers)
+[GIN-debug] GET    /admin/reset_password     --> server/controll/admin.ResetPassword (7 handlers)
+[GIN-debug] GET    /admin/delete_employer    --> server/controll/admin.DeleteEmployee (7 handlers)
+[GIN-debug] POST   /admin/add_employer       --> server/controll/admin.AddEmployee (7 handlers)
+[GIN-debug] POST   /admin/update_employer    --> server/controll/admin.UpdateEmployee (7 handlers)
+[GIN-debug] GET    /admin/employer_list      --> server/controll/admin.EmployeeList (7 handlers)
+[GIN-debug] GET    /admin/employer_info      --> server/controll/admin.EmployeeInfo (7 handlers)
+[GIN-debug] GET    /admin/assigned_account   --> server/controll/admin.AssignedAccount (7 handlers)
+[GIN-debug] GET    /admin/get_department_list --> server/controll/admin.GetDepartmentList (7 handlers)
+[GIN-debug] GET    /admin/del_department     --> server/controll/admin.DeleteDepartment (7 handlers)
+[GIN-debug] POST   /admin/update_department  --> server/controll/admin.UpdateDepartment (7 handlers)
+[GIN-debug] POST   /admin/add_department     --> server/controll/admin.AddDepartment (7 handlers)
+[GIN-debug] GET    /admin/department_info    --> server/controll/admin.DepartmentInfo (7 handlers)
+[GIN-debug] GET    /admin/get_clockIn        --> server/controll/admin.GetClockInLog (7 handlers)
+[GIN-debug] POST   /admin/edit_clockIn       --> server/controll/admin.EditClockLog (7 handlers)
+[GIN-debug] POST   /admin/leave_application  --> server/controll/admin.LeaveApplication (7 handlers)
+[GIN-debug] GET    /admin/get_LeaveApplication_list --> server/controll/admin.GetLeaveApplicationList (7 handlers)
+[GIN-debug] POST   /admin/overtime_application --> server/controll/admin.OvertimeApplication (7 handlers)
+[GIN-debug] GET    /admin/get_overtimeApplication_list --> server/controll/admin.GetOvertimeList (7 handlers)
+[GIN-debug] POST   /admin/make_card_application --> server/controll/admin.MakeCardApplication (7 handlers)
+[GIN-debug] POST   /admin/make_card_application_liat --> server/controll/admin.GetMarkCardList (7 handlers)
+[GIN-debug] POST   /admin/add_menu           --> server/controll/menu.AddMenu (7 handlers)
+[GIN-debug] POST   /user/upload              --> server/controll/user.Upload (7 handlers)
+[GIN-debug] GET    /user/clockIn             --> server/controll/user.ClockIn (7 handlers)
+[GIN-debug] GET    /user/change_password     --> server/controll/user.ChangePassword (7 handlers)
+[server] [2024-02-27 16:21:45] [143kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 11.0459ms
+[GIN] 2024/02/27 - 16:21:45 |[97;42m 200 [0m|     11.5492ms |       127.0.0.1 |[97;44m GET     [0m "/user/change_password?pwd=123456&password=leilong"
+[server] [2024-02-27 16:21:50] [143kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 6.9743ms
+[GIN] 2024/02/27 - 16:21:50 |[97;42m 200 [0m|      7.9837ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-27 16:21:51] [143kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 3.6481ms
+[GIN] 2024/02/27 - 16:21:51 |[97;42m 200 [0m|       3.823ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-27 16:21:51] [143kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 7.5236ms
+[GIN] 2024/02/27 - 16:21:51 |[97;42m 200 [0m|      8.4167ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-27 16:25:25] [144kb] [38m[info][0m utils.Listen：21 server/utils.Listen Received signal: interrupt
+
+[server] [2024-02-27 16:25:25] [144kb] [38m[info][0m utils.Listen：27 server/utils.Listen mysql connect close success
+[server] [2024-02-27 16:25:25] [144kb] [38m[info][0m utils.Listen：36 server/utils.Listen redis connect close success
+[server] [2024-02-27 16:25:31] [144kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-27 16:25:31] [144kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (6 handlers)
+[GIN-debug] POST   /admin/menu_list          --> server/controll/menu.GetMenuList (6 handlers)
+[GIN-debug] POST   /admin/login              --> server/controll/admin.Login (6 handlers)
+[GIN-debug] POST   /register                 --> server/controll/admin.Register (6 handlers)
+[GIN-debug] GET    /admin/info               --> server/controll/admin.Info (7 handlers)
+[GIN-debug] GET    /admin/logout             --> server/controll/admin.Logout (7 handlers)
+[GIN-debug] GET    /admin/reset_password     --> server/controll/admin.ResetPassword (7 handlers)
+[GIN-debug] GET    /admin/delete_employer    --> server/controll/admin.DeleteEmployee (7 handlers)
+[GIN-debug] POST   /admin/add_employer       --> server/controll/admin.AddEmployee (7 handlers)
+[GIN-debug] POST   /admin/update_employer    --> server/controll/admin.UpdateEmployee (7 handlers)
+[GIN-debug] GET    /admin/employer_list      --> server/controll/admin.EmployeeList (7 handlers)
+[GIN-debug] GET    /admin/employer_info      --> server/controll/admin.EmployeeInfo (7 handlers)
+[GIN-debug] GET    /admin/assigned_account   --> server/controll/admin.AssignedAccount (7 handlers)
+[GIN-debug] GET    /admin/get_department_list --> server/controll/admin.GetDepartmentList (7 handlers)
+[GIN-debug] GET    /admin/del_department     --> server/controll/admin.DeleteDepartment (7 handlers)
+[GIN-debug] POST   /admin/update_department  --> server/controll/admin.UpdateDepartment (7 handlers)
+[GIN-debug] POST   /admin/add_department     --> server/controll/admin.AddDepartment (7 handlers)
+[GIN-debug] GET    /admin/department_info    --> server/controll/admin.DepartmentInfo (7 handlers)
+[GIN-debug] GET    /admin/get_clockIn        --> server/controll/admin.GetClockInLog (7 handlers)
+[GIN-debug] POST   /admin/edit_clockIn       --> server/controll/admin.EditClockLog (7 handlers)
+[GIN-debug] POST   /admin/leave_application  --> server/controll/admin.LeaveApplication (7 handlers)
+[GIN-debug] GET    /admin/get_LeaveApplication_list --> server/controll/admin.GetLeaveApplicationList (7 handlers)
+[GIN-debug] POST   /admin/overtime_application --> server/controll/admin.OvertimeApplication (7 handlers)
+[GIN-debug] GET    /admin/get_overtimeApplication_list --> server/controll/admin.GetOvertimeList (7 handlers)
+[GIN-debug] POST   /admin/make_card_application --> server/controll/admin.MakeCardApplication (7 handlers)
+[GIN-debug] POST   /admin/make_card_application_liat --> server/controll/admin.GetMarkCardList (7 handlers)
+[GIN-debug] POST   /admin/add_menu           --> server/controll/menu.AddMenu (7 handlers)
+[GIN-debug] POST   /user/upload              --> server/controll/user.Upload (7 handlers)
+[GIN-debug] GET    /user/clockIn             --> server/controll/user.ClockIn (7 handlers)
+[GIN-debug] GET    /user/change_password     --> server/controll/user.ChangePassword (7 handlers)
+[server] [2024-02-27 16:25:36] [147kb] [33m[warning][0m user.ChangePassword：103 server/controll/user.ChangePassword ERR wrong number of arguments for 'hset' command
+[server] [2024-02-27 16:25:36] [148kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 11.0622ms
+[GIN] 2024/02/27 - 16:25:36 |[97;42m 200 [0m|     11.5654ms |       127.0.0.1 |[97;44m GET     [0m "/user/change_password?pwd=123456&password=leilong"
+[server] [2024-02-27 16:25:37] [148kb] [33m[warning][0m user.ChangePassword：103 server/controll/user.ChangePassword ERR wrong number of arguments for 'hset' command
+[server] [2024-02-27 16:25:37] [148kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 12.1538ms
+[GIN] 2024/02/27 - 16:25:37 |[97;42m 200 [0m|     12.1538ms |       127.0.0.1 |[97;44m GET     [0m "/user/change_password?pwd=123456&password=leilong"
+[server] [2024-02-27 16:27:17] [148kb] [38m[info][0m utils.Listen：21 server/utils.Listen Received signal: interrupt
+
+[server] [2024-02-27 16:27:17] [148kb] [38m[info][0m utils.Listen：27 server/utils.Listen mysql connect close success
+[server] [2024-02-27 16:27:17] [149kb] [38m[info][0m utils.Listen：36 server/utils.Listen redis connect close success
+[server] [2024-02-27 16:27:22] [149kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-27 16:27:22] [149kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (6 handlers)
+[GIN-debug] POST   /admin/menu_list          --> server/controll/menu.GetMenuList (6 handlers)
+[GIN-debug] POST   /admin/login              --> server/controll/admin.Login (6 handlers)
+[GIN-debug] POST   /register                 --> server/controll/admin.Register (6 handlers)
+[GIN-debug] GET    /admin/info               --> server/controll/admin.Info (7 handlers)
+[GIN-debug] GET    /admin/logout             --> server/controll/admin.Logout (7 handlers)
+[GIN-debug] GET    /admin/reset_password     --> server/controll/admin.ResetPassword (7 handlers)
+[GIN-debug] GET    /admin/delete_employer    --> server/controll/admin.DeleteEmployee (7 handlers)
+[GIN-debug] POST   /admin/add_employer       --> server/controll/admin.AddEmployee (7 handlers)
+[GIN-debug] POST   /admin/update_employer    --> server/controll/admin.UpdateEmployee (7 handlers)
+[GIN-debug] GET    /admin/employer_list      --> server/controll/admin.EmployeeList (7 handlers)
+[GIN-debug] GET    /admin/employer_info      --> server/controll/admin.EmployeeInfo (7 handlers)
+[GIN-debug] GET    /admin/assigned_account   --> server/controll/admin.AssignedAccount (7 handlers)
+[GIN-debug] GET    /admin/get_department_list --> server/controll/admin.GetDepartmentList (7 handlers)
+[GIN-debug] GET    /admin/del_department     --> server/controll/admin.DeleteDepartment (7 handlers)
+[GIN-debug] POST   /admin/update_department  --> server/controll/admin.UpdateDepartment (7 handlers)
+[GIN-debug] POST   /admin/add_department     --> server/controll/admin.AddDepartment (7 handlers)
+[GIN-debug] GET    /admin/department_info    --> server/controll/admin.DepartmentInfo (7 handlers)
+[GIN-debug] GET    /admin/get_clockIn        --> server/controll/admin.GetClockInLog (7 handlers)
+[GIN-debug] POST   /admin/edit_clockIn       --> server/controll/admin.EditClockLog (7 handlers)
+[GIN-debug] POST   /admin/leave_application  --> server/controll/admin.LeaveApplication (7 handlers)
+[GIN-debug] GET    /admin/get_LeaveApplication_list --> server/controll/admin.GetLeaveApplicationList (7 handlers)
+[GIN-debug] POST   /admin/overtime_application --> server/controll/admin.OvertimeApplication (7 handlers)
+[GIN-debug] GET    /admin/get_overtimeApplication_list --> server/controll/admin.GetOvertimeList (7 handlers)
+[GIN-debug] POST   /admin/make_card_application --> server/controll/admin.MakeCardApplication (7 handlers)
+[GIN-debug] POST   /admin/make_card_application_liat --> server/controll/admin.GetMarkCardList (7 handlers)
+[GIN-debug] POST   /admin/add_menu           --> server/controll/menu.AddMenu (7 handlers)
+[GIN-debug] POST   /user/upload              --> server/controll/user.Upload (7 handlers)
+[GIN-debug] GET    /user/clockIn             --> server/controll/user.ClockIn (7 handlers)
+[GIN-debug] GET    /user/change_password     --> server/controll/user.ChangePassword (7 handlers)
+[server] [2024-02-27 16:27:23] [152kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 16.1928ms
+[GIN] 2024/02/27 - 16:27:23 |[97;42m 200 [0m|      16.606ms |       127.0.0.1 |[97;44m GET     [0m "/user/change_password?pwd=123456&password=leilong"
+[server] [2024-02-27 16:27:26] [152kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 5.0811ms
+[GIN] 2024/02/27 - 16:27:26 |[97;42m 200 [0m|      5.2779ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-27 16:27:27] [153kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 4.2226ms
+[GIN] 2024/02/27 - 16:27:27 |[97;42m 200 [0m|      4.7892ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-27 16:27:28] [153kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 3.9439ms
+[GIN] 2024/02/27 - 16:27:28 |[97;42m 200 [0m|      4.9006ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-27 16:27:29] [153kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 4.891ms
+[GIN] 2024/02/27 - 16:27:29 |[97;42m 200 [0m|      5.0104ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-27 16:27:29] [153kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 4.8595ms
+[GIN] 2024/02/27 - 16:27:29 |[97;42m 200 [0m|      5.0559ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-27 16:27:30] [153kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 4.4006ms
+[GIN] 2024/02/27 - 16:27:30 |[97;42m 200 [0m|      4.7252ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-27 16:27:42] [154kb] [38m[info][0m utils.Listen：21 server/utils.Listen Received signal: interrupt
+
+[server] [2024-02-27 16:27:42] [154kb] [38m[info][0m utils.Listen：27 server/utils.Listen mysql connect close success
+[server] [2024-02-27 16:27:42] [154kb] [38m[info][0m utils.Listen：36 server/utils.Listen redis connect close success
+[server] [2024-02-27 16:27:48] [154kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-27 16:27:48] [154kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (6 handlers)
+[GIN-debug] POST   /admin/menu_list          --> server/controll/menu.GetMenuList (6 handlers)
+[GIN-debug] POST   /admin/login              --> server/controll/admin.Login (6 handlers)
+[GIN-debug] POST   /register                 --> server/controll/admin.Register (6 handlers)
+[GIN-debug] GET    /admin/info               --> server/controll/admin.Info (7 handlers)
+[GIN-debug] GET    /admin/logout             --> server/controll/admin.Logout (7 handlers)
+[GIN-debug] GET    /admin/reset_password     --> server/controll/admin.ResetPassword (7 handlers)
+[GIN-debug] GET    /admin/delete_employer    --> server/controll/admin.DeleteEmployee (7 handlers)
+[GIN-debug] POST   /admin/add_employer       --> server/controll/admin.AddEmployee (7 handlers)
+[GIN-debug] POST   /admin/update_employer    --> server/controll/admin.UpdateEmployee (7 handlers)
+[GIN-debug] GET    /admin/employer_list      --> server/controll/admin.EmployeeList (7 handlers)
+[GIN-debug] GET    /admin/employer_info      --> server/controll/admin.EmployeeInfo (7 handlers)
+[GIN-debug] GET    /admin/assigned_account   --> server/controll/admin.AssignedAccount (7 handlers)
+[GIN-debug] GET    /admin/get_department_list --> server/controll/admin.GetDepartmentList (7 handlers)
+[GIN-debug] GET    /admin/del_department     --> server/controll/admin.DeleteDepartment (7 handlers)
+[GIN-debug] POST   /admin/update_department  --> server/controll/admin.UpdateDepartment (7 handlers)
+[GIN-debug] POST   /admin/add_department     --> server/controll/admin.AddDepartment (7 handlers)
+[GIN-debug] GET    /admin/department_info    --> server/controll/admin.DepartmentInfo (7 handlers)
+[GIN-debug] GET    /admin/get_clockIn        --> server/controll/admin.GetClockInLog (7 handlers)
+[GIN-debug] POST   /admin/edit_clockIn       --> server/controll/admin.EditClockLog (7 handlers)
+[GIN-debug] POST   /admin/leave_application  --> server/controll/admin.LeaveApplication (7 handlers)
+[GIN-debug] GET    /admin/get_LeaveApplication_list --> server/controll/admin.GetLeaveApplicationList (7 handlers)
+[GIN-debug] POST   /admin/overtime_application --> server/controll/admin.OvertimeApplication (7 handlers)
+[GIN-debug] GET    /admin/get_overtimeApplication_list --> server/controll/admin.GetOvertimeList (7 handlers)
+[GIN-debug] POST   /admin/make_card_application --> server/controll/admin.MakeCardApplication (7 handlers)
+[GIN-debug] POST   /admin/make_card_application_liat --> server/controll/admin.GetMarkCardList (7 handlers)
+[GIN-debug] POST   /admin/add_menu           --> server/controll/menu.AddMenu (7 handlers)
+[GIN-debug] POST   /user/upload              --> server/controll/user.Upload (7 handlers)
+[GIN-debug] GET    /user/clockIn             --> server/controll/user.ClockIn (7 handlers)
+[GIN-debug] GET    /user/change_password     --> server/controll/user.ChangePassword (7 handlers)
+[server] [2024-02-27 16:28:30] [157kb] [38m[info][0m middleware.Log.func1：22 server/middleware.Log.func1 39.9069627s
+[GIN] 2024/02/27 - 16:28:30 |[97;42m 200 [0m|   39.9069627s |       127.0.0.1 |[97;44m GET     [0m "/user/change_password?pwd=123456&password=leilong"
+[server] [2024-02-27 16:32:15] [158kb] [38m[info][0m utils.Listen：21 server/utils.Listen Received signal: interrupt
+
+[server] [2024-02-27 16:32:15] [158kb] [38m[info][0m utils.Listen：27 server/utils.Listen mysql connect close success
+[server] [2024-02-27 16:32:15] [158kb] [38m[info][0m utils.Listen：36 server/utils.Listen redis connect close success
+[server] [2024-02-27 16:32:20] [158kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-27 16:32:20] [158kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (6 handlers)
+[GIN-debug] POST   /admin/menu_list          --> server/controll/menu.GetMenuList (6 handlers)
+[GIN-debug] POST   /admin/login              --> server/controll/admin.Login (6 handlers)
+[GIN-debug] POST   /register                 --> server/controll/admin.Register (6 handlers)
+[GIN-debug] GET    /admin/info               --> server/controll/admin.Info (7 handlers)
+[GIN-debug] GET    /admin/logout             --> server/controll/admin.Logout (7 handlers)
+[GIN-debug] GET    /admin/reset_password     --> server/controll/admin.ResetPassword (7 handlers)
+[GIN-debug] GET    /admin/delete_employer    --> server/controll/admin.DeleteEmployee (7 handlers)
+[GIN-debug] POST   /admin/add_employer       --> server/controll/admin.AddEmployee (7 handlers)
+[GIN-debug] POST   /admin/update_employer    --> server/controll/admin.UpdateEmployee (7 handlers)
+[GIN-debug] GET    /admin/employer_list      --> server/controll/admin.EmployeeList (7 handlers)
+[GIN-debug] GET    /admin/employer_info      --> server/controll/admin.EmployeeInfo (7 handlers)
+[GIN-debug] GET    /admin/assigned_account   --> server/controll/admin.AssignedAccount (7 handlers)
+[GIN-debug] GET    /admin/get_department_list --> server/controll/admin.GetDepartmentList (7 handlers)
+[GIN-debug] GET    /admin/del_department     --> server/controll/admin.DeleteDepartment (7 handlers)
+[GIN-debug] POST   /admin/update_department  --> server/controll/admin.UpdateDepartment (7 handlers)
+[GIN-debug] POST   /admin/add_department     --> server/controll/admin.AddDepartment (7 handlers)
+[GIN-debug] GET    /admin/department_info    --> server/controll/admin.DepartmentInfo (7 handlers)
+[GIN-debug] GET    /admin/get_clockIn        --> server/controll/admin.GetClockInLog (7 handlers)
+[GIN-debug] POST   /admin/edit_clockIn       --> server/controll/admin.EditClockLog (7 handlers)
+[GIN-debug] POST   /admin/leave_application  --> server/controll/admin.LeaveApplication (7 handlers)
+[GIN-debug] GET    /admin/get_LeaveApplication_list --> server/controll/admin.GetLeaveApplicationList (7 handlers)
+[GIN-debug] POST   /admin/overtime_application --> server/controll/admin.OvertimeApplication (7 handlers)
+[GIN-debug] GET    /admin/get_overtimeApplication_list --> server/controll/admin.GetOvertimeList (7 handlers)
+[GIN-debug] POST   /admin/make_card_application --> server/controll/admin.MakeCardApplication (7 handlers)
+[GIN-debug] POST   /admin/make_card_application_liat --> server/controll/admin.GetMarkCardList (7 handlers)
+[GIN-debug] POST   /admin/add_menu           --> server/controll/menu.AddMenu (7 handlers)
+[GIN-debug] POST   /user/upload              --> server/controll/user.Upload (7 handlers)
+[GIN-debug] GET    /user/clockIn             --> server/controll/user.ClockIn (7 handlers)
+[GIN-debug] GET    /user/change_password     --> server/controll/user.ChangePassword (7 handlers)
+[server] [2024-02-27 16:32:22] [161kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 30.5197ms
+[GIN] 2024/02/27 - 16:32:22 |[97;42m 200 [0m|     31.1341ms |       127.0.0.1 |[97;44m GET     [0m "/user/change_password?pwd=123456&password=leilong"
+[server] [2024-02-27 16:32:26] [162kb] [31m[error][0m user.Login：61 server/controll/user.Login record not found
+[server] [2024-02-27 16:32:26] [162kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 5.998ms
+[GIN] 2024/02/27 - 16:32:26 |[97;42m 200 [0m|       5.998ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-27 16:32:34] [162kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 5.7308ms
+[GIN] 2024/02/27 - 16:32:34 |[97;42m 200 [0m|      6.4552ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-27 16:35:09] [162kb] [38m[info][0m utils.Listen：21 server/utils.Listen Received signal: interrupt
+
+[server] [2024-02-27 16:35:09] [162kb] [38m[info][0m utils.Listen：27 server/utils.Listen mysql connect close success
+[server] [2024-02-27 16:35:09] [162kb] [38m[info][0m utils.Listen：36 server/utils.Listen redis connect close success
+[server] [2024-02-27 16:35:14] [163kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-02-27 16:35:14] [163kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (6 handlers)
+[GIN-debug] POST   /admin/menu_list          --> server/controll/menu.GetMenuList (6 handlers)
+[GIN-debug] POST   /admin/login              --> server/controll/admin.Login (6 handlers)
+[GIN-debug] POST   /register                 --> server/controll/admin.Register (6 handlers)
+[GIN-debug] GET    /admin/info               --> server/controll/admin.Info (7 handlers)
+[GIN-debug] GET    /admin/logout             --> server/controll/admin.Logout (7 handlers)
+[GIN-debug] GET    /admin/reset_password     --> server/controll/admin.ResetPassword (7 handlers)
+[GIN-debug] GET    /admin/delete_employer    --> server/controll/admin.DeleteEmployee (7 handlers)
+[GIN-debug] POST   /admin/add_employer       --> server/controll/admin.AddEmployee (7 handlers)
+[GIN-debug] POST   /admin/update_employer    --> server/controll/admin.UpdateEmployee (7 handlers)
+[GIN-debug] GET    /admin/employer_list      --> server/controll/admin.EmployeeList (7 handlers)
+[GIN-debug] GET    /admin/employer_info      --> server/controll/admin.EmployeeInfo (7 handlers)
+[GIN-debug] GET    /admin/assigned_account   --> server/controll/admin.AssignedAccount (7 handlers)
+[GIN-debug] GET    /admin/get_department_list --> server/controll/admin.GetDepartmentList (7 handlers)
+[GIN-debug] GET    /admin/del_department     --> server/controll/admin.DeleteDepartment (7 handlers)
+[GIN-debug] POST   /admin/update_department  --> server/controll/admin.UpdateDepartment (7 handlers)
+[GIN-debug] POST   /admin/add_department     --> server/controll/admin.AddDepartment (7 handlers)
+[GIN-debug] GET    /admin/department_info    --> server/controll/admin.DepartmentInfo (7 handlers)
+[GIN-debug] GET    /admin/get_clockIn        --> server/controll/admin.GetClockInLog (7 handlers)
+[GIN-debug] POST   /admin/edit_clockIn       --> server/controll/admin.EditClockLog (7 handlers)
+[GIN-debug] POST   /admin/leave_application  --> server/controll/admin.LeaveApplication (7 handlers)
+[GIN-debug] GET    /admin/get_LeaveApplication_list --> server/controll/admin.GetLeaveApplicationList (7 handlers)
+[GIN-debug] POST   /admin/overtime_application --> server/controll/admin.OvertimeApplication (7 handlers)
+[GIN-debug] GET    /admin/get_overtimeApplication_list --> server/controll/admin.GetOvertimeList (7 handlers)
+[GIN-debug] POST   /admin/make_card_application --> server/controll/admin.MakeCardApplication (7 handlers)
+[GIN-debug] POST   /admin/make_card_application_liat --> server/controll/admin.GetMarkCardList (7 handlers)
+[GIN-debug] POST   /admin/add_menu           --> server/controll/menu.AddMenu (7 handlers)
+[GIN-debug] POST   /user/upload              --> server/controll/user.Upload (7 handlers)
+[GIN-debug] GET    /user/clockIn             --> server/controll/user.ClockIn (7 handlers)
+[GIN-debug] GET    /user/change_password     --> server/controll/user.ChangePassword (7 handlers)
+[server] [2024-02-27 16:35:17] [166kb] [31m[error][0m user.Login：61 server/controll/user.Login record not found
+[server] [2024-02-27 16:35:17] [166kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 6.7324ms
+[GIN] 2024/02/27 - 16:35:17 |[97;42m 200 [0m|      6.7324ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-27 16:35:18] [166kb] [31m[error][0m user.Login：61 server/controll/user.Login record not found
+[server] [2024-02-27 16:35:18] [166kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 6.7875ms
+[GIN] 2024/02/27 - 16:35:18 |[97;42m 200 [0m|      6.7875ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-27 16:35:19] [167kb] [31m[error][0m user.Login：61 server/controll/user.Login record not found
+[server] [2024-02-27 16:35:19] [167kb] [38m[info][0m main.main.Log.func1：22 main.main.Log.func1 5.5746ms
+[GIN] 2024/02/27 - 16:35:19 |[97;42m 200 [0m|      5.5746ms |       127.0.0.1 |[97;46m POST    [0m "/user/login"
+[server] [2024-02-27 21:03:05] [167kb] [38m[info][0m utils.Listen：21 server/utils.Listen Received signal: interrupt
+
+[server] [2024-02-27 21:03:05] [167kb] [38m[info][0m utils.Listen：27 server/utils.Listen mysql connect close success
+[server] [2024-02-27 21:03:05] [167kb] [38m[info][0m utils.Listen：36 server/utils.Listen redis connect close success
