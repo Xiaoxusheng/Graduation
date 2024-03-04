@@ -37,6 +37,7 @@ const (
 
 // *错误信息*/
 var (
+	UserNotWorkError       = "员工状态异常！"
 	TokenError             = "token格式错误"
 	FileError              = "文件数量超过限制！"
 	QueryError             = "参数错误！"
@@ -111,4 +112,5 @@ var (
 	UpdatePermissionFail      = "更新资源失败！"
 	PermissionNotFound        = "资源不存存在！"
 	GetPermissionsForUserFail = "获取列表失败！"
+	AddMenuRoleFail           = "分配菜单失败！"
 )

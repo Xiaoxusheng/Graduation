@@ -200,6 +200,11 @@ func MarkCardApplication(c *gin.Context) {
 			result.Fail(c, global.DataConflict, global.QueryNotFoundError)
 			return
 		}
+		//判断员工是否在职
+		if employer.Status != 1 {
+			result.Fail(c, global.DataConflict, global.UserNotWorkError)
+			return
+		}
 		//插入数据
 		err = dao.InsertMarkCardApplication(&models.Examine{
 			Identity: utils.GetUidV4(),
@@ -291,6 +296,11 @@ func LeaveApplication(c *gin.Context) {
 			result.Fail(c, global.DataUnmarshal, global.QueryNotFoundError)
 			return
 		}
+		//判断员工是否在职
+		if employer.Status != 1 {
+			result.Fail(c, global.DataConflict, global.UserNotWorkError)
+			return
+		}
 
 		err = dao.InsertMarkCardApplication(&models.Examine{
 			Identity:  utils.GetUidV4(),
@@ -336,7 +346,12 @@ func LeaveApplication(c *gin.Context) {
 		result.Fail(c, global.DataUnmarshal, global.QueryNotFoundError)
 		return
 	}
-
+	//判断员工是否存在
+	val := global.Global.Redis.SIsMember(global.Global.Ctx, global.Employer, uid).Val()
+	if !val {
+		result.Fail(c, global.BadRequest, global.EmployerNotFoundError)
+		return
+	}
 	err = dao.InsertMarkCardApplication(&models.Examine{
 		Identity:  utils.GetUidV4(),
 		Uid:       int64(uids),
@@ -376,6 +391,11 @@ func OverTimeApplication(c *gin.Context) {
 		if err != nil {
 			global.Global.Log.Error(err)
 			result.Fail(c, global.DataUnmarshal, global.QueryNotFoundError)
+			return
+		}
+		//判断员工是否在职
+		if employer.Status != 1 {
+			result.Fail(c, global.DataConflict, global.UserNotWorkError)
 			return
 		}
 
@@ -419,6 +439,12 @@ func OverTimeApplication(c *gin.Context) {
 	if err != nil {
 		global.Global.Log.Error(err)
 		result.Fail(c, global.DataUnmarshal, global.QueryNotFoundError)
+		return
+	}
+	//判断员工是否存在
+	val := global.Global.Redis.SIsMember(global.Global.Ctx, global.Employer, uid).Val()
+	if !val {
+		result.Fail(c, global.BadRequest, global.EmployerNotFoundError)
 		return
 	}
 	//插入数据库

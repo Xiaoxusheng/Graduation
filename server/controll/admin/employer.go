@@ -179,6 +179,13 @@ func UpdateEmployee(c *gin.Context) {
 		return
 	}
 	go func() {
+		if e.Status != 1 {
+			//删除员工
+			_, err = global.Global.Redis.SRem(global.Global.Ctx, global.Employer, e.Uid).Result()
+			if err != nil {
+				global.Global.Log.Error(err)
+			}
+		}
 		_, err = global.Global.Redis.Del(global.Global.Ctx, global.Uid+strconv.Itoa(int(e.Uid))).Result()
 		if err != nil {
 			global.Global.Log.Error(e)

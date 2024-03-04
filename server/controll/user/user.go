@@ -42,6 +42,7 @@ func Login(c *gin.Context) {
 		//获取token
 		token := global.Global.Redis.Get(global.Global.Ctx, val).Val()
 		if token != "" {
+			//判断身份，返回身份信息
 			result.Ok(c, map[string]any{
 				"token": token,
 			})

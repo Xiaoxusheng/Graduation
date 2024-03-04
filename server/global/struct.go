@@ -81,6 +81,7 @@ type Application struct {
 
 // Menu 菜单
 type Menu struct {
+	Uid           int32  `json:"uid" form:"uid"`
 	MenuUrl       string `json:"menuUrl,omitempty" form:"menuUrl"`
 	MenuName      string `json:"menuName,omitempty" form:"menuName"`
 	Icon          string `json:"icon,omitempty" form:"icon"`

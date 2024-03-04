@@ -14,7 +14,7 @@ func Routers(e *gin.Engine) *gin.Engine {
 
 	e.POST("/user/login", user.Login)
 	//菜单列表
-	e.POST("/admin/menu_list", menu.GetMenuList)
+	e.POST("/admin/menu_list", middleware.ParseToken(), middleware.CasBin(), menu.GetMenuList)
 	//
 	//u := e.Group("/user")
 	//e.POST("/login", user.Login)
@@ -39,6 +39,7 @@ func Routers(e *gin.Engine) *gin.Engine {
 	roots.POST("/get_permissionsForUser", root.GetPermissionsForUser)
 	//查看所有权限
 	roots.POST("/get_allNamedSubjects", root.GetAllNamedSubjects)
+	roots.POST("/add_role_menu", root.AddRoleMenu)
 	roots.POST("/add", root.Add)
 	//登录
 	e.POST("/admin/login", admin.Login)

@@ -1,6 +1,7 @@
 package menu
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/goccy/go-json"
 	"server/dao"
@@ -13,6 +14,24 @@ import (
 // GetMenuList 获取菜单接口
 func GetMenuList(c *gin.Context) {
 	//判断身份
+	id := c.GetString("identity")
+	fmt.Println(id)
+	r, err := global.Global.CasBin.GetRolesForUser(id)
+	if err != nil {
+		global.Global.Log.Error(err)
+		return
+	}
+	var list []models.Menu
+	fmt.Println(r)
+
+	if id == "2b51ffd3-03a4-5a0f-8d3d-a1295607b96e" {
+		list, err = dao.GetMenuList()
+	} else {
+		list, err = dao.GetMenuLists(r[0])
+		if err != nil {
+			return
+		}
+	}
 	//判断为
 
 	//下发对应的菜单
@@ -28,7 +47,7 @@ func GetMenuList(c *gin.Context) {
 	//	result.Ok(c, menu)
 	//	return
 	//}
-	list, err := dao.GetMenuList()
+	//list, err := dao.GetMenuList()
 	if err != nil {
 		return
 	}
@@ -95,7 +114,7 @@ func AddMenu(c *gin.Context) {
 		Badge:         menu.Badge,
 		LocalFilePath: menu.LocalFilePath,
 		IsRootPath:    false,
-		Children:      nil,
+		Uid:           menu.Uid,
 	})
 	if err != nil {
 		global.Global.Log.Error(err)

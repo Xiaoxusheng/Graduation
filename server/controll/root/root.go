@@ -3,8 +3,11 @@ package root
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"server/dao"
 	"server/global"
+	"server/models"
 	"server/result"
+	"server/utils"
 	"strings"
 )
 
@@ -220,17 +223,54 @@ func DeleteRole(c *gin.Context) {
 }
 
 func Add(c *gin.Context) {
+	//role := c.PostForm("role")
+	//menu := c.PostForm("menu")
+	//if menu == "" || role == "" {
+	//	result.Fail(c, global.BadRequest, global.QueryError)
+	//	return
+	//}
+	//ok, err := global.Global.CasBin.AddPermissionForUser(role, menu)
+	//if err != nil || !ok {
+	//	global.Global.Log.Error(err)
+	//	result.Fail(c, global.ServerError, global.AddPermissionFail)
+	//	return
+	//}
+	id := c.GetString("identity")
+	fmt.Println(global.Global.CasBin.GetAllRoles())
+	fmt.Println(global.Global.CasBin.GetRolesForUser(id))
+	result.Ok(c, nil)
+}
+
+// AddRoleMenu 给角色分配菜单
+func AddRoleMenu(c *gin.Context) {
+	//判断角色是否存在
 	role := c.PostForm("role")
-	list := c.PostForm("list")
-	if list == "" || role == "" {
+	menu := c.PostFormArray("menu")
+	if len(menu) == 0 || role == "" {
 		result.Fail(c, global.BadRequest, global.QueryError)
 		return
 	}
-	ok, err := global.Global.CasBin.AddPermissionForUser(role, list)
-	if err != nil || !ok {
-		global.Global.Log.Error(err)
-		result.Fail(c, global.ServerError, global.AddPermissionFail)
+	var ok bool
+	for i := 0; i < len(global.Global.CasBin.GetAllRoles()); i++ {
+		if global.Global.CasBin.GetAllRoles()[i] == role {
+			ok = true
+		}
+	}
+	if !ok {
+		result.Fail(c, global.BadRequest, global.RoleNotfound)
 		return
+	}
+	//	操作数据库
+	for i := 0; i < len(menu); i++ {
+		err := dao.InsertRoleMenu(&models.RoleMenu{
+			Identity: utils.GetUidV4(),
+			Role:     role,
+			Menu:     menu[i],
+		})
+		if err != nil {
+			global.Global.Log.Error(err)
+			result.Fail(c, global.ServerError, global.AddMenuRoleFail)
+		}
 	}
 	result.Ok(c, nil)
 }
