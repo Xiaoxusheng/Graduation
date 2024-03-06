@@ -28,7 +28,7 @@
           <DataItem
               :data-model="{ num: 56100, prefix: '', suffix: '人', bg: Bg2 }"
               class="item"
-              title="周增长人数"
+              title="公司总人数"
           />
           <DataItem
               :data-model="{ num: 3216, prefix: '', suffix: '单', bg: Bg3 }"

@@ -1,6 +1,6 @@
 # 员工管理系统
 
-## 1. 后端 Gin + Gorm + Go-Redis + Casbin + Jwt +Viper
+## 1. 后端 Gin + Gorm + Go-Redis + Casbin + Jwt +Viper+ Ants
 
 ```textmate
 这是我的毕业设计，我只会后端，前端也是自己学了一点，前端方面代码肯定会有很多不足，可以自己尝试取改写一下

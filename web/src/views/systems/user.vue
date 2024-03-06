@@ -412,7 +412,7 @@ export default defineComponent({
       modalDialogRef.value?.toggle()
     }
 
-    function onUpdateItem(record: EmployerInfo) {
+    function onUpdateItem(record: any) {
       console.log(record)
       add = false
       actionTitle.value = '更新员工信息'
@@ -422,7 +422,7 @@ export default defineComponent({
       employerInfo.sex = record.sex
       employerInfo.status = record.status
       employerInfo.name = record.name
-      employerInfo.department_id = record.department_id
+      employerInfo.department = record.department_id
       employerInfo.birthday = record.birthday
       employerInfo.position = record.position
     }

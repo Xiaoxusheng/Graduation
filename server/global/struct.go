@@ -91,6 +91,7 @@ type Menu struct {
 	Badge         string `json:"badge,omitempty" form:"badge"`
 	LocalFilePath string `json:"localFilePath,omitempty" form:"localFilePath"`
 	IsRootPath    bool   `json:"isRootPath,omitempty" form:"isRootPath"`
+	Hidden        bool   `json:"hidden" form:"hidden"`
 }
 
 // MarkCard 补卡申请

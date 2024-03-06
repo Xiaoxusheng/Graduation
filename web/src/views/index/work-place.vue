@@ -213,7 +213,7 @@ export default defineComponent({
         },
         {
           title: '系统管理',
-          path: '/system/department',
+          path: '/systems/department',
           icon: 'icon-settings',
           color: COLORS[random(0, COLORS.length)],
         },

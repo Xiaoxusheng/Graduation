@@ -149,6 +149,7 @@ func DeleteMenu(c *gin.Context) {
 		Badge:         menu.Badge,
 		LocalFilePath: menu.LocalFilePath,
 		IsRootPath:    menu.IsRootPath,
+		Hidden:        menu.Hidden,
 	})
 	if err != nil {
 		result.Fail(c, global.BadRequest, global.DeleteMenuError)
@@ -177,6 +178,7 @@ func UpdateMenu(c *gin.Context) {
 		Badge:         menu.Badge,
 		LocalFilePath: menu.LocalFilePath,
 		IsRootPath:    menu.IsRootPath,
+		Hidden:        menu.Hidden,
 	})
 	if err != nil {
 		result.Fail(c, global.BadRequest, global.UpdateMenuError)

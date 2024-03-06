@@ -14,6 +14,7 @@ type Menu struct {
 	Badge         string `gorm:"type:varchar(36); comment:'角标'" json:"badge,omitempty"`
 	LocalFilePath string `gorm:"type:varchar(36); comment:'本地路径'" json:"localFilePath,omitempty"`
 	IsRootPath    bool   `gorm:"type:bool ; comment:'是否外链'" json:"isRootPath,omitempty"`
+	Hidden        bool   `gorm:"type:bool ; comment:'是否隐藏'" json:"hidden,omitempty"`
 	Children      []Menu `gorm:"-"  json:"children"`
 	gorm.Model    `json:"-"`
 }
