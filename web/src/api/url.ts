@@ -86,6 +86,10 @@ export const getSalary = '/admin/get_salary'
 
 // 日志
 export const logList = '/admin/log_list'
+// 发布公告
+export const publishNotice = '/admin/publish_notice'
+// 获取公告列表
+export const getNoticeList = '/user/get_notice_list'
 
 
 export const getTableList = '/employer_list'

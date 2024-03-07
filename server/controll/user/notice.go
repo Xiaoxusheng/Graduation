@@ -15,7 +15,7 @@ import (
 // GetNotice 获取公告
 func GetNotice(c *gin.Context) {
 	//	先读缓存
-	list := make([]*models.Notice, 10)
+	list := make([]*models.Notice, 0, 10)
 	val := global.Global.Redis.ZRangeByScoreWithScores(global.Global.Ctx, global.Notices, &redis.ZRangeBy{
 		Min:    "0",
 		Max:    strconv.FormatInt(time.Now().Unix(), 10),

@@ -149,7 +149,7 @@ export default defineComponent({
         key: 'content',
         disabled: ref(true),
         type: 'textarea',
-        placeholder: '请输入说明,补卡，请假都需要说明，否则不予通过',
+        placeholder: '请输入说明,补卡,请假都需要说明,否则不予通过',
         value: ref(null),
       },
       {

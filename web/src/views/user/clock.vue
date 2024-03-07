@@ -2,7 +2,7 @@
   <div style="width: 100%; height:100%;"/>
   <TableBody>
     <template #header>
-      <TableHeader ref="tableHeaderRef" :show-filter="false">
+      <TableHeader ref="tableHeaderRef" :show-filter="false" title="考勤列表">
         <template #table-config>
           <a-button size="mini" type="primary" @click="onAddItem"> 打卡</a-button>
         </template>

@@ -149,4 +149,5 @@ type ClockingIn struct {
 type Notice struct {
 	Text  string `json:"text"`
 	Title string `json:"title"`
+	Url   string `json:"url"`
 }

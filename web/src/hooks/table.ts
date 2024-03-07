@@ -58,7 +58,6 @@ export const useTable = function (): Table {
     const tableLoading = ref(true)
     let department = new Map()
     const handleSuccess = ({data = []}): Promise<any> => {
-        console.log(data)
         tableLoading.value = false
         dataList.length = 0
         dataList.push(...data)

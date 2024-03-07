@@ -1,295 +1,243 @@
 <template>
-  <a-card title="设置薪资结构">
+  <a-card :style="{ width: '100%'}" class="arco-card-body" title="公告列表">
     <template #extra>
-      <a-space>
-        <a-button status="danger" @click="resetForm"> 重置</a-button>
-        <a-button @click="valideForm"> 校验</a-button>
-        <a-button :loading="submitLoading" type="primary" @click="submit"> 提交</a-button>
-      </a-space>
+      <a-button size="mini" type="primary" @click="add">
+        <template #icon>
+          <icon-plus/>
+        </template>
+        <!-- Use the default slot to avoid extra spaces -->
+        <template #default>发表公告</template>
+      </a-button>
     </template>
-    <div class="form-wrapper">
-      <a-form :label-col-props="{ span: 3 }" :model="{}">
-        <a-form-item
-            v-for="item of formItems"
-            :key="item.key"
-            :label="item.label"
-            :row-class="[item.required ? 'form-item__require' : 'form-item__no_require']"
+    <a-card v-for="item  of dataList" :key="item.identity" :style="{ width: '20%'  , margin:'0 20px'}" hoverable>
+      <template #cover>
+        <div
+            :style="{
+          height: 'auto',
+          overflow: 'hidden',
+        }"
         >
-          <template v-if="item.type === 'input'">
-            <a-input v-model="item.value.value" :placeholder="item.placeholder"></a-input>
-          </template>
-          <template v-if="item.type === 'textarea'">
-            <a-textarea
-                v-model:value="item.value.value"
-                :auto-size="{ minRows: 2, maxRows: 5 }"
-                :placeholder="item.placeholder"
-            />
-          </template>
-          <template v-if="item.type === 'switch'">
-            <a-switch v-model="item.value.value" checked-children="开" un-checked-children="关"/>
-          </template>
-          <template v-if="item.type === 'select'">
-            <a-select v-model="item.value.value" :placeholder="item.placeholder">
-              <a-option v-for="opt of item.optionItems" :key="opt.value" :value="opt.value">
-                {{ opt.label }}
-              </a-option>
-            </a-select>
-          </template>
-          <template v-if="item.type === 'time'">
-            <a-time-picker v-model="item.value.value" value-format="HH:mm:ss"/>
-          </template>
-          <template v-if="item.type === 'date-range'">
-            <a-range-picker v-model="item.value.value"/>
-          </template>
-          <template v-if="item.type === 'checkbox-group'">
-            <a-checkbox-group v-model="item.value.value" :options="item.optionItems">
-              <a-checkbox v-for="it of item.optionItems" :key="it.value" :value="it.value">
-                {{ it.label }}
-              </a-checkbox>
-            </a-checkbox-group>
-          </template>
-        </a-form-item>
-      </a-form>
-    </div>
+          <img
+              :src="item.url"
+              :style="{ width: '100%', transform: 'translateY(0px)' }"
+              alt="dessert"
+          />
+        </div>
+      </template>
+      <a-card-meta :style="{ size:'16px'}" title="">
+        <template #description>
+          <span style="font-size: 16px">  {{ item.title }}：</span>
+          <br>
+          <br>
+          &nbsp;&nbsp;{{ item.text }}
+        </template>
+      </a-card-meta>
+      <template #actions>
+        <a-space>
+          <span class="icon-hover"
+                style="font-size: 10px"> {{
+              new Date(item.date * 1000).toLocaleDateString() + new Date(item.date * 1000).toLocaleTimeString()
+            }} </span>
+
+          <span class="icon-hover" style="font-size: 10px"> {{ item.uid + "发布" }} </span>
+          <a-divider direction="vertical"/>
+          <a-button size="mini" status="success" type="primary">编辑</a-button>
+          <a-button size="mini" type="primary">删除</a-button>
+        </a-space>
+      </template>
+
+    </a-card>
   </a-card>
+  <ModalDialog ref="modalDialogRef" :title="actionTitle" @confirm="onDataFormConfirm">
+    <template #content>
+      <a-form ref="formRef" :labelCol="{ span: 4 }" :model="notice">
+        <a-form-item :rules="[
+            { required: true, message: '请输入公告标题' },
+            { min: 3, max: 50, message: '长度在 3 - 50个字符' },
+          ]" :validate-trigger="['change', 'input']" field="title" label="标题">
+          <a-input v-model.trim="notice.title" placeholder="请输入公告标题">
+            <template #suffix>
+              <icon-info-circle/>
+            </template>
+          </a-input>
+        </a-form-item>
+        <a-form-item :rules="[
+            { required: true, message: '请输入公告内容' },
+            { min: 10, max: 200, message: '长度在 10-200个字符' },
+          ]" :validate-trigger="['change', 'input']" field="text" label="公告内容">
+          <a-textarea v-model.trim="notice.text" placeholder="请输入公告内容">
+          </a-textarea>
+        </a-form-item>
+        <a-form-item label="图片">
+          <a-card :style="{ width: '30%',  height: '30%' }">
+            <a-space direction="vertical">
+              <a-upload
+                  :fileList="file ? [file] : []"
+                  :headers="{ 'Authorization': 'Bearer ' + token}"
+                  :show-file-list="false"
+                  action="http://127.0.0.1:8084/user/upload"
+                  show-cancel-button
+                  @change="onChange"
+                  @progress="onProgress"
+                  @success="success"
+              >
+                <template #upload-button>
+                  <div
+                      :class="`arco-upload-list-item${   file && file.status === 'error' ? ' arco-upload-list-item-error' : ''   }`">
+                    <div v-if="file && file.url">
+                      <a-image
+                          v-if="file.url!=''"
+                          :src="file.url"
+                          width="auto"
+                      />
+                      <div class="arco-upload-list-picture-mask">
+                        <IconEdit/>
+                      </div>
+                      <a-progress
+                          v-if="file.status === 'uploading' && file.percent < 100"
+                          :percent="file.percent"
+                          type="circle"
+                      />
+                    </div>
+                    <div v-else class="arco-upload-picture-card">
+                      <div>
+                        <IconPlus/>
+                        <div>Upload</div>
+                      </div>
+                    </div>
+                  </div>
+                </template>
+              </a-upload>
+            </a-space>
+          </a-card>
+        </a-form-item>
+
+      </a-form>
+    </template>
+  </ModalDialog>
+
 </template>
 
 <script lang="ts">
-import {FormItem} from '@/types/components'
-import {Message} from '@arco-design/web-vue'
-import {defineComponent, ref} from 'vue'
-import type {Dayjs} from 'dayjs'
+
+import {defineComponent, onMounted, reactive, ref} from "vue";
+import {ModalDialogType} from "@/types/components";
+import AddButton from "@/components/AddButton.vue";
+import {getNoticeList, publishNotice} from "@/api/url";
+import {Message} from "@arco-design/web-vue";
+import usePost from "@/hooks/usePost";
+import useUserStore from "@/store/modules/user";
+import useGet from "@/hooks/useGet";
 
 export default defineComponent({
-  name: 'BaseFormView',
-  setup() {
-    const dataForm = ref()
-    const formItems = [
-      {
-        label: '会议名称',
-        key: 'name',
-        required: true,
-        type: 'input',
-        value: ref(null),
-        placeholder: '请输入会议名称',
-        validator: function () {
-          if (!this.value.value) {
-            Message.error(this.placeholder || '')
-            return false
-          }
-          return true
-        },
-      },
-      {
-        label: '与会领导',
-        key: 'leader',
-        type: 'select',
-        placeholder: '请选择与会领导',
-        value: ref(undefined),
-        optionItems: [
-          {
-            label: '张总',
-            value: '张总',
-          },
-          {
-            label: '王总',
-            value: '王总',
-          },
-          {
-            label: '各种总',
-            value: '各种总',
-          },
-        ],
-        reset: function () {
-          this.value.value = undefined
-        },
-      },
-      {
-        label: '会议类型',
-        key: 'meetType',
-        required: true,
-        type: 'select',
-        placeholder: '请选择会议类型',
-        value: ref(undefined),
-        optionItems: [
-          {
-            label: '普通',
-            value: '0',
-          },
-          {
-            label: '紧急',
-            value: '1',
-          },
-        ],
-        validator: function () {
-          if (!this.value.value) {
-            Message.error(this.placeholder || '')
-            return false
-          }
-          return true
-        },
-        reset: function () {
-          this.value.value = undefined
-        },
-      },
-      {
-        label: '是否远程',
-        key: 'remote',
-        type: 'switch',
-        value: ref(false),
-        reset: function () {
-          this.value.value = false
-        },
-      },
-      {
-        label: '所需设备',
-        key: 'equipment',
-        type: 'checkbox-group',
-        value: ref(['tv']),
-        optionItems: [
-          {
-            label: '电视',
-            value: 'tv',
-          },
-          {
-            label: '投影仪',
-            value: 'tyy',
-          },
-          {
-            label: '笔记本',
-            value: 'note',
-          },
-        ],
-        reset: function () {
-          this.value.value = ['tv']
-        },
-      },
-      {
-        label: '会议内容',
-        key: 'content',
-        type: 'textarea',
-        placeholder: '请输入会议内容',
-        value: ref(null),
-      },
-      {
-        label: '起止日期',
-        key: 'startEndDate',
-        type: 'date-range',
-        value: ref<Dayjs[]>([]),
-        reset: function () {
-          this.value.value = []
-        },
-      },
-      {
-        label: '开始时间',
-        key: 'startTime',
-        type: 'time',
-        value: ref(null),
-      },
-      {
-        label: '会议地点',
-        key: 'address',
-        type: 'select',
-        placeholder: '请选择会议地点',
-        value: ref(undefined),
-        optionItems: [
-          {
-            label: '会议一室',
-            value: 1,
-          },
-          {
-            label: '会议二室',
-            value: 2,
-          },
-          {
-            label: '会议三室',
-            value: 3,
-          },
-          {
-            label: '会议四室',
-            value: 4,
-          },
-        ],
-        reset: function () {
-          this.value.value = undefined
-        },
-      },
-      {
-        label: '与会人员',
-        key: 'joinMemeber',
-        value: ref(undefined),
-        placeholder: '请选择与会人员',
-        type: 'select',
-        optionItems: [
-          {
-            label: '张三',
-            value: 1,
-          },
-          {
-            label: '李四',
-            value: 2,
-          },
-          {
-            label: '王五',
-            value: 3,
-          },
-          {
-            label: '赵六',
-            value: 4,
-          },
-        ],
-        reset: function () {
-          this.value.value = undefined
-        },
-      },
-      {
-        label: '会议备注',
-        key: 'remark',
-        placeholder: '请输入会议备注',
-        type: 'textarea',
-        value: ref(null),
-      },
-    ] as FormItem[]
-    const submitLoading = ref(false)
+  components: {AddButton},
+  name: 'BaseFromView',
+  setup: function () {
+    const modalDialogRef = ref<ModalDialogType | null>(null)
+    const actionTitle = ref('发布公告')
+    const file = ref();
+    const token = localStorage.getItem("token")
+    const post = usePost()
+    const get = useGet()
+    const userStore = useUserStore()
+    const dataList = ref([]) as any
 
-    function submit() {
-      if (formItems.every((it) => (it.validator ? it.validator() : true))) {
-        submitLoading.value = true
-        setTimeout(() => {
-          submitLoading.value = false
-          Message.success(
-              '提交成功，参数为：' +
-              JSON.stringify(
-                  formItems.reduce((pre, cur) => {
-                    ;(pre as any)[cur.key] = (cur as any).value.value
-                    return pre
-                  }, {})
-              )
-          )
-        }, 3000)
-      }
+    interface Notice {
+      title: string
+      url: string
+      text: string
     }
 
-    function resetForm() {
-      formItems.forEach((it) => {
-        it.reset ? it.reset() : (it.value.value = '')
+
+    const notice = reactive<Notice>({
+      title: "",
+      url: "",
+      text: "",
+    })
+
+    function add() {
+      modalDialogRef.value?.toggle()
+    }
+
+    function onDataFormConfirm() {
+      post({
+        url: publishNotice,
+        headers: {
+          Authorization: "Bearer " + userStore.token
+        },
+        data: {
+          "title": notice.title,
+          "text": notice.url,
+          "url": notice.url,
+        }
+      }).then((data) => {
+        Message.success("发布成功")
+      }).catch(error => {
+        Message.error(error.message)
+      })
+      modalDialogRef.value?.toggle()
+      notice.text = ''
+      notice.url = ''
+      notice.title = ''
+    }
+
+    function success(response: any) {
+      console.log(response)
+      const {url} = response.response.data[0]
+      console.log(url, file.value)
+      // file.value.url = url
+      notice.url = url
+    }
+
+    const onChange = (_, currentFile) => {
+      file.value = {
+        ...currentFile,
+        // url: URL.createObjectURL(currentFile.file),
+      };
+    };
+    const onProgress = (currentFile) => {
+      file.value = currentFile;
+    };
+
+    function doRefresh() {
+      get({
+        url: getNoticeList,
+        headers: {
+          Authorization: "Bearer " + userStore.token
+        },
+      }).then((res) => {
+        res.data.forEach((i: any) => {
+          dataList.value.push(i)
+        })
+        console.log(dataList.value)
+        Message.success("获取公告成功")
+      }).catch(error => {
+        Message.error(error.message)
       })
     }
 
-    function valideForm() {
-      if (formItems.every((it) => (it.validator ? it.validator() : true))) {
-        Message.success('所有表单都合法')
-      }
-    }
+    onMounted(doRefresh)
 
     return {
-      dataForm,
-      formItems,
-      submitLoading,
-      submit,
-      resetForm,
-      valideForm,
+      modalDialogRef,
+      actionTitle,
+      notice,
+      file,
+      token,
+      dataList,
+      onDataFormConfirm,
+      add,
+      success,
+      onChange,
+      onProgress,
     }
-  },
+  }
+
 })
+
 </script>
+
+
+<style lang="less">
+
+</style>

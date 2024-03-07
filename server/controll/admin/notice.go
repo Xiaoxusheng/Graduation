@@ -55,6 +55,7 @@ func PublishNotice(c *gin.Context) {
 		Title:    notice.Title,
 		Text:     notice.Text,
 		Status:   &status,
+		Url:      notice.Url,
 		Date:     date,
 	}
 	err = dao.InsertNotice(notices)
