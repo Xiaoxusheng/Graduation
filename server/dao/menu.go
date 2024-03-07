@@ -26,6 +26,17 @@ func DelMenu(menu *models.Menu) error {
 }
 
 // UpdateMenu 更新 菜单信息
-func UpdateMenu(menu *models.Menu) error {
-	return global.Global.Mysql.Where("menu_url=?", menu.MenuUrl).Updates(menu).Error
+func UpdateMenu(menu *global.Menu) error {
+	return global.Global.Mysql.Table("menu_basic").Where("menu_url=?", menu.MenuUrl).Updates(map[string]any{
+		"menu_url":        menu.MenuUrl,
+		"menu_name":       menu.MenuName,
+		"icon":            menu.Icon,
+		"parent_path":     menu.ParentPath,
+		"route_name":      menu.RouteName,
+		"cacheable":       menu.Cacheable,
+		"badge":           menu.Badge,
+		"local_file_path": menu.LocalFilePath,
+		"is_root_path":    menu.IsRootPath,
+		"hidden":          menu.Hidden,
+	}).Error
 }

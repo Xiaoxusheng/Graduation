@@ -6,7 +6,7 @@
         <img class="left-bg-img" src="../../assets/bg_left.png"/>
       </div>
       <div class="form-wrapper">
-        <div class="title">账号登录</div>
+        <div class="title">员工管理系统</div>
         <div class="item-wrapper mt-6">
           <a-input v-model="username" allow-clear placeholder="请输入用户名/手机号" size="large">
             <template #prefix>

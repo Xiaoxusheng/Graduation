@@ -91,6 +91,11 @@ var (
 	//	工资
 	GetSalaryError     = "获取工资失败！"
 	GetSalaryListError = "获取工资列表失败！"
+
+	//	Notice
+	PushNoticeError   = "发布公告失败！"
+	UpdateNoticeError = "更新公告失败！"
+	GetNoticeError    = "获取公告失败！"
 )
 
 var (

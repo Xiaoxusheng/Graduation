@@ -259,7 +259,7 @@ export default defineComponent({
         label: '是否缓存',
         key: 'cacheable',
         type: 'switch',
-        value: ref(false),
+        value: ref(true),
         reset: function () {
           this.value.value = false
         },
@@ -325,6 +325,9 @@ export default defineComponent({
         if (it.key === 'menuUrl') {
           ;(it.disabled as Ref<boolean>).value = false
         }
+        if (it.type == 'switch') {
+
+        }
       })
       modalDialog.value?.show()
     }
@@ -333,7 +336,7 @@ export default defineComponent({
       actionModel.value = 'edit'
       tempItem = item
       itemFormOptions.forEach((it) => {
-        it.value.value = item[it.key] || null
+        it.value.value = item[it.key] || ''
         if (it.key === 'menuUrl' && it.disabled) {
           ;(it.disabled as Ref<boolean>).value = true
         }
@@ -351,7 +354,11 @@ export default defineComponent({
               Authorization: "Bearer " + userStore.token
             },
             data: itemFormOptions.reduce((pre, cur) => {
-              ;(pre as any)[cur.key] = cur.value.value || ''
+              ;(pre as any)[cur.key] = cur.value.value || false || ''
+              if (cur.type == 'switch') {
+                console.log(cur)
+                ;(pre as any)[cur.key] = (cur.value.value === true)
+              }
               return pre
             }, {})
           }).then(res => {
@@ -372,6 +379,11 @@ export default defineComponent({
             },
             data: itemFormOptions.reduce((pre, cur) => {
               ;(pre as any)[cur.key] = cur.value.value || ''
+              console.log(cur.key, cur.type)
+              if (cur.type == 'switch') {
+                console.log(cur)
+                ;(pre as any)[cur.key] = (cur.value.value === true)
+              }
               return pre
             }, {})
           }).then(res => {
@@ -383,15 +395,6 @@ export default defineComponent({
             Message.error(error.message)
           })
           modalDialog.value?.close()
-          Message.success(
-              '模拟修改菜单成功, 参数为:' +
-              JSON.stringify(
-                  itemFormOptions.reduce((pre, cur) => {
-                    ;(pre as any)[cur.key] = cur.value.value || ''
-                    return pre
-                  }, {})
-              )
-          )
         }
       }
     }

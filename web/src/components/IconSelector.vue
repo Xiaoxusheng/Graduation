@@ -70,7 +70,7 @@ const seletedItem = ref(props.value)
 watch(
     () => props.value,
     (newVal) => {
-      seletedItem.value = newVal
+      seletedItem.value = newVal.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
     }
 )
 
@@ -102,8 +102,10 @@ function onSearch(searchValue: string) {
 }
 
 async function onSelectItem(item: string) {
+  item = item.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
   emit('onSelect', item)
   emit('update:value', item)
+  console.log('item', item.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase())
   seletedItem.value = item
   visible.value = false
   if (props.enableCopy) {

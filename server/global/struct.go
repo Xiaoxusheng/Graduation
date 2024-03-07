@@ -90,7 +90,7 @@ type Menu struct {
 	Cacheable     bool   `json:"cacheable,omitempty" form:"cacheable"`
 	Badge         string `json:"badge,omitempty" form:"badge"`
 	LocalFilePath string `json:"localFilePath,omitempty" form:"localFilePath"`
-	IsRootPath    bool   `json:"isRootPath,omitempty" form:"isRootPath"`
+	IsRootPath    bool   `json:"isRootPath" form:"isRootPath"`
 	Hidden        bool   `json:"hidden" form:"hidden"`
 }
 
@@ -116,6 +116,7 @@ type OverTime struct {
 	Url       string `json:"url,omitempty"   binding:"required"  form:"url"`
 }
 
+// Applications 申请
 type Applications struct {
 	Uid          int64     `json:"uid,omitempty"`
 	Pass         int32     `json:"pass"`
@@ -131,6 +132,7 @@ type Applications struct {
 	Identity     string    `json:"identity,omitempty"`
 }
 
+// ClockingIn 打卡
 type ClockingIn struct {
 	Identity     string    `json:"identity,omitempty"`
 	Uid          int64     `json:"uid,omitempty"`
@@ -141,4 +143,10 @@ type ClockingIn struct {
 	EndTime      time.Time `json:"end_time,omitempty"`
 	Date         time.Time `json:"date,omitempty"`
 	Status       int32     `json:"status"`
+}
+
+// Notice 公告
+type Notice struct {
+	Text  string `json:"text"`
+	Title string `json:"title"`
 }

@@ -168,18 +168,8 @@ func UpdateMenu(c *gin.Context) {
 		global.Global.Log.Error(err)
 		return
 	}
-	err = dao.UpdateMenu(&models.Menu{
-		MenuUrl:       menu.MenuUrl,
-		MenuName:      menu.MenuName,
-		Icon:          menu.Icon,
-		ParentPath:    menu.ParentPath,
-		RouteName:     menu.RouteName,
-		Cacheable:     menu.Cacheable,
-		Badge:         menu.Badge,
-		LocalFilePath: menu.LocalFilePath,
-		IsRootPath:    menu.IsRootPath,
-		Hidden:        menu.Hidden,
-	})
+	fmt.Println(menu)
+	err = dao.UpdateMenu(menu)
 	if err != nil {
 		result.Fail(c, global.BadRequest, global.UpdateMenuError)
 		global.Global.Log.Error(err)

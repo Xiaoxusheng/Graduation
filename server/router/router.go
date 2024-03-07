@@ -112,6 +112,11 @@ func Routers(e *gin.Engine) *gin.Engine {
 	//更新菜单
 	api.POST("/update_menu", menu.UpdateMenu)
 
+	//发布公告
+	api.POST("/publish_notice", admin.PublishNotice)
+	//更新公告
+	api.GET("/update_notice", admin.UpdateNotice)
+
 	//日志
 	api.GET("/log_list", admin.GetLogList)
 
@@ -127,6 +132,13 @@ func Routers(e *gin.Engine) *gin.Engine {
 	users.POST("/leave", user.LeaveApplication)
 	//加班申请
 	users.POST("/overtime", user.OverTimeApplication)
+	//修改个人信息
+
+	//查看考勤列表
+
+	//获取公告
+	users.GET("/get_notice_list", user.GetNotice)
+	//
 
 	//修改密码
 	users.GET("/change_password", user.ChangePassword)
