@@ -36,7 +36,7 @@
         <a-space>
           <span class="icon-hover"
                 style="font-size: 10px"> {{
-              new Date(item.date * 1000).toLocaleDateString() + new Date(item.date * 1000).toLocaleTimeString()
+              new Date(item.date * 1000).toLocaleDateString() + " " + new Date(item.date * 1000).toLocaleTimeString()
             }} </span>
 
           <span class="icon-hover" style="font-size: 10px"> {{ item.uid + "发布" }} </span>
