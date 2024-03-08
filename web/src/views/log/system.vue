@@ -208,17 +208,21 @@ export default defineComponent({
         title: 'IP地址',
         key: 'ip',
         dataIndex: 'ip ',
-        align: 'left'
+        align: 'left',
+        width: 350,
       },
       {
         title: '耗时',
         key: 'time',
         dataIndex: 'time',
+        width: 100,
       },
       {
         title: '状态',
         key: 'http_code',
         dataIndex: 'http_code',
+        width: 100,
+
       },
       {
         title: '操作时间',

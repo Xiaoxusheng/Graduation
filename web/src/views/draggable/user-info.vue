@@ -138,10 +138,11 @@ const conditionItems: Array<FormItem> = [
   },
 ]
 export default defineComponent({
-  name: 'TableWithSearch',
+  name: 'UserInfo',
   components: {
     ModalDialog,
     FormRender,
+    draggable,
   },
   setup() {
     const searchForm = ref()
