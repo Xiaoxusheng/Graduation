@@ -142,7 +142,6 @@ export default defineComponent({
   components: {
     ModalDialog,
     FormRender,
-    draggable,
   },
   setup() {
     const searchForm = ref()
