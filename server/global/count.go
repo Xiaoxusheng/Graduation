@@ -24,7 +24,7 @@ var (
 	UidId          = "uid-identity"   //员工的uid和identity的映射
 	User           = "User"           //超级管理员
 	SalaryList     = "salary-list"    //工资列表
-	Notices        = "notice"         //公告
+	Notices        = "notice"         //员工获取的公告
 )
 
 // redis 时间

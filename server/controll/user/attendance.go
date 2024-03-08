@@ -1,6 +1,7 @@
 package user
 
 import (
+	"encoding/json"
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 	"server/dao"
@@ -44,8 +45,14 @@ func ClockIn(c *gin.Context) {
 				result.Fail(c, global.ServerError, global.ClockInError)
 				return
 			}
-			global.Global.Redis.SAdd(global.Global.Ctx, global.ClockIn, id)
 			result.Ok(c, nil)
+			err = global.Global.Pool.Submit(func() {
+				//删除之前的记录
+				_, err = global.Global.Redis.Del(global.Global.Ctx, global.GetClockInLog+val).Result()
+				if err != nil {
+					global.Global.Log.Error(err)
+				}
+			})
 			return
 		}
 		//数据库查
@@ -70,6 +77,11 @@ func ClockIn(c *gin.Context) {
 			}
 			//设置过期时间
 			_, err = global.Global.Redis.Expire(global.Global.Ctx, global.UidId, time.Second*global.EmployerUidId).Result()
+			if err != nil {
+				global.Global.Log.Error(err)
+			}
+			//删除之前的记录
+			_, err = global.Global.Redis.Del(global.Global.Ctx, global.GetClockInLog+val).Result()
 			if err != nil {
 				global.Global.Log.Error(err)
 			}
@@ -106,6 +118,7 @@ func ClockIn(c *gin.Context) {
 			result.Fail(c, global.ServerError, global.ClockInError)
 			return
 		}
+		//打卡
 		global.Global.Redis.SAdd(global.Global.Ctx, global.ClockIn, id)
 		result.Ok(c, nil)
 		return
@@ -155,24 +168,13 @@ func ClockIn(c *gin.Context) {
 		if err != nil {
 			global.Global.Log.Error(err)
 		}
+		_, err = global.Global.Redis.Del(global.Global.Ctx, global.GetClockInLog+val).Result()
+		if err != nil {
+			global.Global.Log.Error(err)
+		}
 
 	}()
 	result.Ok(c, nil)
-	//d := time.Now().Day()
-	//global.Global.Log.Warn(d)
-	//val := global.Global.Redis.BitField(global.Global.Ctx, global.Sign+id, "GET", "u"+strconv.Itoa(d), 0).Val()
-	//global.Global.Log.Info(val)
-	//s := strings.Builder{}
-	//if val[0] == 1 {
-	//	for i := 1; i < d; i++ {
-	//		s.WriteString("0")
-	//	}
-	//	s.WriteString("1")
-	//	result.Ok(c, s.String())
-	//	return
-	//}
-	//result.Ok(c, fmt.Sprintf("%b", val[0]))
-	//return
 }
 
 // MarkCardApplication 补卡申请
@@ -464,4 +466,94 @@ func OverTimeApplication(c *gin.Context) {
 	result.Ok(c, nil)
 }
 
-//
+func GetClockInLog(c *gin.Context) {
+	id := c.GetString("identity")
+	if id == "" {
+		global.Global.Log.Warn("identity is null")
+		result.Fail(c, global.BadRequest, global.QueryError)
+		return
+	}
+	var uid string
+	uid = global.Global.Redis.HGet(global.Global.Ctx, global.UidId, id).Val()
+	if uid == "" {
+		employer, err := dao.GetUserById(id)
+		if err != nil {
+			global.Global.Log.Error(err)
+			result.Fail(c, global.ServerError, global.OverTimeError)
+			return
+		}
+		//判断员工是否在职
+		if employer.Status != 1 {
+			result.Fail(c, global.DataConflict, global.UserNotWorkError)
+			return
+		}
+		uid = strconv.FormatInt(employer.Uid, 10)
+		//	同步到redis
+		err = global.Global.Pool.Submit(func() {
+			global.Global.Wg.Add(1)
+			defer global.Global.Wg.Done()
+			_, err = global.Global.Redis.HSet(global.Global.Ctx, global.UidId, id, employer.Uid).Result()
+			if err != nil {
+				global.Global.Log.Error(err)
+				return
+			}
+		})
+		if err != nil {
+			global.Global.Log.Error("submit err :", err)
+			result.Fail(c, global.ServerError, global.GetClockError)
+			return
+		}
+		return
+	}
+	limit := c.DefaultQuery("limit", "10")
+	offset := c.DefaultQuery("offset", "1")
+	uids, err := strconv.Atoi(uid)
+	limits, err := strconv.Atoi(limit)
+	offsets, err := strconv.Atoi(offset)
+	if err != nil {
+		result.Fail(c, global.DataUnmarshal, global.AtoiError)
+		global.Global.Log.Error(err)
+		return
+	}
+	//查询uid是否存在 工号
+	if !global.Global.Redis.SIsMember(global.Global.Ctx, global.Employer, uids).Val() {
+		result.Fail(c, global.BadRequest, global.EmployerNotFoundError)
+		return
+	}
+	//先在缓存中获取,存的是员工考勤记录
+	val := global.Global.Redis.Get(global.Global.Ctx, global.GetClockInLog+uid).Val()
+	if val != "" {
+		//	val存在
+		list := make([]*models.Attendance, 0)
+		err = json.Unmarshal([]byte(val), &list)
+		if err != nil {
+			global.Global.Log.Error(err)
+			result.Fail(c, global.ServerError, global.DataUnmarshalError)
+			return
+		}
+		result.Ok(c, list)
+		return
+	}
+	//数据库中获取
+	list, err := dao.GetAttendanceList(limits, offsets, int64(uids))
+	if err != nil {
+		result.Fail(c, global.ServerError, global.GetClockError)
+		global.Global.Log.Error(err)
+		return
+	}
+	//放进redis
+	err = global.Global.Pool.Submit(func() {
+		marshal, err := json.Marshal(list)
+		if err != nil {
+			global.Global.Log.Error(err)
+			return
+		}
+		global.Global.Redis.Set(global.Global.Ctx, global.GetClockInLog+uid, marshal, global.EmployerClockTime*time.Second)
+	})
+	if err != nil {
+		global.Global.Log.Error(err)
+		result.Fail(c, global.ServerError, global.GetClockError)
+		return
+	}
+	result.Ok(c, list)
+}

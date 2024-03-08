@@ -147,7 +147,15 @@ type ClockingIn struct {
 
 // Notice 公告
 type Notice struct {
-	Text  string `json:"text"`
-	Title string `json:"title"`
-	Url   string `json:"url"`
+	Text  string `json:"text" form:"text"  binding:"required" `
+	Title string `json:"title" form:"title"  binding:"required" `
+	Url   string `json:"url" form:"url"  binding:"required" `
+}
+
+type UpdateNotice struct {
+	Id     string `json:"id" form:"id"  binding:"required" `
+	Status int32  `json:"status" form:"status"  binding:"required" `
+	Text   string `json:"text" form:"text"  binding:"required" `
+	Title  string `json:"title" form:"title"  binding:"required" `
+	Url    string `json:"url" form:"url"  binding:"required" `
 }

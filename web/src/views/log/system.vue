@@ -109,14 +109,13 @@
 </template>
 
 <script lang="ts">
-import {delete_employer, logList,} from '@/api/url'
+import {delete_employer, userLogList,} from '@/api/url'
 import {usePagination, useRowKey, useRowSelection, useTable, useTableColumn, useTableHeight,} from '@/hooks/table'
 import {Form, Input, Message, Modal} from '@arco-design/web-vue'
 import {defineComponent, getCurrentInstance, h, onMounted, ref} from 'vue'
 import AddButton from "@/components/AddButton.vue";
 import useUserStore from "@/store/modules/user";
 import {FormItem, ModalDialogType} from "@/types/components";
-import usePost from '@/hooks/usePost'
 import useGet from "@/hooks/useGet";
 import FormRender from "@/components/FormRender";
 import type {Dayjs} from "dayjs";
@@ -229,13 +228,12 @@ export default defineComponent({
     ])
     const expandAllFlag = ref(true)
     const userStore = useUserStore()
-    const post = usePost()
     const get = useGet()
 
 
     function doRefresh() {
       get({
-        url: logList,
+        url: userLogList,
         headers: {
           Authorization: "Bearer " + userStore.token
         },

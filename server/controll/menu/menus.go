@@ -26,7 +26,16 @@ func GetMenuList(c *gin.Context) {
 
 	if id == "2b51ffd3-03a4-5a0f-8d3d-a1295607b96e" {
 		list, err = dao.GetMenuList()
-	} else {
+	}
+	if len(r) == 0 && id != "2b51ffd3-03a4-5a0f-8d3d-a1295607b96e" {
+		list, err = dao.GetMenuLists("user")
+		fmt.Println("list", list)
+		if err != nil {
+			global.Global.Log.Error(err)
+			return
+		}
+	}
+	if len(r) != 0 {
 		list, err = dao.GetMenuLists(r[0])
 		if err != nil {
 			return

@@ -90,18 +90,13 @@ func PublishNotice(c *gin.Context) {
 	result.Ok(c, nil)
 }
 
-// UpdateNotice  修改公告状态
-func UpdateNotice(c *gin.Context) {
-	id := c.Query("identity")
-	status := c.Query("")
-	if status == "" || id == "" {
-		result.Fail(c, global.BadRequest, global.QueryError)
-		return
-	}
-	atoi, err := strconv.Atoi(status)
+// UpdateNoticeStatus  修改公告状态
+func UpdateNoticeStatus(c *gin.Context) {
+	notice := new(global.UpdateNotice)
+	err := c.Bind(notice)
 	if err != nil {
 		global.Global.Log.Error(err)
-		result.Fail(c, global.DataUnmarshal, global.AtoiError)
+		result.Fail(c, global.DataConflict, global.QueryNotFoundError)
 		return
 	}
 	//修改缓存
@@ -110,7 +105,7 @@ func UpdateNotice(c *gin.Context) {
 		result.Fail(c, global.ServerError, global.UpdateNoticeError)
 		return
 	}
-	err = dao.UpdateNotice(id, int32(atoi))
+	err = dao.UpdateNotice(notice)
 	if err != nil {
 		global.Global.Log.Error(err)
 		result.Fail(c, global.ServerError, global.UpdateNoticeError)
@@ -119,4 +114,14 @@ func UpdateNotice(c *gin.Context) {
 	result.Ok(c, nil)
 }
 
-//
+func GetNoticeList(c *gin.Context) {
+	//	先读缓存
+	list, err := dao.GetNoticeLists()
+	if err != nil {
+		global.Global.Log.Error(err)
+		result.Fail(c, global.BadRequest, global.GetNoticeError)
+		return
+	}
+
+	result.Ok(c, list)
+}

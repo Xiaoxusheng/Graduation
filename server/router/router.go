@@ -14,13 +14,13 @@ func Routers(e *gin.Engine) *gin.Engine {
 
 	e.POST("/user/login", user.Login)
 	//菜单列表
-	e.POST("/admin/menu_list", middleware.ParseToken(), middleware.CasBin(), menu.GetMenuList)
+	e.POST("/admin/menu_list", middleware.ParseToken(), menu.GetMenuList)
 	//
 	//u := e.Group("/user")
 	//e.POST("/login", user.Login)
 
 	roots := e.Group("/root")
-	roots.Use(middleware.ParseToken(), middleware.CasBin())
+	roots.Use(middleware.Log(), middleware.ParseToken(), middleware.CasBin())
 	//分配角色
 	roots.POST("/add_rolesForUser", root.AddRolesForUser)
 	//分配资源
@@ -39,6 +39,7 @@ func Routers(e *gin.Engine) *gin.Engine {
 	roots.POST("/get_permissionsForUser", root.GetPermissionsForUser)
 	//查看所有权限
 	roots.POST("/get_allNamedSubjects", root.GetAllNamedSubjects)
+	//
 	roots.POST("/add_role_menu", root.AddRoleMenu)
 	roots.POST("/add", root.Add)
 	//登录
@@ -115,13 +116,15 @@ func Routers(e *gin.Engine) *gin.Engine {
 	//发布公告
 	api.POST("/publish_notice", admin.PublishNotice)
 	//更新公告
-	api.GET("/update_notice", admin.UpdateNotice)
+	api.POST("/update_notice", admin.UpdateNoticeStatus)
+	api.GET("/get_notice_list", admin.GetNoticeList)
 
 	//日志
 	api.GET("/log_list", admin.GetLogList)
+	api.GET("/user_log_list", admin.GetUserLogList)
 
 	//------------------------------------------------------
-	users := e.Group("/user", middleware.ParseToken())
+	users := e.Group("/user", middleware.Log(), middleware.ParseToken())
 	//文件上传
 	users.POST("/upload", user.Upload)
 	//打卡
@@ -132,9 +135,12 @@ func Routers(e *gin.Engine) *gin.Engine {
 	users.POST("/leave", user.LeaveApplication)
 	//加班申请
 	users.POST("/overtime", user.OverTimeApplication)
+	//获取个人信息
+	users.GET("/info", user.EmployeeInfo)
 	//修改个人信息
 
 	//查看考勤列表
+	users.GET("/get_clockIn_log", user.GetClockInLog)
 
 	//获取公告
 	users.GET("/get_notice_list", user.GetNotice)

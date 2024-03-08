@@ -243,23 +243,23 @@ func Add(c *gin.Context) {
 
 // AddRoleMenu 给角色分配菜单
 func AddRoleMenu(c *gin.Context) {
-	//判断角色是否存在
 	role := c.PostForm("role")
 	menu := c.PostFormArray("menu")
 	if len(menu) == 0 || role == "" {
 		result.Fail(c, global.BadRequest, global.QueryError)
 		return
 	}
-	var ok bool
-	for i := 0; i < len(global.Global.CasBin.GetAllRoles()); i++ {
-		if global.Global.CasBin.GetAllRoles()[i] == role {
-			ok = true
-		}
-	}
-	if !ok {
-		result.Fail(c, global.BadRequest, global.RoleNotfound)
-		return
-	}
+	//判断角色是否存在
+	//var ok bool
+	//for i := 0; i < len(global.Global.CasBin.GetAllRoles()); i++ {
+	//	if global.Global.CasBin.GetAllRoles()[i] == role {
+	//		ok = true
+	//	}
+	//}
+	//if !ok {
+	//	result.Fail(c, global.BadRequest, global.RoleNotfound)
+	//	return
+	//}
 	//	操作数据库
 	for i := 0; i < len(menu); i++ {
 		err := dao.InsertRoleMenu(&models.RoleMenu{

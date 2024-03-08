@@ -84,12 +84,16 @@ export const getAllClockIn = '/admin/get_all_clockIn'
 export const getSalary = '/admin/get_salary'
 
 
-// 日志
+// 管理员日志
 export const logList = '/admin/log_list'
+// 用户日志
+export const userLogList = '/admin/user_log_list'
 // 发布公告
 export const publishNotice = '/admin/publish_notice'
+// 更新公告
+export const updateNotice = '/admin/update_notice'
 // 获取公告列表
-export const getNoticeList = '/user/get_notice_list'
+export const getNoticeList = '/admin/get_notice_list'
 
 
 export const getTableList = '/employer_list'
@@ -106,11 +110,18 @@ export const markCard_application = '/user/markCard_application'
 // 加班申请
 export const overtime = '/user/overtime'
 //打卡
-export const clockIn = '/user/clockIn'
+export const clockIn = '/user/clockIn'//打卡
+//考勤
+export const getClockInLog = '/user/get_clockIn_log'
+// 获取用户信息
+export const userinfo = '/user/info'
+// 修改密码
+export const changePassword = '/user/change_password'
 
 // 加班申请
 
 
+export const getNotice = '/user/get_notice_list'
 
 
 

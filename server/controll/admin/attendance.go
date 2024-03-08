@@ -73,7 +73,6 @@ func GetClockInLog(c *gin.Context) {
 		result.Fail(c, global.ServerError, global.GetClockError)
 		return
 	}
-
 	result.Ok(c, list)
 
 }

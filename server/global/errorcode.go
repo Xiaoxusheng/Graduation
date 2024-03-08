@@ -47,6 +47,7 @@ var (
 	QueryNotFoundError     = "获取必要参数失败！"
 	ResetPwdError          = "重置密码失败"
 	ChangePwdError         = "修改密码失败！"
+	OldPedError            = "旧密码错误！"
 	ParseError             = "解析错误！"
 	RequestToError         = "请求无法处理！"
 	EmployerNotFoundError  = "员工不存在！"

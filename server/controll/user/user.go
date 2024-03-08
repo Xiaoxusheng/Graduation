@@ -2,12 +2,15 @@ package user
 
 import (
 	"encoding/base64"
+	"encoding/json"
 	"github.com/gin-gonic/gin"
 	"server/config"
 	"server/dao"
 	"server/global"
+	"server/models"
 	"server/result"
 	"server/utils"
+	"strconv"
 	"time"
 )
 
@@ -92,19 +95,27 @@ func ChangePassword(c *gin.Context) {
 	val := global.Global.Redis.HGet(global.Global.Ctx, uid, global.Salt).Val()
 	if val != "" {
 		salt, _ := base64.URLEncoding.DecodeString(val)
+		//判断旧密码是否正确
+		if !global.Global.Redis.HExists(global.Global.Ctx, uid, utils.HashPassword(p, salt)).Val() {
+			//	旧密码错误
+			result.Fail(c, global.BadRequest, global.OldPedError)
+			return
+		}
+		//更新
 		err := dao.UpdatePwd(uid, utils.HashPassword(pwd, salt))
 		if err != nil {
 			global.Global.Log.Warn(err)
 			result.Fail(c, global.BadRequest, global.ChangePwdError)
 			return
 		}
-		//
+		//删除旧的
 		_, err = global.Global.Redis.HDel(global.Global.Ctx, uid, utils.HashPassword(p, salt)).Result()
 		if err != nil {
 			global.Global.Log.Warn(err)
 			result.Fail(c, global.BadRequest, global.ChangePwdError)
 			return
 		}
+		//设置新的
 		_, err = global.Global.Redis.HSet(global.Global.Ctx, uid, utils.HashPassword(pwd, salt), id).Result()
 		if err != nil {
 			global.Global.Log.Warn(err)
@@ -123,6 +134,12 @@ func ChangePassword(c *gin.Context) {
 	}
 	//盐值
 	salt, _ := base64.URLEncoding.DecodeString(account.Salt)
+	//判断旧密码是否正确
+	if !global.Global.Redis.HExists(global.Global.Ctx, uid, utils.HashPassword(p, salt)).Val() {
+		//	旧密码错误
+		result.Fail(c, global.BadRequest, global.OldPedError)
+		return
+	}
 	//更新
 	err = dao.UpdatePwd(uid, utils.HashPassword(pwd, salt))
 	if err != nil {
@@ -144,4 +161,89 @@ func ChangePassword(c *gin.Context) {
 	}
 	result.Ok(c, nil)
 
+}
+
+// EmployeeInfo 员工个人人信息
+func EmployeeInfo(c *gin.Context) {
+	id := c.GetString("identity")
+	if id == "" {
+		global.Global.Log.Warn("identity is null")
+		result.Fail(c, global.BadRequest, global.QueryError)
+		return
+	}
+	var uid string
+	uid = global.Global.Redis.HGet(global.Global.Ctx, global.UidId, id).Val()
+	if uid == "" {
+		employer, err := dao.GetUserById(id)
+		if err != nil {
+			global.Global.Log.Error(err)
+			result.Fail(c, global.ServerError, global.UserNotExistError)
+			return
+		}
+		//判断员工是否在职
+		if employer.Status != 1 {
+			result.Fail(c, global.DataConflict, global.UserNotWorkError)
+			return
+		}
+		uid = strconv.FormatInt(employer.Uid, 10)
+		//	同步到redis
+		err = global.Global.Pool.Submit(func() {
+			global.Global.Wg.Add(1)
+			defer global.Global.Wg.Done()
+			_, err = global.Global.Redis.HSet(global.Global.Ctx, global.UidId, id, employer.Uid).Result()
+			if err != nil {
+				global.Global.Log.Error(err)
+				return
+			}
+		})
+		if err != nil {
+			global.Global.Log.Error("submit err :", err)
+			result.Fail(c, global.ServerError, global.GetClockError)
+			return
+		}
+		return
+	}
+	//获取员工信息
+	val := global.Global.Redis.Get(global.Global.Ctx, global.Uid+uid).Val()
+	if val != "" {
+		e := new(models.Employee)
+		err := json.Unmarshal([]byte(val), e)
+		if err != nil {
+			global.Global.Log.Error(err)
+			return
+		}
+		result.Ok(c, e)
+		return
+	}
+	//不存在，过期
+	atoi, err := strconv.Atoi(uid)
+	if err != nil {
+		result.Fail(c, global.DataUnmarshal, global.AtoiError)
+		return
+	}
+	info, err := dao.GetEmployerInfo(int64(atoi))
+	if err != nil {
+		global.Global.Log.Error(err)
+		result.Fail(c, global.DataNotFound, global.UserNotExistError)
+		return
+	}
+	//插入
+	err = global.Global.Pool.Submit(func() {
+		global.Global.Wg.Add(1)
+		defer global.Global.Wg.Done()
+		if info == nil {
+			_, err = global.Global.Redis.Set(global.Global.Ctx, global.Uid+uid, "null", global.InfoTime*time.Second).Result()
+			return
+		}
+		marshal, err := json.Marshal(info)
+		if err != nil {
+			global.Global.Log.Error(err)
+			return
+		}
+		_, err = global.Global.Redis.Set(global.Global.Ctx, global.Uid+uid, marshal, global.InfoTime*time.Second).Result()
+		if err != nil {
+			global.Global.Log.Error(err)
+		}
+	})
+	result.Ok(c, info)
 }
