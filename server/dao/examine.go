@@ -11,7 +11,7 @@ import (
 // GetExamineList 请假审批表
 func GetExamineList(limits, offset int) ([]global.Applications, error) {
 	list := make([]global.Applications, 0)
-	err := global.Global.Mysql.Table("examine_basic").Select("employee_basic.sex,employee_basic.name,employee_basic.department_id,examine_basic.*").Joins("join employee_basic on   employee_basic.uid=examine_basic.uid").Where("examine_basic.status=? and examine_basic.created_at<?", 4, time.Now()).Limit(limits).Offset(offset - 1).Scan(&list).Error
+	err := global.Global.Mysql.Table("examine_basic").Select("employee_basic.sex,employee_basic.name,employee_basic.department_id,examine_basic.*").Joins("join employee_basic on   employee_basic.uid=examine_basic.uid").Where("examine_basic.status=? and examine_basic.created_at<?", 4, time.Now()).Limit(limits).Offset((offset - 1) * limits).Scan(&list).Error
 	if err != nil {
 		return nil, err
 	}
@@ -56,7 +56,7 @@ func UpdateOvertimeStatus(uid int64, pass int32, endTime int64) error {
 // GetOvertimeList 获取加班申请列表,包括审批过的
 func GetOvertimeList(limits, offsets int) ([]global.Applications, error) {
 	list := make([]global.Applications, 0)
-	err := global.Global.Mysql.Table("examine_basic").Select("employee_basic.sex,employee_basic.name,employee_basic.department_id,examine_basic.*").Joins("join employee_basic on   employee_basic.uid=examine_basic.uid").Where("examine_basic.status=? and examine_basic.created_at<?", 1, time.Now()).Limit(limits).Offset(offsets - 1).Scan(&list).Error
+	err := global.Global.Mysql.Table("examine_basic").Select("employee_basic.sex,employee_basic.name,employee_basic.department_id,examine_basic.*").Joins("join employee_basic on   employee_basic.uid=examine_basic.uid").Where("examine_basic.status=? and examine_basic.created_at<?", 1, time.Now()).Limit(limits).Offset((offsets - 1) * limits).Scan(&list).Error
 	if err != nil {
 		return nil, err
 	}
@@ -82,7 +82,7 @@ func MakeCard(uid int64, star, end time.Time, pass int32, id string) error {
 // GetMarkCardList 补卡申请列表
 func GetMarkCardList(limits, offsets int) ([]global.Applications, error) {
 	list := make([]global.Applications, 0)
-	err := global.Global.Mysql.Table("examine_basic").Select("employee_basic.sex,employee_basic.name,employee_basic.department_id,examine_basic.*").Joins("join employee_basic on   employee_basic.uid=examine_basic.uid").Where("examine_basic.status=? and examine_basic.created_at<?", 2, time.Now()).Limit(limits).Offset(offsets - 1).Scan(&list).Error
+	err := global.Global.Mysql.Table("examine_basic").Select("employee_basic.sex,employee_basic.name,employee_basic.department_id,examine_basic.*").Joins("join employee_basic on   employee_basic.uid=examine_basic.uid").Where("examine_basic.status=? and examine_basic.created_at<?", 2, time.Now()).Limit(limits).Offset((offsets - 1) * limits).Scan(&list).Error
 	if err != nil {
 		return nil, err
 	}

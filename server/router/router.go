@@ -89,7 +89,8 @@ func Routers(e *gin.Engine) *gin.Engine {
 	api.POST("/edit_clockIn", admin.EditClockLog)
 	//获取某一天全部考勤
 	api.GET("/get_all_clockIn", admin.GetClockList)
-
+	//获取不同状态一天的考勤
+	api.GET("/get_by_status", admin.GetByStatus)
 	//请假申请审核
 	api.POST("/leave_application", admin.LeaveApplication)
 	//获取请假申请列表

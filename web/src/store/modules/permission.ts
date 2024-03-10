@@ -38,7 +38,7 @@ const usePermissionStore = defineStore('permission-route', {
         },
     },
     actions: {
-        async getRoutes(data: { userId: number; roleId: number }) {
+        async getRoutes() {
             try {
                 if (getMenuListByRoleId) {
                     // 获取路由
@@ -49,7 +49,6 @@ const usePermissionStore = defineStore('permission-route', {
                         headers: {
                             Authorization: 'Bearer ' + localStorage.getItem("token")
                         },
-                        data,
                     })
                     return generatorRoutes(res.data)
                 } else {
@@ -65,10 +64,7 @@ const usePermissionStore = defineStore('permission-route', {
         async initPermissionRoute() {
             const userStore = useUserStore()
             // 加载路由
-            const accessRoutes = await this.getRoutes({
-                roleId: userStore.roleId,
-                userId: userStore.userId,
-            })
+            const accessRoutes = await this.getRoutes()
             const mapRoutes = mapTwoLevelRouter(accessRoutes)
             mapRoutes.forEach((it: any) => {
                 router.addRoute(it)

@@ -149,4 +149,13 @@ func ClockInSummaryList(c *gin.Context) {
 
 }
 
-//
+// GetByStatus 各部门考勤情况
+func GetByStatus(c *gin.Context) {
+	list, err := dao.GetByStatus(time.Now().Format(time.DateOnly))
+	if err != nil {
+		result.Fail(c, global.ServerError, global.GetClockError)
+		global.Global.Log.Error(err)
+		return
+	}
+	result.Ok(c, list)
+}

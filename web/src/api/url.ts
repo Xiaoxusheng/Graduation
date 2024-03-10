@@ -125,6 +125,9 @@ export const changePassword = '/user/change_password'
 //获取工资
 export const getUserSalary = '/user/get_salary'
 
+// 图片上传
+export const upload = '/user/upload'
+
 // 加班申请
 
 

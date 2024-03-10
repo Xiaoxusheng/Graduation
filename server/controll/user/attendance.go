@@ -81,7 +81,7 @@ func ClockIn(c *gin.Context) {
 				global.Global.Log.Error(err)
 			}
 			//删除之前的记录
-			_, err = global.Global.Redis.Del(global.Global.Ctx, global.GetClockInLog+val).Result()
+			_, err = global.Global.Redis.Del(global.Global.Ctx, global.GetClockInLog+strconv.FormatInt(employer.Uid, 10)).Result()
 			if err != nil {
 				global.Global.Log.Error(err)
 			}
@@ -118,8 +118,23 @@ func ClockIn(c *gin.Context) {
 			result.Fail(c, global.ServerError, global.ClockInError)
 			return
 		}
-		//打卡
-		global.Global.Redis.SAdd(global.Global.Ctx, global.ClockIn, id)
+		err = global.Global.Pool.Submit(func() {
+			global.Global.Wg.Add(1)
+			defer global.Global.Wg.Done()
+			//打卡
+			global.Global.Redis.SAdd(global.Global.Ctx, global.ClockIn, id)
+			_, err = global.Global.Redis.Expire(global.Global.Ctx, global.ClockIn, time.Date(t1.Year(), t1.Month(), t1.Day()+1, 0, 0, 0, 0, t1.Location()).Sub(t1)).Result()
+			if err != nil {
+				global.Global.Log.Error(err)
+			}
+			_, err = global.Global.Redis.Del(global.Global.Ctx, global.GetClockInLog+val).Result()
+			if err != nil {
+				global.Global.Log.Error(err)
+			}
+		})
+		if err != nil {
+			global.Global.Log.Error(err)
+		}
 		result.Ok(c, nil)
 		return
 	}
@@ -164,7 +179,7 @@ func ClockIn(c *gin.Context) {
 			global.Global.Log.Error(err)
 		}
 		//第二天0点删除打卡
-		_, err = global.Global.Redis.Expire(global.Global.Ctx, global.ClockIn, time.Duration(time.Date(t1.Year(), t1.Month(), t1.Day()+1, 0, 0, 0, 0, t1.Location()).Sub(t1).Seconds())*time.Second).Result()
+		_, err = global.Global.Redis.Expire(global.Global.Ctx, global.ClockIn, time.Date(t1.Year(), t1.Month(), t1.Day()+1, 0, 0, 0, 0, t1.Location()).Sub(t1)).Result()
 		if err != nil {
 			global.Global.Log.Error(err)
 		}
@@ -505,6 +520,7 @@ func GetClockInLog(c *gin.Context) {
 		}
 		return
 	}
+	//获取考勤列表
 	limit := c.DefaultQuery("limit", "10")
 	offset := c.DefaultQuery("offset", "1")
 	uids, err := strconv.Atoi(uid)
@@ -548,7 +564,11 @@ func GetClockInLog(c *gin.Context) {
 			global.Global.Log.Error(err)
 			return
 		}
-		global.Global.Redis.Set(global.Global.Ctx, global.GetClockInLog+uid, marshal, global.EmployerClockTime*time.Second)
+		_, err = global.Global.Redis.Set(global.Global.Ctx, global.GetClockInLog+uid, marshal, time.Second*global.EmployerClockTime).Result()
+		if err != nil {
+			global.Global.Log.Error(err)
+			return
+		}
 	})
 	if err != nil {
 		global.Global.Log.Error(err)

@@ -15,7 +15,7 @@ func InsertLog(log *models.Log) error {
 func GetLogList(s string, limits, offset int) ([]models.Log, error) {
 	var count int64
 	list := make([]models.Log, 0)
-	err := global.Global.Mysql.Where("path like ?", s+"%").Limit(limits).Offset(offset - 1).Find(&list).Error
+	err := global.Global.Mysql.Where("path like ?", s+"%").Limit(limits).Offset((offset - 1) * limits).Find(&list).Error
 	if err != nil {
 		return nil, err
 	}

@@ -31,7 +31,7 @@
                     :fileList="file ? [file] : []"
                     :headers="{ 'Authorization': 'Bearer ' + token}"
                     :show-file-list="false"
-                    action="http://127.0.0.1:8084/user/upload"
+                    :action=baseURL()+upload()
                     show-cancel-button
                     @change="onChange"
                     @progress="onProgress"
@@ -91,13 +91,22 @@ import {FormItem} from '@/types/components'
 import {Message} from '@arco-design/web-vue'
 import {defineComponent, ref} from 'vue'
 import type {Dayjs} from 'dayjs'
-import {leave, markCard_application, overtime} from "@/api/url";
+import {leave, markCard_application, overtime, upload} from "@/api/url";
 import useUserStore from "@/store/modules/user";
 import usePost from '@/hooks/usePost'
 import useGet from "@/hooks/useGet";
+import {baseURL} from "@/api/axios.config";
 
 export default defineComponent({
   name: 'BaseFormView',
+  methods: {
+    upload() {
+      return upload
+    },
+    baseURL() {
+      return baseURL
+    }
+  },
   setup() {
     const dataForm = ref()
     const formItems = [

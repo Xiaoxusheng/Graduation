@@ -81,7 +81,7 @@
                   :fileList="file ? [file] : []"
                   :headers="{ 'Authorization': 'Bearer ' + token}"
                   :show-file-list="false"
-                  action="http://127.0.0.1:8084/user/upload"
+                  :action=baseURL()+upload()
                   show-cancel-button
                   @change="onChange"
                   @progress="onProgress"
@@ -204,13 +204,22 @@
 import {defineComponent, onMounted, reactive, ref} from "vue";
 import {ModalDialogType} from "@/types/components";
 import AddButton from "@/components/AddButton.vue";
-import {getNoticeList, publishNotice, updateNotice} from "@/api/url";
+import {getNoticeList, publishNotice, updateNotice, upload} from "@/api/url";
 import {Message} from "@arco-design/web-vue";
 import usePost from "@/hooks/usePost";
 import useUserStore from "@/store/modules/user";
 import useGet from "@/hooks/useGet";
+import {baseURL} from "@/api/axios.config";
 
 export default defineComponent({
+  methods: {
+    upload() {
+      return upload
+    },
+    baseURL() {
+      return baseURL
+    }
+  },
   components: {AddButton},
   name: 'BaseFromView',
   setup: function () {
