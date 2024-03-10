@@ -39,8 +39,10 @@ func Routers(e *gin.Engine) *gin.Engine {
 	roots.POST("/get_permissionsForUser", root.GetPermissionsForUser)
 	//查看所有权限
 	roots.POST("/get_allNamedSubjects", root.GetAllNamedSubjects)
-	//
+	//添加角色能访问的菜单
 	roots.POST("/add_role_menu", root.AddRoleMenu)
+	//删除角色能访问的菜单
+	roots.POST("/del_role_menu", root.DelRoleMenu)
 	roots.POST("/add", root.Add)
 	//登录
 	e.POST("/admin/login", admin.Login)
@@ -102,9 +104,12 @@ func Routers(e *gin.Engine) *gin.Engine {
 	api.GET("/make_card_application_list", admin.GetMarkCardList)
 
 	//工资
+	//查员工的工资
 	api.GET("/get_salary", admin.GetSalary)
 	//获取所有的工资列表
 	api.GET("/get_salary_list", admin.GetSalaryList)
+	//输入信息
+	api.POST("/salary_info", admin.SalaryInfo)
 
 	//增加菜单
 	api.POST("/add_menu", menu.AddMenu)
@@ -141,6 +146,8 @@ func Routers(e *gin.Engine) *gin.Engine {
 
 	//查看考勤列表
 	users.GET("/get_clockIn_log", user.GetClockInLog)
+	//获取个人工资情况
+	users.GET("/get_salary", user.GetSalary)
 
 	//获取公告
 	users.GET("/get_notice_list", user.GetNotice)

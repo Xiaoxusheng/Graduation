@@ -73,7 +73,7 @@ export default defineComponent({
             headers: {
               Authorization: "Bearer " + userStore.token
             },
-          }).then(() => {
+          }).then((res) => {
             Message.success("退出登录成功")
           }).catch((error) => {
             Message.error(error.message)

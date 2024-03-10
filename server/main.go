@@ -45,7 +45,7 @@ func main() {
 		Handler:        e,                                              //路由
 		ReadTimeout:    config.Config.Service.ReadTime * time.Second,   //读超时时间
 		WriteTimeout:   config.Config.Service.WriteTime * time.Second,  //写超时时间
-		MaxHeaderBytes: config.Config.Service.MaxHeaderBytes << 20,     //最大请求头
+		MaxHeaderBytes: config.Config.Service.MaxHeaderBytes << 20,     //最大请求头 1MB
 	}
 	err := s.ListenAndServe()
 	if err != nil {

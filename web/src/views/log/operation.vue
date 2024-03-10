@@ -87,7 +87,7 @@
               </a-tag>
             </template>
             <template v-else-if="item.key === 'method'" #cell="{ record }">
-              <a-tag :color="record.method ==='GET' ? 'purple' : 'brown'">
+              <a-tag :color="record.method ==='GET' ? 'purple' : 'yellow'">
                 {{ record.method }}
               </a-tag>
             </template>

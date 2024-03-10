@@ -312,21 +312,21 @@ export default defineComponent({
         label: '姓名',
         key: 'name',
         type: 'input',
-        placeholder: '请选择会议类型',
+        placeholder: '请选择性别',
         value: ref(null),
       },
       {
         label: '工号',
         key: 'uid',
         type: 'input',
-        placeholder: '请选择会议类型',
+        placeholder: '请选择工号',
         value: ref(undefined),
       },
       {
         label: '性别',
         key: 'sex',
         type: 'input',
-        placeholder: '请输入会议内容',
+        placeholder: '请输入性别',
         value: ref(null),
       },
       {
@@ -341,7 +341,7 @@ export default defineComponent({
       {
         label: '请假原因',
         key: 'reason',
-        placeholder: '请输入会议备注',
+        placeholder: '请输入请假原因',
         type: 'textarea',
         value: ref(null),
       },

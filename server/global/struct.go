@@ -152,10 +152,21 @@ type Notice struct {
 	Url   string `json:"url" form:"url"  binding:"required" `
 }
 
+// UpdateNotice 更新公告
 type UpdateNotice struct {
 	Id     string `json:"id" form:"id"  binding:"required" `
 	Status int32  `json:"status" form:"status"  binding:"required" `
 	Text   string `json:"text" form:"text"  binding:"required" `
 	Title  string `json:"title" form:"title"  binding:"required" `
 	Url    string `json:"url" form:"url"  binding:"required" `
+}
+
+// SalaryInfos 输入员工工时等信息
+type SalaryInfos struct {
+	Uid             int64   `json:"uid,omitempty"  binding:"required"  form:"uid"`
+	Count           int32   `json:"count,omitempty"  form:"count"`
+	PaidLeave       int32   `json:"paidLeave,omitempty"  binding:"required" form:"paidLeave"`
+	AttendanceHours float64 `json:"attendanceHours,omitempty"  binding:"required" form:"attendanceHours"`
+	Other           float64 `json:"other,omitempty"  binding:"required" form:"other"`
+	Subsidy         float64 `json:"subsidy,omitempty"  binding:"required" form:"subsidy"`
 }

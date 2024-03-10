@@ -270,6 +270,39 @@ func AddRoleMenu(c *gin.Context) {
 		if err != nil {
 			global.Global.Log.Error(err)
 			result.Fail(c, global.ServerError, global.AddMenuRoleFail)
+			return
+		}
+	}
+	result.Ok(c, nil)
+}
+
+// DelRoleMenu 删除角色的菜单
+func DelRoleMenu(c *gin.Context) {
+	role := c.PostForm("role")
+	menu := c.PostFormArray("menu")
+	if len(menu) == 0 || role == "" {
+		result.Fail(c, global.BadRequest, global.QueryError)
+		return
+	}
+	//判断角色是否存在
+	var ok bool
+	for i := 0; i < len(global.Global.CasBin.GetAllRoles()); i++ {
+		if global.Global.CasBin.GetAllRoles()[i] == role {
+			ok = true
+		}
+	}
+	if !ok {
+		result.Fail(c, global.BadRequest, global.RoleNotfound)
+		return
+	}
+	for i := 0; i < len(menu); i++ {
+		err := dao.DeleteRoleMenu(role, menu[i])
+		if err != nil {
+			if err != nil {
+				global.Global.Log.Error(err)
+				result.Fail(c, global.ServerError, global.AddMenuRoleFail)
+				return
+			}
 		}
 	}
 	result.Ok(c, nil)

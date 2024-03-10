@@ -15,7 +15,7 @@ interface Table {
     tableHeight: Ref<number>
     department: {},
     handleSuccess: (res: any) => Promise<any>
-    handle: any
+    handle: (res: any) => Promise<any>
     useTableColumn: (columns: TableColumnPops[], options: TableColumnPops) => Array<any>
     indexColumn: {
         title: string
@@ -63,10 +63,13 @@ export const useTable = function (): Table {
         dataList.push(...data)
         return Promise.resolve(data)
     }
-    const handle = (data: any) => {
+    const handle = (data: any): Promise<any> => {
+        console.log(data)
         tableLoading.value = false
         dataList.length = 0
+        console.log(dataList)
         dataList.push(data)
+        return Promise.resolve(data)
     }
 
     return {

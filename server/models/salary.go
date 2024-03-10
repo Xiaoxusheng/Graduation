@@ -7,7 +7,7 @@ type Salary struct {
 	Identity                string  `gorm:"type:varchar(36) not null unique; comment:'工资记录唯一标识'" json:"identity,omitempty"`
 	Uid                     int64   `gorm:"type:varchar(36) not null; comment:'工号'" json:"uid,omitempty"`
 	PaidLeave               int32   `gorm:"type:int not null; comment:'带薪休假时长'" json:"paid_leave,omitempty"`
-	Count                   int32   `gorm:"type:int not null; comment:'迟到早退次数,每次扣10元'" json:"count,omitempty"`
+	Count                   int32   `gorm:"type:int not null; comment:'迟到早退次数,每次扣10元'" json:"count"`
 	Total                   float64 `gorm:"type:float ; comment:'应发工资'" json:"total,omitempty"`
 	ExpectedAttendanceHours float64 `gorm:"type:float not null; comment:'应出勤时长'" json:"expected_attendance_hours,omitempty"`
 	AttendanceHours         float64 `gorm:"type:float not null; comment:'实际出勤时长'" json:"attendance_hours,omitempty"`

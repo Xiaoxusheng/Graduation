@@ -81,7 +81,12 @@ export const makeCardApplication = '/admin/make_card_application'
 export const getAllClockIn = '/admin/get_all_clockIn'
 
 // 工资列表
+export const getSalaryList = '/admin/get_salary_list'
+// 获取某个员工所有
 export const getSalary = '/admin/get_salary'
+//添加工资考勤
+export const salaryInfo = '/admin/salary_info'
+
 
 
 // 管理员日志
@@ -117,6 +122,8 @@ export const getClockInLog = '/user/get_clockIn_log'
 export const userinfo = '/user/info'
 // 修改密码
 export const changePassword = '/user/change_password'
+//获取工资
+export const getUserSalary = '/user/get_salary'
 
 // 加班申请
 

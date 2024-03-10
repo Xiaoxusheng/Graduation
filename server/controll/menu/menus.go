@@ -24,23 +24,25 @@ func GetMenuList(c *gin.Context) {
 	var list []models.Menu
 	fmt.Println(r)
 
-	if id == "2b51ffd3-03a4-5a0f-8d3d-a1295607b96e" {
-		list, err = dao.GetMenuList()
-	}
-	if len(r) == 0 && id != "2b51ffd3-03a4-5a0f-8d3d-a1295607b96e" {
+	if len(r) == 0 {
 		list, err = dao.GetMenuLists("user")
 		fmt.Println("list", list)
 		if err != nil {
 			global.Global.Log.Error(err)
 			return
 		}
-	}
-	if len(r) != 0 {
-		list, err = dao.GetMenuLists(r[0])
-		if err != nil {
-			return
+	} else {
+		if r[0] == "root" {
+			list, err = dao.GetMenuList()
+		}
+		if r[0] != "root" {
+			list, err = dao.GetMenuLists(r[0])
+			if err != nil {
+				return
+			}
 		}
 	}
+
 	//判断为
 
 	//下发对应的菜单

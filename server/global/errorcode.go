@@ -90,6 +90,7 @@ var (
 	GetLogList = "获取日志列表失败！"
 
 	//	工资
+	InputSalaryError   = "输入失败！"
 	GetSalaryError     = "获取工资失败！"
 	GetSalaryListError = "获取工资列表失败！"
 

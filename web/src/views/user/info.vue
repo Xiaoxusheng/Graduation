@@ -166,7 +166,7 @@ export default defineComponent({
       get({
         url: userinfo,
         headers: {
-          Authorization: "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZGVudGl0eSI6IjBhZDM0Zjk5LWM1NGQtNDgwOC04NTI3LTUzMTJlZTlhZmIzOCIsImV4cCI6MTcxMDMwNTY0NSwiaWF0IjoxNzA5ODczNjQ1fQ.7rNYbDdy6tCwQoFyDZ7X0rUoNSlrmER-VMV1QIsf2tw"
+          Authorization: "Bearer " + userStore.token
         },
       }).then(({data}: Response) => {
         info.birthday = Getdate(data.birthday)

@@ -28,9 +28,20 @@ func UpdateSalary(uid int64, count int32, h float64) error {
 	}).Error
 }
 
+// GetSalaryList 获取所有的员工某个月
 func GetSalaryList(limits, offset int, t string) ([]*models.Salary, error) {
 	list := make([]*models.Salary, 0)
 	err := global.Global.Mysql.Where("date=?", t).Limit(limits).Offset(offset).Find(&list).Error
+	if err != nil {
+		return nil, err
+	}
+	return list, nil
+}
+
+// GetSalaryByEmployer 获取某个员工所以的 工资记录
+func GetSalaryByEmployer(uid int64) ([]*models.Salary, error) {
+	list := make([]*models.Salary, 0)
+	err := global.Global.Mysql.Where("uid=?", uid).Find(&list).Error
 	if err != nil {
 		return nil, err
 	}

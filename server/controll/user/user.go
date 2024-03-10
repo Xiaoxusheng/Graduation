@@ -19,6 +19,7 @@ type users struct {
 	Password string `json:"password" form:"password" binding:"required" `
 }
 
+// Login /*登录要把保证逻辑上的并发安全*/
 // Login 登录
 func Login(c *gin.Context) {
 	user := new(users)

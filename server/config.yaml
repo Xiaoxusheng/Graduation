@@ -1,6 +1,6 @@
 #服务器相关配置
 service:
-  port: 8084
+  port: 80
   name: "server"
   readTime: 10
   writeTime: 10
