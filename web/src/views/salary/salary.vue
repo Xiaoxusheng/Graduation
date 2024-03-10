@@ -17,8 +17,8 @@
             </a-form-item>
           </a-form>
           <a-space>
-            <a-button size="small" type="outline" @click="getSalarys">查询</a-button>
-            <a-button size="small" type="outline" @click="input">输入考勤</a-button>
+            <a-button size="small" type="primary" @click="getSalarys">查询</a-button>
+            <a-button size="small" type="primary" @click="input">输入考勤</a-button>
           </a-space>
         </template>
       </TableHeader>
@@ -324,7 +324,10 @@ export default defineComponent({
 
     function getSalarys() {
       let uid: any
-      let date: any
+      if (conditionItems[0].value.value == "") {
+        Message.error("值不能为空")
+        return
+      }
       conditionItems.forEach(i => {
         if (i.key == "uid") {
           uid = i.value.value
