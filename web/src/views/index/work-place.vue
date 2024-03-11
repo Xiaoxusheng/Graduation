@@ -132,8 +132,8 @@ export default defineComponent({
           color: COLORS[random(0, COLORS.length)],
         },
         {
-          title: '更多功能',
-          path: '/other/chart/icons',
+          title: '公告管理',
+          path: '/form/base-form-view',
           icon: 'icon-apps',
           color: COLORS[random(0, COLORS.length)],
         },

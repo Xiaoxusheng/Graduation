@@ -33,7 +33,8 @@ func GetMenuList(c *gin.Context) {
 		}
 	} else {
 		if r[0] == "root" {
-			list, err = dao.GetMenuList()
+			//dao.GetMenuList()
+			list, err = dao.GetMenuLists("root")
 		}
 		if r[0] != "root" {
 			list, err = dao.GetMenuLists(r[0])

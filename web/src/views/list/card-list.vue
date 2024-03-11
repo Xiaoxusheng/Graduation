@@ -132,12 +132,12 @@
 </template>
 
 <script lang="ts">
-import {get, post} from '@/api/http'
-import {getAllClockIn, overtimeApplication} from '@/api/url'
+import {get} from '@/api/http'
+import {getAllClockIn} from '@/api/url'
 import {usePagination, useRowKey, useTable, useTableColumn} from '@/hooks/table'
 import {FormItem, ModalDialogType, TablePropsType} from '@/types/components'
 import {sortColumns} from '@/utils'
-import {Form, Message, Modal} from '@arco-design/web-vue'
+import {Form, Message} from '@arco-design/web-vue'
 import {defineComponent, onMounted, reactive, ref} from 'vue'
 import useUserStore from "@/store/modules/user";
 import ModalDialog from "@/components/ModalDialog.vue";
@@ -252,11 +252,11 @@ export default defineComponent({
       6: "请假",
     }
 
-    const date = ref('')
 
     let formRef = ref<typeof Form>()
 // 获取当前日期
     const today = new Date();
+    const date = ref(`${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`)
 
 // 设置时间为 0 点
     today.setHours(0, 0, 0, 0);
@@ -297,17 +297,6 @@ export default defineComponent({
       })
     }
 
-    function onDeleteItem(item: any) {
-      if (item) {
-        Modal.confirm({
-          content: '是否要删除此数据，删除后不恢复？',
-          okText: '删除',
-          onOk: () => {
-            Message.success('模拟删除成功，参数为：' + item.id)
-          },
-        })
-      }
-    }
 
     function onUpdateTable(newColumns: Array<TablePropsType>) {
       sortColumns(tableColumns, newColumns)
@@ -323,68 +312,6 @@ export default defineComponent({
 
     function rowClassNameFun(_record: any, index: number) {
       return index % 2 === 1 && table.striped.value ? 'table-striped' : null
-    }
-
-    function onUpdateItem(record: any) {
-      // 处理数据
-      console.log(record)
-
-      /* [ "2023-02-08 21:17:58", "2024-03-20 21:14:58" ] */
-      formItems.forEach(i => {
-        if (i.key == 'name') {
-          i.value.value = record.name as string
-        }
-        if (i.key == 'sex') {
-          i.value.value = record.sex
-        }
-        if (i.key == 'uid') {
-          i.value.value = record.uid
-        }
-        if (i.key == 'pass') {
-          i.value.value = record.pass
-        }
-        if (i.key == 'reason') {
-          i.value.value = record.reason
-        }
-        if (i.key == 'startEndDate') {
-          i.value.value = [record.start_time, record.end_time]
-        }
-      })
-      modalDialogRef.value?.toggle()
-    }
-
-    //   弹窗
-    function onDataFormConfirm() {
-      let uid: number
-      let pass: number
-      formItems.forEach(i => {
-        if (i.key == 'uid') {
-          uid = i.value.value
-        }
-        if (i.key == "pass") {
-          pass = i.value.value ? 1 : 2
-        }
-      })
-      post({
-        url: overtimeApplication,
-        headers: {
-          Authorization: "Bearer " + userStore.token
-        },
-        data: () => {
-          return {
-            uid: uid,
-            pass: pass as number,
-          }
-        },
-      }).then((res) => {
-        Message.success('审核成功')
-        console.log(res)
-        doRefresh()
-      }).catch(error => {
-        console.log(error)
-        Message.success(error.toString(),)
-      })
-      modalDialogRef.value?.toggle()
     }
 
     // 时间
@@ -429,11 +356,11 @@ export default defineComponent({
       const workSheet = XLSX.utils.table_to_sheet((tableRef.value as any).$el)
       const workBook = XLSX.utils.book_new()
       XLSX.utils.book_append_sheet(workBook, workSheet, '数据报表')
-      const date = new Date();
-      const year = date.getFullYear();
-      const day = String(date.getDate()).padStart(2, "0");
-      const month = String(date.getMonth() + 1).padStart(2, "0");
-      XLSX.writeFile(workBook, `${year}-${month}-${day}.xlsx`)
+      const d = new Date(date.value);
+      const year = d.getFullYear();
+      const day = String(d.getDate()).padStart(2, "0");
+      const month = String(d.getMonth() + 1).padStart(2, "0");
+      XLSX.writeFile(workBook, `${date.value}.xlsx`)
     }
 
     onMounted(doRefresh)
@@ -451,13 +378,10 @@ export default defineComponent({
       date,
       tableRef,
       onUpdateTable,
-      onDeleteItem,
       doRefresh,
       onUpdateBorder,
       onUpdateStriped,
       rowClassNameFun,
-      onUpdateItem,
-      onDataFormConfirm,
       check,
       exportExcel,
     }
