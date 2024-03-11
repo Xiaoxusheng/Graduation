@@ -72,3 +72,12 @@ func DeleteUser(id string) error {
 	user := new(models.User)
 	return global.Global.Mysql.Where("identity=?", id).Delete(user).Error
 }
+
+func GetUid(identity string) (*models.User, error) {
+	user := new(models.User)
+	err := global.Global.Mysql.Where("identity=?", identity).Take(user).Error
+	if err != nil {
+		return nil, err
+	}
+	return user, nil
+}

@@ -123,7 +123,10 @@ func Routers(e *gin.Engine) *gin.Engine {
 	api.POST("/publish_notice", admin.PublishNotice)
 	//更新公告
 	api.POST("/update_notice", admin.UpdateNoticeStatus)
+	//获取公告列表
 	api.GET("/get_notice_list", admin.GetNoticeList)
+	//删除公告
+	api.GET("/del_notice", admin.DelNotice)
 
 	//日志
 	api.GET("/log_list", admin.GetLogList)

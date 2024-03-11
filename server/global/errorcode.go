@@ -95,9 +95,11 @@ var (
 	GetSalaryListError = "获取工资列表失败！"
 
 	//	Notice
-	PushNoticeError   = "发布公告失败！"
-	UpdateNoticeError = "更新公告失败！"
-	GetNoticeError    = "获取公告失败！"
+	PushNoticeError     = "发布公告失败！"
+	UpdateNoticeError   = "更新公告失败！"
+	GetNoticeError      = "获取公告失败！"
+	DelNoticeError      = "删除公告失败！"
+	NoticeNotFoundError = "公告不存在！"
 )
 
 var (

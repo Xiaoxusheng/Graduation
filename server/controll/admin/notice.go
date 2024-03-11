@@ -30,7 +30,7 @@ func PublishNotice(c *gin.Context) {
 	}
 	uid := global.Global.Redis.HGet(global.Global.Ctx, global.UidId, id).Val()
 	var uids int
-	if uid != "" {
+	if uid != "0" {
 		uids, err = strconv.Atoi(uid)
 		if err != nil {
 			global.Global.Log.Error(err)
@@ -38,13 +38,13 @@ func PublishNotice(c *gin.Context) {
 			return
 		}
 	} else {
-		employer, err := dao.GetUserById(id)
+		employer, err := dao.GetUid(id)
 		if err != nil {
 			global.Global.Log.Error(err)
 			result.Fail(c, global.ServerError, global.ClockInError)
 			return
 		}
-		uids = int(int32(employer.Uid))
+		uids = int(employer.Account)
 	}
 	//
 	var status int32 = 1
@@ -102,6 +102,7 @@ func UpdateNoticeStatus(c *gin.Context) {
 	//修改缓存
 	_, err = global.Global.Redis.Del(global.Global.Ctx, global.Notices).Result()
 	if err != nil {
+		global.Global.Log.Error(err)
 		result.Fail(c, global.ServerError, global.UpdateNoticeError)
 		return
 	}
@@ -114,6 +115,7 @@ func UpdateNoticeStatus(c *gin.Context) {
 	result.Ok(c, nil)
 }
 
+// GetNoticeList 获取公告列表
 func GetNoticeList(c *gin.Context) {
 	//	先读缓存
 	list, err := dao.GetNoticeLists()
@@ -124,4 +126,33 @@ func GetNoticeList(c *gin.Context) {
 	}
 
 	result.Ok(c, list)
+}
+
+// DelNotice 删除公告
+func DelNotice(c *gin.Context) {
+	id := c.Query("id")
+	if id == "" {
+		result.Fail(c, global.BadRequest, global.QueryError)
+		return
+	}
+	//判断能否删除
+	if !dao.GetExists(id) {
+		result.Fail(c, global.ServerError, global.NoticeNotFoundError)
+		return
+	}
+	//	删除
+	err := dao.DeleteNotice(id)
+	if err != nil {
+		global.Global.Log.Error(err)
+		result.Fail(c, global.ServerError, global.DelNoticeError)
+		return
+	}
+	//修改缓存
+	_, err = global.Global.Redis.Del(global.Global.Ctx, global.Notices).Result()
+	if err != nil {
+		global.Global.Log.Error(err)
+		result.Fail(c, global.ServerError, global.DelNoticeError)
+		return
+	}
+	result.Ok(c, nil)
 }

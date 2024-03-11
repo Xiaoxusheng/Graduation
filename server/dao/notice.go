@@ -27,8 +27,7 @@ func GetNoticeLists() ([]*models.Notice, error) {
 	return list, nil
 }
 
-// 用户
-
+// GetNoticeList 用户只拿到没下架的
 func GetNoticeList() ([]*models.Notice, error) {
 	list := make([]*models.Notice, 0)
 	err := global.Global.Mysql.Where("status=?", 1).Find(&list).Error
@@ -36,4 +35,18 @@ func GetNoticeList() ([]*models.Notice, error) {
 		return nil, err
 	}
 	return list, nil
+}
+
+func DeleteNotice(id string) error {
+	return global.Global.Mysql.Where("identity=?", id).Delete(new(models.Notice)).Error
+}
+
+func GetExists(id string) bool {
+	notice := new(models.Notice)
+	err := global.Global.Mysql.Where("identity=?", id).Take(notice).Error
+	if err != nil || notice.Text == "" {
+		global.Global.Log.Error(err)
+		return false
+	}
+	return true
 }

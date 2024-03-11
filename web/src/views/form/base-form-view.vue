@@ -204,8 +204,8 @@
 import {defineComponent, onMounted, reactive, ref} from "vue";
 import {ModalDialogType} from "@/types/components";
 import AddButton from "@/components/AddButton.vue";
-import {getNoticeList, publishNotice, updateNotice, upload} from "@/api/url";
-import {Message} from "@arco-design/web-vue";
+import {delNotice, getNoticeList, publishNotice, updateNotice, upload} from "@/api/url";
+import {Message, Modal} from "@arco-design/web-vue";
 import usePost from "@/hooks/usePost";
 import useUserStore from "@/store/modules/user";
 import useGet from "@/hooks/useGet";
@@ -258,6 +258,26 @@ export default defineComponent({
 
     function del(item: any) {
       console.log(item)
+      Modal.confirm({
+        title: '提示',
+        content: '确定要删除此信息，删除后不可恢复？',
+        onOk() {
+          get({
+            url: delNotice,
+            headers: {
+              Authorization: "Bearer " + userStore.token
+            },
+            data: {
+              "id": item.identity,
+            }
+          }).then((res) => {
+            doRefresh()
+            Message.success("删除公告成功！")
+          }).catch(error => {
+            Message.error(error.message)
+          })
+        },
+      })
     }
 
     // 编辑

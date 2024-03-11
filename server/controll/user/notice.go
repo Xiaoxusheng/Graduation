@@ -20,7 +20,7 @@ func GetNotice(c *gin.Context) {
 		Min:    "0",
 		Max:    strconv.FormatInt(time.Now().Unix(), 10),
 		Offset: 0,
-		Count:  10,
+		Count:  30,
 	}).Val()
 	if len(val) != 0 {
 		for i := 0; i < len(val); i++ {

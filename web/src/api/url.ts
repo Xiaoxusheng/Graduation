@@ -97,6 +97,9 @@ export const userLogList = '/admin/user_log_list'
 export const publishNotice = '/admin/publish_notice'
 // 更新公告
 export const updateNotice = '/admin/update_notice'
+// 删除公告
+export const delNotice = '/admin/del_notice'
+
 // 获取公告列表
 export const getNoticeList = '/admin/get_notice_list'
 
