@@ -220,7 +220,13 @@ func AssignedAccount(c *gin.Context) {
 		result.Fail(c, global.ServerError, global.QueryError)
 		return
 	}
+	//更新uid-identity关系
 	_, err = global.Global.Redis.HSet(global.Global.Ctx, global.UidId, uid, userInfo.Identity).Result()
+	if err != nil {
+		global.Global.Log.Error(err)
+	}
+	//存入uid-password-identity
+	_, err = global.Global.Redis.HSet(global.Global.Ctx, strconv.FormatInt(userInfo.Uid, 10), utils.HashPassword("123456", salt), userInfo.Identity).Result()
 	if err != nil {
 		global.Global.Log.Error(err)
 	}

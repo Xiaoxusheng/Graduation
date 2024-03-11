@@ -17,7 +17,7 @@ export default {
     mainHeight: document.body.clientHeight,
     actionBar: {
         isShowSearch: true,
-        isShowMessage: true,
+        isShowMessage: false,
         isShowRefresh: true,
         isShowFullScreen: true,
     },
