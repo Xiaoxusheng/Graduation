@@ -111,6 +111,7 @@ func ClockIn(c *gin.Context) {
 			Uid:       int64(n),
 			Date:      t1,
 			StartTime: t1,
+			EndTime:   t1,
 			Status:    status,
 		})
 		if err != nil {

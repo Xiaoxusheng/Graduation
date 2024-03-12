@@ -15,7 +15,6 @@ import (
 func GetMenuList(c *gin.Context) {
 	//判断身份
 	id := c.GetString("identity")
-	fmt.Println(id)
 	r, err := global.Global.CasBin.GetRolesForUser(id)
 	if err != nil {
 		global.Global.Log.Error(err)
@@ -26,7 +25,6 @@ func GetMenuList(c *gin.Context) {
 
 	if len(r) == 0 {
 		list, err = dao.GetMenuLists("user")
-		fmt.Println("list", list)
 		if err != nil {
 			global.Global.Log.Error(err)
 			return

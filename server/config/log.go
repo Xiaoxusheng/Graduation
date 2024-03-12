@@ -73,7 +73,7 @@ func (l *Log) logFile(m *log.Logger) {
 	l.m = atomic.LoadInt64(&size)
 	l.Writer = file
 	fmt.Println("create log fail success!")
-	s := time.NewTicker(time.Minute * 60 * 24)
+	s := time.NewTicker(time.Minute * 1)
 	//输出到控制台
 	gin.DefaultWriter = io.MultiWriter(l, os.Stdout)
 	//日志输出到文件中
@@ -102,7 +102,19 @@ func (l *Log) logFile(m *log.Logger) {
 					gin.DefaultWriter = io.MultiWriter(l, os.Stdout)
 					//输出到控制台,日志文件中
 				} else {
-
+					file.Close()
+					//创建新的日志文件
+					file, err = os.OpenFile(Config.Logs.Path+t+".log", os.O_CREATE, os.ModePerm)
+					if err != nil {
+						log.Println(err)
+						return
+					}
+					//输出到控制台
+					gin.DefaultWriter = io.MultiWriter(l, os.Stdout)
+					//日志输出到文件中
+					m.SetOutput(io.MultiWriter(l, os.Stdout))
+					l.Writer = file
+					atomic.CompareAndSwapInt64(&l.m, l.m, 0)
 					global.Global.Log.Info("进入删除")
 					//删除一个月之前日志
 					dir, err := os.ReadDir(Config.Logs.Path)
