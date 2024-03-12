@@ -24,6 +24,7 @@ var (
 	UidId              = "uid-identity"         //员工的uid和identity的映射
 	User               = "User"                 //超级管理员
 	SalaryList         = "salary-list"          //工资列表
+	SalaryId           = "salary-id"            //工资identity
 	SalaryEmployerList = "salary_employer_list" //员工个人工资列表
 	Notices            = "notice"               //员工获取的公告
 )
@@ -36,5 +37,5 @@ const (
 	MenuTime               = 60 * 60 * 24
 	EmployerUidId          = 60 * 60 * 24 * 7
 	SalaryListTime         = 60 * 60
-	SalaryEmployerListTime = 60 * 60
+	SalaryEmployerListTime = 60 * 10
 )

@@ -86,7 +86,8 @@ export const getSalaryList = '/admin/get_salary_list'
 export const getSalary = '/admin/get_salary'
 //添加工资考勤
 export const salaryInfo = '/admin/salary_info'
-
+// 删除工资
+export const deleteSalary = '/admin/delete_salary'
 
 
 // 管理员日志

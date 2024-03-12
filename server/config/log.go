@@ -52,6 +52,7 @@ func (l *Log) Format(f *log.Entry) ([]byte, error) {
 	return b.Bytes(), nil
 }
 
+// 调用
 // 这个是重写
 func (l *Log) Write(p []byte) (n int, err error) {
 	n, err = l.Writer.Write(p)
@@ -73,7 +74,7 @@ func (l *Log) logFile(m *log.Logger) {
 	l.m = atomic.LoadInt64(&size)
 	l.Writer = file
 	fmt.Println("create log fail success!")
-	s := time.NewTicker(time.Minute * 1)
+	s := time.NewTicker(time.Minute * 60 * 24)
 	//输出到控制台
 	gin.DefaultWriter = io.MultiWriter(l, os.Stdout)
 	//日志输出到文件中
@@ -99,6 +100,8 @@ func (l *Log) logFile(m *log.Logger) {
 						Writer: file,
 						m:      0,
 					}
+					//这里的话是输出在控制台，会调用l的write()方法，也就是文件的write就会统计出写入的bytes大小
+					m.SetOutput(io.MultiWriter(l, os.Stdout))
 					gin.DefaultWriter = io.MultiWriter(l, os.Stdout)
 					//输出到控制台,日志文件中
 				} else {
@@ -152,7 +155,7 @@ func InitLog() {
 		l := &Log{
 			m: 0,
 		}
-		////自定义输出
+		//自定义输出
 		m.SetFormatter(l)
 		//写入文件
 		l.logFile(m)

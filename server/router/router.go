@@ -111,6 +111,8 @@ func Routers(e *gin.Engine) *gin.Engine {
 	api.GET("/get_salary_list", admin.GetSalaryList)
 	//输入信息
 	api.POST("/salary_info", admin.SalaryInfo)
+	//删除工资信息
+	api.GET("/delete_salary", admin.DeleteSalary)
 
 	//增加菜单
 	api.POST("/add_menu", menu.AddMenu)

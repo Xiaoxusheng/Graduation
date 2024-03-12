@@ -55,6 +55,12 @@
                 {{ record.attendance_hours.toFixed(1) }}
               </a-tag>
             </template>
+
+            <template v-if="item.key === 'actions'" #cell="{ record }">
+              <a-button size="mini" status="danger" @click="onDeleteItem(record)">
+                删除
+              </a-button>
+            </template>
           </a-table-column>
         </template>
       </a-table>
@@ -90,9 +96,9 @@
 </template>
 
 <script lang="ts">
-import {getSalary, getSalaryList, salaryInfo,} from '@/api/url'
+import {deleteSalary, getSalary, getSalaryList, salaryInfo,} from '@/api/url'
 import {usePagination, useRowKey, useRowSelection, useTable, useTableColumn, useTableHeight,} from '@/hooks/table'
-import {Form, Input, Message} from '@arco-design/web-vue'
+import {Form, Input, Message, Modal} from '@arco-design/web-vue'
 import {defineComponent, getCurrentInstance, h, onMounted, ref} from 'vue'
 import AddButton from "@/components/AddButton.vue";
 import useUserStore from "@/store/modules/user";
@@ -193,6 +199,11 @@ export default defineComponent({
         key: 'CreatedAt',
         dataIndex: 'CreatedAt',
         width: 200,
+      },
+      {
+        title: '操作',
+        key: 'actions',
+        dataIndex: 'actions',
       },
     ])
     const expandAllFlag = ref(true)
@@ -377,6 +388,7 @@ export default defineComponent({
           return pre
         }, {})
       }).then((res) => {
+        doRefresh()
         Message.success("添加成功")
       }).catch(error => {
         Message.error(error.toString())
@@ -384,6 +396,29 @@ export default defineComponent({
       modalDialogRef.value?.toggle()
       formItems.forEach((i: any) => {
         i.value.value = ''
+      })
+    }
+
+    function onDeleteItem(item: any) {
+      Modal.confirm({
+        title: '提示',
+        content: '确定要删除此信息，删除后不可恢复？',
+        onOk() {
+          get({
+            url: deleteSalary,
+            headers: {
+              Authorization: "Bearer " + userStore.token
+            },
+            data: {
+              "id": item.identity,
+            }
+          }).then((res) => {
+            doRefresh()
+            Message.success("删除成功！")
+          }).catch(error => {
+            Message.error(error.message)
+          })
+        },
       })
     }
 
@@ -405,6 +440,7 @@ export default defineComponent({
       modalDialogRef,
       onDataFormConfirm,
       input,
+      onDeleteItem,
       formRef,
       conditionItems,
       formItems,

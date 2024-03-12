@@ -73,6 +73,7 @@ func PublishNotice(c *gin.Context) {
 			global.Global.Log.Error(err)
 			return
 		}
+		global.Global.Redis.Expire(global.Global.Ctx, global.UidId, time.Second*global.EmployerUidId)
 		//	放进zset结构
 		marshal, err := json.Marshal(notices)
 		if err != nil {

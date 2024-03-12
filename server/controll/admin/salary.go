@@ -58,7 +58,7 @@ func GetSalary(c *gin.Context) {
 		if err != nil {
 			return
 		}
-		_, err = global.Global.Redis.Set(global.Global.Ctx, global.SalaryEmployerList+u, marshal, global.SalaryEmployerListTime).Result()
+		_, err = global.Global.Redis.Set(global.Global.Ctx, global.SalaryEmployerList+u, marshal, global.SalaryEmployerListTime*time.Second).Result()
 		if err != nil {
 			global.Global.Log.Error(err)
 		}
@@ -110,7 +110,7 @@ func GetSalaryList(c *gin.Context) {
 			global.Global.Log.Error(err)
 			return
 		}
-		_, err = global.Global.Redis.Set(global.Global.Ctx, global.SalaryList, marshal, global.SalaryListTime).Result()
+		_, err = global.Global.Redis.Set(global.Global.Ctx, global.SalaryList, marshal, global.SalaryListTime*time.Second).Result()
 		if err != nil {
 			global.Global.Log.Error(err)
 		}
@@ -148,10 +148,49 @@ func SalaryInfo(c *gin.Context) {
 		Subsidy:         salaryInfo.Subsidy,
 		Date:            time.Now().Format("2006-01"),
 	})
+
 	if err != nil {
 		global.Global.Log.Error(err)
 		result.Fail(c, global.ServerError, global.InputSalaryError)
 		return
+	}
+	result.Ok(c, nil)
+}
+
+// DeleteSalary  删除员工工资信息
+func DeleteSalary(c *gin.Context) {
+	id := c.Query("id")
+	if id == "" {
+		result.Fail(c, global.BadRequest, global.QueryError)
+		return
+	}
+	//id不存在
+	if !global.Global.Redis.SIsMember(global.Global.Ctx, global.SalaryId, id).Val() {
+		result.Fail(c, global.DataConflict, global.DelSalaryError)
+		return
+	}
+	err := dao.DeleteSalary(id)
+	if err != nil {
+		global.Global.Log.Error(err)
+		result.Fail(c, global.ServerError, global.DelSalaryError)
+		return
+	}
+	err = global.Global.Pool.Submit(func() {
+		global.Global.Wg.Add(1)
+		defer global.Global.Wg.Done()
+		_, err = global.Global.Redis.Del(global.Global.Ctx, global.SalaryList).Result()
+		if err != nil {
+			global.Global.Log.Error(err)
+			return
+		}
+		_, err = global.Global.Redis.SRem(global.Global.Ctx, global.SalaryId, id).Result()
+		if err != nil {
+			global.Global.Log.Error(err)
+			return
+		}
+	})
+	if err != nil {
+		global.Global.Log.Error("goroutine fail:", err)
 	}
 	result.Ok(c, nil)
 }

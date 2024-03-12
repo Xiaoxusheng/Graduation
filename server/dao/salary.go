@@ -47,3 +47,8 @@ func GetSalaryByEmployer(uid int64) ([]*models.Salary, error) {
 	}
 	return list, nil
 }
+
+// DeleteSalary 删除工资信息
+func DeleteSalary(id string) error {
+	return global.Global.Mysql.Where("identity=?", id).Delete(new(models.Salary)).Error
+}

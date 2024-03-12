@@ -93,6 +93,7 @@ var (
 	InputSalaryError   = "输入失败！"
 	GetSalaryError     = "获取工资失败！"
 	GetSalaryListError = "获取工资列表失败！"
+	DelSalaryError     = "删除工资列表失败！"
 
 	//	Notice
 	PushNoticeError     = "发布公告失败！"
