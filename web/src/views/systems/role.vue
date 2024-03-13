@@ -287,6 +287,7 @@ export default defineComponent({
           menu: [...new Set(res)],
         }
       }).then((res) => {
+        doRefresh()
             Message.success("更新成功！")
           }
       ).catch(error => {
@@ -313,7 +314,6 @@ export default defineComponent({
       ).catch(error => {
         Message.error(error.message)
       })
-      console.log()
     }
 
     function onShowMenu(item: any) {
@@ -344,13 +344,10 @@ export default defineComponent({
     function shows(checkedKeys: any, data: any) {
       data.node.ok = !data.node.ok
       if (data.node.children) {
-        console.log(data.node.children.length)
         data.node.children.forEach((i: any) => {
-          console.log(i)
           i.ok = !i.ok
         })
       }
-      console.log(data)
     }
 
     onMounted(doRefresh)
