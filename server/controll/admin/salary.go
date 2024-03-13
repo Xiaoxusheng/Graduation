@@ -105,7 +105,7 @@ func GetSalaryList(c *gin.Context) {
 	err = global.Global.Pool.Submit(func() {
 		global.Global.Wg.Add(1)
 		defer global.Global.Wg.Done()
-		marshal, err := json.Marshal(limit)
+		marshal, err := json.Marshal(list)
 		if err != nil {
 			global.Global.Log.Error(err)
 			return

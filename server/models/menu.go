@@ -16,6 +16,7 @@ type Menu struct {
 	IsRootPath    bool   `gorm:"type:bool ; comment:'是否外链'" json:"isRootPath,omitempty"`
 	Hidden        bool   `gorm:"type:bool ; comment:'是否隐藏'" json:"hidden,omitempty"`
 	Children      []Menu `gorm:"-"  json:"children"`
+	Is            bool   `gorm:"-" json:"is"`
 	gorm.Model    `json:"-"`
 }
 

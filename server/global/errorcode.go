@@ -123,4 +123,6 @@ var (
 	PermissionNotFound        = "资源不存存在！"
 	GetPermissionsForUserFail = "获取列表失败！"
 	AddMenuRoleFail           = "分配菜单失败！"
+	GetMenuListFail           = "获取菜单列表失败！"
+	UpdateMenuFail            = "更新菜单失败！"
 )

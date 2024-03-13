@@ -170,3 +170,15 @@ type SalaryInfos struct {
 	Other           float64 `json:"other,omitempty"  binding:"required" form:"other"`
 	Subsidy         float64 `json:"subsidy,omitempty"  binding:"required" form:"subsidy"`
 }
+
+// MenuList 菜单
+type MenuList struct {
+	Role string   `json:"role"  binding:"required"  form:"role"`
+	Menu []string `json:"menu"  binding:"required"  form:"menu"`
+}
+
+// 权限
+type Role struct {
+	User string `json:"user" binding:"required"   form:"user"`
+	Role string `json:"role" binding:"required"   form:"role"`
+}

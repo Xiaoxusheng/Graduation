@@ -22,3 +22,9 @@ func GetMenuLists(role string) ([]models.Menu, error) {
 func DeleteRoleMenu(role, menu string) error {
 	return global.Global.Mysql.Where("role=? and menu=?", role, menu).Delete(new(models.RoleMenu)).Error
 }
+
+// DeleteAll 删除所有
+func DeleteAll(role string) error {
+	return global.Global.Mysql.Unscoped().Where("role=?", role).Delete(new(models.RoleMenu)).Error
+
+}

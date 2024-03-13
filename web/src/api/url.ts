@@ -23,6 +23,19 @@ export const addUserInfo = '/admin/addUser'
 
 // 菜单列表
 export const getMenuListByRoleId = '/admin/menu_list'
+// 根据角色获取菜单
+export const getRoleMenuList = '/root/get_role_menuList'
+// 获取所以角色列表
+export const roleList = '/root/role_list'
+// 更新角色的菜单
+export const updateRoleMenu = '/root/update_menu'
+// 删除角色
+export const deleteRole = '/root/delete_role'
+// 增加角色
+export const addRolesForUser = '/root/add_rolesForUser'
+
+
+
 // 增加菜单
 export const addMenu = '/admin/add_menu'
 // 删除菜单

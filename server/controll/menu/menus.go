@@ -3,12 +3,10 @@ package menu
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"github.com/goccy/go-json"
 	"server/dao"
 	"server/global"
 	"server/models"
 	"server/result"
-	"time"
 )
 
 // GetMenuList 获取菜单接口
@@ -74,28 +72,29 @@ func GetMenuList(c *gin.Context) {
 	for i := 0; i < len(list); i++ {
 		if list[i].ParentPath != "" {
 			for j := 0; j < len(menuList); j++ {
-				if menuList[j].Children == nil {
-					menuList[j].Children = make([]models.Menu, 0)
-				}
 				if menuList[j].MenuUrl == list[i].ParentPath {
+					if menuList[j].Children == nil {
+						menuList[j].Children = make([]models.Menu, 0)
+					}
 					menuList[j].Children = append(menuList[j].Children, list[i])
 				}
 			}
 		}
 	}
+
 	//
-	//发送处理好数据
-	go func() {
-		marshal, err := json.Marshal(menuList)
-		if err != nil {
-			global.Global.Log.Error(err)
-			return
-		}
-		_, err = global.Global.Redis.Set(global.Global.Ctx, global.Menus, marshal, global.MenuTime*time.Second).Result()
-		if err != nil {
-			global.Global.Log.Error(err)
-		}
-	}()
+	////发送处理好数据
+	//go func() {
+	//	marshal, err := json.Marshal(menuList)
+	//	if err != nil {
+	//		global.Global.Log.Error(err)
+	//		return
+	//	}
+	//	_, err = global.Global.Redis.Set(global.Global.Ctx, global.Menus, marshal, global.MenuTime*time.Second).Result()
+	//	if err != nil {
+	//		global.Global.Log.Error(err)
+	//	}
+	//}()
 	global.Global.Log.Info(menuList)
 	result.Ok(c, menuList)
 }

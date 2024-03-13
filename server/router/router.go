@@ -39,10 +39,17 @@ func Routers(e *gin.Engine) *gin.Engine {
 	roots.POST("/get_permissionsForUser", root.GetPermissionsForUser)
 	//查看所有权限
 	roots.POST("/get_allNamedSubjects", root.GetAllNamedSubjects)
+	//获取不同角色的菜单列表
+	roots.GET("/get_role_menuList", root.GetRoleMenuList)
 	//添加角色能访问的菜单
 	roots.POST("/add_role_menu", root.AddRoleMenu)
 	//删除角色能访问的菜单
 	roots.POST("/del_role_menu", root.DelRoleMenu)
+	//更新菜单
+	roots.POST("/update_menu", root.UpdateMenu)
+	//获取所有的角色
+	roots.GET("/role_list", root.GetRoleList)
+
 	roots.POST("/add", root.Add)
 	//登录
 	e.POST("/admin/login", admin.Login)
