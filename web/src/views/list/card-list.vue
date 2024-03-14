@@ -293,7 +293,8 @@ export default defineComponent({
         table.handleSuccess(res)
         pagination.setTotalSize(res.data.length || 10)
       }).catch(error => {
-        Message.error(error.toString())
+        table.tableLoading.value = false
+        Message.error(error.message)
       })
     }
 
@@ -347,7 +348,9 @@ export default defineComponent({
         table.handleSuccess(res)
         pagination.setTotalSize(res.data.length || 10)
       }).catch(error => {
-        Message.error(error.toString())
+        table.tableLoading.value = false
+
+        Message.error(error.message)
       })
     }
 

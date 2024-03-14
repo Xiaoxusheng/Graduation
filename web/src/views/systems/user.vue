@@ -301,7 +301,8 @@ export default defineComponent({
         table.handleSuccess(res)
         pagination.setTotalSize(table.dataList.length)
       }).catch(error => {
-        console.log(error)
+        table.tableLoading.value = false
+        Message.error(error.message)
       })
     }
 

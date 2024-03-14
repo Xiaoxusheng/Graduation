@@ -48,6 +48,7 @@ func main() {
 		MaxHeaderBytes: config.Config.Service.MaxHeaderBytes << 20,     //最大请求头 1MB
 	}
 	err := s.ListenAndServe()
+	//err := s.ListenAndServeTLS("/root/ssl/xlei.love.pem", "/root/ssl/xlei.love.key")
 	if err != nil {
 		log.Println("server start fail :" + err.Error())
 	}

@@ -396,7 +396,10 @@ export default defineComponent({
         })
         table.handleSuccess(res)
         pagination.setTotalSize(res.data.length || 10)
-      }).catch(error => console.log(error()))
+      }).catch(error => {
+        Message.error(error.message)
+        table.tableLoading.value = false
+      })
     }
 
     function onSearch() {
@@ -474,11 +477,9 @@ export default defineComponent({
           },
         }).then((res) => {
           Message.success('审核成功')
-          console.log(res)
           doRefresh()
         }).catch(error => {
-          console.log(error)
-          Message.success(error.toString(),)
+          Message.success(error.message)
         })
 
         modalDialogRef.value?.toggle()

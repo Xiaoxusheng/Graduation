@@ -289,7 +289,11 @@ export default defineComponent({
         })
         table.handleSuccess(res)
         pagination.setTotalSize(res.data.length || 10)
-      }).catch(console.log)
+      }).catch(error => {
+        table.tableLoading.value = false
+        Message.error(error.message)
+
+      })
     }
 
     function onDeleteItem(item: any) {
@@ -373,10 +377,8 @@ export default defineComponent({
         },
       }).then((res) => {
         Message.success('审核成功')
-        console.log(res)
         doRefresh()
       }).catch(error => {
-        console.log(error)
         Message.success(error.toString(),)
       })
       modalDialogRef.value?.toggle()

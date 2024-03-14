@@ -114,11 +114,18 @@ func DeleteEmployee(c *gin.Context) {
 		return
 	}
 	go func() {
-		//删除信息
-		_, err = global.Global.Redis.Del(global.Global.Ctx, global.Uid+strconv.Itoa(int(e.Uid))).Result()
-
+		//删除考勤
+		global.Global.Redis.Del(global.Global.Ctx, global.GetClockInLog+uid)
+		//删除工资信息
+		global.Global.Redis.Del(global.Global.Ctx, global.SalaryEmployerList+uid)
+		//删除登录信息
+		_, err = global.Global.Redis.Del(global.Global.Ctx, uid).Result()
+		//删除映射
+		_, err = global.Global.Redis.HDel(global.Global.Ctx, global.UidId, e.Identity).Result()
+		//删除
+		_, err = global.Global.Redis.SRem(global.Global.Ctx, global.SalaryId, uid).Result()
 		//删除员工
-		_, err = global.Global.Redis.SRem(global.Global.Ctx, global.Employer, e.Uid).Result()
+		_, err = global.Global.Redis.SRem(global.Global.Ctx, global.Employer, uid).Result()
 		if err != nil {
 			global.Global.Log.Error(err)
 		}

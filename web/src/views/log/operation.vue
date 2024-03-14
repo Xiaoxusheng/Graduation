@@ -262,7 +262,8 @@ export default defineComponent({
         console.log(res)
         pagination.setTotalSize(res.count)
       }).catch(error => {
-        console.log(error)
+        Message.error(error.message)
+        table.tableLoading.value = false
       })
     }
 

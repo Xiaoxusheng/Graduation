@@ -278,7 +278,10 @@ export default defineComponent({
         })
         table.handleSuccess(res)
         pagination.setTotalSize(res.data.length || 10)
-      }).catch(console.log)
+      }).catch(error => {
+        Message.error(error.message)
+        table.tableLoading.value = false
+      })
     }
 
     function onDeleteItem(item: any) {
@@ -310,8 +313,6 @@ export default defineComponent({
     }
 
     function onUpdateItem(record: any) {
-      // 处理数据
-      console.log(record)
 
       /* [ "2023-02-08 21:17:58", "2024-03-20 21:14:58" ] */
       formItems.forEach(i => {

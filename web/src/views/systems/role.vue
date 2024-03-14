@@ -196,7 +196,10 @@ export default defineComponent({
         },
       })
           .then(table.handleSuccess)
-          .catch(console.log)
+          .catch(error => {
+            table.tableLoading.value = false
+            Message.success(error.message)
+          })
     }
 
     function onAddItem() {
