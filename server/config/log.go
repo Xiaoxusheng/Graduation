@@ -107,7 +107,8 @@ func (l *Log) logFile(m *log.Logger) {
 				} else {
 					file.Close()
 					//创建新的日志文件
-					file, err = os.OpenFile(Config.Logs.Path+t+".log", os.O_CREATE, os.ModePerm)
+					log.Println("创建新的log")
+					file, err = os.Create(Config.Logs.Path + t + "1" + ".log")
 					if err != nil {
 						log.Println(err)
 						return
