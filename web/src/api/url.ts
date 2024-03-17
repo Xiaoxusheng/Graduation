@@ -141,6 +141,8 @@ export const userinfo = '/user/info'
 export const changePassword = '/user/change_password'
 //获取工资
 export const getUserSalary = '/user/get_salary'
+// 获取申请
+export const getExamine = '/user/get_examine'
 
 // 图片上传
 export const upload = '/user/upload'

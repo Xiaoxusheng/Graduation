@@ -161,6 +161,8 @@ func Routers(e *gin.Engine) *gin.Engine {
 	users.GET("/get_clockIn_log", user.GetClockInLog)
 	//获取个人工资情况
 	users.GET("/get_salary", user.GetSalary)
+	//查看申请
+	users.GET("/get_examine", user.GetExamine)
 
 	//获取公告
 	users.GET("/get_notice_list", user.GetNotice)

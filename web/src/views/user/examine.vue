@@ -4,7 +4,7 @@
       <template #header>
         <TableHeader
             :show-filter="false"
-            title="加班申请"
+            title="员工申请列表"
             @search="onSearch"
             @reset-search="onResetSearch"
         >
@@ -15,36 +15,8 @@
                   <FormRender :formItem="item" :render="item.render"/>
                 </template>
                 <template v-else>
-                  <template v-if="item.type === 'input'">
-                    <a-input v-model="item.value.value" :placeholder="item.placeholder"/>
-                  </template>
-                  <template v-if="item.type === 'select'">
-                    <a-select
-                        v-model="item.value.value"
-                        :placeholder="item.placeholder"
-                        style="width: 150px"
-                    >
-                      <a-option
-                          v-for="optionItem of item.optionItems"
-                          :key="optionItem.value"
-                          :value="optionItem.value"
-                      >
-                        {{ optionItem.label }}
-                      </a-option>
-                    </a-select>
-                  </template>
-                  <template v-if="item.type === 'date'">
-                    <a-date-picker v-model="item.value.value"/>
-                  </template>
                   <template v-if="item.type === 'time'">
-                    <a-time-picker v-model="item.value.value" value-format="HH:mm:ss"/>
-                  </template>
-                  <template v-if="item.type === 'check-group'">
-                    <a-checkbox-group v-model="item.value.value">
-                      <a-checkbox v-for="it of item.optionItems" :key="it.value" :value="it.value">
-                        {{ item.label }}
-                      </a-checkbox>
-                    </a-checkbox-group>
+                    <a-range-picker v-model="item.value.value" show-time/>
                   </template>
                 </template>
               </a-form-item>
@@ -78,7 +50,7 @@
               </template>
               <template v-else-if="item.key === 'department_id'" #cell="{ record }">
                 <a-tag :color="record.department_id === 1 ? 'green' : 'blue'">
-                  {{ storedMap.get(record.department_id as number) }}
+                  {{ department[record.department_id] }}
                 </a-tag>
               </template>
               <template v-else-if="item.key === 'avatar'" #cell="{ record }">
@@ -110,16 +82,6 @@
                     width="100"
                 />
               </template>
-              <template v-else-if="item.key === 'actions' " #cell="{ record }">
-                <a-space>
-                  <a-button v-if="record.is_examine!==1" size="mini" type="primary" @click="onUpdateItem(record)">
-                    审核
-                  </a-button>
-                  <a-button v-else disabled size="mini" type="primary" @click="onUpdateItem(record)">
-                    已审核
-                  </a-button>
-                </a-space>
-              </template>
             </a-table-column>
           </template>
         </a-table>
@@ -128,103 +90,25 @@
         <TableFooter :pagination="pagination"/>
       </template>
     </TableBody>
-    <ModalDialog ref="modalDialogRef" :title="actionTitle" @confirm="onDataFormConfirm">
-      <template #content>
-        <a-form :label-col-props="{ span: 5 }" :model="formRef">
-          <a-form-item
-              v-for="item of formItems"
-              :key="item.key"
-              :label="item.label"
-              :row-class="[item.required ? 'form-item__require' : 'form-item__no_require']"
-              label-align="left"
-          >
-            <template v-if="item.type === 'input'">
-              <a-input v-model="item.value.value" :placeholder="item.placeholder" disabled></a-input>
-            </template>
-            <template v-if="item.type === 'textarea'">
-              <a-textarea
-                  v-model="item.value.value"
-                  :auto-size="{ minRows: 2, maxRows: 5 }"
-                  :placeholder="item.placeholder"
-                  disabled
-              />
-            </template>
-            <template v-if="item.type === 'switch'">
-              <a-switch v-model="item.value.value" checked-children="开" un-checked-children="关"/>
-            </template>
-            <template v-if="item.type === 'date-range'">
-              <a-range-picker v-model="item.value.value" :defaultValue="['2019-08-08 00:00:00', '2019-08-18 00:00:00']"
-                              :position="'tr'" disabled
-                              showTime/>
-            </template>
-          </a-form-item>
-        </a-form>
-      </template>
-    </ModalDialog>
   </div>
 </template>
 
 <script lang="ts">
-import {get, post} from '@/api/http'
-import {getLeaveApplicationList, leaveApplication,} from '@/api/url'
+import {get} from '@/api/http'
+import {getExamine,} from '@/api/url'
 import {usePagination, useRowKey, useRowSelection, useTable, useTableColumn,} from '@/hooks/table'
 import FormRender from '@/components/FormRender'
 import {FormItem, ModalDialogType} from '@/types/components'
-import {Form, Input, Message} from '@arco-design/web-vue'
-import {defineComponent, h, onMounted, ref} from 'vue'
+import {Form, Message} from '@arco-design/web-vue'
+import {defineComponent, onMounted, ref} from 'vue'
 import type {Dayjs} from 'dayjs'
 import useUserStore from "@/store/modules/user";
 import ModalDialog from "@/components/ModalDialog.vue";
 
 const conditionItems: Array<FormItem> = [
   {
-    key: 'name',
-    label: '用户姓名',
-    type: 'input',
-    placeholder: '请输入用户姓名',
-    value: ref(''),
-    reset: function () {
-      this.value.value = ''
-    },
-    render: (formItem: FormItem) => {
-      return h(Input, {
-        placeholder: '请输入姓名',
-        modelValue: formItem.value.value,
-        'onUpdate:modelValue': (value) => {
-          formItem.value.value = value
-        },
-      })
-    },
-  },
-  {
-    key: 'date',
-    label: '创建日期',
-    type: 'date',
-    value: ref<Dayjs>(),
-  },
-  {
-    key: 'sex',
-    label: '用户姓别',
-    value: ref(),
-    type: 'select',
-    placeholder: '请选择用户姓别',
-    optionItems: [
-      {
-        label: '男',
-        value: 1,
-      },
-      {
-        label: '女',
-        value: 2,
-      },
-    ],
-    reset: function () {
-      this.value.value = undefined
-    },
-  },
-  {
     key: 'time',
-    label: '创建时间',
+    label: '时间',
     type: 'time',
     value: ref<string>(''),
   },
@@ -298,11 +182,6 @@ export default defineComponent({
         key: 'reason',
         dataIndex: 'reason',
       },
-      {
-        title: '操作',
-        key: 'actions',
-        dataIndex: 'actions',
-      }
     ])
     const userStore = useUserStore()
     const actionTitle = ref('请假审核')
@@ -355,23 +234,21 @@ export default defineComponent({
       },
     ] as FormItem[]
     const submitLoading = ref(false)
-    const storedMapString = localStorage.getItem('departmentMap');
-    const storedMapArray = JSON.parse(storedMapString);
-    const storedMap = new Map(storedMapArray)
+    const department = {
+      1: "程序部",
+      2: "人事部",
+      3: "财务部",
+      4: "销售部",
+      5: "法务部"
+    }
 
     let formRef = ref<typeof Form>()
 
     function doRefresh() {
       get({
-        url: getLeaveApplicationList,
+        url: getExamine,
         headers: {
           Authorization: "Bearer " + userStore.token
-        },
-        data: () => {
-          return {
-            offset: pagination.page,
-            limit: pagination.pageSize,
-          }
         },
       }).then((res) => {
         res.data.forEach((i: any) => {
@@ -401,84 +278,15 @@ export default defineComponent({
         return pre
       }, {})
       const tableList = table.dataList.filter(i => {
-        if (i.name === data.name || i.sex === data.sex) {
+        if ((new Date(data.time[0]).getTime()) < (new Date(i.start_time).getTime()) && (new Date(i.start_time).getTime()) < (new Date(data.time[1]).getTime())) {
+          console.log(i)
           return i
         }
       })
-      table.handleSuccess(tableList)
+      table.handleSuccess({data: tableList})
       pagination.setTotalSize(tableList.length || 10)
     }
 
-    function onResetSearch() {
-      conditionItems.forEach((it) => {
-        it.reset ? it.reset() : (it.value.value = '')
-      })
-    }
-
-
-    // 审核
-    function onUpdateItem(record: any) {
-      // 处理数据
-      /* [ "2023-02-08 21:17:58", "2024-03-20 21:14:58" ] */
-      formItems.forEach(i => {
-        if (i.key == 'name') {
-          i.value.value = record.name
-        }
-        if (i.key == 'sex') {
-          i.value.value = record.sex
-        }
-        if (i.key == 'uid') {
-          i.value.value = record.uid
-        }
-        if (i.key == 'pass') {
-          i.value.value = record.pass
-        }
-        if (i.key == 'reason') {
-          i.value.value = record.reason
-        }
-        if (i.key == 'startEndDate') {
-          i.value.value = [record.start_time, record.end_time]
-        }
-      })
-      modalDialogRef.value?.toggle()
-    }
-
-    //   弹窗
-    function onDataFormConfirm() {
-      //
-      if (formItems.every((it) => (it.validator ? it.validator() : true))) {
-        let uid: number
-        let pass: number
-        formItems.forEach(i => {
-          if (i.key == 'uid') {
-            uid = i.value.value
-          }
-          if (i.key == "pass") {
-            pass = i.value.value ? 1 : 2
-          }
-        })
-        post({
-          url: leaveApplication,
-          headers: {
-            Authorization: "Bearer " + userStore.token
-          },
-          data: () => {
-            return {
-              uid: uid,
-              pass: pass as number,
-            }
-          },
-        }).then((res) => {
-          Message.success('审核成功')
-          doRefresh()
-        }).catch(error => {
-          Message.success(error.message)
-        })
-
-        modalDialogRef.value?.toggle()
-      }
-
-    }
 
     onMounted(doRefresh)
     return {
@@ -489,7 +297,6 @@ export default defineComponent({
       tableColumns,
       conditionItems,
       onSearch,
-      onResetSearch,
       selectedRowKeys,
       showCheckedAll,
       actionTitle,
@@ -497,10 +304,8 @@ export default defineComponent({
       formItems,
       submitLoading,
       formRef,
-      storedMap,
+      department,
       onSelectionChange,
-      onUpdateItem,
-      onDataFormConfirm,
     }
   },
 })

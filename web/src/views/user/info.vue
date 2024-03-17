@@ -46,7 +46,7 @@
           </div>
           <div class="text-wrapper">
             <div class="label"> 性别：</div>
-            <div class="value"> {{ info.sex == 1 ? '女' : '男' }}</div>
+            <div class="value"> {{ info.sex == 1 ? '男' : '女' }}</div>
           </div>
           <div class="text-wrapper">
             <div class="label"> 生日：</div>

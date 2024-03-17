@@ -359,10 +359,6 @@ export default defineComponent({
       const workSheet = XLSX.utils.table_to_sheet((tableRef.value as any).$el)
       const workBook = XLSX.utils.book_new()
       XLSX.utils.book_append_sheet(workBook, workSheet, '数据报表')
-      const d = new Date(date.value);
-      const year = d.getFullYear();
-      const day = String(d.getDate()).padStart(2, "0");
-      const month = String(d.getMonth() + 1).padStart(2, "0");
       XLSX.writeFile(workBook, `${date.value}.xlsx`)
     }
 

@@ -34,25 +34,30 @@ func Log() gin.HandlerFunc {
 				return
 			}
 		}
-		val = global.Global.Redis.HGet(global.Global.Ctx, global.UidId, id).Val()
-		atoi, err := strconv.Atoi(val)
-		if err != nil {
-			global.Global.Log.Error(err)
-			return
-		}
-		//	写入数据库
-		err = dao.InsertLog(&models.Log{
-			Identity: utils.GetUidV4(),
-			Method:   method,
-			Path:     path,
-			IP:       c.RemoteIP(),
-			Time:     time.Now().Sub(t).Milliseconds(),
-			Uid:      int64(atoi),
-			HttpCode: int32(httpCode),
+		err := global.Global.Pool.Submit(func() {
+			val = global.Global.Redis.HGet(global.Global.Ctx, global.UidId, id).Val()
+			atoi, err := strconv.Atoi(val)
+			if err != nil {
+				global.Global.Log.Error(err)
+				return
+			}
+			//	写入数据库
+			err = dao.InsertLog(&models.Log{
+				Identity: utils.GetUidV4(),
+				Method:   method,
+				Path:     path,
+				IP:       c.RemoteIP(),
+				Time:     time.Now().Sub(t).Milliseconds(),
+				Uid:      int64(atoi),
+				HttpCode: int32(httpCode),
+			})
+			if err != nil {
+				global.Global.Log.Error(err)
+				return
+			}
 		})
 		if err != nil {
 			global.Global.Log.Error(err)
-			return
 		}
 		global.Global.Log.Info(time.Now().Sub(t))
 		fmt.Println(path, method, id, httpCode)

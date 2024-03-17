@@ -44,7 +44,7 @@
               </template>
             </a-form-item>
           </a-form>
-          <a-button size="small" type="primary">查询</a-button>
+          <a-button size="small" type="primary" @click="onSearch">查询</a-button>
         </template>
       </TableHeader>
     </template>
@@ -87,7 +87,7 @@
               </a-tag>
             </template>
             <template v-else-if="item.key === 'method'" #cell="{ record }">
-              <a-tag :color="record.method ==='GET' ? 'purple' : 'yellow'">
+              <a-tag :color="record.method ==='GET' ? 'purple' : 'pink'">
                 {{ record.method }}
               </a-tag>
             </template>
@@ -109,9 +109,9 @@
 </template>
 
 <script lang="ts">
-import {delete_employer, logList,} from '@/api/url'
+import {logList,} from '@/api/url'
 import {usePagination, useRowKey, useRowSelection, useTable, useTableColumn, useTableHeight,} from '@/hooks/table'
-import {Form, Input, Message, Modal} from '@arco-design/web-vue'
+import {Form, Input, Message} from '@arco-design/web-vue'
 import {defineComponent, getCurrentInstance, h, onMounted, ref} from 'vue'
 import AddButton from "@/components/AddButton.vue";
 import useUserStore from "@/store/modules/user";
@@ -119,7 +119,6 @@ import {FormItem, ModalDialogType} from "@/types/components";
 import usePost from '@/hooks/usePost'
 import useGet from "@/hooks/useGet";
 import FormRender from "@/components/FormRender";
-import type {Dayjs} from "dayjs";
 
 export default defineComponent({
   components: {FormRender, AddButton},
@@ -152,13 +151,7 @@ export default defineComponent({
         },
       },
       {
-        key: 'date',
-        label: '创建日期',
-        type: 'date',
-        value: ref<Dayjs>(),
-      },
-      {
-        key: 'sex',
+        key: 'method',
         label: '请求方式',
         value: ref(),
         type: 'select',
@@ -256,7 +249,7 @@ export default defineComponent({
           const year = date.getFullYear();
           const month = String(date.getMonth() + 1).padStart(2, "0");
           const day = String(date.getDate()).padStart(2, "0");
-          i.CreatedAt = `${year}-${month}-${day}  ${date.getHours() >= 10 ? date.getHours() : '0' + date.getHours()}:${date.getMinutes() > 10 ? date.getMinutes() : '0' + date.getMinutes()}:${date.getSeconds() > 10 ? date.getSeconds() : '0' + date.getSeconds()}`
+          i.CreatedAt = `${year}-${month}-${day}  ${date.getHours() >= 10 ? date.getHours() : '0' + date.getHours()}:${date.getMinutes() >= 10 ? date.getMinutes() : '0' + date.getMinutes()}:${date.getSeconds() > 10 ? date.getSeconds() : '0' + date.getSeconds()}`
         })
         table.handleSuccess(res)
         console.log(res)
@@ -267,32 +260,18 @@ export default defineComponent({
       })
     }
 
-    function onDeleteItem(item: any) {
-      Modal.confirm({
-        title: '提示',
-        content: '确定要删除此数据吗？',
-        cancelText: '取消',
-        okText: '删除',
-        onOk: () => {
-          console.log(item)
-          get({
-            url: delete_employer,
-            headers: {
-              Authorization: "Bearer " + userStore.token,
-            },
-            data: {
-              uid: item.uid,
-            }
-          }).then((res) => {
-            table.dataList.splice(table.dataList.indexOf(item), 1)
-            pagination.setTotalSize(table.dataList.length)
-            Message.success('删除成功')
-          }).catch(error => {
-            Message.error(error.toString())
-            console.log(error)
-          })
-        },
+    function onSearch() {
+      let data: any = conditionItems.reduce((pre, cur) => {
+        ;(pre as any)[cur.key] = cur.value.value
+        return pre
+      }, {})
+      const tableList = table.dataList.filter(i => {
+        if (i.method == data.method) {
+          return i
+        }
       })
+      table.handleSuccess({data: tableList})
+      pagination.setTotalSize(tableList.length || 10)
     }
 
 
@@ -305,14 +284,13 @@ export default defineComponent({
       rowKey,
       selectedRowKeys,
       onSelectionChange,
+      onSearch,
       expandAllFlag,
       tableColumns,
       pagination,
       formModel,
       actionTitle,
       modalDialogRef,
-      onDeleteItem,
-
       formRef,
       conditionItems
     }

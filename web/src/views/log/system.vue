@@ -44,7 +44,7 @@
               </template>
             </a-form-item>
           </a-form>
-          <a-button size="small" type="primary">查询</a-button>
+          <a-button size="small" type="primary" @click="onSearch">查询</a-button>
         </template>
       </TableHeader>
     </template>
@@ -157,7 +157,7 @@ export default defineComponent({
         value: ref<Dayjs>(),
       },
       {
-        key: 'sex',
+        key: 'method',
         label: '请求方式',
         value: ref(),
         type: 'select',
@@ -178,6 +178,20 @@ export default defineComponent({
       },
     ]
 
+    function onSearch() {
+      let data: any = conditionItems.reduce((pre, cur) => {
+        ;(pre as any)[cur.key] = cur.value.value
+        return pre
+      }, {})
+      console.log(data.method)
+      const tableList = table.dataList.filter(i => {
+        if (i.method == data.method) {
+          return i
+        }
+      })
+      table.handleSuccess({data: tableList})
+      pagination.setTotalSize(tableList.length || 10)
+    }
 
     const formRef = ref<typeof Form>()
 
@@ -253,7 +267,7 @@ export default defineComponent({
           const year = date.getFullYear();
           const month = String(date.getMonth() + 1).padStart(2, "0");
           const day = String(date.getDate()).padStart(2, "0");
-          i.CreatedAt = `${year}-${month}-${day}  ${date.getHours() >= 10 ? date.getHours() : '0' + date.getHours()}:${date.getMinutes() > 10 ? date.getMinutes() : '0' + date.getMinutes()}:${date.getSeconds() > 10 ? date.getSeconds() : '0' + date.getSeconds()}`
+          i.CreatedAt = `${year}-${month}-${day}  ${date.getHours() >= 10 ? date.getHours() : '0' + date.getHours()}:${date.getMinutes() >= 10 ? date.getMinutes() : '0' + date.getMinutes()}:${date.getSeconds() > 10 ? date.getSeconds() : '0' + date.getSeconds()}`
         })
         table.handleSuccess(res)
         pagination.setTotalSize(res.count)
@@ -307,7 +321,7 @@ export default defineComponent({
       actionTitle,
       modalDialogRef,
       onDeleteItem,
-
+      onSearch,
       formRef,
       conditionItems
     }

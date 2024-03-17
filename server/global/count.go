@@ -27,6 +27,7 @@ var (
 	SalaryId           = "salary-id"            //工资identity
 	SalaryEmployerList = "salary_employer_list" //员工个人工资列表
 	Notices            = "notice"               //员工获取的公告
+	Examine            = "examine"              //审核
 )
 
 // redis 时间
@@ -38,4 +39,5 @@ const (
 	EmployerUidId          = 60 * 60 * 24 * 7
 	SalaryListTime         = 60 * 60
 	SalaryEmployerListTime = 60 * 10
+	ExamineTime            = 60 * 60 * 24
 )

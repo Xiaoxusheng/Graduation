@@ -102,3 +102,13 @@ func GetByUid(uid int64, status int32) (*models.Examine, error) {
 	}
 	return examine, nil
 }
+
+func GetExamine(uid string) ([]*global.Applications, error) {
+	list := make([]*global.Applications, 0)
+	err := global.Global.Mysql.Table("examine_basic").Select("employee_basic.sex,employee_basic.name,employee_basic.department_id,examine_basic.*").Joins("join employee_basic on   employee_basic.uid=examine_basic.uid").Where("examine_basic.uid=? and examine_basic.created_at<?", uid, time.Now()).Find(&list).Error
+
+	if err != nil {
+		return nil, err
+	}
+	return list, nil
+}

@@ -25,7 +25,7 @@ func LeaveApplication(c *gin.Context) {
 		return
 	}
 	if application.Pass == 1 || application.Pass == 2 {
-		info, err := dao.GetByUid(application.Uid, 1)
+		info, err := dao.GetByUid(application.Uid, 4)
 		if err != nil {
 			global.Global.Log.Error(err)
 			result.Fail(c, global.ServerError, global.OverTimeApplicationError)
