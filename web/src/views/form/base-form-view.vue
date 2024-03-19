@@ -162,7 +162,7 @@
                   :fileList="file ? [file] : []"
                   :headers="{ 'Authorization': 'Bearer ' + token}"
                   :show-file-list="false"
-                  action="http://127.0.0.1:8084/user/upload"
+                  :action=baseURL()+upload()
                   show-cancel-button
                   @change="onChange"
                   @progress="onProgress"

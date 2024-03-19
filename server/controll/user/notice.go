@@ -59,6 +59,12 @@ func GetNotice(c *gin.Context) {
 				global.Global.Log.Error(err)
 				return
 			}
+			//设置时间
+			_, err = global.Global.Redis.Expire(global.Global.Ctx, global.Notices, global.NoticeTime*time.Second).Result()
+			if err != nil {
+				global.Global.Log.Error(err)
+				return
+			}
 		}
 	})
 	if err != nil {

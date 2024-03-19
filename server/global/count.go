@@ -35,9 +35,9 @@ const (
 	InfoTime               = 60 * 60 * 24 * 7
 	DepartmentTime         = 60 * 60 * 24 * 7
 	EmployerClockTime      = 60 * 60
-	MenuTime               = 60 * 60 * 24
 	EmployerUidId          = 60 * 60 * 24 * 7
 	SalaryListTime         = 60 * 60
 	SalaryEmployerListTime = 60 * 10
+	NoticeTime             = 60 * 60 * 24
 	ExamineTime            = 60 * 60 * 24
 )

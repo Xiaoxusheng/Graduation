@@ -52,11 +52,10 @@ go  mod tidy
 
 ### 2.创建数据库
 
-```mysql
-use server;
+```sql
+create databsae server;
 
-create
-databsae server;
+use server;
 ```
 
 ### 3.启动
