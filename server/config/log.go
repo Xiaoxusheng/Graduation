@@ -106,9 +106,10 @@ func (l *Log) logFile(m *log.Logger) {
 					//输出到控制台,日志文件中
 				} else {
 					file.Close()
+					t = time.Now().Format(time.DateOnly)
 					//创建新的日志文件
 					log.Println("创建新的log")
-					file, err = os.Create(Config.Logs.Path + t + "1" + ".log")
+					file, err = os.Create(Config.Logs.Path + t + ".log")
 					if err != nil {
 						log.Println(err)
 						return

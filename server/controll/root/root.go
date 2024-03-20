@@ -400,6 +400,7 @@ func UpdateMenu(c *gin.Context) {
 		//删除
 		err := dao.DeleteAll(menu.Role)
 		if err != nil {
+			tx.Callback()
 			return err
 		}
 		for i := 0; i < len(menu.Menu); i++ {
@@ -411,6 +412,8 @@ func UpdateMenu(c *gin.Context) {
 			if err != nil {
 				global.Global.Log.Error(err)
 				result.Fail(c, global.ServerError, global.UpdateMenuFail)
+				//回滚
+				tx.Callback()
 				return err
 			}
 		}

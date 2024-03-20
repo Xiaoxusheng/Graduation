@@ -278,18 +278,6 @@ export default defineComponent({
           })
           file.value.url = ''
         }
-        // setTimeout(() => {
-        //   submitLoading.value = false
-        //   Message.success(
-        //       '提交成功，参数为：' +
-        //       JSON.stringify(
-        //           formItems.reduce((pre, cur) => {
-        //             ;(pre as any)[cur.key] = (cur as any).value.value
-        //             return pre
-        //           }, {})
-        //       )
-        //   )
-        // }, 3000)
       }
     }
 

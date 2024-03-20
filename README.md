@@ -24,7 +24,7 @@
             <td><img src="img/4.png" alt="员工管理" width="1920" /></td>
         </tr>  
         <tr>
-            <td><img src="img/5.png" alt="考勤管理" width="1920" /></td>
+            <td><img src="img/5.png" alt="考勤管理" width="1920"/></td>
             <td><img src="img/7.png" alt="补卡申请" width="1920" /></td>
         </tr>  
          <tr>
