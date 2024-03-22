@@ -1,0 +1,185 @@
+[server] [2024-03-15 19:47:38] [0kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-03-15 19:47:40] [0kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (5 handlers)
+[GIN-debug] POST   /admin/menu_list          --> server/controll/menu.GetMenuList (6 handlers)
+[GIN-debug] POST   /root/add_rolesForUser    --> server/controll/root.AddRolesForUser (8 handlers)
+[GIN-debug] POST   /root/add_permissionForUser --> server/controll/root.AddPermissionForUser (8 handlers)
+[GIN-debug] POST   /root/delete_roleForUser  --> server/controll/root.DeleteRoleForUser (8 handlers)
+[GIN-debug] POST   /root/delete_role         --> server/controll/root.DeleteRole (8 handlers)
+[GIN-debug] POST   /root/delete_permissionForUser --> server/controll/root.DeletePermissionForUser (8 handlers)
+[GIN-debug] POST   /root/delete_Permission   --> server/controll/root.DeletePermissionsForUser (8 handlers)
+[GIN-debug] POST   /root/update_policy       --> server/controll/root.UpdatePolicy (8 handlers)
+[GIN-debug] POST   /root/get_permissionsForUser --> server/controll/root.GetPermissionsForUser (8 handlers)
+[GIN-debug] POST   /root/get_allNamedSubjects --> server/controll/root.GetAllNamedSubjects (8 handlers)
+[GIN-debug] GET    /root/get_role_menuList   --> server/controll/root.GetRoleMenuList (8 handlers)
+[GIN-debug] POST   /root/add_role_menu       --> server/controll/root.AddRoleMenu (8 handlers)
+[GIN-debug] POST   /root/del_role_menu       --> server/controll/root.DelRoleMenu (8 handlers)
+[GIN-debug] POST   /root/update_menu         --> server/controll/root.UpdateMenu (8 handlers)
+[GIN-debug] GET    /root/role_list           --> server/controll/root.GetRoleList (8 handlers)
+[GIN-debug] POST   /root/add                 --> server/controll/root.Add (8 handlers)
+[GIN-debug] POST   /admin/login              --> server/controll/admin.Login (5 handlers)
+[GIN-debug] POST   /register                 --> server/controll/admin.Register (5 handlers)
+[GIN-debug] GET    /admin/info               --> server/controll/admin.Info (8 handlers)
+[GIN-debug] GET    /admin/logout             --> server/controll/admin.Logout (8 handlers)
+[GIN-debug] GET    /admin/reset_password     --> server/controll/admin.ResetPassword (8 handlers)
+[GIN-debug] GET    /admin/delete_employer    --> server/controll/admin.DeleteEmployee (8 handlers)
+[GIN-debug] POST   /admin/add_employer       --> server/controll/admin.AddEmployee (8 handlers)
+[GIN-debug] POST   /admin/update_employer    --> server/controll/admin.UpdateEmployee (8 handlers)
+[GIN-debug] GET    /admin/employer_list      --> server/controll/admin.EmployeeList (8 handlers)
+[GIN-debug] GET    /admin/employer_info      --> server/controll/admin.EmployeeInfo (8 handlers)
+[GIN-debug] GET    /admin/assigned_account   --> server/controll/admin.AssignedAccount (8 handlers)
+[GIN-debug] GET    /admin/get_department_list --> server/controll/admin.GetDepartmentList (8 handlers)
+[GIN-debug] GET    /admin/del_department     --> server/controll/admin.DeleteDepartment (8 handlers)
+[GIN-debug] POST   /admin/update_department  --> server/controll/admin.UpdateDepartment (8 handlers)
+[GIN-debug] POST   /admin/add_department     --> server/controll/admin.AddDepartment (8 handlers)
+[GIN-debug] GET    /admin/department_info    --> server/controll/admin.DepartmentInfo (8 handlers)
+[GIN-debug] GET    /admin/get_clockIn        --> server/controll/admin.GetClockInLog (8 handlers)
+[GIN-debug] POST   /admin/edit_clockIn       --> server/controll/admin.EditClockLog (8 handlers)
+[GIN-debug] GET    /admin/get_all_clockIn    --> server/controll/admin.GetClockList (8 handlers)
+[GIN-debug] GET    /admin/get_by_status      --> server/controll/admin.GetByStatus (8 handlers)
+[GIN-debug] POST   /admin/leave_application  --> server/controll/admin.LeaveApplication (8 handlers)
+[GIN-debug] GET    /admin/get_LeaveApplication_list --> server/controll/admin.GetLeaveApplicationList (8 handlers)
+[GIN-debug] POST   /admin/overtime_application --> server/controll/admin.OvertimeApplication (8 handlers)
+[GIN-debug] GET    /admin/get_overtimeApplication_list --> server/controll/admin.GetOvertimeList (8 handlers)
+[GIN-debug] POST   /admin/make_card_application --> server/controll/admin.MakeCardApplication (8 handlers)
+[GIN-debug] GET    /admin/make_card_application_list --> server/controll/admin.GetMarkCardList (8 handlers)
+[GIN-debug] GET    /admin/get_salary         --> server/controll/admin.GetSalary (8 handlers)
+[GIN-debug] GET    /admin/get_salary_list    --> server/controll/admin.GetSalaryList (8 handlers)
+[GIN-debug] POST   /admin/salary_info        --> server/controll/admin.SalaryInfo (8 handlers)
+[GIN-debug] GET    /admin/delete_salary      --> server/controll/admin.DeleteSalary (8 handlers)
+[GIN-debug] POST   /admin/add_menu           --> server/controll/menu.AddMenu (8 handlers)
+[GIN-debug] GET    /admin/del_menu           --> server/controll/menu.DeleteMenu (8 handlers)
+[GIN-debug] POST   /admin/update_menu        --> server/controll/menu.UpdateMenu (8 handlers)
+[GIN-debug] POST   /admin/publish_notice     --> server/controll/admin.PublishNotice (8 handlers)
+[GIN-debug] POST   /admin/update_notice      --> server/controll/admin.UpdateNoticeStatus (8 handlers)
+[GIN-debug] GET    /admin/get_notice_list    --> server/controll/admin.GetNoticeList (8 handlers)
+[GIN-debug] GET    /admin/del_notice         --> server/controll/admin.DelNotice (8 handlers)
+[GIN-debug] GET    /admin/log_list           --> server/controll/admin.GetLogList (8 handlers)
+[GIN-debug] GET    /admin/user_log_list      --> server/controll/admin.GetUserLogList (8 handlers)
+[GIN-debug] POST   /user/upload              --> server/controll/user.Upload (7 handlers)
+[GIN-debug] GET    /user/clockIn             --> server/controll/user.ClockIn (7 handlers)
+[GIN-debug] POST   /user/markCard_application --> server/controll/user.MarkCardApplication (7 handlers)
+[GIN-debug] POST   /user/leave               --> server/controll/user.LeaveApplication (7 handlers)
+[GIN-debug] POST   /user/overtime            --> server/controll/user.OverTimeApplication (7 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.EmployeeInfo (7 handlers)
+[GIN-debug] GET    /user/get_clockIn_log     --> server/controll/user.GetClockInLog (7 handlers)
+[GIN-debug] GET    /user/get_salary          --> server/controll/user.GetSalary (7 handlers)
+[GIN-debug] GET    /user/get_notice_list     --> server/controll/user.GetNotice (7 handlers)
+[GIN-debug] GET    /user/change_password     --> server/controll/user.ChangePassword (7 handlers)
+[server] [2024-03-15 19:59:31] [6kb] [38m[info][0m config.InitMysql.func1：45 server/config.InitMysql.func1 mysql连接成功！
+[server] [2024-03-15 19:59:32] [6kb] [38m[info][0m config.InitRedis.func1：33 server/config.InitRedis.func1 redis连接成功!
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /user/login               --> server/controll/user.Login (5 handlers)
+[GIN-debug] POST   /admin/menu_list          --> server/controll/menu.GetMenuList (6 handlers)
+[GIN-debug] POST   /root/add_rolesForUser    --> server/controll/root.AddRolesForUser (8 handlers)
+[GIN-debug] POST   /root/add_permissionForUser --> server/controll/root.AddPermissionForUser (8 handlers)
+[GIN-debug] POST   /root/delete_roleForUser  --> server/controll/root.DeleteRoleForUser (8 handlers)
+[GIN-debug] POST   /root/delete_role         --> server/controll/root.DeleteRole (8 handlers)
+[GIN-debug] POST   /root/delete_permissionForUser --> server/controll/root.DeletePermissionForUser (8 handlers)
+[GIN-debug] POST   /root/delete_Permission   --> server/controll/root.DeletePermissionsForUser (8 handlers)
+[GIN-debug] POST   /root/update_policy       --> server/controll/root.UpdatePolicy (8 handlers)
+[GIN-debug] POST   /root/get_permissionsForUser --> server/controll/root.GetPermissionsForUser (8 handlers)
+[GIN-debug] POST   /root/get_allNamedSubjects --> server/controll/root.GetAllNamedSubjects (8 handlers)
+[GIN-debug] GET    /root/get_role_menuList   --> server/controll/root.GetRoleMenuList (8 handlers)
+[GIN-debug] POST   /root/add_role_menu       --> server/controll/root.AddRoleMenu (8 handlers)
+[GIN-debug] POST   /root/del_role_menu       --> server/controll/root.DelRoleMenu (8 handlers)
+[GIN-debug] POST   /root/update_menu         --> server/controll/root.UpdateMenu (8 handlers)
+[GIN-debug] GET    /root/role_list           --> server/controll/root.GetRoleList (8 handlers)
+[GIN-debug] POST   /root/add                 --> server/controll/root.Add (8 handlers)
+[GIN-debug] POST   /admin/login              --> server/controll/admin.Login (5 handlers)
+[GIN-debug] POST   /register                 --> server/controll/admin.Register (5 handlers)
+[GIN-debug] GET    /admin/info               --> server/controll/admin.Info (8 handlers)
+[GIN-debug] GET    /admin/logout             --> server/controll/admin.Logout (8 handlers)
+[GIN-debug] GET    /admin/reset_password     --> server/controll/admin.ResetPassword (8 handlers)
+[GIN-debug] GET    /admin/delete_employer    --> server/controll/admin.DeleteEmployee (8 handlers)
+[GIN-debug] POST   /admin/add_employer       --> server/controll/admin.AddEmployee (8 handlers)
+[GIN-debug] POST   /admin/update_employer    --> server/controll/admin.UpdateEmployee (8 handlers)
+[GIN-debug] GET    /admin/employer_list      --> server/controll/admin.EmployeeList (8 handlers)
+[GIN-debug] GET    /admin/employer_info      --> server/controll/admin.EmployeeInfo (8 handlers)
+[GIN-debug] GET    /admin/assigned_account   --> server/controll/admin.AssignedAccount (8 handlers)
+[GIN-debug] GET    /admin/get_department_list --> server/controll/admin.GetDepartmentList (8 handlers)
+[GIN-debug] GET    /admin/del_department     --> server/controll/admin.DeleteDepartment (8 handlers)
+[GIN-debug] POST   /admin/update_department  --> server/controll/admin.UpdateDepartment (8 handlers)
+[GIN-debug] POST   /admin/add_department     --> server/controll/admin.AddDepartment (8 handlers)
+[GIN-debug] GET    /admin/department_info    --> server/controll/admin.DepartmentInfo (8 handlers)
+[GIN-debug] GET    /admin/get_clockIn        --> server/controll/admin.GetClockInLog (8 handlers)
+[GIN-debug] POST   /admin/edit_clockIn       --> server/controll/admin.EditClockLog (8 handlers)
+[GIN-debug] GET    /admin/get_all_clockIn    --> server/controll/admin.GetClockList (8 handlers)
+[GIN-debug] GET    /admin/get_by_status      --> server/controll/admin.GetByStatus (8 handlers)
+[GIN-debug] POST   /admin/leave_application  --> server/controll/admin.LeaveApplication (8 handlers)
+[GIN-debug] GET    /admin/get_LeaveApplication_list --> server/controll/admin.GetLeaveApplicationList (8 handlers)
+[GIN-debug] POST   /admin/overtime_application --> server/controll/admin.OvertimeApplication (8 handlers)
+[GIN-debug] GET    /admin/get_overtimeApplication_list --> server/controll/admin.GetOvertimeList (8 handlers)
+[GIN-debug] POST   /admin/make_card_application --> server/controll/admin.MakeCardApplication (8 handlers)
+[GIN-debug] GET    /admin/make_card_application_list --> server/controll/admin.GetMarkCardList (8 handlers)
+[GIN-debug] GET    /admin/get_salary         --> server/controll/admin.GetSalary (8 handlers)
+[GIN-debug] GET    /admin/get_salary_list    --> server/controll/admin.GetSalaryList (8 handlers)
+[GIN-debug] POST   /admin/salary_info        --> server/controll/admin.SalaryInfo (8 handlers)
+[GIN-debug] GET    /admin/delete_salary      --> server/controll/admin.DeleteSalary (8 handlers)
+[GIN-debug] POST   /admin/add_menu           --> server/controll/menu.AddMenu (8 handlers)
+[GIN-debug] GET    /admin/del_menu           --> server/controll/menu.DeleteMenu (8 handlers)
+[GIN-debug] POST   /admin/update_menu        --> server/controll/menu.UpdateMenu (8 handlers)
+[GIN-debug] POST   /admin/publish_notice     --> server/controll/admin.PublishNotice (8 handlers)
+[GIN-debug] POST   /admin/update_notice      --> server/controll/admin.UpdateNoticeStatus (8 handlers)
+[GIN-debug] GET    /admin/get_notice_list    --> server/controll/admin.GetNoticeList (8 handlers)
+[GIN-debug] GET    /admin/del_notice         --> server/controll/admin.DelNotice (8 handlers)
+[GIN-debug] GET    /admin/log_list           --> server/controll/admin.GetLogList (8 handlers)
+[GIN-debug] GET    /admin/user_log_list      --> server/controll/admin.GetUserLogList (8 handlers)
+[GIN-debug] POST   /user/upload              --> server/controll/user.Upload (7 handlers)
+[GIN-debug] GET    /user/clockIn             --> server/controll/user.ClockIn (7 handlers)
+[GIN-debug] POST   /user/markCard_application --> server/controll/user.MarkCardApplication (7 handlers)
+[GIN-debug] POST   /user/leave               --> server/controll/user.LeaveApplication (7 handlers)
+[GIN-debug] POST   /user/overtime            --> server/controll/user.OverTimeApplication (7 handlers)
+[GIN-debug] GET    /user/info                --> server/controll/user.EmployeeInfo (7 handlers)
+[GIN-debug] GET    /user/get_clockIn_log     --> server/controll/user.GetClockInLog (7 handlers)
+[GIN-debug] GET    /user/get_salary          --> server/controll/user.GetSalary (7 handlers)
+[GIN-debug] GET    /user/get_notice_list     --> server/controll/user.GetNotice (7 handlers)
+[GIN-debug] GET    /user/change_password     --> server/controll/user.ChangePassword (7 handlers)
+[GIN] 2024/03/15 - 19:59:50 |[97;42m 204 [0m|            0s |             ::1 |[90;47m OPTIONS [0m "/admin/menu_list"
+[server] [2024-03-15 19:59:50] [13kb] [38m[info][0m menu.GetMenuList：70 server/controll/menu.GetMenuList [{1 /index Dashborad icon-dashboard  dashborad true   false false [] false {1 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {4 /systems 系统管理 icon-settings  systems true   false false [] false {4 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {9 /list 考勤管理 icon-list   true   false false [] false {9 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {14 /form 公告管理 icon-edit   true   false false [] false {14 2024-03-03 20:22:03.052 +0800 CST 2024-03-07 11:15:12.737 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {16 /other 功能/组件 icon-apps   true   false false [] false {16 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {21 /excel Excel icon-nav   true   false false [] false {21 2024-03-03 20:22:03.052 +0800 CST 2024-03-07 11:11:57.529 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {24 /draggable 员工 icon-drag-arrow   true   false false [] false {24 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {26 /log 系统监控 icon-computer  log true   false false [] false {26 2024-03-03 20:22:03.052 +0800 CST 2024-03-04 11:06:43.21 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {29 /salary 财务数据 icon-file  salary true   false false [] false {29 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}}]
+[server] [2024-03-15 19:59:50] [15kb] [38m[info][0m menu.GetMenuList：98 server/controll/menu.GetMenuList [{1 /index Dashborad icon-dashboard  dashborad true   false false [{2 /index/home 主控台  /index home true   false false [] false {2 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {3 /index/work-place 工作台 icon-subscribed /index workPlace true   true false [] false {3 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}}] false {1 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {4 /systems 系统管理 icon-settings  systems true   false false [{5 /systems/department 部门管理 icon-apps /systems department true  /systems/local-path/department false false [] false {5 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {6 /systems/user 员工管理 icon-user /systems user true   false false [] false {6 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {7 /systems/role 角色管理 icon-stamp /systems  true   false false [] false {7 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {8 /systems/menu 菜单管理  /systems  true   false false [] false {8 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}}] false {4 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {9 /list 考勤管理 icon-list   true   false false [{10 /list/table-with-search 请假申请 icon-user-group /list  true   false false [] false {10 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {11 /list/table-custom 加班申请 icon-layers /list  true   false false [] false {11 2024-03-03 20:22:03.052 +0800 CST 2024-03-07 10:22:13.256 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {12 /list/list 补卡申请 icon-qrcode /list  true   false false [] false {12 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {13 /list/card-list 考勤列表 icon-select-all /list  true   false false [] false {13 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}}] false {9 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {14 /form 公告管理 icon-edit   true   false false [{15 /form/base-form-view 公告列表 icon-apps /form  true   false false [] false {15 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}}] false {14 2024-03-03 20:22:03.052 +0800 CST 2024-03-07 11:15:12.737 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {16 /other 功能/组件 icon-apps   true   false false [{17 /other/print 打印 icon-printer /other  true   false false [] false {17 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {18 /other/clipboard 剪贴板 icon-printer /other  true   false true [] false {18 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {19 /other/player 视频播放器  /other  true   false false [] false {19 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {20 /other/flow 流程图  /other  true   false false [] false {20 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}}] false {16 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {21 /excel Excel icon-nav   true   false false [{22 /excel/export-excel 导出Excel icon-nav /excel  true   false false [] false {22 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {23 /excel/export-rows-excel 导出选中行  /excel  true   false false [] false {23 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}}] false {21 2024-03-03 20:22:03.052 +0800 CST 2024-03-07 11:11:57.529 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {24 /draggable 员工 icon-drag-arrow   true   false false [{25 /draggable/card-draggable 拖拽  /draggable  true   false true [] false {25 2024-03-03 20:22:03.052 +0800 CST 2024-03-04 11:07:42.755 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {31 /draggable/user-infos 员工信息查询 icon-bug /draggable  true   false false [] false {31 2024-03-04 14:45:54 +0800 CST 2024-03-04 14:45:56 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}}] false {24 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {26 /log 系统监控 icon-computer  log true   false false [{27 /log/operation 操作日志 icon-thunderbolt /log operation true   false false [] false {27 2024-03-03 20:22:03.052 +0800 CST 2024-03-04 19:12:16.572 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {28 /log/system 系统日志 icon-common /log system true   false false [] false {28 2024-03-03 20:22:03.052 +0800 CST 2024-03-04 19:12:27.294 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}}] false {26 2024-03-03 20:22:03.052 +0800 CST 2024-03-04 11:06:43.21 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {29 /salary 财务数据 icon-file  salary true   false false [{30 /salary/salary 工资详情 icon-empty /salary salary true   false false [] false {30 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}}] false {29 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}}]
+[GIN] 2024/03/15 - 19:59:50 |[97;42m 200 [0m|    769.7815ms |             ::1 |[97;46m POST    [0m "/admin/menu_list"
+[GIN] 2024/03/15 - 19:59:55 |[97;42m 204 [0m|            0s |             ::1 |[90;47m OPTIONS [0m "/admin/log_list?offset=1&limit=10"
+[server] [2024-03-15 19:59:55] [21kb] [38m[info][0m router.Routers.Log.func5：62 server/router.Routers.Log.func5 108.842ms
+[GIN] 2024/03/15 - 19:59:55 |[97;42m 200 [0m|    122.9441ms |             ::1 |[97;44m GET     [0m "/admin/log_list?offset=1&limit=10"
+[GIN] 2024/03/15 - 20:00:00 |[97;42m 204 [0m|            0s |             ::1 |[90;47m OPTIONS [0m "/admin/log_list?offset=1&limit=50"
+[server] [2024-03-15 20:00:00] [21kb] [38m[info][0m router.Routers.Log.func5：62 server/router.Routers.Log.func5 94.6699ms
+[GIN] 2024/03/15 - 20:00:00 |[97;42m 200 [0m|     109.299ms |             ::1 |[97;44m GET     [0m "/admin/log_list?offset=1&limit=50"
+[GIN] 2024/03/15 - 20:00:19 |[97;42m 204 [0m|            0s |             ::1 |[90;47m OPTIONS [0m "/admin/log_list?offset=6&limit=50"
+[server] [2024-03-15 20:00:20] [22kb] [38m[info][0m router.Routers.Log.func5：62 server/router.Routers.Log.func5 792.0635ms
+[GIN] 2024/03/15 - 20:00:20 |[97;42m 200 [0m|    792.0635ms |             ::1 |[97;44m GET     [0m "/admin/log_list?offset=6&limit=50"
+[GIN] 2024/03/15 - 20:00:28 |[97;42m 204 [0m|            0s |             ::1 |[90;47m OPTIONS [0m "/admin/user_log_list?offset=1&limit=10"
+[server] [2024-03-15 20:00:28] [22kb] [38m[info][0m router.Routers.Log.func5：62 server/router.Routers.Log.func5 85.415ms
+[GIN] 2024/03/15 - 20:00:28 |[97;42m 200 [0m|     94.5024ms |             ::1 |[97;44m GET     [0m "/admin/user_log_list?offset=1&limit=10"
+[GIN] 2024/03/15 - 20:00:29 |[97;42m 204 [0m|            0s |             ::1 |[90;47m OPTIONS [0m "/admin/log_list?offset=1&limit=10"
+[server] [2024-03-15 20:00:30] [23kb] [38m[info][0m router.Routers.Log.func5：62 server/router.Routers.Log.func5 131.8524ms
+[GIN] 2024/03/15 - 20:00:30 |[97;42m 200 [0m|     142.759ms |             ::1 |[97;44m GET     [0m "/admin/log_list?offset=1&limit=10"
+[GIN] 2024/03/15 - 20:00:31 |[97;42m 204 [0m|            0s |             ::1 |[90;47m OPTIONS [0m "/admin/log_list?offset=31&limit=10"
+[server] [2024-03-15 20:00:31] [23kb] [38m[info][0m router.Routers.Log.func5：62 server/router.Routers.Log.func5 131.0933ms
+[GIN] 2024/03/15 - 20:00:31 |[97;42m 200 [0m|    137.1548ms |             ::1 |[97;44m GET     [0m "/admin/log_list?offset=31&limit=10"
+[GIN] 2024/03/15 - 20:00:34 |[97;42m 204 [0m|            0s |             ::1 |[90;47m OPTIONS [0m "/admin/menu_list"
+[server] [2024-03-15 20:00:34] [23kb] [38m[info][0m menu.GetMenuList：70 server/controll/menu.GetMenuList [{1 /index Dashborad icon-dashboard  dashborad true   false false [] false {1 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {4 /systems 系统管理 icon-settings  systems true   false false [] false {4 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {9 /list 考勤管理 icon-list   true   false false [] false {9 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {14 /form 公告管理 icon-edit   true   false false [] false {14 2024-03-03 20:22:03.052 +0800 CST 2024-03-07 11:15:12.737 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {16 /other 功能/组件 icon-apps   true   false false [] false {16 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {21 /excel Excel icon-nav   true   false false [] false {21 2024-03-03 20:22:03.052 +0800 CST 2024-03-07 11:11:57.529 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {24 /draggable 员工 icon-drag-arrow   true   false false [] false {24 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {26 /log 系统监控 icon-computer  log true   false false [] false {26 2024-03-03 20:22:03.052 +0800 CST 2024-03-04 11:06:43.21 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {29 /salary 财务数据 icon-file  salary true   false false [] false {29 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}}]
+[server] [2024-03-15 20:00:34] [25kb] [38m[info][0m menu.GetMenuList：98 server/controll/menu.GetMenuList [{1 /index Dashborad icon-dashboard  dashborad true   false false [{2 /index/home 主控台  /index home true   false false [] false {2 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {3 /index/work-place 工作台 icon-subscribed /index workPlace true   true false [] false {3 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}}] false {1 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {4 /systems 系统管理 icon-settings  systems true   false false [{5 /systems/department 部门管理 icon-apps /systems department true  /systems/local-path/department false false [] false {5 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {6 /systems/user 员工管理 icon-user /systems user true   false false [] false {6 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {7 /systems/role 角色管理 icon-stamp /systems  true   false false [] false {7 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {8 /systems/menu 菜单管理  /systems  true   false false [] false {8 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}}] false {4 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {9 /list 考勤管理 icon-list   true   false false [{10 /list/table-with-search 请假申请 icon-user-group /list  true   false false [] false {10 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {11 /list/table-custom 加班申请 icon-layers /list  true   false false [] false {11 2024-03-03 20:22:03.052 +0800 CST 2024-03-07 10:22:13.256 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {12 /list/list 补卡申请 icon-qrcode /list  true   false false [] false {12 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {13 /list/card-list 考勤列表 icon-select-all /list  true   false false [] false {13 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}}] false {9 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {14 /form 公告管理 icon-edit   true   false false [{15 /form/base-form-view 公告列表 icon-apps /form  true   false false [] false {15 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}}] false {14 2024-03-03 20:22:03.052 +0800 CST 2024-03-07 11:15:12.737 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {16 /other 功能/组件 icon-apps   true   false false [{17 /other/print 打印 icon-printer /other  true   false false [] false {17 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {18 /other/clipboard 剪贴板 icon-printer /other  true   false true [] false {18 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {19 /other/player 视频播放器  /other  true   false false [] false {19 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {20 /other/flow 流程图  /other  true   false false [] false {20 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}}] false {16 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {21 /excel Excel icon-nav   true   false false [{22 /excel/export-excel 导出Excel icon-nav /excel  true   false false [] false {22 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {23 /excel/export-rows-excel 导出选中行  /excel  true   false false [] false {23 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}}] false {21 2024-03-03 20:22:03.052 +0800 CST 2024-03-07 11:11:57.529 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {24 /draggable 员工 icon-drag-arrow   true   false false [{25 /draggable/card-draggable 拖拽  /draggable  true   false true [] false {25 2024-03-03 20:22:03.052 +0800 CST 2024-03-04 11:07:42.755 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {31 /draggable/user-infos 员工信息查询 icon-bug /draggable  true   false false [] false {31 2024-03-04 14:45:54 +0800 CST 2024-03-04 14:45:56 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}}] false {24 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {26 /log 系统监控 icon-computer  log true   false false [{27 /log/operation 操作日志 icon-thunderbolt /log operation true   false false [] false {27 2024-03-03 20:22:03.052 +0800 CST 2024-03-04 19:12:16.572 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {28 /log/system 系统日志 icon-common /log system true   false false [] false {28 2024-03-03 20:22:03.052 +0800 CST 2024-03-04 19:12:27.294 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}}] false {26 2024-03-03 20:22:03.052 +0800 CST 2024-03-04 11:06:43.21 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}} {29 /salary 财务数据 icon-file  salary true   false false [{30 /salary/salary 工资详情 icon-empty /salary salary true   false false [] false {30 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}}] false {29 2024-03-03 20:22:03.052 +0800 CST 2024-03-03 20:22:03.052 +0800 CST {0001-01-01 00:00:00 +0000 UTC false}}}]
+[GIN] 2024/03/15 - 20:00:34 |[97;42m 200 [0m|     61.8553ms |             ::1 |[97;46m POST    [0m "/admin/menu_list"
+[GIN] 2024/03/15 - 20:00:35 |[97;42m 204 [0m|            0s |             ::1 |[90;47m OPTIONS [0m "/admin/log_list?offset=1&limit=10"
+[server] [2024-03-15 20:00:35] [31kb] [38m[info][0m router.Routers.Log.func5：62 server/router.Routers.Log.func5 84.7418ms
+[GIN] 2024/03/15 - 20:00:35 |[97;42m 200 [0m|     98.6361ms |             ::1 |[97;44m GET     [0m "/admin/log_list?offset=1&limit=10"
+[GIN] 2024/03/15 - 20:00:37 |[97;42m 204 [0m|            0s |             ::1 |[90;47m OPTIONS [0m "/admin/log_list?offset=31&limit=10"
+[server] [2024-03-15 20:00:37] [32kb] [38m[info][0m router.Routers.Log.func5：62 server/router.Routers.Log.func5 92.4293ms
+[GIN] 2024/03/15 - 20:00:37 |[97;42m 200 [0m|    107.9934ms |             ::1 |[97;44m GET     [0m "/admin/log_list?offset=31&limit=10"
+[server] [2024-03-15 21:56:10] [32kb] [38m[info][0m utils.Listen：22 server/utils.Listen Received signal: interrupt
+
+[server] [2024-03-15 21:56:10] [32kb] [38m[info][0m utils.Listen：28 server/utils.Listen mysql connect close success
+[server] [2024-03-15 21:56:10] [32kb] [38m[info][0m utils.Listen：37 server/utils.Listen redis connect close success
+[server] [2024-03-15 21:56:10] [32kb] [38m[info][0m utils.Listen：43 server/utils.Listen pool close success
