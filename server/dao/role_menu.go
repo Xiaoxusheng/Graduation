@@ -1,6 +1,7 @@
 package dao
 
 import (
+	"gorm.io/gorm"
 	"server/global"
 	"server/models"
 )
@@ -24,7 +25,12 @@ func DeleteRoleMenu(role, menu string) error {
 }
 
 // DeleteAll 删除所有
-func DeleteAll(role string) error {
-	return global.Global.Mysql.Unscoped().Where("role=?", role).Delete(new(models.RoleMenu)).Error
+func DeleteAll(tx *gorm.DB, role string) error {
+	return tx.Unscoped().Where("role=?", role).Delete(new(models.RoleMenu)).Error
+
+}
+
+func Insert(tx *gorm.DB, menu *models.RoleMenu) error {
+	return tx.Create(menu).Error
 
 }

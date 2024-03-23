@@ -397,14 +397,13 @@ func UpdateMenu(c *gin.Context) {
 
 	err = global.Global.Mysql.Transaction(func(tx *gorm.DB) error {
 		// 在事务中执行一些 db 操作（从这里开始，您应该使用 'tx' 而不是 'db'）
-		//删除
-		err := dao.DeleteAll(menu.Role)
+		//删除，出现错误自动回滚
+		err := dao.DeleteAll(tx, menu.Role)
 		if err != nil {
-			tx.Callback()
 			return err
 		}
 		for i := 0; i < len(menu.Menu); i++ {
-			err := dao.InsertRoleMenu(&models.RoleMenu{
+			err := dao.Insert(tx, &models.RoleMenu{
 				Identity: utils.GetUidV4(),
 				Role:     menu.Role,
 				Menu:     menu.Menu[i],
@@ -413,7 +412,6 @@ func UpdateMenu(c *gin.Context) {
 				global.Global.Log.Error(err)
 				result.Fail(c, global.ServerError, global.UpdateMenuFail)
 				//回滚
-				tx.Callback()
 				return err
 			}
 		}
