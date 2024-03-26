@@ -14,7 +14,7 @@ const useUserStore = defineStore('user-info', {
             // roleId: 0,
             token: '',
             userName: '',
-            nickName: '',
+            role: '',
             avatar: defaultAvatar,
         }
     },
@@ -25,7 +25,7 @@ const useUserStore = defineStore('user-info', {
                 // this.roleId = userInfo.roleId
                 this.token = userInfo.token
                 this.userName = userInfo.userName ? userInfo.userName : 'admin'
-                this.nickName = userInfo.nickName ? userInfo.nickName : '超级管理员'
+                this.role = userInfo.role ? userInfo.role : '普通员工'
                 this.avatar = userInfo.avatar || defaultAvatar
                 resolve(userInfo)
                 this.setToken()

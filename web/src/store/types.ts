@@ -7,7 +7,7 @@ export interface UserState {
     roleId: number
     roles: string[] | null
     userName: string
-    nickName: string
+    role: string
     avatar: string
 }
 

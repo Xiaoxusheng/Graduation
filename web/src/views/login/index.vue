@@ -87,6 +87,11 @@ export default defineComponent({
       })
           .then(({data}: Response) => {
             userStore.saveUser(data as UserState).then(() => {
+              console.log(userStore.role)
+              if (userStore.role == "普通员工") {
+                console.log(1)
+                route.query.redirect = "/user/clock"
+              }
               router
                   .replace({
                     path: route.query.redirect ? (route.query.redirect as string) : '/',

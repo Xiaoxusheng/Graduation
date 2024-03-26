@@ -8,7 +8,7 @@
           </a-avatar>
         </div>
         <span class="nick-name">
-          {{ userStore.nickName }}
+          {{ userStore.role }}
         </span>
         <icon-caret-down class="tip"/>
       </div>

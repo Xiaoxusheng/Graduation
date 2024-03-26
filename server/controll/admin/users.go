@@ -45,13 +45,25 @@ func Login(c *gin.Context) {
 	}
 	salts, _ := base64.URLEncoding.DecodeString(salt)
 	val := global.Global.Redis.HGet(global.Global.Ctx, user.Username, utils.HashPassword(user.Password, salts)).Val()
+	var role string
 	//identity 存在
 	if val != "" {
 		//获取token
 		token := global.Global.Redis.Get(global.Global.Ctx, val).Val()
+		r, err := global.Global.CasBin.GetRolesForUser(val)
+		if err != nil {
+			global.Global.Log.Error(err)
+			return
+		}
+		if len(r) == 0 {
+			role = "普通员工"
+		} else {
+			role = r[0]
+		}
 		if token != "" {
 			result.Ok(c, map[string]any{
 				"token": token,
+				"role":  role,
 			})
 			return
 		}
@@ -60,6 +72,7 @@ func Login(c *gin.Context) {
 		global.Global.Redis.Set(global.Global.Ctx, val, token, config.Config.Jwt.Time*time.Hour)
 		result.Ok(c, map[string]any{
 			"token": token,
+			"role":  role,
 		})
 		return
 	}
@@ -71,11 +84,24 @@ func Login(c *gin.Context) {
 	}
 	//生成token
 	token := utils.GetToken(use.Identity)
+	r, err := global.Global.CasBin.GetRolesForUser(use.Identity)
+	if err != nil {
+		global.Global.Log.Error(err)
+		return
+	}
+	if len(r) == 0 {
+		role = "user"
+	} else {
+		role = r[0]
+	}
 	go func() {
 		global.Global.Redis.Set(global.Global.Ctx, use.Identity, token, config.Config.Jwt.Time*time.Hour)
 		global.Global.Redis.HSet(global.Global.Ctx, user.Username, utils.HashPassword(user.Password, salts), use.Identity)
 	}()
-	result.Ok(c, map[string]any{"token": token})
+	result.Ok(c, map[string]any{
+		"token": token,
+		"role":  role,
+	})
 }
 
 // Register 注册

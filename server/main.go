@@ -52,7 +52,6 @@ func main() {
 	if err != nil {
 		log.Println("server start fail :" + err.Error())
 	}
-
 	//err := e.Run(":80")
 	//if err != nil {
 	//	log.Println("server start fail")
