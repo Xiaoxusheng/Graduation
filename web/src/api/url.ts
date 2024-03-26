@@ -147,9 +147,8 @@ export const getExamine = '/user/get_examine'
 // 图片上传
 export const upload = '/user/upload'
 
-// 加班申请
 
-
+// 消息列表
 export const getNotice = '/user/get_notice_list'
 
 

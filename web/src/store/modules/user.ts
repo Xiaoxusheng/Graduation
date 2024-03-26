@@ -38,7 +38,7 @@ const useUserStore = defineStore('user-info', {
             return !this.token
         },
         changeNickName(newNickName: string) {
-            this.nickName = newNickName
+            this.role = newNickName
         },
         logout() {
             return new Promise<void>((resolve) => {
