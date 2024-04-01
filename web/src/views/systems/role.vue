@@ -29,19 +29,19 @@
               <template v-if="item.key === 'index'" #cell="{ rowIndex }">
                 {{ rowIndex + 1 }}
               </template>
-              <template v-if="item.key === 'name'" #cell="{ record }">
-                {{ record }}
+              <template v-if="item.key === 'uid'" #cell="{ record }">
+                <a-tag color="#0fc6c2" size="mini">{{ record.uid }}</a-tag>
               </template>
               <template v-if="item.key === 'actions'" #cell="{ record }">
                 <a-space>
-                  <a-button size="mini" status="success" @click="onUpdateItem(record)"
-                  >编辑
+                  <a-button size="mini" status="success" @click="DeleteRole(record)">
+                    取消员工权限
                   </a-button>
-                  <a-button size="mini" status="danger" @click="onDeleteItem(record)"
-                  >删除
-                  </a-button>
-                  <a-button size="mini" status="warning" @click="onShowMenu(record)">
+                  <a-button size="mini" status="warning" @click="onShowMenu(record.role)">
                     菜单权限
+                  </a-button>
+                  <a-button size="mini" status="danger" @click="onDeleteItem(record.role)"
+                  >删除
                   </a-button>
                 </a-space>
               </template>
@@ -82,16 +82,32 @@
         />
       </template>
     </ModalDialog>
+    <ModalDialog ref="changModelDialogRef" :title="actionTitle" @cancel="cancel" @confirm="onDataShow">
+      <template #content>
+        <a-form :model="resData">
+          <a-form-item
+              v-for="item of roleFormItems"
+              :key="item.key"
+              :class="[item.required ? 'form-item__require' : 'form-item__no_require']"
+              :label="item.label"
+          >
+            <template v-if="item.type==='select'">
+              <a-select v-model="value" :field-names="fieldNames" :options="resData" allow-clear placeholder="请选择"/>
+            </template>
+          </a-form-item>
+        </a-form>
+      </template>
+    </ModalDialog>
   </div>
 </template>
 
 <script lang="ts">
 import {get, post} from '@/api/http'
-import {addRolesForUser, deleteRole, getRoleMenuList, roleList, updateRoleMenu} from '@/api/url'
+import {addRolesForUser, deleteRole, deleteRoleForUser, getRoleMenuList, roleList, updateRoleMenu} from '@/api/url'
 import {useRowKey, useTable, useTableColumn} from '@/hooks/table'
 import {FormItem, ModalDialogType} from '@/types/components'
 import {Message, Modal,} from '@arco-design/web-vue'
-import {defineComponent, nextTick, onMounted, ref} from 'vue'
+import {defineComponent, nextTick, onMounted, reactive, ref} from 'vue'
 import useUserStore from "@/store/modules/user";
 
 const ROLE_CODE_FLAG = 'ROLE_'
@@ -129,6 +145,29 @@ const formItems = [
     },
   },
 ] as FormItem[]
+
+
+const roleFormItems = [
+  {
+    label: '工号',
+    type: 'select',
+    key: 'uid',
+    value: ref(''),
+    required: true,
+    validator: function () {
+      if (!this.value.value) {
+        Message.error(this.placeholder || '')
+        return false
+      }
+      return true
+    },
+  },
+
+] as FormItem[]
+
+
+const fieldNames = {value: 'id', label: 'uid'}
+
 const tree = ref<null>(null)
 
 function handleMenuData(
@@ -161,6 +200,7 @@ export default defineComponent({
   setup() {
     const modalDialogRef = ref<ModalDialogType | null>(null)
     const menuModalDialogRef = ref<ModalDialogType | null>(null)
+    const changModelDialogRef = ref<ModalDialogType | null>(null)
     const table = useTable()
     const rowKey = useRowKey('id')
     const actionTitle = ref('添加角色')
@@ -169,9 +209,16 @@ export default defineComponent({
       table.indexColumn,
       {
         title: '角色名称',
-        key: 'name',
-        dataIndex: 'name',
+        key: 'role',
+        dataIndex: 'role',
         width: 300
+      },
+      {
+        title: '工号',
+        key: 'uid',
+        dataIndex: 'uid',
+        width: 400,
+        align: 'left'
       },
       {
         title: '操作',
@@ -185,8 +232,10 @@ export default defineComponent({
     const defaultExpandedKeys = ref([] as Array<string>)
     const userStore = useUserStore()
     const formModel = ref({})
+    const resData = reactive([])
     const res = [] as any
     let role = ""
+    const value = ref("")
 
     function doRefresh() {
       get({
@@ -301,7 +350,7 @@ export default defineComponent({
     function onDataFormConfirms(item: any) {
       modalDialogRef.value?.toggle()
 
-      //   修改菜单
+      // 增加权限
       post({
         url: addRolesForUser,
         headers: {
@@ -313,10 +362,42 @@ export default defineComponent({
         }
       }).then((res) => {
             Message.success("更新成功！")
+        doRefresh()
           }
       ).catch(error => {
         Message.error(error.message)
       })
+    }
+
+    function onDataShow() {
+      changModelDialogRef.value?.toggle()
+      console.log(value.value)
+      post({
+        url: deleteRoleForUser,
+        headers: {
+          Authorization: "Bearer " + userStore.token,
+          'Content-Type': "application/x-www-form-urlencoded; charset=UTF-8"
+        },
+        data: {
+          role: resData[0].role,
+          user: value.value,
+        },
+      })
+          .then((res) => {
+            doRefresh()
+            Message.success('删除成功')
+          })
+          .catch(error => {
+            Message.error(error.message)
+          })
+      value.value = ""
+      roleFormItems[0].value.value = ''
+    }
+
+    function DeleteRole(item: any) {
+      actionTitle.value = '取消员工权限'
+      changModelDialogRef.value?.toggle()
+      resData.push(item)
     }
 
     function onShowMenu(item: any) {
@@ -344,6 +425,11 @@ export default defineComponent({
           .catch(console.log)
     }
 
+    function cancel() {
+      value.value = ""
+      console.log(resData)
+    }
+
     function shows(checkedKeys: any, data: any) {
       data.node.ok = !data.node.ok
       if (data.node.children) {
@@ -359,6 +445,7 @@ export default defineComponent({
       ROLE_CODE_FLAG,
       modalDialogRef,
       menuModalDialogRef,
+      changModelDialogRef,
       rowKey,
       formModel,
       menuData,
@@ -369,6 +456,10 @@ export default defineComponent({
       defaultExpandedKeys,
       ...table,
       role,
+      roleFormItems,
+      fieldNames,
+      resData,
+      value,
       shows,
       onAddItem,
       onDataFormConfirm,
@@ -376,6 +467,9 @@ export default defineComponent({
       onShowMenu,
       onDeleteItem,
       onUpdateItem,
+      onDataShow,
+      DeleteRole,
+      cancel
     }
   },
 })

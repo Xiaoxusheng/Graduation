@@ -182,3 +182,9 @@ type Role struct {
 	User string `json:"user" binding:"required"   form:"user"`
 	Role string `json:"role" binding:"required"   form:"role"`
 }
+
+type RoleName struct {
+	Role string `json:"role"`
+	Uid  string `json:"uid"`
+	Id   string `json:"id"`
+}

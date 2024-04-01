@@ -238,9 +238,14 @@ func Add(c *gin.Context) {
 	//	result.Fail(c, global.ServerError, global.AddPermissionFail)
 	//	return
 	//}
-	id := c.GetString("identity")
-	fmt.Println(global.Global.CasBin.GetAllRoles())
-	fmt.Println(global.Global.CasBin.GetRolesForUser(id))
+	//id := c.GetString("identity")
+	//fmt.Println(global.Global.CasBin.GetAllRoles())
+	//fmt.Println(global.Global.CasBin.GetRolesForUser(id))
+	role, err := global.Global.CasBin.GetUsersForRole("admin")
+	if err != nil {
+		return
+	}
+	fmt.Println(role)
 	result.Ok(c, nil)
 }
 
@@ -370,7 +375,27 @@ func GetRoleMenuList(c *gin.Context) {
 
 func GetRoleList(c *gin.Context) {
 	list := global.Global.CasBin.GetAllRoles()
-	result.Ok(c, list)
+	rolelist := make([]global.RoleName, 0)
+	for _, res := range list {
+		id, err := global.Global.CasBin.GetUsersForRole(res)
+		if err != nil {
+			result.Fail(c, global.BadRequest, global.User)
+			return
+		}
+		for j := 0; j < len(id); j++ {
+			uid := global.Global.Redis.HGet(global.Global.Ctx, global.UidId, id[j]).Val()
+			if uid != "" {
+				roleName := global.RoleName{
+					Role: res,
+					Uid:  uid,
+					Id:   id[j],
+				}
+				rolelist = append(rolelist, roleName)
+			}
+		}
+	}
+
+	result.Ok(c, rolelist)
 }
 
 // UpdateMenu 更新菜单
