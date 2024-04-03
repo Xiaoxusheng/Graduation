@@ -31,6 +31,9 @@ export const roleList = '/root/role_list'
 export const updateRoleMenu = '/root/update_menu'
 // 删除角色
 export const deleteRole = '/root/delete_role'
+// 删除单人的权限
+export const deleteRoleForUser = '/root/delete_roleForUser'
+
 // 增加角色
 export const addRolesForUser = '/root/add_rolesForUser'
 

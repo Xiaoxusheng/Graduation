@@ -19,7 +19,7 @@ type users struct {
 	Password string `json:"password" form:"password" binding:"required" `
 }
 
-// Login /*登录要把保证逻辑上的并发安全*/
+// Login /*登录要保证逻辑上的并发安全*/
 // Login 登录
 func Login(c *gin.Context) {
 	user := new(users)
@@ -84,7 +84,9 @@ func ChangePassword(c *gin.Context) {
 		result.Fail(c, global.BadRequest, global.QueryError)
 		return
 	}
+	//新密码
 	pwd := c.Query("password")
+	//旧密码
 	p := c.Query("pwd")
 	if p == "" || pwd == "" {
 		result.Fail(c, global.BadRequest, global.QueryNotFoundError)
@@ -97,6 +99,7 @@ func ChangePassword(c *gin.Context) {
 	if val != "" {
 		salt, _ := base64.URLEncoding.DecodeString(val)
 		//判断旧密码是否正确
+		//判断hash中是否有这条记录
 		if !global.Global.Redis.HExists(global.Global.Ctx, uid, utils.HashPassword(p, salt)).Val() {
 			//	旧密码错误
 			result.Fail(c, global.BadRequest, global.OldPedError)
