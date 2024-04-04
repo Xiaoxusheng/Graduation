@@ -84,7 +84,7 @@ func GetSalaryList(c *gin.Context) {
 		result.Fail(c, global.ServerError, global.AtoiError)
 		return
 	}
-	val := global.Global.Redis.Get(global.Global.Ctx, global.SalaryList).Val()
+	val := global.Global.Redis.HGet(global.Global.Ctx, global.SalaryList, t).Val()
 	if val != "" {
 		list := make([]*models.Salary, 0)
 		err = json.Unmarshal([]byte(val), &list)
@@ -110,7 +110,8 @@ func GetSalaryList(c *gin.Context) {
 			global.Global.Log.Error(err)
 			return
 		}
-		_, err = global.Global.Redis.Set(global.Global.Ctx, global.SalaryList, marshal, global.SalaryListTime*time.Second).Result()
+		_, err = global.Global.Redis.HSet(global.Global.Ctx, global.SalaryList, t, marshal).Result()
+		global.Global.Redis.Expire(global.Global.Ctx, global.SalaryList, global.SalaryListTime*time.Second)
 		if err != nil {
 			global.Global.Log.Error(err)
 		}

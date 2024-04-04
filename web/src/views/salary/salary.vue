@@ -11,7 +11,7 @@
               </template>
               <template v-else>
                 <template v-if="item.type === 'date'">
-                  <a-month-picker v-model="item.value.value"/>
+                  <a-month-picker v-model="item.value.value" @change="select"/>
                 </template>
               </template>
             </a-form-item>
@@ -335,6 +335,7 @@ export default defineComponent({
 
     function getSalarys() {
       let uid: any
+      console.log(conditionItems[0].value.value)
       if (conditionItems[0].value.value == "") {
         Message.error("值不能为空")
         return
@@ -422,6 +423,35 @@ export default defineComponent({
       })
     }
 
+    function select(value: any) {
+      console.log(value)
+      get({
+        url: getSalaryList,
+        headers: {
+          Authorization: "Bearer " + userStore.token
+        },
+        data: () => {
+          return {
+            time: value,
+            offset: pagination.page,
+            limit: pagination.pageSize,
+          }
+        },
+      }).then((res) => {
+        res.data.forEach((i: any) => {
+          const date = new Date(i.CreatedAt);
+          const year = date.getFullYear();
+          const month = String(date.getMonth() + 1).padStart(2, "0");
+          const day = String(date.getDate()).padStart(2, "0");
+          i.CreatedAt = `${year}-${month}-${day}  ${date.getHours() > 10 ? date.getHours() : '0' + date.getHours()}:${date.getMinutes() > 10 ? date.getMinutes() : '0' + date.getMinutes()}:${date.getSeconds() > 10 ? date.getSeconds() : '0' + date.getSeconds()}`
+        })
+        table.handleSuccess(res)
+        console.log(res)
+        // pagination.setTotalSize(res.count)
+      }).catch(error => {
+        console.log(error)
+      })
+    }
     onMounted(async () => {
       table.tableHeight.value = await useTableHeight(getCurrentInstance())
       doRefresh()
@@ -441,6 +471,7 @@ export default defineComponent({
       onDataFormConfirm,
       input,
       onDeleteItem,
+      select,
       formRef,
       conditionItems,
       formItems,
