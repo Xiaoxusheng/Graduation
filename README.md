@@ -116,7 +116,10 @@ tencentCos:
 Pool:
   size: 10      #协程池数量
   num: 10      # 协程池中协程数量
-
 ```
 
-## 5.如果觉得不错，可以给一个star
+## 5.部分api文档
+
+[postman](https://documenter.getpostman.com/view/26266864/2sA35Mwxhv)
+
+## 6.如果觉得不错，可以给一个star
