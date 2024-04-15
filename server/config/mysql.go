@@ -43,8 +43,10 @@ func InitMysql() {
 			}
 			db.Debug()
 			global.Global.Log.Info("mysql连接成功！")
-			mysqlDB, _ := db.DB()
-
+			mysqlDB, err := db.DB()
+			if err != nil {
+				panic(err)
+			}
 			// SetMaxIdleConns 用于设置连接池中空闲连接的最大数量。
 			mysqlDB.SetMaxIdleConns(Config.Mysql.MaxIdleCons)
 
