@@ -27,7 +27,7 @@ redis:
 #Jwt
 jwt:
   time: 24
-  key: "welcome to use Tally by M"
+  key: "ha ha ha xiao xue sheng "
 
 #日志相关配置
 Logs:

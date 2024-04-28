@@ -37,6 +37,7 @@ const (
 
 // *错误信息*/
 var (
+	ExitError              = "退出失败！"
 	UserNotWorkError       = "员工状态异常！"
 	TokenError             = "token格式错误"
 	FileError              = "文件数量超过限制！"

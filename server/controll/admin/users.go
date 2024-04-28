@@ -209,7 +209,7 @@ func Logout(c *gin.Context) {
 	//删除token
 	val := global.Global.Redis.Del(global.Global.Ctx, id).Val()
 	if val != 1 {
-		result.Fail(c, global.ServerError, "退出失败！")
+		result.Fail(c, global.ServerError, global.ExitError)
 		return
 	}
 	result.Ok(c, nil)
