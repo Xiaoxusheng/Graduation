@@ -122,9 +122,15 @@ Pool:
 
 [postman](https://documenter.getpostman.com/view/26266864/2sA35Mwxhv)
 
-## 6.如果觉得不错，可以给一个star
+## 6.linux可以直接执行gen.go文件,拉取依赖直接后台启动
 
-## 7.有问题可以询问
+```go
+go generate.
+```
+
+## 7.如果觉得不错，可以给一个star
+
+## 8.有问题可以询问
 
 ```txt
 wx06594@gmail.com
