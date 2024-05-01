@@ -61,7 +61,7 @@ use server;
 
 ### 3.启动
 
-```shell
+```go
 go  run main.go
 ```
 

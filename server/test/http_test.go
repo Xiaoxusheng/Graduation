@@ -8,7 +8,7 @@ import (
 )
 
 func TestHttp(t *testing.T) {
-	for i := 0; i < 100; i++ {
+	for {
 		go func() {
 			client := http.Client{
 				Timeout: 10 * time.Second,
@@ -33,6 +33,5 @@ func TestHttp(t *testing.T) {
 			t.Log(string(body))
 		}()
 	}
-	select {}
 
 }

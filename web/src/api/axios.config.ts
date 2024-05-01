@@ -6,7 +6,7 @@ import qs from 'qs'
 // export const baseURL = '/api'
 
 // 在开发阶段如果需要使用 Proxy 代理解决跨域问题，则需要把下面代码注释打开
-export const baseURL = 'https://localhost:80'
+export const baseURL = 'http://localhost'
 
 export const CONTENT_TYPE = 'Content-Type'
 

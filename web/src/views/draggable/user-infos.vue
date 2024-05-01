@@ -216,7 +216,7 @@ export default defineComponent({
     let load = false
 
     function doRefresh() {
-
+      table.tableLoading.value = false
     }
 
     function onSearch() {
