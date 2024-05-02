@@ -23,12 +23,12 @@ func Log() gin.HandlerFunc {
 		id := c.GetString("identity")
 		val := global.Global.Redis.HGet(global.Global.Ctx, global.UidId, id).Val()
 		if val == "" {
-			employer, err := dao.GetInfoByIdentity(id)
-			if err != nil {
+			employer, err := dao.GetUid(id)
+			if err != nil || employer.Account == 0 {
 				global.Global.Log.Error(err)
 				return
 			}
-			_, err = global.Global.Redis.HSet(global.Global.Ctx, global.UidId, id, employer.Uid).Result()
+			_, err = global.Global.Redis.HSet(global.Global.Ctx, global.UidId, id, employer.Account).Result()
 			if err != nil {
 				global.Global.Log.Error(err)
 				return
