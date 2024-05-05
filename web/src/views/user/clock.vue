@@ -193,6 +193,7 @@ export default defineComponent({
           Authorization: "Bearer " + userStore.token
         },
       }).then(res => {
+        doRefresh()
         Message.success("打卡成功")
       }).catch(error => {
         Message.error(error.message)

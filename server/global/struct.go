@@ -75,8 +75,9 @@ type Attendance struct {
 
 // Application 申请信息
 type Application struct {
-	Uid  int64 `json:"uid,omitempty"  binding:"required" form:"uid"`
-	Pass int32 `json:"pass"  binding:"required" form:"pass"`
+	Uid  int64  `json:"uid,omitempty"  binding:"required" form:"uid"`
+	Id   string `json:"id,omitempty" binding:"required" form:"id"`
+	Pass int32  `json:"pass"  binding:"required" form:"pass"`
 }
 
 // Menu 菜单

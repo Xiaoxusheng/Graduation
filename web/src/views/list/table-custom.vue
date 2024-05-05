@@ -24,6 +24,7 @@
             :row-class-name="rowClassNameFun"
             :row-key="rowKey"
             :stripe="(striped as boolean)"
+
         >
           <template #columns>
             <a-table-column
@@ -31,6 +32,7 @@
                 :key="item.key"
                 :data-index="(item.key as string)"
                 v-bind="item"
+                :width="item.width"
             >
               <template v-if="item.key === 'index'" #cell="{ rowIndex }">
                 {{ rowIndex + 1 }}
@@ -158,6 +160,12 @@ export default defineComponent({
             dataIndex: 'uid',
           },
           {
+            title: '唯一标识',
+            key: 'identity',
+            dataIndex: 'identity',
+            width: 200,
+          },
+          {
             title: '性别',
             key: 'sex',
             dataIndex: 'sex',
@@ -167,6 +175,7 @@ export default defineComponent({
             key: 'department_id',
             dataIndex: 'department_id',
           },
+
           {
             title: '开始时间',
             key: 'start_time',
@@ -222,6 +231,13 @@ export default defineComponent({
         value: ref(undefined),
       },
       {
+        label: '唯一标识',
+        key: 'identity',
+        type: 'input',
+        placeholder: '',
+        value: ref(null),
+      },
+      {
         label: '性别',
         key: 'sex',
         type: 'input',
@@ -242,7 +258,6 @@ export default defineComponent({
         key: 'pass',
         type: 'switch',
         value: ref(2),
-
       },
     ] as FormItem[]
 
@@ -313,7 +328,7 @@ export default defineComponent({
     }
 
     function onUpdateItem(record: any) {
-
+      console.log(record)
       /* [ "2023-02-08 21:17:58", "2024-03-20 21:14:58" ] */
       formItems.forEach(i => {
         if (i.key == 'name') {
@@ -331,20 +346,27 @@ export default defineComponent({
         if (i.key == 'startEndDate') {
           i.value.value = [record.start_time, record.end_time]
         }
+        if (i.key == 'identity') {
+          i.value.value = record.identity
+        }
       })
       modalDialogRef.value?.toggle()
     }
 
     //   弹窗
-    function onDataFormConfirm() {
+    function onDataFormConfirm(record: any) {
       let uid: number
       let pass: number
+      let id: string
       formItems.forEach(i => {
         if (i.key == 'uid') {
           uid = i.value.value
         }
         if (i.key == "pass") {
           pass = i.value.value ? 1 : 2
+        }
+        if (i.key == "identity") {
+          id = i.value.value
         }
       })
       post({
@@ -354,6 +376,7 @@ export default defineComponent({
         },
         data: () => {
           return {
+            id: id,
             uid: uid,
             pass: pass as number,
           }

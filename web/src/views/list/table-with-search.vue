@@ -258,6 +258,13 @@ export default defineComponent({
         key: 'uid',
         dataIndex: 'uid',
       },
+
+      {
+        title: '唯一标识',
+        key: 'identity',
+        dataIndex: 'identity',
+        width: 200,
+      },
       {
         title: '性别',
         key: 'sex',
@@ -321,6 +328,13 @@ export default defineComponent({
         type: 'input',
         placeholder: '请选择工号',
         value: ref(undefined),
+      },
+      {
+        label: '唯一标识',
+        key: 'identity',
+        type: 'input',
+        placeholder: '',
+        value: ref(null),
       },
       {
         label: '性别',
@@ -439,6 +453,9 @@ export default defineComponent({
         if (i.key == 'startEndDate') {
           i.value.value = [record.start_time, record.end_time]
         }
+        if (i.key == 'identity') {
+          i.value.value = record.identity
+        }
       })
       modalDialogRef.value?.toggle()
     }
@@ -449,12 +466,17 @@ export default defineComponent({
       if (formItems.every((it) => (it.validator ? it.validator() : true))) {
         let uid: number
         let pass: number
+        let id: string
+
         formItems.forEach(i => {
           if (i.key == 'uid') {
             uid = i.value.value
           }
           if (i.key == "pass") {
             pass = i.value.value ? 1 : 2
+          }
+          if (i.key == "identity") {
+            id = i.value.value
           }
         })
         post({
@@ -464,6 +486,7 @@ export default defineComponent({
           },
           data: () => {
             return {
+              id: id,
               uid: uid,
               pass: pass as number,
             }

@@ -33,7 +33,7 @@ func LeaveApplication(c *gin.Context) {
 		}
 
 		id := utils.GetUidV4()
-		err = dao.UpdateLeaveStatus(application.Uid, application.Pass, id, info.StartTime, info.EndTime)
+		err = dao.UpdateLeaveStatus(application.Uid, application.Pass, id, application.Id, info.StartTime, info.EndTime)
 		if err != nil {
 			global.Global.Log.Error(err)
 			result.Fail(c, global.ServerError, global.LeaveApplicationError)
@@ -88,7 +88,7 @@ func OvertimeApplication(c *gin.Context) {
 			result.Fail(c, global.ServerError, global.OverTimeApplicationError)
 			return
 		}
-		err = dao.UpdateOvertimeStatus(application.Uid, application.Pass, info.EndTime.Unix())
+		err = dao.UpdateOvertimeStatus(application.Uid, application.Pass, info.EndTime.Unix(), application.Id)
 		if err != nil {
 			global.Global.Log.Error(err)
 			result.Fail(c, global.ServerError, global.OverTimeApplicationError)
@@ -145,7 +145,7 @@ func MakeCardApplication(c *gin.Context) {
 			return
 		}
 		id := utils.GetUidV4()
-		err = dao.MakeCard(application.Uid, info.StartTime, info.EndTime, application.Pass, id)
+		err = dao.MakeCard(application.Uid, info.StartTime, info.EndTime, application.Pass, id, application.Id)
 		if err != nil {
 			global.Global.Log.Error(err)
 			result.Fail(c, global.ServerError, global.MarkCardApplicationError)

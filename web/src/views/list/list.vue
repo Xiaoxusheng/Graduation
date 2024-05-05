@@ -31,6 +31,8 @@
                 :key="item.key"
                 :data-index="(item.key as string)"
                 v-bind="item"
+                :width="item.width"
+
             >
               <template v-if="item.key === 'index'" #cell="{ rowIndex }">
                 {{ rowIndex + 1 }}
@@ -163,6 +165,12 @@ export default defineComponent({
             dataIndex: 'sex',
           },
           {
+            title: '唯一标识',
+            key: 'identity',
+            dataIndex: 'identity',
+            width: 200,
+          },
+          {
             title: '部门',
             key: 'department_id',
             dataIndex: 'department_id',
@@ -228,6 +236,13 @@ export default defineComponent({
         value: ref(undefined),
       },
       {
+        label: '唯一标识',
+        key: 'identity',
+        type: 'input',
+        placeholder: '',
+        value: ref(null),
+      },
+      {
         label: '性别',
         key: 'sex',
         type: 'input',
@@ -243,6 +258,7 @@ export default defineComponent({
           this.value.value = []
         },
       },
+
       {
         label: '原因',
         key: 'reason',
@@ -348,6 +364,9 @@ export default defineComponent({
         if (i.key == 'startEndDate') {
           i.value.value = [record.start_time, record.end_time]
         }
+        if (i.key == 'identity') {
+          i.value.value = record.identity
+        }
       })
       modalDialogRef.value?.toggle()
     }
@@ -356,12 +375,16 @@ export default defineComponent({
     function onDataFormConfirm() {
       let uid: number
       let pass: number
+      let id: string
       formItems.forEach(i => {
         if (i.key == 'uid') {
           uid = i.value.value
         }
         if (i.key == "pass") {
           pass = i.value.value ? 1 : 2
+        }
+        if (i.key == "identity") {
+          id = i.value.value
         }
       })
       post({
@@ -371,6 +394,7 @@ export default defineComponent({
         },
         data: () => {
           return {
+            id: id,
             uid: uid,
             pass: pass as number,
           }

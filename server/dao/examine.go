@@ -19,7 +19,7 @@ func GetExamineList(limits, offset int) ([]global.Applications, error) {
 }
 
 // UpdateLeaveStatus 请假审核
-func UpdateLeaveStatus(uid int64, pass int32, id string, start, end time.Time) error {
+func UpdateLeaveStatus(uid int64, pass int32, id, identity string, start, end time.Time) error {
 	examine := new(models.Examine)
 	//审核通过
 	if pass == 1 {
@@ -28,14 +28,14 @@ func UpdateLeaveStatus(uid int64, pass int32, id string, start, end time.Time) e
 			return err
 		}
 	}
-	return global.Global.Mysql.Model(examine).Where("uid=?  and status=?", uid, 4).Updates(&models.Examine{
+	return global.Global.Mysql.Model(examine).Where("uid=? and identity=?  and status=?", uid, identity, 4).Updates(&models.Examine{
 		Pass:      pass,
 		IsExamine: 1,
 	}).Error
 }
 
 // UpdateOvertimeStatus 加班申请
-func UpdateOvertimeStatus(uid int64, pass int32, endTime int64) error {
+func UpdateOvertimeStatus(uid int64, pass int32, endTime int64, identity string) error {
 	examine := new(models.Examine)
 	//修改一下时间
 	global.Global.Mutex.Lock()
@@ -47,7 +47,7 @@ func UpdateOvertimeStatus(uid int64, pass int32, endTime int64) error {
 			return err
 		}
 	}
-	return global.Global.Mysql.Model(examine).Where("uid=?  and status=?", uid, 1).Updates(&models.Examine{
+	return global.Global.Mysql.Model(examine).Where("uid=? and identity=?  and status=?", uid, identity, 1).Updates(&models.Examine{
 		Pass:      pass,
 		IsExamine: 1,
 	}).Error
@@ -64,7 +64,7 @@ func GetOvertimeList(limits, offsets int) ([]global.Applications, error) {
 }
 
 // MakeCard 补卡申请审批
-func MakeCard(uid int64, star, end time.Time, pass int32, id string) error {
+func MakeCard(uid int64, star, end time.Time, pass int32, id, identity string) error {
 	examine := new(models.Examine)
 	if pass == 1 {
 		err := UpdateMakeCard(uid, star, end, id)
@@ -72,7 +72,7 @@ func MakeCard(uid int64, star, end time.Time, pass int32, id string) error {
 			return err
 		}
 	}
-	return global.Global.Mysql.Model(examine).Where("uid=?   and status=?", uid, 2).Updates(
+	return global.Global.Mysql.Model(examine).Where("uid=? and identity=?   and status=?", uid, identity, 2).Updates(
 		&models.Examine{
 			Pass:      pass,
 			IsExamine: 1,
