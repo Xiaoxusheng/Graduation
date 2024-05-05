@@ -11,7 +11,7 @@
           <a-space>
           <span class="icon-hover"
                 style="font-size: 20px"> </span>
-            <span class="icon-hover" style="font-size: 10px"> {{ "发布" }} </span>
+            <a-button size="mini" type="primary" @click="changeInfo">修改个人信息</a-button>
             <a-divider direction="vertical"/>
             <a-button size="mini" status="success" type="primary" @click="compile">修改密码</a-button>
             <a-divider direction="vertical"/>
@@ -108,14 +108,53 @@
       </a-form>
     </template>
   </ModalDialog>
-
+  <ModalDialog ref="modalDialogRef" :title="actionTitle" @confirm="update">
+    <template #content>
+      <a-form ref="formRef" :labelCol="{ span: 4 }" :model="employerInfo">
+        <a-form-item :rules="[
+            { required: true, message: '请输入员工姓名' },
+            { min: 3, max: 10, message: '长度在 3 - 10个字符' },
+          ]" :validate-trigger="['change', 'input']" field="name" label="员工姓名">
+          <a-input v-model="employerInfo.name" placeholder="请输入员工姓名">
+            <template #suffix>
+              <icon-info-circle/>
+            </template>
+          </a-input>
+        </a-form-item>
+        <a-form-item label="电话" name="phone">
+          <a-input v-model="employerInfo.phone" :rules="[
+            { required: true, message: '请输入员工电话' },
+            { min: 11, max: 11, message: '长度在 11 个字符' },
+          ]" :validate-trigger="['change', 'input']" placeholder="请输入员工电话">
+            <template #suffix>
+              <icon-info-circle/>
+            </template>
+          </a-input>
+        </a-form-item>
+        <a-form-item label="生日" name="birthday">
+          <a-date-picker
+              v-model="employerInfo.birthday"
+              format=YYYY:MM:DD
+              style="width: 100%"
+              type="time"
+          />
+        </a-form-item>
+        <a-form-item label="性别" name="sex">
+          <a-radio-group v-model="employerInfo.sex">
+            <a-radio :value="1">男</a-radio>
+            <a-radio :value="2">女</a-radio>
+          </a-radio-group>
+        </a-form-item>
+      </a-form>
+    </template>
+  </ModalDialog>
 </template>
 
 <script lang="ts">
 import useUserStore from '@/store/modules/user'
 import {defineComponent, onMounted, reactive, ref} from 'vue'
-import {get, Response} from "@/api/http";
-import {changePassword, userinfo} from "@/api/url";
+import {get, post, Response} from "@/api/http";
+import {changePassword, changeUserInfos, userinfo} from "@/api/url";
 import {Message} from "@arco-design/web-vue";
 import {ModalDialogType} from "@/types/components";
 
@@ -124,6 +163,7 @@ export default defineComponent({
   setup() {
     const touched = ref(false)
     const uploaded = ref(false)
+    const modalDialogRef = ref<ModalDialogType | null>(null)
     const avatarTouchStart = () => {
       touched.value = true
     }
@@ -153,6 +193,24 @@ export default defineComponent({
       4: "销售部",
       5: "法务部"
     }
+
+
+    interface EmployerInfo {
+      uid: number
+      name: string
+      birthday: number
+      sex: number | undefined
+      phone: number | undefined
+    }
+
+    let employerInfo = reactive<EmployerInfo>({
+      uid: 0,
+      name: '',
+      birthday: 0,
+      sex: 1,
+      phone: undefined,
+    })
+
     const modalDialogRefs = ref<ModalDialogType | null>(null)
     const actionTitle = ref('修改密码')
     const userStore = useUserStore()
@@ -179,7 +237,6 @@ export default defineComponent({
         info.name = data.name
         info.IP = data.IP
         info.create = GetTime(data.CreatedAt)
-        console.log(info)
       }).catch(error => {
         Message.error(error.message)
       })
@@ -232,6 +289,33 @@ export default defineComponent({
       modalDialogRefs.value?.toggle()
     }
 
+    function changeInfo() {
+      modalDialogRef.value?.toggle()
+      actionTitle.value = '更新个人信息'
+      employerInfo.uid = info.uid
+      employerInfo.phone = info.phone
+      employerInfo.sex = info.sex
+      employerInfo.name = info.name
+      employerInfo.birthday = Math.round(new Date(info.birthday).getTime() / 1000);
+    }
+
+    function update() {
+      post({
+            url: changeUserInfos,
+            headers: {
+              Authorization: "Bearer " + userStore.token
+            },
+            data: employerInfo
+          },
+      ).then(() => {
+        getInfo()
+        Message.success("修改成功")
+      }).catch((error: any) => {
+        Message.error(error.message)
+      })
+      modalDialogRef.value?.toggle()
+    }
+
     onMounted(getInfo)
     return {
       modalDialogRefs,
@@ -239,17 +323,20 @@ export default defineComponent({
       touched,
       uploaded,
       avatar: userStore.avatar,
-      nickName: userStore.nickName,
       info,
       department,
       pwd,
+      modalDialogRef,
+      employerInfo,
       del,
       compile,
       Getdate,
       GetTime,
+      changeInfo,
       onDataFormConfirms,
       avatarTouchStart,
       uploadAvatar,
+      update,
     }
   },
 })

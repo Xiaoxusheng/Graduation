@@ -166,7 +166,8 @@ func Routers(e *gin.Engine) *gin.Engine {
 
 	//获取公告
 	users.GET("/get_notice_list", user.GetNotice)
-	//
+	//修改信息
+	users.POST("/change_info", user.ChangeInfo)
 
 	//修改密码
 	users.GET("/change_password", user.ChangePassword)

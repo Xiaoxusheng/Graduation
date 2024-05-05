@@ -10,6 +10,7 @@ func InsertNotice(notice *models.Notice) error {
 }
 
 func UpdateNotice(notice *global.UpdateNotice) error {
+	/*Updates 方法支持 struct 和 map[string]interface{} 参数。当使用 struct 更新时，默认情况下GORM 只会更新非零值的字段 Gorm官方文档*/
 	return global.Global.Mysql.Model(new(models.Notice)).Where("identity=?", notice.Id).Updates(map[string]any{
 		"status": notice.Status,
 		"title":  notice.Title,

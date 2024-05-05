@@ -4,6 +4,7 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
 	"server/config"
 	"server/dao"
 	"server/global"
@@ -250,4 +251,59 @@ func EmployeeInfo(c *gin.Context) {
 		}
 	})
 	result.Ok(c, info)
+}
+
+// ChangeInfo 修改个人信息
+func ChangeInfo(c *gin.Context) {
+	e := new(global.Infos)
+	err := c.Bind(e)
+	if err != nil {
+		result.Fail(c, global.BadRequest, global.QueryError)
+		global.Global.Log.Error(err)
+		return
+	}
+	if e.Uid == 0 || e.Sex == 0 {
+		result.Fail(c, global.BadRequest, global.QueryError)
+		return
+	}
+	//判断员工是否存在
+	val := global.Global.Redis.SIsMember(global.Global.Ctx, global.Employer, e.Uid).Val()
+	if !val {
+		result.Fail(c, global.BadRequest, global.EmployerNotFoundError)
+		return
+	}
+	err = global.Global.Mysql.Transaction(func(tx *gorm.DB) error {
+		// 在事务中执行一些 db 操作（从这里开始，您应该使用 'tx' 而不是 'db'）
+		//
+		err = dao.UpdateUserinfo(tx, e)
+		if err != nil {
+			result.Fail(c, global.ServerError, global.UpdateUserInfoError)
+			global.Global.Log.Error(err)
+			return err
+		}
+		err = dao.UpdateUser(tx, strconv.FormatInt(e.Uid, 10), e.Name)
+		if err != nil {
+			result.Fail(c, global.ServerError, global.UpdateUserInfoError)
+			global.Global.Log.Error(err)
+			return err
+		}
+		// 返回 nil 提交事务
+		return nil
+	})
+	//	更新信息
+	if err != nil {
+		result.Fail(c, global.ServerError, global.UpdateUserInfoError)
+		global.Global.Log.Error(err)
+		return
+	}
+	//删除缓存中信息
+	err = global.Global.Pool.Submit(func() {
+		global.Global.Wg.Add(1)
+		defer global.Global.Wg.Done()
+		_, err := global.Global.Redis.Del(global.Global.Ctx, global.Uid+strconv.Itoa(int(e.Uid))).Result()
+		if err != nil {
+			global.Global.Log.Error(err)
+		}
+	})
+	result.Ok(c, nil)
 }

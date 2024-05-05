@@ -188,3 +188,11 @@ type RoleName struct {
 	Uid  string `json:"uid"`
 	Id   string `json:"id"`
 }
+
+type Infos struct {
+	Uid      int64  `json:"uid,omitempty" binding:"required"  form:"uid"`
+	Sex      int32  `json:"sex" binding:"required" form:"sex"`
+	Name     string `json:"name,omitempty" binding:"required"  form:"name"`
+	Birthday int64  `json:"birthday,omitempty" binding:"required" form:"birthday"`
+	Phone    string `json:"phone,omitempty" binding:"required" form:"phone"`
+}

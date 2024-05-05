@@ -66,6 +66,7 @@ var (
 	AddDepartmentError     = "新增部门失败！"
 	UpdateClockInLogError  = "修改考勤记录失败！"
 	GetExamineListError    = "获取申请失败！"
+	UpdateUserInfoError    = "更新信息失败！"
 
 	//菜单
 	AddMenuError    = "新增菜单失败！"

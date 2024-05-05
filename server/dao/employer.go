@@ -1,6 +1,7 @@
 package dao
 
 import (
+	"gorm.io/gorm"
 	"server/global"
 	"server/models"
 	"time"
@@ -93,4 +94,15 @@ func GetUserById(identity string) (*models.Employee, error) {
 		return nil, err
 	}
 	return employer, nil
+}
+
+// UpdateUserinfo 更新用户信息
+func UpdateUserinfo(db *gorm.DB, user *global.Infos) error {
+	return db.Model(new(models.Employee)).Where("uid=?", user.Uid).Updates(map[string]any{
+		"uid":      user.Uid,
+		"name":     user.Name,
+		"birthday": time.Unix(user.Birthday, 0),
+		"sex":      user.Sex,
+		"Phone":    user.Phone,
+	}).Error
 }

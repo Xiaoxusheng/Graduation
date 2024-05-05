@@ -31,10 +31,6 @@ func AddEmployee(c *gin.Context) {
 		return
 	}
 
-	if err != nil {
-		global.Global.Log.Error(err)
-		return
-	}
 	//	添加员工信息
 	id := utils.GetUidV4()
 	err = dao.InsertEmployer(&models.Employee{
