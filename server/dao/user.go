@@ -1,6 +1,7 @@
 package dao
 
 import (
+	"fmt"
 	"gorm.io/gorm"
 	"server/global"
 	"server/models"
@@ -84,5 +85,6 @@ func GetUid(identity string) (*models.User, error) {
 }
 
 func UpdateUser(tx *gorm.DB, id, name string) error {
-	return tx.Where("identity=?", id).Model(new(models.User)).Update("username", name).Error
+	fmt.Println(id, name)
+	return tx.Model(new(models.User)).Where("identity=?", id).Update("username", name).Error
 }

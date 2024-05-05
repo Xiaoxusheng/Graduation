@@ -281,7 +281,9 @@ func ChangeInfo(c *gin.Context) {
 			global.Global.Log.Error(err)
 			return err
 		}
-		err = dao.UpdateUser(tx, strconv.FormatInt(e.Uid, 10), e.Name)
+		id := c.GetString("identity")
+
+		err = dao.UpdateUser(tx, id, e.Name)
 		if err != nil {
 			result.Fail(c, global.ServerError, global.UpdateUserInfoError)
 			global.Global.Log.Error(err)
