@@ -15,7 +15,7 @@ mysql:
 
 #redis数据库
 redis:
-  addr: "127.0.0."
+  addr: "127.0.0.1:6379"
   db: 0
   password: "admin123"
   poolsize: 1000
@@ -38,9 +38,9 @@ Logs:
 
 #cos
 tencentCos:
-  url: ""
-  secretId: ""
-  secretKey: ""
+  url: "https://tally-1308109276.cos.ap-nanjing.myqcloud.com/"
+  secretId: "AKIDfBRQAdpkPnukJceOr52JK4XjeIgmb9RS"
+  secretKey: "lFRTFkzziAMIyNULvEG0VkofGahZBWaN"
 
 #  协程池
 Pool:
