@@ -56,7 +56,6 @@ func Login(c *gin.Context) {
 		if err != nil {
 			global.Global.Log.Error(err)
 		}
-
 	}
 	salts, _ := base64.URLEncoding.DecodeString(salt)
 	val := global.Global.Redis.HGet(global.Global.Ctx, user.Username, utils.HashPassword(user.Password, salts)).Val()
