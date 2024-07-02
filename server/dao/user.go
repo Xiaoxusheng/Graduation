@@ -1,7 +1,7 @@
 package dao
 
 import (
-	"fmt"
+	"errors"
 	"gorm.io/gorm"
 	"server/global"
 	"server/models"
@@ -85,6 +85,17 @@ func GetUid(identity string) (*models.User, error) {
 }
 
 func UpdateUser(tx *gorm.DB, id, name string) error {
-	fmt.Println(id, name)
 	return tx.Model(new(models.User)).Where("identity=?", id).Update("username", name).Error
+}
+
+func GetSalt(username, password string) error {
+	user := new(models.User)
+	err := global.Global.Mysql.Where("username=? and password=?", username, password).First(user).Error
+	if err != nil {
+		return err
+	}
+	if user.Salt == "" {
+		return errors.New("用户不存在！")
+	}
+	return nil
 }
