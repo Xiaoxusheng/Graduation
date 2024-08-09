@@ -88,14 +88,14 @@ func UpdateUser(tx *gorm.DB, id, name string) error {
 	return tx.Model(new(models.User)).Where("identity=?", id).Update("username", name).Error
 }
 
-func GetSalt(username, password string) error {
+func GetSalt(username, password string) (*models.User, error) {
 	user := new(models.User)
 	err := global.Global.Mysql.Where("username=? and password=?", username, password).First(user).Error
 	if err != nil {
-		return err
+		return nil, err
 	}
 	if user.Salt == "" {
-		return errors.New("用户不存在！")
+		return nil, errors.New("用户不存在！")
 	}
-	return nil
+	return user, nil
 }

@@ -41,14 +41,14 @@ func Login(c *gin.Context) {
 	salt := global.Global.Redis.HGet(global.Global.Ctx, user.Username, global.Salt).Val()
 	if salt == "" {
 		//去数据库查盐值，如果不存在
-		err = dao.GetSalt(user.Username, user.Password)
+		userinfo, err := dao.GetSalt(user.Username, user.Password)
 		if err != nil {
 			result.Fail(c, global.BadRequest, global.UserNotExistError)
 			return
 		}
 		//	写入缓存
 		err = global.Global.Pool.Submit(func() {
-			_, err = global.Global.Redis.HSet(global.Global.Ctx, user.Username, global.Salt).Result()
+			_, err = global.Global.Redis.HSet(global.Global.Ctx, user.Username, global.Salt, userinfo.Salt).Result()
 			if err != nil {
 				global.Global.Log.Error(err)
 			}
