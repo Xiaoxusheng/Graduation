@@ -8,7 +8,7 @@ require (
 	github.com/casbin/gorm-adapter/v3 v3.21.0
 	github.com/fsnotify/fsnotify v1.7.0
 	github.com/gin-gonic/gin v1.9.1
-	github.com/golang-jwt/jwt/v5 v5.2.0
+	github.com/golang-jwt/jwt/v5 v5.2.2
 	github.com/panjf2000/ants/v2 v2.9.0
 	github.com/redis/go-redis/v9 v9.4.0
 	github.com/satori/go.uuid v1.2.0
